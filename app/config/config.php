@@ -9,11 +9,10 @@ define('DB_NAME', 'miublog');
 //echo dirname(dirname(__FILE__));
 define('APPROOT', dirname(dirname(__FILE__)));
 // URL Root
-define('URLROOT', 'http://localhost/Real-Estate-project/RealEstateMvc/public/');
+define('URLROOT', 'http://localhost/Real-Estate-project/public/');
 // Site Name
 define('SITENAME', 'MataNa');
-
+//App Version
 define('APP_VERSION', '1.2');
-
 //public pages path
 define('VIEWS_PATH', '../app/views/');
