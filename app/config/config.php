@@ -16,3 +16,5 @@ define('SITENAME', 'MataNa');
 define('APP_VERSION', '1.2');
 //public pages path
 define('VIEWS_PATH', '../app/views/');
+//Imagese
+define('IMAGEROOT','../app/views/images/');

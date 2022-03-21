@@ -22,6 +22,11 @@ class Index extends View
     </div>
   </div>
 EOT;
+?>
+<div>
+  <img src = "<?php echo IMAGEROOT . 'na7la1.png' ; ?>"/>  
+</div>
+<?php
     echo $text;
     require APPROOT . '/views/inc/footer.php';
   }
