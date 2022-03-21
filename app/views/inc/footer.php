@@ -1,7 +1,7 @@
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<!-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
+<!------ Include the above in your HEAD tag ----------> <!-- --> 
 
 <!DOCTYPE html>
 <html lang="en">
@@ -9,108 +9,15 @@
   <title>Footer</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
-  <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,700,900" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700" rel="stylesheet">
 
 </head>
-<style type="text/css">
-	body {
-        font-family: 'Signika', sans-serif;
-     }
-     .bg-grey {
-        background: #292929;
-     }
-     .logo-footer {
-        margin-bottom: 40px;
-     }
-     footer {
-            color: grey;
-     }
-     footer p, a {
-    font-size: 12px;
-    font-family: 'Roboto', sans-serif;
-}
-footer h6 {
-    font-family: 'Playfair Display', serif;
-    margin-bottom: 40px;
-    position: relative;
-}
-footer h6:after {
-    position: absolute;
-    content: "";
-    background: grey;
-    width: 12%;
-    height: 1px;
-    left: 0;
-    bottom: -20px;
-}
-     .btn-footer {
-                 color: grey;
-              
-                text-decoration: none;
-                border: 1px solid;
-                border-radius: 43px;
-                font-size: 13px;
-                padding: 7px 30px;
-                line-height: 47px;
-     }
-     .btn-footer:hover {
-                
-                text-decoration: none;
-               
-     }
-    .form-footer input[type="text"] {
-        border: none;
-    border-radius: 16px 0 0 16px;
-    outline: none;
-    padding-left: 10px;
-    
-}
 
- .form-footer input[type="button"] {
-    border: none;
-    background:#232323;
-        margin-left: -5px;
-    color: #fff;
-    outline: none;
-    border-radius: 0 16px 16px 0;
-    padding: 2px 12px;
-}
-     .social .fa {
-    color: grey;
-    font-size: 22px;
-    padding: 10px 15px;
-    background: #3c3c3c;
-}
- 
-     footer ul li {
-    list-style: none;
-    display: block;
-}
-  footer ul  {
-   padding-left: 0;
-}
-footer ul  li a{
-  text-decoration: none;
-  color: grey;
-  text-decoration:none;
-}
-a:hover {
-    text-decoration: none;
-    color: #FF0101 !important;
-    
-}
-.logo-part {
-    border-right: 1px solid grey;
-    height: 100%;
-    }
-</style>
-<footer class="container-fluid bg-grey py-5">
+<footer class="container-fluid bg-grey py-5" style="position: absolute;
+    left: 0;
+    bottom: 0;
+    height: auto;
+    width: 100%;">
 <div class="container">
    <div class="row">
       <div class="col-md-6">

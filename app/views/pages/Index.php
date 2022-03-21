@@ -24,11 +24,13 @@ class Index extends View
 EOT;
 ?>
 <div>
-  <body background = "<?php echo IMAGEROOT . 'img2.png' ; ?>" style = "background-repeat: no-repeat;">
+  <body background = "<?php echo IMAGEROOT . 'img2.png' ; ?>" style = " background-attachment: fixed;
+  
+   ">
   </body>
 </div>
 <?php
     // echo $text;
-    require APPROOT . '/views/inc/footer.php';
+
   }
 }
