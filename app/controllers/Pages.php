@@ -8,4 +8,11 @@ public function index()
         $indexView = new Index($this->getModel(), $this);
         $indexView->output();
     }
+public function viewItem()
+    {
+        $viewPath = VIEWS_PATH . 'pages/viewItem.php';
+        require_once $viewPath;
+        $indexView = new viewItem($this->getModel(), $this);
+        $indexView->output();
+    }
 }
