@@ -16,7 +16,7 @@ class Index extends View
     <div class="container">
       <h1 class="display-4"> $title </h1>
       <h2 class="lead">$subtitle </h2>
-      <p> User $user_id, $user_name is logged in</p>
+      
       <hr class="my-4">
       <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
     </div>
@@ -24,10 +24,11 @@ class Index extends View
 EOT;
 ?>
 <div>
-  <img src = "<?php echo IMAGEROOT . 'na7la1.png' ; ?>"/>  
+  <body background = "<?php echo IMAGEROOT . 'img2.png' ; ?>" style = "background-repeat: no-repeat;">
+  </body>
 </div>
 <?php
-    echo $text;
+    // echo $text;
     require APPROOT . '/views/inc/footer.php';
   }
 }
