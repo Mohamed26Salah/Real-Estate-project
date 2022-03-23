@@ -16,7 +16,7 @@ class Index extends View
    
    ">
    <!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////// -->
- <div class="cards-list" style="postion: fixed;"> 
+   <div class="cards-list">
 
 
 
@@ -108,9 +108,6 @@ class Index extends View
 
    
   </body>
-  <footer> <?php
-  require APPROOT . '/views/inc/footer.php';
-  ?> </footer>
 </div>
 <?php
     

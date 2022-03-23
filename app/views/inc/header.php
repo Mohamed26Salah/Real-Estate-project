@@ -15,6 +15,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="<?php echo URLROOT; ?>css/navbar.css">
   <link rel="stylesheet" href="<?php echo URLROOT; ?>css/footer.css">
+  <link rel="stylesheet" href="<?php echo URLROOT; ?>css/style.css">
   <link rel="stylesheet" href="<?php echo URLROOT; ?>fonts/icomoon/style.css">
     <script src="<?php echo URLROOT; ?>js/jquery-3.3.1.min.js"></script>
     <script src="<?php echo URLROOT; ?>js/popper.min.js"></script>
@@ -26,9 +27,16 @@
   <title><?php echo SITENAME; ?></title>
 </head>
 
+<style>
+  #footer{ clear:both;}
+</style>
 <body>
-  <?php
+  <header> <?php
   require APPROOT . '/views/inc/navbar.php';
-  require APPROOT . '/views/inc/footer.php';
-  ?> 
+  
+  ?> </header>
+
+ 
+ 
   <!-- <div class="container"> -->
+</html>
