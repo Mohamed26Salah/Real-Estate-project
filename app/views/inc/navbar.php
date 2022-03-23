@@ -18,7 +18,7 @@
       <div class="site-mobile-menu-body"></div>
     </div>
     
-    <header class="site-navbar" role="banner">
+    <header class="site-navbar" style="position: relative;" role="banner">
 
       <div class="container">
         <div class="row align-items-center">
