@@ -15,17 +15,22 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
 <link href='https://fonts.googleapis.com/css?family=Lato:400,300,700' rel='stylesheet' type='text/css'>
+
   <link rel="stylesheet" href="<?php echo URLROOT; ?>css/navbar.css">
+   <link rel="stylesheet" href="<?php echo URLROOT; ?>css/ViewPage.css">
   <link rel="stylesheet" href="<?php echo URLROOT; ?>css/footer.css">
   <link rel="stylesheet" href="<?php echo URLROOT; ?>css/style.css">
-  <link rel="stylesheet" href="<?php echo URLROOT; ?>css/Sidebar.css">
   <link rel="stylesheet" href="<?php echo URLROOT; ?>fonts/icomoon/style.css">
+
     <script src="<?php echo URLROOT; ?>js/jquery-3.3.1.min.js"></script>
     <script src="<?php echo URLROOT; ?>js/popper.min.js"></script>
     <script src="<?php echo URLROOT; ?>js/bootstrap.min.js"></script>
     <script src="<?php echo URLROOT; ?>js/jquery.sticky.js"></script>
     <script src="<?php echo URLROOT; ?>js/main.js"></script>
- 
+    <script src="<?php echo URLROOT; ?>js/viewpage.js"></script>
+    <script src="<?php echo URLROOT; ?>js/pagination.js"></script>
+<!--     <script src="<?php echo URLROOT; ?>js/sidebar.js"></script>
+ --> 
 
   <title><?php echo SITENAME; ?></title>
 </head>
