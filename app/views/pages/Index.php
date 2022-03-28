@@ -20,84 +20,84 @@ class Index extends View
 
 
 
-    <div class="card 1">
-    <div class="card_image">
+    <div class="cards-index 1">
+    <div class="cards-index_image">
       <img src="<?php echo IMAGEROOT . 'management.png' ; ?>" />
       </div>
-    <div class="card_title title-white">
+    <div class="cards-index_title title-white">
 
     </div>
   </div>
 
-  <div class="card 2">
-    <div class="card_image">
+  <div class="cards-index 2">
+    <div class="cards-index_image">
       <img src="<?php echo IMAGEROOT . 'barn.png' ; ?>" />
     </div>
-    <div class="card_title">
+    <div class="cards-index_title">
 
     </div>
   </div>
 
-    <div class="card 3">
-    <div class="card_image">
+    <div class="cards-index 3">
+    <div class="cards-index_image">
       <img src="<?php echo IMAGEROOT . 'factory.png' ; ?>" />
       </div>
-    <div class="card_title title-black">
+    <div class="cards-index_title title-black">
 
     </div>
     </div>
 
 
-    <div class="card 4">
-    <div class="card_image">
+    <div class="cards-index 4">
+    <div class="cards-index_image">
       <img src="<?php echo IMAGEROOT . 'flat.png' ; ?>" />
       </div>
-    <div class="card_title title-black">
+    <div class="cards-index_title title-black">
 
     </div>
     </div>
 
 
-    <div class="card 5">
-    <div class="card_image">
+    <div class="cards-index 5">
+    <div class="cards-index_image">
       <img src="<?php echo IMAGEROOT . 'hospital.png' ; ?>" />
       </div>
-    <div class="card_title title-black">
+    <div class="cards-index_title title-black">
 
   </div>
     </div>
 
-    <div class="card 6">
-    <div class="card_image">
+    <div class="cards-index 6">
+    <div class="cards-index_image">
       <img src="<?php echo IMAGEROOT . 'school.png' ; ?>" />
       </div>
-    <div class="card_title title-black">
+    <div class="cards-index_title title-black">
     </div>
     </div>
 
 
-    <div class="card 7">
-    <div class="card_image">
+    <div class="cards-index 7">
+    <div class="cards-index_image">
       <img src="<?php echo IMAGEROOT . 'villa.png' ; ?>" />
       </div>
-    <div class="card_title title-black">
+    <div class="cards-index_title title-black">
     </div>
     </div>
 
-    <div class="card 8">
-    <div class="card_image">
+    <div class="cards-index 8">
+    <div class="cards-index_image">
       <img src="<?php echo IMAGEROOT . 'house.png' ; ?>" />
       </div>
-    <div class="card_title title-black">
+    <div class="cards-index_title title-black">
     </div>
     </div>
 
 
-    <div class="card 9">
-    <div class="card_image">
+    <div class="cards-index 9">
+    <div class="cards-index_image">
       <img src="<?php echo IMAGEROOT . 'logo.png' ; ?>" />
       </div>
-    <div class="card_title title-black">
+    <div class="cards-index_title title-black">
     </div>
     </div>
 
