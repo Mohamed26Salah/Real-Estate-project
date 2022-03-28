@@ -9,138 +9,576 @@ class viewItem extends View
     // $user_name = $_SESSION['user_name'];
     
 
-    require APPROOT . '/views/inc/header.php';
-$text = <<<EOT
-    <section class="app">
+   
+   require APPROOT . '/views/inc/header.php';
+    ?>
+
+
+
+
+    <body background="<?php echo IMAGEROOT2."img2.png" ;?>" >
+
+
+        <!-- sidebar -->
+
+        
+<div class="main-container">
   <aside class="sidebar">
-         <header>
-        Menu
-      </header>
-    <nav class="sidebar-nav">
- 
-      <ul>
-        <li>
-          <a href="#"><i class="ion-bag"></i> <span>Shop</span></a>
-          <ul class="nav-flyout">
-            <li>
-              <a href="#"><i class="ion-ios-color-filter-outline"></i>Derps</a>
-            </li>
-            <li>
-              <a href="#"><i class="ion-ios-clock-outline"></i>Times</a>
-            </li>
-            <li>
-              <a href="#"><i class="ion-android-star-outline"></i>Hates</a>
-            </li>
-            <li>
-              <a href="#"><i class="ion-heart-broken"></i>Beat</a>
-            </li>
-          </ul>
-        </li>
-        <li>
-          <a href="#"><i class="ion-ios-settings"></i> <span class="">Controls</span></a>
-          <ul class="nav-flyout">
-            <li>
-              <a href="#"><i class="ion-ios-alarm-outline"></i>Watch</a>
-            </li>
-            <li>
-              <a href="#"><i class="ion-ios-camera-outline"></i>Creeper</a>
-            </li>
-            <li>
-              <a href="#"><i class="ion-ios-chatboxes-outline"></i>Hate</a>
-            </li>
-            <li>
-              <a href="#"><i class="ion-ios-cog-outline"></i>Grinder</a>
-            </li>
-          </ul>
-        </li>
-        <li>
-          <a href="#"><i class="ion-ios-briefcase-outline"></i> <span class="">Folio</span></a>
-          <ul class="nav-flyout">
-            <li>
-              <a href="#"><i class="ion-ios-flame-outline"></i>Burn</a>
-            </li>
-            <li>
-              <a href="#"><i class="ion-ios-lightbulb-outline"></i>Bulbs</a>
-            </li>
-            <li>
-              <a href="#"><i class="ion-ios-location-outline"></i>Where You</a>
-            </li>
-            <li>
-              <a href="#"><i class="ion-ios-locked-outline"></i>On Lock</a>
-            </li>
-             <li>
-              <a href="#"><i class="ion-ios-navigate-outline"></i>Ghostface</a>
-            </li>
-          </ul>
-        </li>
-        <li>
-          <a href="#"><i class="ion-ios-analytics-outline"></i> <span class="">Graphicals</span></a>
-          <ul class="nav-flyout">
-            <li>
-              <a href="#"><i class="ion-ios-timer-outline"></i>Timers</a>
-            </li>
-            <li>
-              <a href="#"><i class="ion-arrow-graph-down-left"></i>You Lose</a>
-            </li>
-            <li>
-              <a href="#"><i class="ion-ios-partlysunny-outline"></i>Stormy</a>
-            </li>
-            <li>
-              <a href="#"><i class="ion-ios-timer-outline"></i>Lookie Look</a>
-            </li>
-            <li>
-              <a href="#"><i class="ion-ios-game-controller-a-outline"></i>Dork Mfer</a>
-            </li>
-          </ul>
-        </li>
-        <li>
-          <a href="#"><i class="ion-ios-paper-outline"></i> <span class="">Papers</span></a>
-          <ul class="nav-flyout">
-            <li>
-              <a href="#"><i class="ion-ios-filing-outline"></i>File Cab</a>
-            </li>
-            <li>
-              <a href="#"><i class="ion-ios-information-outline"></i>Infos</a>
-            </li>
-            <li>
-              <a href="#"><i class="ion-ios-paperplane-outline"></i>Planes</a>
-            </li>
-            <li>
-              <a href="#"><i class="ion-android-star-outline"></i>Shop</a>
-            </li>
-          </ul>
-        </li>
-        <li>
-          <a href="#"><i class="ion-ios-navigate-outline"></i> <span class="">Ass Finder</span></a>
-          <ul class="nav-flyout">
-            <li>
-              <a href="#"><i class="ion-ios-flame-outline"></i>Burn</a>
-            </li>
-            <li>
-              <a href="#"><i class="ion-ios-lightbulb-outline"></i>Bulbs</a>
-            </li>
-            <li>
-              <a href="#"><i class="ion-ios-location-outline"></i>Where You</a>
-            </li>
-            <li>
-              <a href="#"><i class="ion-ios-locked-outline"></i>On Lock</a>
-            </li>
-             <li>
-              <a href="#"><i class="ion-ios-navigate-outline"></i>Ghostface</a>
-            </li>
-          </ul>
-        </li>
-        <li>
-          <a href="#"><i class="ion-ios-medical-outline"></i> <span class="">Cocaine</span></a>
-        </li>
-      </ul>
-    </nav>
+    <header></header>
+    
+     <div class="clearfix accordian-block blog-cats">
+      <h2>Navigation</h2><a class="item" href="#">Home</a><a class="item" href="#">About Us</a><a class="item" href="#">Blog</a><a class="item" href="#">Contact Us</a>
+    </div>
+    <div class="clearfix accordian-block blog-cats">
+      <h2>Categories</h2><a class="item" href="#">Rambles</a><a class="item" href="#">CSS</a><a class="item" href="#">Design</a><a class="item" href="#">How-to's</a>
+    </div>
+    <div class="clearfix accordian-block recent">
+      <h2>Most Recent Posts</h2><a class="item" href="#">How to suck eggs</a><a class="item" href="#">This is really cool!</a><a class="item" href="#">Fish are friends not food</a><a class="item" href="#">Its cool!</a>
+    </div>
+    <div class="clearfix accordian-block archive">
+      <h2>Archive</h2>
+    </div>
+    <div class="clearfix accordian-block social-stuff">
+      <h2>Social Stuff</h2>
+      <div class="social"><a href=""></a><a href=""></a><a href=""></a><a href=""></a></div>
+    </div>
   </aside>
-</section>
-EOT;
-    echo $text;
+  <section class="main-content"></section>
+</div>
 
 
+<!-- side bar end here -->
+<!-- search -->
+         <div class="search__container">
+   
+    <input class="search__input" type="text" placeholder="Search">
+</div>  
+<!-- search end here -->
 
+<!-- cards start here -->
+    <div class="containere" style="margin-left: 25%; margin-right: 5%;">
+    <div class="row" id="TableList"  style="max-width: 90%;">
+     <!-- single card start -->
+       
+     <div class="product-card">
+         <div class="priority">
+         </div>
+   
+   <!-- begin visible button   -->
+   <label class="switch">
+     <input type="checkbox" checked>
+     <span class="slider round"></span>
+   </label>
+   
+   
+       <div class="product-tumb">
+         <img src="https://i.imgur.com/xdbHo4E.png" alt="">
+       </div>
+       <div class="product-details">
+         <h4><a href="">Women leather bag</a></h4>
+        
+         <div class="product-bottom-details">
+           <div class="product-price"><small>$96.00</small>$230.99</div>
+           <div class="product-links">
+             <a href=""><i class="fa fa-heart"></i></a>
+             <a href=""><i class="fa fa-shopping-cart"></i></a>
+           </div>
+         </div>
+       </div>
+       <div class="row" style="margin-left:10%">
+       <div class="priority high">
+         high
+       </div>
+       <div class="codeblock">
+         A50
+       </div>
+   
+       </div>
+       <div class="row" style="margin:5%">
+         <div class="col-3">
+          <i class="fa fa-bath" aria-hidden="true" >.3</i>
+         </div>
+         <div class="col-3">
+          <i class="fa fa-bed" aria-hidden="true">.5</i>
+         </div>
+          <div class="col-3">
+          <i class="fa fa-th" aria-hidden="true">.2000</i>
+         </div>
+          </div>
+     </div>
+    
+     <!-- single card end -->
+      <!-- single card start -->
+       
+      <div class="product-card">
+         <div class="priority">
+         </div>
+   
+   <!-- begin visible button   -->
+   <label class="switch">
+     <input type="checkbox" checked>
+     <span class="slider round"></span>
+   </label>
+   
+   
+       <div class="product-tumb">
+         <img src="https://i.imgur.com/xdbHo4E.png" alt="">
+       </div>
+       <div class="product-details">
+         <h4><a href="">Women leather bag</a></h4>
+        
+         <div class="product-bottom-details">
+           <div class="product-price"><small>$96.00</small>$230.99</div>
+           <div class="product-links">
+             <a href=""><i class="fa fa-heart"></i></a>
+             <a href=""><i class="fa fa-shopping-cart"></i></a>
+           </div>
+         </div>
+       </div>
+       <div class="row" style="margin-left:10%">
+       <div class="priority high">
+         high
+       </div>
+       <div class="codeblock">
+         A50
+       </div>
+   
+       </div>
+       <div class="row" style="margin:5%">
+         <div class="col-3">
+          <i class="fa fa-bath" aria-hidden="true" >.3</i>
+         </div>
+         <div class="col-3">
+          <i class="fa fa-bed" aria-hidden="true">.5</i>
+         </div>
+          <div class="col-3">
+          <i class="fa fa-th" aria-hidden="true">.2000</i>
+         </div>
+          </div>
+     </div>
+    
+     <!-- single card end -->
+      <!-- single card start -->
+       
+      <div class="product-card">
+         <div class="priority">
+         </div>
+   
+   <!-- begin visible button   -->
+   <label class="switch">
+     <input type="checkbox" checked>
+     <span class="slider round"></span>
+   </label>
+   
+   
+       <div class="product-tumb">
+         <img src="https://i.imgur.com/xdbHo4E.png" alt="">
+       </div>
+       <div class="product-details">
+         <h4><a href="">Women leather bag</a></h4>
+        
+         <div class="product-bottom-details">
+           <div class="product-price"><small>$96.00</small>$230.99</div>
+           <div class="product-links">
+             <a href=""><i class="fa fa-heart"></i></a>
+             <a href=""><i class="fa fa-shopping-cart"></i></a>
+           </div>
+         </div>
+       </div>
+       <div class="row" style="margin-left:10%">
+       <div class="priority high">
+         high
+       </div>
+       <div class="codeblock">
+         A50
+       </div>
+   
+       </div>
+       <div class="row" style="margin:5%">
+         <div class="col-3">
+          <i class="fa fa-bath" aria-hidden="true" >.3</i>
+         </div>
+         <div class="col-3">
+          <i class="fa fa-bed" aria-hidden="true">.5</i>
+         </div>
+          <div class="col-3">
+          <i class="fa fa-th" aria-hidden="true">.2000</i>
+         </div>
+          </div>
+     </div>
+    
+     <!-- single card end -->
+      <!-- single card start -->
+       
+      <div class="product-card">
+         <div class="priority">
+         </div>
+   
+   <!-- begin visible button   -->
+   <label class="switch">
+     <input type="checkbox" checked>
+     <span class="slider round"></span>
+   </label>
+   
+   
+       <div class="product-tumb">
+         <img src="https://i.imgur.com/xdbHo4E.png" alt="">
+       </div>
+       <div class="product-details">
+         <h4><a href="">Women leather bag</a></h4>
+        
+         <div class="product-bottom-details">
+           <div class="product-price"><small>$96.00</small>$230.99</div>
+           <div class="product-links">
+             <a href=""><i class="fa fa-heart"></i></a>
+             <a href=""><i class="fa fa-shopping-cart"></i></a>
+           </div>
+         </div>
+       </div>
+       <div class="row" style="margin-left:10%">
+       <div class="priority high">
+         high
+       </div>
+       <div class="codeblock">
+         A50
+       </div>
+   
+       </div>
+       <div class="row" style="margin:5%">
+         <div class="col-3">
+          <i class="fa fa-bath" aria-hidden="true" >.3</i>
+         </div>
+         <div class="col-3">
+          <i class="fa fa-bed" aria-hidden="true">.5</i>
+         </div>
+          <div class="col-3">
+          <i class="fa fa-th" aria-hidden="true">.2000</i>
+         </div>
+          </div>
+     </div>
+    
+     <!-- single card end -->
+      <!-- single card start -->
+       
+      <div class="product-card">
+         <div class="priority">
+         </div>
+   
+   <!-- begin visible button   -->
+   <label class="switch">
+     <input type="checkbox" checked>
+     <span class="slider round"></span>
+   </label>
+   
+   
+       <div class="product-tumb">
+         <img src="https://i.imgur.com/xdbHo4E.png" alt="">
+       </div>
+       <div class="product-details">
+         <h4><a href="">Women leather bag</a></h4>
+        
+         <div class="product-bottom-details">
+           <div class="product-price"><small>$96.00</small>$230.99</div>
+           <div class="product-links">
+             <a href=""><i class="fa fa-heart"></i></a>
+             <a href=""><i class="fa fa-shopping-cart"></i></a>
+           </div>
+         </div>
+       </div>
+       <div class="row" style="margin-left:10%">
+       <div class="priority high">
+         high
+       </div>
+       <div class="codeblock">
+         A50
+       </div>
+   
+       </div>
+       <div class="row" style="margin:5%">
+         <div class="col-3">
+          <i class="fa fa-bath" aria-hidden="true" >.3</i>
+         </div>
+         <div class="col-3">
+          <i class="fa fa-bed" aria-hidden="true">.5</i>
+         </div>
+          <div class="col-3">
+          <i class="fa fa-th" aria-hidden="true">.2000</i>
+         </div>
+          </div>
+     </div>
+    
+     <!-- single card end -->
+      <!-- single card start -->
+       
+      <div class="product-card">
+         <div class="priority">
+         </div>
+   
+   <!-- begin visible button   -->
+   <label class="switch">
+     <input type="checkbox" checked>
+     <span class="slider round"></span>
+   </label>
+   
+   
+       <div class="product-tumb">
+         <img src="https://i.imgur.com/xdbHo4E.png" alt="">
+       </div>
+       <div class="product-details">
+         <h4><a href="">Women leather bag</a></h4>
+        
+         <div class="product-bottom-details">
+           <div class="product-price"><small>$96.00</small>$230.99</div>
+           <div class="product-links">
+             <a href=""><i class="fa fa-heart"></i></a>
+             <a href=""><i class="fa fa-shopping-cart"></i></a>
+           </div>
+         </div>
+       </div>
+       <div class="row" style="margin-left:10%">
+       <div class="priority high">
+         high
+       </div>
+       <div class="codeblock">
+         A50
+       </div>
+   
+       </div>
+       <div class="row" style="margin:5%">
+         <div class="col-3">
+          <i class="fa fa-bath" aria-hidden="true" >.3</i>
+         </div>
+         <div class="col-3">
+          <i class="fa fa-bed" aria-hidden="true">.5</i>
+         </div>
+          <div class="col-3">
+          <i class="fa fa-th" aria-hidden="true">.2000</i>
+         </div>
+          </div>
+     </div>
+    
+     <!-- single card end -->
+      <!-- single card start -->
+       
+      <div class="product-card">
+         <div class="priority">
+         </div>
+   
+   <!-- begin visible button   -->
+   <label class="switch">
+     <input type="checkbox" checked>
+     <span class="slider round"></span>
+   </label>
+   
+   
+       <div class="product-tumb">
+         <img src="https://i.imgur.com/xdbHo4E.png" alt="">
+       </div>
+       <div class="product-details">
+         <h4><a href="">Women leather bag</a></h4>
+        
+         <div class="product-bottom-details">
+           <div class="product-price"><small>$96.00</small>$230.99</div>
+           <div class="product-links">
+             <a href=""><i class="fa fa-heart"></i></a>
+             <a href=""><i class="fa fa-shopping-cart"></i></a>
+           </div>
+         </div>
+       </div>
+       <div class="row" style="margin-left:10%">
+       <div class="priority high">
+         high
+       </div>
+       <div class="codeblock">
+         A50
+       </div>
+   
+       </div>
+       <div class="row" style="margin:5%">
+         <div class="col-3">
+          <i class="fa fa-bath" aria-hidden="true" >.3</i>
+         </div>
+         <div class="col-3">
+          <i class="fa fa-bed" aria-hidden="true">.5</i>
+         </div>
+          <div class="col-3">
+          <i class="fa fa-th" aria-hidden="true">.2000</i>
+         </div>
+          </div>
+     </div>
+    
+     <!-- single card end -->
+      <!-- single card start -->
+       
+      <div class="product-card">
+         <div class="priority">
+         </div>
+   
+   <!-- begin visible button   -->
+   <label class="switch">
+     <input type="checkbox" checked>
+     <span class="slider round"></span>
+   </label>
+   
+   
+       <div class="product-tumb">
+         <img src="https://i.imgur.com/xdbHo4E.png" alt="">
+       </div>
+       <div class="product-details">
+         <h4><a href="">Women leather bag</a></h4>
+        
+         <div class="product-bottom-details">
+           <div class="product-price"><small>$96.00</small>$230.99</div>
+           <div class="product-links">
+             <a href=""><i class="fa fa-heart"></i></a>
+             <a href=""><i class="fa fa-shopping-cart"></i></a>
+           </div>
+         </div>
+       </div>
+       <div class="row" style="margin-left:10%">
+       <div class="priority high">
+         high
+       </div>
+       <div class="codeblock">
+         A50
+       </div>
+   
+       </div>
+       <div class="row" style="margin:5%">
+         <div class="col-3">
+          <i class="fa fa-bath" aria-hidden="true" >.3</i>
+         </div>
+         <div class="col-3">
+          <i class="fa fa-bed" aria-hidden="true">.5</i>
+         </div>
+          <div class="col-3">
+          <i class="fa fa-th" aria-hidden="true">.2000</i>
+         </div>
+          </div>
+     </div>
+    
+     <!-- single card end -->
+      <!-- single card start -->
+       
+      <div class="product-card">
+         <div class="priority">
+         </div>
+   
+   <!-- begin visible button   -->
+   <label class="switch">
+     <input type="checkbox" checked>
+     <span class="slider round"></span>
+   </label>
+   
+   
+       <div class="product-tumb">
+         <img src="https://i.imgur.com/xdbHo4E.png" alt="">
+       </div>
+       <div class="product-details">
+         <h4><a href="">Women leather bag</a></h4>
+        
+         <div class="product-bottom-details">
+           <div class="product-price"><small>$96.00</small>$230.99</div>
+           <div class="product-links">
+             <a href=""><i class="fa fa-heart"></i></a>
+             <a href=""><i class="fa fa-shopping-cart"></i></a>
+           </div>
+         </div>
+       </div>
+       <div class="row" style="margin-left:10%">
+       <div class="priority high">
+         high
+       </div>
+       <div class="codeblock">
+         A50
+       </div>
+   
+       </div>
+       <div class="row" style="margin:5%">
+         <div class="col-3">
+          <i class="fa fa-bath" aria-hidden="true" >.3</i>
+         </div>
+         <div class="col-3">
+          <i class="fa fa-bed" aria-hidden="true">.5</i>
+         </div>
+          <div class="col-3">
+          <i class="fa fa-th" aria-hidden="true">.2000</i>
+         </div>
+          </div>
+     </div>
+    
+     <!-- single card end -->
+      <!-- single card start -->
+       
+      <div class="product-card">
+         <div class="priority">
+         </div>
+   
+   <!-- begin visible button   -->
+   <label class="switch">
+     <input type="checkbox" checked>
+     <span class="slider round"></span>
+   </label>
+   
+   
+       <div class="product-tumb">
+         <img src="https://i.imgur.com/xdbHo4E.png" alt="">
+       </div>
+       <div class="product-details">
+         <h4><a href="">Women leather bag</a></h4>
+        
+         <div class="product-bottom-details">
+           <div class="product-price"><small>$96.00</small>$230.99</div>
+           <div class="product-links">
+             <a href=""><i class="fa fa-heart"></i></a>
+             <a href=""><i class="fa fa-shopping-cart"></i></a>
+           </div>
+         </div>
+       </div>
+       <div class="row" style="margin-left:10%">
+       <div class="priority high">
+         high
+       </div>
+       <div class="codeblock">
+         A50
+       </div>
+   
+       </div>
+       <div class="row" style="margin:5%">
+         <div class="col-3">
+          <i class="fa fa-bath" aria-hidden="true" >.3</i>
+         </div>
+         <div class="col-3">
+          <i class="fa fa-bed" aria-hidden="true">.5</i>
+         </div>
+          <div class="col-3">
+          <i class="fa fa-th" aria-hidden="true">.2000</i>
+         </div>
+          </div>
+     </div>
+    
+     <!-- single card end -->
+      
+      
+      
+
+</div>
+
+</div>
+<!-- cards end here -->
+<!-- pagination  start-->
+<div class="center">
+  <div class="pagination">
+  <a href="javascript:prevPage()" id="btn_prev">&laquo;</a>
+  
+  <a href="javascript:nextPage()" id="btn_next">&raquo;</a>
+  </div>
+</div>
+<!-- pagination end -->
+  <footer> <?php
+  require APPROOT . '/views/inc/footer.php';
+  ?> </footer>
+</body>
+<?php
   }
 }
