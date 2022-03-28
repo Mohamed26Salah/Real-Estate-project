@@ -30,7 +30,7 @@
             <nav class="site-navigation position-relative text-right" role="navigation">
 
               <ul class="site-menu js-clone-nav mr-auto d-none d-lg-block">
-                <li class="active"><a href="index.html"><span>Home</span></a></li>
+                <li class="active"><a href="<?php echo URLROOT . 'index'; ?>"><span>Home</span></a></li>
                 <li class="has-children">
                   <a href="about.html"><span>Dropdown</span></a>
                   <ul class="dropdown arrow-top">
@@ -49,6 +49,7 @@
                   </ul>
                 </li>
                 <li><a href="<?php echo URLROOT . 'pages/viewItem'; ?>"><span>Listings</span></a></li>
+                <li><a href="<?php echo URLROOT . 'pages/viewDescription'; ?>"><span>Item</span></a></li>
                 <li><a href="about.html"><span>About</span></a></li>
                 <li><a href="blog.html"><span>Blog</span></a></li>
                 <li><a href="contact.html"><span>Contact</span></a></li>
