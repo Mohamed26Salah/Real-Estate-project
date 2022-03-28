@@ -24,6 +24,7 @@
   <link rel="stylesheet" href="<?php echo URLROOT; ?>css/viewDescription.css">
   <link rel="stylesheet" href="<?php echo URLROOT; ?>fonts/icomoon/style.css">
   <link rel="stylesheet" href="<?php echo URLROOT; ?>css/wishlist.css">
+  <link rel="stylesheet" href="<?php echo URLROOT; ?>css/viewPage.css">
     <script src="<?php echo URLROOT; ?>js/jquery-3.3.1.min.js"></script>
     <script src="<?php echo URLROOT; ?>js/popper.min.js"></script>
     <script src="<?php echo URLROOT; ?>js/bootstrap.min.js"></script>

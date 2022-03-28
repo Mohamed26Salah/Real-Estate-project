@@ -1,11 +1,11 @@
 
 
-body
+/* body
 {
   background: img2.png;
   background-repeat: no-repeat;
   background-attachment: fixed;
-}
+} */
 
 
 
@@ -16,7 +16,7 @@ body
 
 
 .product-card {
-  height: 600px;
+  height: 620px;
     width: 260px;
     position: relative;
     box-shadow: 0 2px 7px #dfdfdf;
