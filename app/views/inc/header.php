@@ -15,23 +15,35 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
 <link href='https://fonts.googleapis.com/css?family=Lato:400,300,700' rel='stylesheet' type='text/css'>
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+
   <link rel="stylesheet" href="<?php echo URLROOT; ?>css/navbar.css">
+   <link rel="stylesheet" href="<?php echo URLROOT; ?>css/ViewPage.css">
   <link rel="stylesheet" href="<?php echo URLROOT; ?>css/footer.css">
   <link rel="stylesheet" href="<?php echo URLROOT; ?>css/style.css">
+
+
   <link rel="stylesheet" href="<?php echo URLROOT; ?>css/Sidebar.css">
   <link rel="stylesheet" href="<?php echo URLROOT; ?>css/viewDescription.css">
+
   <link rel="stylesheet" href="<?php echo URLROOT; ?>fonts/icomoon/style.css">
-  <link rel="stylesheet" href="<?php echo URLROOT; ?>css/wishlist.css">
-  <link rel="stylesheet" href="<?php echo URLROOT; ?>css/viewPage.css">
+
     <script src="<?php echo URLROOT; ?>js/jquery-3.3.1.min.js"></script>
     <script src="<?php echo URLROOT; ?>js/popper.min.js"></script>
     <script src="<?php echo URLROOT; ?>js/bootstrap.min.js"></script>
     <script src="<?php echo URLROOT; ?>js/jquery.sticky.js"></script>
     <script src="<?php echo URLROOT; ?>js/main.js"></script>
+
+    <script src="<?php echo URLROOT; ?>js/viewpage.js"></script>
+    <script src="<?php echo URLROOT; ?>js/pagination.js"></script>
+<!--     <script src="<?php echo URLROOT; ?>js/sidebar.js"></script>
+ --> 
+
     
- 
+
 
   <title><?php echo SITENAME; ?></title>
 </head>
