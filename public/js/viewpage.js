@@ -1,3 +1,4 @@
+if( window.location.href.search("viewItem")!=-1){
 $(document).ready(function(){
 
   $(".sidebar-menu > li.have-children a").on("click", function(i){
@@ -87,4 +88,5 @@ var obj = [
 function rangeChange(value) {
     console.log("in")
     document.getElementById('priceslider').value = value;
+}
 }
