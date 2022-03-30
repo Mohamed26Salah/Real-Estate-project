@@ -30,4 +30,11 @@ public function viewDescription()
         $WishListView = new WishList($this->getModel(), $this);
         $WishListView->output();
     }    
+    public function DashBoard()
+    {
+        $viewPath = VIEWS_PATH . 'pages/DashBoard.php';
+        require_once $viewPath;
+        $WishListView = new DashBoard($this->getModel(), $this);
+        $WishListView->output();
+    }  
 }

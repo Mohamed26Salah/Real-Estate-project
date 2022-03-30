@@ -52,7 +52,7 @@
                 <li><a href="<?php echo URLROOT . 'pages/viewDescription'; ?>"><span>Item</span></a></li>
                 <li><a href="about.html"><span>About</span></a></li>
                 <li><a href="blog.html"><span>Blog</span></a></li>
-                <li><a href="contact.html"><span>Contact</span></a></li>
+                <li><a href="<?php echo URLROOT . 'pages/DashBoard'; ?>"><span>DashBoard</span></a></li>
                 <li><a href="<?php echo URLROOT . 'pages/wishlist'; ?>"><span><i class="fa fa-heart" aria-hidden="true"></i></span></a></li>
               </ul>
             </nav>
