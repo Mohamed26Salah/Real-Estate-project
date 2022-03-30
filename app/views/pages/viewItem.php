@@ -21,31 +21,51 @@ class viewItem extends View
 
         <!-- sidebar -->
 
-        
-<div class="main-container">
-  <aside class="sidebar">
-    <header></header>
-    
-     <div class="clearfix accordian-block blog-cats">
-      <h2>Navigation</h2><a class="item" href="#">Home</a><a class="item" href="#">About Us</a><a class="item" href="#">Blog</a><a class="item" href="#">Contact Us</a>
-    </div>
-    <div class="clearfix accordian-block blog-cats">
-      <h2>Categories</h2><a class="item" href="#">Rambles</a><a class="item" href="#">CSS</a><a class="item" href="#">Design</a><a class="item" href="#">How-to's</a>
-    </div>
-    <div class="clearfix accordian-block recent">
-      <h2>Most Recent Posts</h2><a class="item" href="#">How to suck eggs</a><a class="item" href="#">This is really cool!</a><a class="item" href="#">Fish are friends not food</a><a class="item" href="#">Its cool!</a>
-    </div>
-    <div class="clearfix accordian-block archive">
-      <h2>Archive</h2>
-    </div>
-    <div class="clearfix accordian-block social-stuff">
-      <h2>Social Stuff</h2>
-      <div class="social"><a href=""></a><a href=""></a><a href=""></a><a href=""></a></div>
-    </div>
-  </aside>
-  <section class="main-content"></section>
-</div>
-
+   <ul class="sidebar-menu">
+    <li><span class="nav-section-title"></span></li>
+    <li class="have-children"><a href="#"><span class="fa fa-university"></span>Exhibitions</a>
+      <ul>
+        <li><a href="#">Add Exhibition</a></li>
+        <li><a href="#">View Exhibitions</a></li>
+      </ul>
+    </li>
+    <li class="have-children"><a href="#"><span class="fa fa-tags"></span>Category</a>
+      <ul>
+        <li><a href="#">Add Category</a></li>
+        <li><a href="#">View Categories</a></li>
+      </ul>
+    </li>
+    <li class="have-children"><a href="#"><span class="fa fa-trophy"></span>Award</a>
+      <ul>
+        <li><a href="#">Add Award</a></li>
+        <li><a href="#">View Awards</a></li>
+      </ul>
+    </li>
+    <li class="have-children"><a href="#"><span class="fa fa-gavel"></span>Jury</a>
+      <ul>
+        <li><a href="#">Add Jury</a></li>
+        <li><a href="#">View Juries</a></li>
+      </ul>
+    </li>
+    <li class="have-children"><a href="#"><span class="fa fa-user-o"></span>Author</a>
+      <ul>
+        <li><a href="#">Add Author</a></li>
+        <li><a href="#">View Authors</a></li>
+      </ul>
+    </li>
+    <li><a href="#"><span class="fa fa-picture-o"></span>Gallery</a></li>
+    <li class="have-children"><a href="#"><span class="fa fa-flag"></span>Reports</a>
+      <ul>
+        <li><a href="#">View Judging points</a></li>
+        <li><a href="#">Create Acceptances List</a></li>
+        <li><a href="#">Create Awarded List</a></li>
+        <li><a href="#">View Candidates for Awards</a></li>
+        <li><a href="responsive_table.html">Send Report Cards</a></li>
+      </ul>
+    </li>
+    <li><a href="#"><span class="fa fa-envelope-o"></span>Messages</a></li>
+    <li><a href="#"><span class="fa fa-gear"></span>Configuration</a></li>
+  </ul>
 
 <!-- side bar end here -->
 <!-- search -->
