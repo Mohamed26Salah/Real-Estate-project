@@ -707,7 +707,7 @@ class viewItem extends View
 </div>
 <!-- pagination end -->
   <footer> <?php
-  require APPROOT . '/views/inc/footer.php';
+  require APPROOT . '/views/inc/footer2.php';
   ?> </footer>
 </body>
 <?php

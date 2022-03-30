@@ -1,13 +1,6 @@
-<!-- Remove the container if you want to extend the Footer to full width. -->
 
-<!-- <div class="container my-5" style="position: absolute;
-    left: 0;
-    bottom: 0;
-    height auto;
-    margin-top:auto;
-    width: 100%;"> -->
 
-  <footer class="text-white text-center text-lg-start" style="background-color: #23242a;">
+  <footer class="text-white text-center text-lg-start" style="background-color: #23242a; position: relative;  margin-bottom: -200px;  left: 0; bottom: 0;">
     <!-- Grid container -->
     <div class="container p-4">
       <!--Grid row-->
@@ -42,12 +35,9 @@
 
         <!--Grid column-->
         <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
-          <h5 class="text-uppercase mb-4 pb-1">Search something</h5>
+          
 
-          <div class="form-outline form-white mb-4">
-            <input type="text" id="formControlLg" class="form-control form-control-lg">
-            <label class="form-label" for="formControlLg" style="margin-left: 0px;">Search</label>
-          <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 48.8px;"></div><div class="form-notch-trailing"></div></div></div>
+          
 
           <ul class="fa-ul" style="margin-left: 1.65em;">
             <li class="mb-3">
@@ -91,14 +81,6 @@
       </div>
       <!--Grid row-->
     </div>
-    <!-- Grid container -->
-
-    <!-- Copyright -->
-    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-      © 2020 Copyright:
-      <a class="text-white" href="https://mdbootstrap.com/">MDBootstrap.com</a>
-    </div>
-    <!-- Copyright -->
   </footer>
   
 </div>

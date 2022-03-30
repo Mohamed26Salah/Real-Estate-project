@@ -12,30 +12,28 @@ class WishList extends view
 
         ?>
 
-<body style = " background: rgb(255,255,255);
-background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 0%, rgba(150,48,48,0.6895133053221288) 73%, rgba(255,0,0,0.7035189075630253) 100%); background-attachment: fixed;">
+<body>
 
 
-    <section class="h-50">
-    <div class="container h-100 py-5">
+    <section>
+    <div class="container h-100 mt-5">
         <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col-10">
 
             <div class="d-flex justify-content-between align-items-center mb-4">
-            <h3 class="fw-normal mb-0 text-white">Wish List</h3>
+            <h3 class="fw-normal mb-0 text-black" style = "font-weight: 600;">Wish List</h3>
            
             </div>
 
             <div class="card rounded-3 mb-4">
-            <div class="card-body p-4" style = "background: rgb(255,255,255);
-background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 0%, rgba(150,48,48,0.6895133053221288) 73%, rgba(255,0,0,0.7035189075630253) 100%); background-attachment: fixed; box-shadow: 5px 5px 30px 7px rgba(0,0,0,0.25), -5px -5px 30px 7px rgba(0,0,0,0.22);">
+            <div class="card-body p-4">
                 <div class="row d-flex justify-content-between align-items-center" >
                 <div class="col-md-2 col-lg-2 col-xl-2">
                     <img src="<?php echo IMAGEROOT2 . 'shoe_1.jpg' ; ?>"
                     class="img-fluid rounded-3" alt="Cotton T-shirt">
                 </div>
                 <div class="col-md-3 col-lg-3 col-xl-3">
-                    <p class="lead fw-normal mb-2 text-white">Basic T-shirt</p>
+                    <p class="lead fw-normal mb-2 text-black">Basic T-shirt</p>
                    
                 </div>
                 
@@ -50,15 +48,14 @@ background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 0%
             </div>
 
             <div class="card rounded-3 mb-4">
-            <div class="card-body p-4" style = "background: rgb(255,255,255);
-background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 0%, rgba(150,48,48,0.6895133053221288) 73%, rgba(255,0,0,0.7035189075630253) 100%); background-attachment: fixed; box-shadow: 5px 5px 30px 7px rgba(0,0,0,0.25), -5px -5px 30px 7px rgba(0,0,0,0.22);">
+            <div class="card-body p-4" >
                 <div class="row d-flex justify-content-between align-items-center">
                 <div class="col-md-2 col-lg-2 col-xl-2">
                     <img src="<?php echo IMAGEROOT2 . 'shoe_2.jpg' ; ?>"
                     class="img-fluid rounded-3" alt="Cotton T-shirt">
                 </div>
                 <div class="col-md-3 col-lg-3 col-xl-3">
-                    <p class="lead fw-normal mb-2 text-white">Basic T-shirt</p>
+                    <p class="lead fw-normal mb-2 text-black">Basic T-shirt</p>
                     
                 </div>
                 
@@ -73,14 +70,14 @@ background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 0%
             </div>
 
             <div class="card rounded-3 mb-4">
-            <div class="card-body p-4" style = "background: rgb(255,255,255);+background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 0%, rgba(150,48,48,0.6895133053221288) 73%, rgba(255,0,0,0.7035189075630253) 100%); background-attachment: fixed; box-shadow: 5px 5px 30px 7px rgba(0,0,0,0.25), -5px -5px 30px 7px rgba(0,0,0,0.22);">
+            <div class="card-body p-4" >
                 <div class="row d-flex justify-content-between align-items-center">
                 <div class="col-md-2 col-lg-2 col-xl-2">
                     <img src="<?php echo IMAGEROOT2 . 'shoe_3.jpg' ; ?>"
                     class="img-fluid rounded-3" alt="Cotton T-shirt">
                 </div>
                 <div class="col-md-3 col-lg-3 col-xl-3">
-                    <p class="lead fw-normal mb-2 text-white">Basic T-shirt</p>
+                    <p class="lead fw-normal mb-2 text-black">Basic T-shirt</p>
                    
                 </div>
                 
@@ -95,14 +92,14 @@ background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 0%
             </div>
 
             <div class="card rounded-3 mb-4" >
-            <div class="card-body p-4" style = "background: rgb(255,255,255);background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 0%, rgba(150,48,48,0.6895133053221288) 73%, rgba(255,0,0,0.7035189075630253) 100%); background-attachment: fixed; box-shadow: 5px 5px 30px 7px rgba(0,0,0,0.25), -5px -5px 30px 7px rgba(0,0,0,0.22);">
+            <div class="card-body p-4" >
                 <div class="row d-flex justify-content-between align-items-center">
                 <div class="col-md-2 col-lg-2 col-xl-2">
                     <img src="<?php echo IMAGEROOT2 . 'shoe_4.jpg' ; ?>"
                     class="img-fluid rounded-3" alt="Cotton T-shirt">
                 </div>
                 <div class="col-md-3 col-lg-3 col-xl-3">
-                    <p class="lead fw-normal mb-2 text-white">Basic T-shirt</p>
+                    <p class="lead fw-normal mb-2 text-black">Basic T-shirt</p>
                    
                 </div>
                 
@@ -116,20 +113,24 @@ background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 0%
             </div>
             </div>
 
-            <div class="card mb-4">
-            <div class="card-body p-4 d-flex flex-row" style = "background: rgb(255,255,255);
-background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 0%, rgba(150,48,48,0.6895133053221288) 73%, rgba(255,0,0,0.7035189075630253) 100%); background-attachment: fixed; box-shadow: 5px 5px 30px 7px rgba(0,0,0,0.25), -5px -5px 30px 7px rgba(0,0,0,0.22);">
+
+                                                        <!-- Ta7zer -->
+
+            <!-- <div class="card mb-4">
+            <div class="card-body p-4 d-flex flex-row" >
                 <div class="form-outline flex-fill">
-                <div style = "margin-left:50%;">
-                    <i style="font-size:30px; color:red; " class="fa fa-exclamation-triangle" aria-hidden="true"></i><label class="form-label text-danger h1" for="form1">تحذير</label><br>
+                
+                    <i style="align-text: right; font-size:30px; color:red; " class="fa fa-exclamation-triangle" aria-hidden="true"></i><label class="form-label text-danger h1" for="form1">تحذير</label><br>
                     
                 </div>
-                <label style = "margin-left:10%; width:100%;" class="form-label h1" for="form1">اذا تم حذف العقار من الموقع فلن تجده هنا.</label>
+                <label style = "width:100%; align-text: right;" class="form-label h1" for="form1">اذا تم حذف العقار من الموقع فلن تجده هنا.</label>
                 
-                </div>
+               
                 
             </div>
-            </div>
+            </div> -->
+
+
 
             <!-- <div class="card">
             <div class="card-body">
@@ -143,8 +144,15 @@ background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 0%
     </section>
 </body>
 
+<<<<<<< Updated upstream
         <?php
         
         require APPROOT . '/views/inc/footer.php';
+=======
+<footer> <?php
+  require APPROOT . '/views/inc/footer2.php';
+  ?> </footer>
+  <?php
+>>>>>>> Stashed changes
     }
 }

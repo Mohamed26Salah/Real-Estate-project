@@ -17,6 +17,47 @@ class Index extends View
    <main class = "page-content">
 
    
+   <div class="card-index">
+            <div class="content">
+              <h2 class="title">Houses</h2>
+              <p class="copy">Seriously, straight up, just blast off into outer space today</p>
+              <a href="#"><button class="btn">View Trips</button></a>
+            </div>
+    </div>
+
+    <div class="card-index">
+            <div class="content">
+              <h2 class="title">Buildings</h2>
+              <p class="copy">Seriously, straight up, just blast off into outer space today</p>
+              <a href="#"><button class="btn">View Trips</button></a>
+            </div>
+    </div>
+
+    <div class="card-index">
+            <div class="content">
+              <h2 class="title">Villas</h2>
+              <p class="copy">Seriously, straight up, just blast off into outer space today</p>
+              <a href="#"><button class="btn">View Trips</button></a>
+            </div>
+    </div>
+
+    <div class="card-index">
+            <div class="content">
+              <h2 class="title">Stores</h2>
+              <p class="copy">Seriously, straight up, just blast off into outer space today</p>
+              <a href="#"><button class="btn">View Trips</button></a>
+            </div>
+    </div>
+
+
+    <div class="card-index">
+            <div class="content">
+              <h2 class="title">Clinics</h2>
+              <p class="copy">Plan your next beach trip with these fabulous destinations</p>
+              <a href="#"><button class="btn">View Trips</button></a>
+            </div>
+      </div>
+
       <div class="card-index">
             <div class="content">
               
@@ -26,13 +67,8 @@ class Index extends View
               
             </div>
       </div>
-          <div class="card-index">
-            <div class="content">
-              <h2 class="title">Hospitals</h2>
-              <p class="copy">Plan your next beach trip with these fabulous destinations</p>
-              <a href="#"><button class="btn">View Trips</button></a>
-            </div>
-      </div>
+
+        
           <div class="card-index">
             <div class="content">
               <h2 class="title">Factories</h2>
@@ -40,13 +76,11 @@ class Index extends View
               <a href="#"><button class="btn">View Trips</button></a>
             </div>
       </div>
-          <div class="card-index">
-            <div class="content">
-              <h2 class="title">Houses</h2>
-              <p class="copy">Seriously, straight up, just blast off into outer space today</p>
-              <a href="#"><button class="btn">View Trips</button></a>
-            </div>
-        </div>
+
+
+        
+
+
         <div class="card-index">
             <div class="content">
               <h2 class="title">Farms</h2>
@@ -54,13 +88,10 @@ class Index extends View
               <a href="#"><button class="btn">View Trips</button></a>
             </div>
         </div>
-        <div class="card-index">
-            <div class="content">
-              <h2 class="title">Villas</h2>
-              <p class="copy">Seriously, straight up, just blast off into outer space today</p>
-              <a href="#"><button class="btn">View Trips</button></a>
-            </div>
-        </div>
+
+
+        
+
         <div class="card-index">
             <div class="content">
               <h2 class="title">Lands</h2>
@@ -68,21 +99,9 @@ class Index extends View
               <a href="#"><button class="btn">View Trips</button></a>
             </div>
         </div>
-        <div class="card-index">
-            <div class="content">
-              <h2 class="title">Stores</h2>
-              <p class="copy">Seriously, straight up, just blast off into outer space today</p>
-              <a href="#"><button class="btn">View Trips</button></a>
-            </div>
-        </div>
 
-        <div class="card-index">
-            <div class="content">
-              <h2 class="title">Buildings</h2>
-              <p class="copy">Seriously, straight up, just blast off into outer space today</p>
-              <a href="#"><button class="btn">View Trips</button></a>
-            </div>
-        </div>
+        
+        
 
         <div class="card-index">
             <div class="content">
@@ -91,15 +110,15 @@ class Index extends View
               <a href="#"><button class="btn">View Trips</button></a>
             </div>
         </div>
+
         
       <!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////// -->
 
    </main>
   </body>
   <footer> <?php
-  require APPROOT . '/views/inc/footer.php';
+  require APPROOT . '/views/inc/footer2.php';
   ?> </footer>
-</div>
 <?php
     
 

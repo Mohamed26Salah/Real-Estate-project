@@ -204,7 +204,7 @@ background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 0%
   <!-- /////////////////////////////////////////////////////////////////////////////////////////////////////// -->
 
   <footer> <?php
-  require APPROOT . '/views/inc/footer.php';
+  require APPROOT . '/views/inc/footer2.php';
   ?> </footer>
 </html>
 <?php

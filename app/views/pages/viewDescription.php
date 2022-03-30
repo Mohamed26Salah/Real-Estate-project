@@ -204,7 +204,7 @@ window.addEventListener('resize', slideImage);
   </script>
 
   <footer> <?php
-  require APPROOT . '/views/inc/footer.php';
+  require APPROOT . '/views/inc/footer2.php';
   ?> </footer>
 </div>
 <?php
