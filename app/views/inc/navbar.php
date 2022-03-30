@@ -52,9 +52,10 @@
                 <li><a href="<?php echo URLROOT . 'pages/viewRent'; ?>"><span>view Rent</span></a></li>
                 <li><a href="<?php echo URLROOT . 'pages/viewDescription'; ?>"><span>Item</span></a></li>
                 <li><a href="<?php echo URLROOT . 'pages/about'; ?>"><span>About</span></a></li>
-                <li><a href="blog.html"><span>Blog</span></a></li>
                 <li><a href="<?php echo URLROOT . 'pages/DashBoard'; ?>"><span>DashBoard</span></a></li>
                 <li><a href="<?php echo URLROOT . 'pages/wishlist'; ?>"><span><i class="fa fa-heart" aria-hidden="true"></i></span></a></li>
+                <li><a href="<?php echo URLROOT . 'pages/Profile'; ?> "><span>Profile   <i class="fa fa-user" aria-hidden="true"></i>
+
               </ul>
             </nav>
           </div>

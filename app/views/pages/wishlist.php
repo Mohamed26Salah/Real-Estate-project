@@ -144,7 +144,7 @@ background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 0%
 </body>
 
         <?php
+        
         require APPROOT . '/views/inc/footer.php';
-
     }
 }

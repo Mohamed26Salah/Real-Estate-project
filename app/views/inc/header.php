@@ -20,7 +20,7 @@
 <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
-
+<link rel="stylesheet" href="<?php echo URLROOT; ?>css/Profile.css">
   <link rel="stylesheet" href="<?php echo URLROOT; ?>css/navbar.css">
    <link rel="stylesheet" href="<?php echo URLROOT; ?>css/ViewPage.css">
    <link rel="stylesheet" href="<?php echo URLROOT; ?>css/ViewRent.css">
@@ -28,7 +28,6 @@
   <link rel="stylesheet" href="<?php echo URLROOT; ?>css/style.css">
   <link rel="stylesheet" href="<?php echo URLROOT; ?>css/about.css">
   <!-- <link rel="stylesheet" href="<?php echo URLROOT; ?>css/DashBoard.css"> -->
-
 
   <link rel="stylesheet" href="<?php echo URLROOT; ?>css/Sidebar.css">
   <link rel="stylesheet" href="<?php echo URLROOT; ?>css/viewDescription.css">

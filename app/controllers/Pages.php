@@ -51,5 +51,12 @@ public function viewDescription()
         require_once $viewPath;
         $WishListView = new DashBoard($this->getModel(), $this);
         $WishListView->output();
-    }  
+    } 
+    public function Profile()
+    {
+        $viewPath = VIEWS_PATH . 'pages/Profile.php';
+        require_once $viewPath;
+        $WishListView = new Profile($this->getModel(), $this);
+        $WishListView->output();
+    }   
 }
