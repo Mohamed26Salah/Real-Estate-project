@@ -193,27 +193,59 @@ body
 
 
 ul.sidebar-menu {
+  
   position: absolute;
   width: 23%;
-height: 100px;
-    margin-top: 66px;
-    padding: 0;
-    list-style: none;
-    list-style-type: none;
+  height: 100%;
+  margin-top: 66px;
+  padding: 0;
+  list-style: none;
+  list-style-type: none;
 }
 .sidebar-menu li a span {
   margin-right: 20px;
   color: #fff;
 }
 .sidebar-menu li a  {
-  background-color: #4d5158;
+  border-radius:  0px 5px px 0px;
+  background-color: #1a203c;
   padding: 20px 25px;
   display: block;
   text-decoration: none;
   color: #fff;
 }
+.sidebar-menu li .sidebar_custom_radio  {
+  border-radius:  0px 5px px 0px;
+  background-color: #394781;
+  padding: 20px 25px;
+  
+  text-decoration: none;
+  color: #fff;
+}
+
+
+
 .sidebar-menu li a:hover  {
-  background-color: #52565d;
+  background-color:  #4758a5;
+  padding: 20px 25px;
+  display: block;
+  text-decoration: none;
+  color: #fff;
+}
+.sidebar-menu li input span {
+  margin-right: 20px;
+  color: #fff;
+}
+.sidebar-menu li input  {
+  border-radius:  0px 5px px 0px;
+  background-color: #1a203c;
+  padding: 20px 25px;
+  display: block;
+  text-decoration: none;
+  color: #fff;
+}
+.sidebar-menu li input:hover  {
+  background-color:  #4758a5;
   padding: 20px 25px;
   display: block;
   text-decoration: none;
@@ -223,12 +255,22 @@ li.have-children ul {
   padding: 0px;
 } 
 li.have-children ul li a {
-  background-color: #3c3636;
+  background-color: #4758a5;
+  padding-left: 62px;
+} 
+li.have-children ul li input {
+  background-color: #4758a5;
   padding-left: 62px;
 } 
 li.have-children ul li a:hover {
   color: #fff;
-  background-color: #52565d;
+  background-color: #dfdfdf;
+  padding-left: 62px;
+} 
+
+li.have-children ul li input:hover {
+  color: #fff;
+  background-color: #dfdfdf;
   padding-left: 62px;
 } 
 li.have-children, li {
@@ -383,3 +425,106 @@ background-color: black;
 }
 
 .pagination a:hover:not(.active) {background-color: #ddd;}
+/* pagination end */
+
+/* radio button start  */
+
+
+.labell input {
+  
+
+  position: absolute;
+  left: -9999px;
+}
+.labell input:checked + .spanr {
+  background-color: #d6d6e5;
+}
+.labell input:checked + .spanr:before {
+  box-shadow: inset 0 0 0 0.4375em #00005c;
+}
+.labell .spanr {
+  font-size:13px;
+  display: flex;
+  align-items: center;
+  padding: 0.375em 0.75em 0.375em 0.375em;
+  border-radius: 99em;
+  transition: 0.25s ease;
+}
+.labell .spanr:hover {
+  background-color: #d6d6e5;
+}
+.labell .spanr:before {
+  display: flex;
+  flex-shrink: 0;
+  content: "";
+  background-color: #fff;
+  width: 1.5em;
+  height: 1.5em;
+  border-radius: 50%;
+  margin-right: 0.375em;
+  transition: 0.25s ease;
+  box-shadow: inset 0 0 0 0.125em #00005c;
+}
+
+.containerradio {
+ 
+}
+/* radio button end  */
+
+/* slider start */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+
+.limit {
+  
+  position: relative;
+  display: inline-block;  text-align: center;
+  font-size: 15px;
+  color:#000000;
+  font-weight: 900;
+}
+.price_change #rangeValue {
+  height: auto;
+  width: 80%;
+  padding:0px;
+  position: relative;
+  display: inline-block;
+  text-align: center;
+  font-size: 15px;
+  color: rgb(255, 255, 255);
+  font-weight: 400;
+}
+ .ranger .range {
+  width: 100%;
+  -webkit-appearance: none;
+  background: #111;
+  outline: none;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 1);
+  border-radius:  0px 5px px 0px;
+  padding: 0px;
+ 
+}
+.ranger .range:hover  {
+ 
+  -webkit-appearance: none;
+  background: #111;
+  outline: none;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 1);
+  border-radius:  0px 5px px 0px;
+  padding: 0px;
+}
+.range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: #FF0101;
+  cursor: pointer;
+  border: 4px solid #333;
+  box-shadow: -407px 0 0 400px #FF0101;
+}
+
+/* slider end */
