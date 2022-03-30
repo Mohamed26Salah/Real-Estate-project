@@ -23,6 +23,7 @@
 
   <link rel="stylesheet" href="<?php echo URLROOT; ?>css/navbar.css">
    <link rel="stylesheet" href="<?php echo URLROOT; ?>css/ViewPage.css">
+   <link rel="stylesheet" href="<?php echo URLROOT; ?>css/ViewRent.css">
   <link rel="stylesheet" href="<?php echo URLROOT; ?>css/footer.css">
   <link rel="stylesheet" href="<?php echo URLROOT; ?>css/style.css">
   <link rel="stylesheet" href="<?php echo URLROOT; ?>css/about.css">
@@ -39,7 +40,7 @@
     <script src="<?php echo URLROOT; ?>js/bootstrap.min.js"></script>
     <script src="<?php echo URLROOT; ?>js/jquery.sticky.js"></script>
     <script src="<?php echo URLROOT; ?>js/main.js"></script>
-
+    <script src="<?php echo URLROOT; ?>js/viewRent.js"></script>
     <script src="<?php echo URLROOT; ?>js/viewpage.js"></script>
     <script src="<?php echo URLROOT; ?>js/pagination.js"></script>
 <!--     <script src="<?php echo URLROOT; ?>js/sidebar.js"></script>

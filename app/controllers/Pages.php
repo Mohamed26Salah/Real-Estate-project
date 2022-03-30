@@ -15,6 +15,13 @@ public function viewItem()
         $indexView = new viewItem($this->getModel(), $this);
         $indexView->output();
     }
+    public function viewRent()
+    {
+        $viewPath = VIEWS_PATH . 'pages/viewRent.php';
+        require_once $viewPath;
+        $indexView = new viewRent($this->getModel(), $this);
+        $indexView->output();
+    }
 public function viewDescription()
     {
         $viewPath = VIEWS_PATH . 'pages/viewDescription.php';

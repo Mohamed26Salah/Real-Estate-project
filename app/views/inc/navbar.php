@@ -48,7 +48,8 @@
                     </li>
                   </ul>
                 </li>
-                <li><a href="<?php echo URLROOT . 'pages/viewItem'; ?>"><span>Listings</span></a></li>
+                <li><a href="<?php echo URLROOT . 'pages/viewItem'; ?>"><span>view Item</span></a></li>
+                <li><a href="<?php echo URLROOT . 'pages/viewRent'; ?>"><span>view Rent</span></a></li>
                 <li><a href="<?php echo URLROOT . 'pages/viewDescription'; ?>"><span>Item</span></a></li>
                 <li><a href="<?php echo URLROOT . 'pages/about'; ?>"><span>About</span></a></li>
                 <li><a href="blog.html"><span>Blog</span></a></li>
