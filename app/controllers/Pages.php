@@ -29,6 +29,14 @@ public function viewDescription()
         require_once $viewPath;
         $WishListView = new WishList($this->getModel(), $this);
         $WishListView->output();
+    }
+    
+    public function about()
+    {
+        $viewPath = VIEWS_PATH . 'pages/about.php';
+        require_once $viewPath;
+        $WishListView = new About($this->getModel(), $this);
+        $WishListView->output();
     }    
     public function DashBoard()
     {

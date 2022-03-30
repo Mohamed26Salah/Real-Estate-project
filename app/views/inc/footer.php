@@ -10,7 +10,7 @@
 
 </head>
 
-<footer class="container-fluid bg-grey py-5" style="position: relative; bottom:0px; margin-top:100%;">
+<footer class="container-fluid bg-grey py-5" style="position: relative; bottom:0px; margin-top:5%;">
     
 <div class="container">
    <div class="row">

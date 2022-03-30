@@ -25,6 +25,7 @@
    <link rel="stylesheet" href="<?php echo URLROOT; ?>css/ViewPage.css">
   <link rel="stylesheet" href="<?php echo URLROOT; ?>css/footer.css">
   <link rel="stylesheet" href="<?php echo URLROOT; ?>css/style.css">
+  <link rel="stylesheet" href="<?php echo URLROOT; ?>css/about.css">
   <!-- <link rel="stylesheet" href="<?php echo URLROOT; ?>css/DashBoard.css"> -->
 
 
