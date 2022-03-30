@@ -144,15 +144,10 @@ class WishList extends view
     </section>
 </body>
 
-<<<<<<< Updated upstream
-        <?php
-        
-        require APPROOT . '/views/inc/footer.php';
-=======
 <footer> <?php
   require APPROOT . '/views/inc/footer2.php';
   ?> </footer>
   <?php
->>>>>>> Stashed changes
+
     }
 }
