@@ -225,7 +225,7 @@ body {
 
 .cardBox .card {
   position: relative;
-  background: var(--white);
+  background: #C9E0FF;
   padding: 30px;
   border-radius: 20px;
   display: flex;
@@ -238,22 +238,22 @@ body {
   position: relative;
   font-weight: 500;
   font-size: 2.5rem;
-  color: var(--red);
+  color: #00111C;
 }
 
 .cardBox .card .cardName {
-  color: var(--black2);
+  color: #00111C;
   font-size: 1.1rem;
   margin-top: 5px;
 }
 
 .cardBox .card .iconBx {
   font-size: 3.5rem;
-  color: var(--black2);
+  color: #00111C;
 }
 
 .cardBox .card:hover {
-  background: var(--red);
+  background: #002137;
 }
 .cardBox .card:hover .numbers,
 .cardBox .card:hover .cardName,
@@ -276,7 +276,7 @@ body {
   position: relative;
   display: grid;
   min-height: 500px;
-  background: var(--white);
+  background: #C9E0FF;
   padding: 20px;
   box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
   border-radius: 20px;
@@ -289,14 +289,14 @@ body {
 }
 .cardHeader h2 {
   font-weight: 600;
-  color: var(--red);
+  color: #00111C;
 }
 .cardHeader .btn {
   position: relative;
   padding: 5px 10px;
-  background: var(--red);
+  background: #001A2C;
   text-decoration: none;
-  color: var(--white);
+  color: #00111C;
   border-radius: 6px;
 }
 
@@ -309,15 +309,15 @@ body {
   font-weight: 600;
 }
 .details .recentOrders table tr {
-  color: var(--black1);
+  color: #00111C;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 .details .recentOrders table tr:last-child {
   border-bottom: none;
 }
 .details .recentOrders table tbody tr:hover {
-  background: var(--red);
-  color: var(--white);
+  background: #001A2C;
+  color: white;
 }
 .details .recentOrders table tr td {
   padding: 10px;

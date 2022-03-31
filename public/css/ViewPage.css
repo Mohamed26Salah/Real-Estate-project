@@ -2,8 +2,7 @@
 
 body
 {
-  background-repeat: no-repeat;
-  background-attachment: fixed;
+background:#003356;
 }
 
 
@@ -18,9 +17,9 @@ body
   height: 620px;
     width: 260px;
     position: relative;
-    box-shadow: 0 2px 7px #dfdfdf;
+    box-shadow: 0 2px 7px #C9E0FF;
     margin: 50px auto;
-    background: #fafafa;
+    background: #C9E0FF;
 }
 
 .product-tumb {
@@ -29,7 +28,7 @@ body
     justify-content: center;
     height: 300px;
     padding: 50px;
-    background: #f0f0f0;
+    background: #C9E0FF;
 }
 
 .product-tumb img {
@@ -106,7 +105,7 @@ body
 .product-links a {
     display: inline-block;
     margin-left: 5px;
-    color: #e1e1e1;
+    color: #fbb72c;
     transition: 0.3s;
     font-size: 17px;
 }
