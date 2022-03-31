@@ -696,6 +696,12 @@ class viewRent extends View
 
 </div>
 <!-- cards end here -->
+<!-- divider start -->
+<!-- <div class="h-divider">
+  <div class="shadow"></div>
+  <div class="text"><i>High</i></div>
+</div> -->
+<!-- divider end -->
 
 <!-- pagination  start-->
 <div class="center">

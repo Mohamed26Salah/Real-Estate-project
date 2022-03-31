@@ -148,7 +148,7 @@ class Profile extends View
 </html>
 
   <footer> <?php
-  require APPROOT . '/views/inc/footer.php';
+  require APPROOT . '/views/inc/footer2.php';
   ?> </footer>
 </html>
 <?php
