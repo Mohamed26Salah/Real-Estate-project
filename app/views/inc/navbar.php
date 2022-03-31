@@ -31,23 +31,7 @@
 
               <ul class="site-menu js-clone-nav mr-auto d-none d-lg-block">
                 <li class="active"><a href="<?php echo URLROOT . 'index'; ?>"><span>Home</span></a></li>
-                <li class="has-children">
-                  <a href="about.html"><span>Dropdown</span></a>
-                  <ul class="dropdown arrow-top">
-                    <li><a href="#">Menu One</a></li>
-                    <li><a href="#">Menu Two</a></li>
-                    <li><a href="#">Menu Three</a></li>
-                    <li class="has-children">
-                      <a href="#">Dropdown</a>
-                      <ul class="dropdown">
-                        <li><a href="#">Menu One</a></li>
-                        <li><a href="#">Menu Two</a></li>
-                        <li><a href="#">Menu Three</a></li>
-                        <li><a href="#">Menu Four</a></li>
-                      </ul>
-                    </li>
-                  </ul>
-                </li>
+                
                 <li><a href="<?php echo URLROOT . 'pages/viewItem'; ?>"><span>view Item</span></a></li>
                 <li><a href="<?php echo URLROOT . 'pages/viewRent'; ?>"><span>view Rent</span></a></li>
                 <li><a href="<?php echo URLROOT . 'pages/viewDescription'; ?>"><span>Item</span></a></li>
@@ -55,7 +39,14 @@
                 <li><a href="<?php echo URLROOT . 'pages/DashBoard'; ?>"><span>DashBoard</span></a></li>
                 <li><a href="<?php echo URLROOT . 'pages/wishlist'; ?>"><span><i class="fa fa-heart" aria-hidden="true"></i></span></a></li>
                 <li><a href="<?php echo URLROOT . 'pages/Profile'; ?> "><span>Profile   <i class="fa fa-user" aria-hidden="true"></i>
-
+                <li class="has-children">
+                  <a href="about.html"><span>Join Us!</span></a>
+                  <ul class="dropdown arrow-top">
+                    <li><a href="<?php echo URLROOT . 'users/Login'; ?>">Login</a></li>
+                    <li><a href="<?php echo URLROOT . 'users/Register'; ?> ">Sign Up</a></li>
+                  </ul>
+                </li>
+                
               </ul>
             </nav>
           </div>

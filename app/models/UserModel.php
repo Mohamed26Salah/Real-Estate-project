@@ -55,7 +55,7 @@ class UserModel extends model
 
     public function findUserByEmail($email)
     {
-        $this->dbh->query('select * from users where email= :email');
+        $this->dbh->query('select * from user where email= :email');
         $this->dbh->bind(':email', $email);
 
         $userRecord = $this->dbh->single();
@@ -67,3 +67,4 @@ class UserModel extends model
         return $this->findUserByEmail($email) > 0;
     }
 }
+

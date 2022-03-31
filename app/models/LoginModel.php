@@ -6,8 +6,9 @@ class LoginModel extends UserModel
 
     public function login()
     {
-        $this->dbh->query('SELECT * from users WHERE email = :email');
-        $this->dbh->bind(':email', $this->email);
+        $this->dbh->query('SELECT * from user WHERE email = :email');
+        $ValidatedEmail=filter_var($this->email, FILTER_SANITIZE_EMAIL); 
+        $this->dbh->bind(':email', $ValidatedEmail);
 
         $record = $this->dbh->single();
         $hash_pass = $record->password;
@@ -19,3 +20,4 @@ class LoginModel extends UserModel
         }
     }
 }
+

@@ -27,11 +27,10 @@
   <link rel="stylesheet" href="<?php echo URLROOT; ?>css/footer.css">
   <link rel="stylesheet" href="<?php echo URLROOT; ?>css/style.css">
   <link rel="stylesheet" href="<?php echo URLROOT; ?>css/about.css">
+  <link rel="stylesheet" href="<?php echo URLROOT; ?>css/LoginRegister.css">
   <!-- <link rel="stylesheet" href="<?php echo URLROOT; ?>css/DashBoard.css"> -->
-
   <link rel="stylesheet" href="<?php echo URLROOT; ?>css/Sidebar.css">
   <link rel="stylesheet" href="<?php echo URLROOT; ?>css/viewDescription.css">
-
   <link rel="stylesheet" href="<?php echo URLROOT; ?>fonts/icomoon/style.css">
 
     <script src="<?php echo URLROOT; ?>js/jquery-3.3.1.min.js"></script>
@@ -42,6 +41,7 @@
     <script src="<?php echo URLROOT; ?>js/viewRent.js"></script>
     <script src="<?php echo URLROOT; ?>js/viewpage.js"></script>
     <script src="<?php echo URLROOT; ?>js/pagination.js"></script>
+    <script src="<?php echo URLROOT; ?>js/Validation.js"></script>
 <!--     <script src="<?php echo URLROOT; ?>js/sidebar.js"></script>
  --> 
 
