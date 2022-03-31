@@ -16,7 +16,7 @@ class viewItem extends View
 
 
 
-    <body background="<?php echo IMAGEROOT2."img2.png" ;?>" >
+    <body>
 
 
         <!-- sidebar -->

@@ -4,10 +4,11 @@
 
 .registration-form{
 	padding: 50px 0;
+    
 }
 
 .registration-form form{
-    background-color: #fff;
+    background-color: #C9E0FF;
     max-width: 600px;
     margin: auto;
     padding: 50px 70px;
@@ -17,7 +18,7 @@
 }
 .registration-form .form-icon{
 	text-align: center;
-    background-color: #f64749;
+    background-color: #002137;
     border-radius: 50%;
     font-size: 40px;
     color: white;
@@ -39,7 +40,7 @@
     padding: 10px 20px;
     font-size: 18px;
     font-weight: bold;
-    background-color: #f64749;
+    background-color:#002137;;
     border: none;
     color: white;
     margin-top: 20px;

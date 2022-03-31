@@ -17,10 +17,10 @@ class Register extends view
     $loginUrl = URLROOT . 'users/login';
 
     $text = <<<EOT
-    <body style="background-color:#ffdede;">
+    <body style="background-color:#003356;">
     <div class="registration-form">
     <form action="$action" method="post">
-    <h2 style="text-align: center; margin-bottom: 5%; font-size: 40px; color:#f64749;" >Sign Up</h2>
+    <h2 style="text-align: center; margin-bottom: 5%; font-size: 40px; color:#00111C;" >Sign Up</h2>
     <div class="form-icon">
     <span><i class="icon icon-user"></i></span>
     </div>

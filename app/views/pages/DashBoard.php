@@ -13,8 +13,7 @@ class DashBoard extends View
 <link rel="stylesheet" href="<?php echo URLROOT; ?>css/DashBoard.css">
   <!-- /////////////////////////////////////////////////////////////////////////////////////////////// -->
 
-  <body style = " background: rgb(255,255,255);
-background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 0%, rgba(150,48,48,0.6895133053221288) 73%, rgba(255,0,0,0.7035189075630253) 100%); background-attachment: fixed;">
+  <body style = " background: #003356;">
     <!-- =============== Navigation ================ -->
     <div class="containerr" style="margin-top:2%;">
            
@@ -153,37 +152,37 @@ background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 0%
                                 <td>Salah Omran</td>
                                 <td>0111454768</td>
                                 <td>Admin</td>
-                                <td><a href="#" class="btn" style="background-color: #f64749; color: white ;">Edit</a></td>
+                                <td><a href="#" class="btn" style="background-color: #001A2C; color: white ;">Edit</a></td>
                             </tr>
                              <tr>
                                 <td>Mohamed Salah</td>
                                 <td>0111454768</td>
                                 <td>Moderator</td>
-                                <td><a href="#" class="btn" style="background-color: #f64749; color: white ;">Edit</a></td>
+                                <td><a href="#" class="btn" style="background-color: #001A2C; color: white ;">Edit</a></td>
                             </tr>
                              <tr>
                                 <td>Youssef Alaa</td>
                                 <td>0111454768</td>
                                 <td>Moderator</td>
-                                <td><a href="#" class="btn" style="background-color: #f64749; color: white ;">Edit</a></td>
+                                <td><a href="#" class="btn" style="background-color: #001A2C; color: white ;">Edit</a></td>
                             </tr>
                              <tr>
                                 <td>Yonos Tarek</td>
                                 <td>0111454768</td>
                                 <td>Moderator</td>
-                                <td><a href="#" class="btn" style="background-color: #f64749; color: white ;">Edit</a></td>
+                                <td><a href="#" class="btn" style="background-color: #001A2C; color: white ;">Edit</a></td>
                             </tr>
                              <tr>
                                 <td>Youssef Hussein</td>
                                 <td>0111454768</td>
                                 <td>Moderator</td>
-                                <td><a href="#" class="btn" style="background-color: #f64749; color: white ;">Edit</a></td>
+                                <td><a href="#" class="btn" style="background-color: #001A2C; color: white ;">Edit</a></td>
                             </tr>
                              <tr>
                                 <td>Any one</td>
                                 <td>0111454768</td>
                                 <td>User</td>
-                                <td><a href="#" class="btn" style="background-color: #f64749; color: white ;">Edit</a></td>
+                                <td><a href="#" class="btn" style="background-color: #001A2C; color: white ;">Edit</a></td>
                             </tr>
 
                            
