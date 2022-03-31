@@ -186,6 +186,11 @@ class viewRent extends View
 <!-- search end here -->
 <!-- cards start here -->
     <div class="containere" style="min-height:1100px; margin-left: 25%; margin-right: 5%;">
+    <div class="pcontainer">
+  <div class="submit-feedback high">High</div>
+  <div class="submit-feedback medium">Medium</div>
+  <div class="submit-feedback low">Low</div>
+</div>
     <div class="row" id="TableList"  style="max-width: 90%;">
 </div>
 </div>
