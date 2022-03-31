@@ -70,12 +70,14 @@ body
 .product-bottom-details div {
     float: left;
     width: 50%;
+    margin-top:75% ;
 }
 
 .product-price {
     font-size: 25px;
     color: green;
     font-weight: 600;
+
 }
 
 .product-price small {
@@ -570,3 +572,6 @@ border-top: 1px solid #000;
   color: #FFF;
 }
 /*divider end*/
+/*timer start*/
+
+/*timer end*/
