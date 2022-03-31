@@ -11,7 +11,7 @@ class Index extends View
       //  echo $_SESSION['user_id'];
       //  echo $_SESSION['user_name'];
       //  echo $_SESSION['email'];
-      //  echo $_SESSION['role'];
+      //  echo $_SESSION['Rank'];
 
 ?>
 <div>

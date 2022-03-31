@@ -36,14 +36,27 @@
                 <li><a href="<?php echo URLROOT . 'pages/viewRent'; ?>"><span>view Rent</span></a></li>
                 <li><a href="<?php echo URLROOT . 'pages/viewDescription'; ?>"><span>Item</span></a></li>
                 <li><a href="<?php echo URLROOT . 'pages/about'; ?>"><span>About</span></a></li>
-                <li><a href="<?php echo URLROOT . 'pages/DashBoard'; ?>"><span>DashBoard</span></a></li>
+                <?php if($_SESSION['role']="Admin"){
+                ?>
+                <li><a href="<?php echo URLROOT . "pages/DashBoard"; ?>"><span>DashBoard</span></a></li>
+                <?php } ?>
+
                 <li><a href="<?php echo URLROOT . 'pages/wishlist'; ?>"><span><i class="fa fa-heart" aria-hidden="true"></i></span></a></li>
-                <li><a href="<?php echo URLROOT . 'pages/Profile'; ?> "><span>Profile   <i class="fa fa-user" aria-hidden="true"></i>
+
+                <?php if(!empty($_SESSION['user_id'])){
+                    ?>
+                 <li><a href="<?php echo URLROOT . 'pages/Profile'; ?> "><span> <?php echo $_SESSION['user_name'];?>   <i class="fa fa-user" aria-hidden="true"></i>
+                <?php } ?>
+          
                 <li class="has-children">
                   <a href="about.html"><span>Join Us!</span></a>
                   <ul class="dropdown arrow-top">
                     <li><a href="<?php echo URLROOT . 'users/Login'; ?>">Login</a></li>
                     <li><a href="<?php echo URLROOT . 'users/Register'; ?> ">Sign Up</a></li>
+                    <?php if(!empty($_SESSION['user_id'])){
+                    ?>
+                <li><a href="<?php echo URLROOT . 'users/SignOut'; ?> ">Log Out !</a></li>
+                <?php } ?>
                   </ul>
                 </li>
                 

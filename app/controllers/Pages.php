@@ -15,7 +15,7 @@ public function viewItem()
         $indexView = new viewItem($this->getModel(), $this);
         $indexView->output();
     }
-    public function viewRent()
+public function viewRent()
     {
         $viewPath = VIEWS_PATH . 'pages/viewRent.php';
         require_once $viewPath;

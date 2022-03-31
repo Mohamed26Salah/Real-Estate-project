@@ -59,14 +59,14 @@ class RegisterModel extends UserModel
     public function signup()
     {
 
-        $this->dbh->query("INSERT INTO user (`name`, `email`, `password`,`role`) VALUES(:uname, :email, :pass,:rolee)");
+        $this->dbh->query("INSERT INTO user (`name`, `email`, `password`,`Rank`) VALUES(:uname, :email, :pass,:Ranke)");
         $ValidatedName=filter_var($this->name, FILTER_SANITIZE_STRING);
         $this->dbh->bind(':uname', $ValidatedName);
         $ValidatedEmail=filter_var($this->email, FILTER_SANITIZE_EMAIL); 
         $this->dbh->bind(':email', $ValidatedEmail);
         $this->dbh->bind(':pass', $this->password);
         $User="User";
-        $this->dbh->bind(':rolee', $User);
+        $this->dbh->bind(':Ranke', $User);
         return $this->dbh->execute();
     }
 }
