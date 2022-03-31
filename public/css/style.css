@@ -7,11 +7,13 @@
 }
 
 * {
+  
   box-sizing: border-box;
 }
 
 html, body {
   height: 100%;
+  
 }
 
 /* body {
@@ -50,6 +52,8 @@ html, body {
   color: whitesmoke;
   background-color: whitesmoke;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1), 0 2px 2px rgba(0, 0, 0, 0.1), 0 4px 4px rgba(0, 0, 0, 0.1), 0 8px 8px rgba(0, 0, 0, 0.1), 0 16px 16px rgba(0, 0, 0, 0.1);
+  /* animation: slideIn 1.5s ease-in-out forwards; */
+  transition: all .8s ease;
 }
 @media (min-width: 600px) {
   .card-index {
@@ -82,34 +86,44 @@ html, body {
   transition: transform calc(var(--d) * 2) var(--e);
 }
 .card-index:nth-child(1):before {
+  animation: slideUp 1.0s ease-in-out forwards;
   background-image: url(https://images.unsplash.com/photo-1610387528262-b8c804dabb42?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80);
 }
 .card-index:nth-child(2):before {
+  animation: slideUp 1.2s ease-in-out forwards;
   background-image: url(https://p0.pikist.com/photos/209/966/building-condominium-buildings-engineering.jpg);
 }
 .card-index:nth-child(3):before {
+  animation: slideUp 1.4s ease-in-out forwards;
   background-image: url(https://images.unsplash.com/photo-1561026554-29d9815d4f3d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=735&q=80);
 }
 .card-index:nth-child(4):before {
+  animation: slideUp 1.6s ease-in-out forwards;
   background-image: url(https://images.unsplash.com/photo-1600644005380-2d383d88cb09?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80);
 }
 .card-index:nth-child(5):before {
+  animation: slideUp 1.8s ease-in-out forwards;
   background-image: url(https://images.unsplash.com/photo-1641877492086-771bc14a8e5e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=759&q=80);
 }
 .card-index:nth-child(6):before {
+  animation: slideUp 2.0s ease-in-out forwards;
   background-image: url(https://images.unsplash.com/photo-1635557297490-b9c99368384b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80);
 }
 .card-index:nth-child(7):before {
+  animation: slideUp 2.2s ease-in-out forwards;
   background-image: url(https://images.unsplash.com/photo-1627052428109-576e839d100a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=735&q=80);
 }
 .card-index:nth-child(8):before {
+  animation: slideUp 2.4s ease-in-out forwards;
   background-image: url(https://images.unsplash.com/photo-1543051932-6ef9fecfbc80?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=724&q=80);
 }
 .card-index:nth-child(9):before {
+  animation: slideUp 2.6s ease-in-out forwards;
   background-image: url(https://images.unsplash.com/photo-1506744272967-64058cba4bec?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=765&q=80);
 }
 
 .card-index:nth-child(10):before {
+  animation: slideUp 2.8s ease-in-out forwards;
   background-image: url(https://images.unsplash.com/photo-1541447271487-09612b3f49f7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80);
 }
 
@@ -163,6 +177,13 @@ html, body {
   outline-offset: 3px;
 }
 
+
+/* ANIMATION  */
+/* ---------------------------------------------- */
+
+
+
+/* ---------------------------------------------------- */
 @media (hover: hover) and (min-width: 600px) {
   .card-index:after {
     transform: translateY(0);
@@ -204,5 +225,23 @@ html, body {
 .card-index:focus-within .content,
 .card-index:focus-within .content > *:not(.title) {
     transition-duration: 0s;
+  }
+}
+
+@keyframes slideUp {
+  0% {
+    transform: translateY(300px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+@keyframes slideIn {
+  0% {
+    transform: translateX(500px) scale(.00002);
+  }
+  100% {
+    transform: translateX(0px) scale(1);
   }
 }
