@@ -19,10 +19,10 @@ class Login extends view
     
     $text = <<<EOT
     
-    <body style="background-color:#ffdede;">
+    <body style="background-color:#003356;">
     <div class="registration-form">
     <form action="$action" method="post">
-    <h2 style="text-align: center; margin-bottom: 5%; font-size: 40px; color:#f64749;" >Login</h2>
+    <h2 style="text-align: center; margin-bottom: 5%; font-size: 40px; color:#00111C;" >Login</h2>
     <div class="form-icon">
     
     <span><i class="icon icon-user"></i></span>

@@ -16,6 +16,8 @@ class Index extends View
 ?>
 <div>
   <body background = "<?php echo IMAGEROOT . 'img2.png' ; ?>" style = " background-attachment: fixed;">
+
+    
    <!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////// -->
    <main class = "page-content">
 
