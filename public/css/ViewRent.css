@@ -61,19 +61,19 @@ body
     color: #999;
 }
 
-.product-bottom-details {
+.product-bottom-details-Rent {
     overflow: hidden;
     border-top: 1px solid #eee;
     padding-top: 20px;
 }
 
-.product-bottom-details div {
+.product-bottom-details-Rent div {
     float: left;
     width: 50%;
     margin-top:60% ;
 }
 
-.product-bottom-details p {
+.product-bottom-details-Rent p {
   float: left;
   width: 50%;
   margin-top:60% ;
