@@ -12,6 +12,7 @@ function flash($name = '', $message = '', $class = 'alert alert-success')
         unset($_SESSION[$name]);
       }
 
+      
       if (!empty($_SESSION[$name . '_class'])) {
         unset($_SESSION[$name . '_class']);
       }
