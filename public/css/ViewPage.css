@@ -531,13 +531,14 @@ background-color: black;
   background-image: linear-gradient(to right, #00005c 0%, #111 100%);
   border-radius: 40px;
   box-sizing: border-box;
-  color: #00a84f;
+  color: #ffffff;
   display: block;
   height: 40px;
   font-size: 0.7em;
-  padding: 4px;
+  padding: 10px;
   position: relative;
   text-decoration: none;
+  font-size: 12px;
   font-weight: 500;
   
   width: auto;
@@ -546,7 +547,8 @@ background-color: black;
 }
 
 .bn31:hover {
-  color: #fff;
+  cursor: pointer;
+  color: rgb(0, 195, 255);
 }
 
 .bn31 .bn31span {

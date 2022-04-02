@@ -28,43 +28,45 @@ class viewItem extends View
           <li><span class="nav-section-title"></span></li>
           <li class="have-children active"><a href="#"><span class="fa fa-university"></span>Type</a>
             <ul>
+             
               <div class="sidebar_custom_radio">
                 <div class="containerradio">
 
-                  <div class="row">
-                    <a class="bn31" href="/">
+                    <div class="row">
+                    <div class="bn31" href="/">
                       <div class="bn31span" style="">Flats</div>
-                    </a>
-                    <a class="bn31" href="/">
+                    </div>
+                    
+                    <div class="bn31" href="/">
                       <div class="bn31span" style="">Villa</div>
-                    </a>
-                    <a class="bn31" href="/">
+                    </div>
+                    <div class="bn31" href="/">
                       <div class="bn31span" style="">Store</div>
-                    </a>
-                    <a class="bn31" href="/">
+                    </div>
+                    <div class="bn31" href="/">
                       <div class="bn31span" style="">Clinic</div>
-                    </a>
-                    <a class="bn31" href="/">
+                    </div>
+                    <div class="bn31" href="/">
                       <div class="bn31span" style="">Schools</div>
-                    </a>
-                    <a class="bn31" href="/">
+                    </div>
+                    <div class="bn31" href="/">
                       <div class="bn31span" style="">Farm</div>
-                    </a>
-                    <a class="bn31" href="/">
+                    </div>
+                    <div class="bn31" href="/">
                       <div class="bn31span" style="">Factory</div>
-                    </a>
-                    <a class="bn31" href="/">
+                    </div>
+                    <div class="bn31" href="/">
                       <div class="bn31span" style="">Land</div>
-                    </a>
-                    <a class="bn31" href="/">
+                    </div>
+                    <div class="bn31" href="/">
                       <div class="bn31span" style="">Residential Building</div>
-                    </a>
-                    <a class="bn31" href="/">
+                    </div>
+                    <div class="bn31" href="/">
                       <div class="bn31span" style="">Other</div>
-                    </a>
-                  </div>
+                    </div>
+                 
                 </div>
-
+                </div>
               </div>
 
             </ul>
