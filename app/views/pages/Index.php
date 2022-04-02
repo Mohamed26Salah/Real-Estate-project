@@ -14,13 +14,18 @@ class Index extends View
       //  echo $_SESSION['Rank'];
 
 ?>
-<div>
-  <body background = "<?php echo IMAGEROOT . 'img2.png' ; ?>" style = " background-attachment: fixed;">
 
-    
+  <!-- <body background = "<?php //echo IMAGEROOT . 'img2.png' ; ?>" style = " background-attachment: fixed;"> -->
+
+  <body background = "<?php echo IMAGEROOT . 'img2.png' ; ?>" style = " background-attachment: fixed; ">
+  <div class = "header"> 
+    <span class = "word"></span>
+  </div>
+  
    <!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////// -->
    <main class = "page-content">
 
+   
    
    <div class="card-index">
             <div class="content">

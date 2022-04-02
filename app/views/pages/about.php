@@ -7,6 +7,8 @@ class About extends view
 
     require APPROOT . '/views/inc/header.php';
     ?>
+<body style = "background:#003356;">
+
 
 <div class="about-section">
   <h1>About Us Page</h1>
@@ -55,7 +57,7 @@ class About extends view
     </div>
   </div>
 </div>
-
+</body>
 <?php
 
 

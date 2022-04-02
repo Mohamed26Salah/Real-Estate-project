@@ -42,6 +42,7 @@
     <script src="<?php echo URLROOT; ?>js/viewpage.js"></script>
     <script src="<?php echo URLROOT; ?>js/pagination.js"></script>
     <script src="<?php echo URLROOT; ?>js/Validation.js"></script>
+    <script src="<?php echo URLROOT; ?>js/word_index.js"></script>
 <!--     <script src="<?php echo URLROOT; ?>js/sidebar.js"></script>
  --> 
 
