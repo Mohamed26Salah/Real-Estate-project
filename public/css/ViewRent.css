@@ -20,7 +20,8 @@ body
     position: relative;
     box-shadow: 0 2px 7px #dfdfdf;
     margin: 50px auto;
-    background: #fafafa;
+    background: #C9E0FF;
+    border-radius: 30px;
 }
 
 
@@ -85,12 +86,38 @@ body
     font-weight: 600;
 
 }
+.Rent_Price
+{
+  width:auto;
+  font-size: 25px;
+  color: green;
+  font-weight: 600;
+}
+.timer
+{
+  margin: 5px;
+  margin-top: 90px;
+  width:auto;
+  font-size: 19px;
+  color: #00111C;
+  font-weight: 600;
+}
 
 .arabic
 {
   font-size: 20px;
   font-weight: 600;
+  color: #00111C;
+
   text-align: right;
+}
+.arabic .right
+{
+  float: right;
+}
+.arabic .left
+{
+  float: left;
 }
 
 
@@ -159,7 +186,6 @@ body
             outline: 0;
             border: 1px solid transparent;
             border-bottom: 1px solid #575756;
-            border-radius: 0;
             background-position: 100% center;
         }
 
@@ -390,37 +416,11 @@ background-color: black;
 }
 
 /* pagination start */
-.center {
-  bottom: 100rem;
-  margin-left: 15%;
-  width: auto;
-  text-align: center;
+.pagination
+{
+  display:flex;
+  justify-content: center;
 }
-
-.pagination {
-  
-  display: inline-block;
-}
-
-.pagination a {
-  background-color: #202527;
-  color: white;
-  float: left;
-  padding: 8px 16px;
-  text-decoration: none;
-  transition: background-color .3s;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  margin: 5px 10px;
-}
-
-.pagination a.active {
-  background-color: #ff8b88;
-  color: white;
-  border: 1px solid #ff8b88;
-}
-
-.pagination a:hover:not(.active) {background-color: #ddd;}
 /* pagination end */
 
 /* radio button start  */

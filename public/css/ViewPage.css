@@ -20,6 +20,7 @@ background:#003356;
     box-shadow: 0 2px 7px #C9E0FF;
     margin: 50px auto;
     background: #C9E0FF;
+    border-radius: 30px;
 }
 
 .product-tumb {
@@ -52,8 +53,9 @@ background:#003356;
 
 .product-details h4 a {
   text-align: center;
-  font-Size: 15px;
-    font-weight: 500;
+  font-Size: 18px;
+  
+    font-weight: 1000;
     display: block;
     margin-bottom: 18px;
     text-transform: uppercase;
@@ -161,8 +163,8 @@ background:#003356;
             padding: 12px 0;
             outline: 0;
             border: 1px solid transparent;
+            border-radius: 50px;
             border-bottom: 1px solid #575756;
-            border-radius: 0;
             background-position: 100% center;
         }
 
@@ -527,3 +529,44 @@ background-color: black;
 }
 
 /* slider end */
+
+/* type button start */
+.bn31 {
+  background-image: linear-gradient(to right, #00005c 0%, #111 100%);
+  border-radius: 40px;
+  box-sizing: border-box;
+  color: #00a84f;
+  display: block;
+  height: 40px;
+  font-size: 0.7em;
+  padding: 4px;
+  position: relative;
+  text-decoration: none;
+  font-weight: 500;
+  
+  width: auto;
+  z-index: 2;
+  margin : 5px;
+}
+
+.bn31:hover {
+  color: #fff;
+}
+
+.bn31 .bn31span {
+  all: initial;
+  all: unset;
+  align-items: center;
+  background: transparent;
+  border-radius: 40px;
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  transition: background 0.5s ease;
+  width: 100%;
+}
+
+.bn31:hover .bn31span {
+  background: transparent;
+}
+/* type button end */
