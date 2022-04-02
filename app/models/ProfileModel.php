@@ -1,5 +1,5 @@
 <?php
-require_once 'UserModel.php';
+// require_once 'UserModel.php';
 class ProfileModel extends model
 {
     protected $name;
@@ -155,14 +155,14 @@ class ProfileModel extends model
      public function EditPassword()
      {
         $this->dbh->query('SELECT * from user WHERE email = :email');
-        $ValidatedEmail=filter_var($this->email, FILTER_SANITIZE_EMAIL); 
-        $this->dbh->bind(':email', $ValidatedEmail);
-         
+        $this->dbh->bind(':email', $_SESSION['email']);
+        echo"<script>console.log('da5l el edit password')</script>";
+
         $record = $this->dbh->single();
         $hash_pass = $record->password;
 
         if (password_verify($this->currentPassword, $hash_pass)) {
-
+            echo"<script>console.log('da5l el password verify')</script>";
             $this->dbh->query("UPDATE user SET `password`=:upassword WHERE ID=:id");
             $this->dbh->bind(':id', $_SESSION['user_id']);
             $HashedPassword=password_hash($this->newPassword, PASSWORD_DEFAULT);

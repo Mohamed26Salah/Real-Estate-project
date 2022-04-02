@@ -64,7 +64,7 @@ public function viewDescription()
                 if(!empty($_POST['name'])){ $ProfileModel->setConfirmPassword(trim($_POST['confirmPassword']));}
 
                
-               
+                $ProfileModel->EditPassword();
                 //validation
                 if (empty($ProfileModel->getName())) {
                     $ProfileModel->setNameErr('Please enter a name');
@@ -75,24 +75,22 @@ public function viewDescription()
                     $ProfileModel->setEmailErr('Email is already registered');
                 }
                 //////////////////////////////////////////////////////////////////////////////////////
-                // if (empty($ProfileModel->getNewPassword())) {
-                //     $ProfileModel->setNewPasswordErr('Please enter a password');
-                // } elseif (strlen($ProfileModel->getNewPassword()) < 4) {
-                //     $ProfileModel->setNewPasswordErr('Password must contain at least 4 characters');
-                // }
+                if (empty($ProfileModel->getNewPassword())) {
+                    $ProfileModel->setNewPasswordErr('Please enter a password');
+                } elseif (strlen($ProfileModel->getNewPassword()) < 4) {
+                    $ProfileModel->setNewPasswordErr('Password must contain at least 4 characters');
+                }
     
-                // if ($ProfileModel->getNewPassword() != $ProfileModel->getConfirmPassword()) {
-                //     $ProfileModel->setConfirmPasswordErr('Passwords do not match');
-                // }
-                // if(empty($ProfileModel->getNewPasswordErr()) && empty($ProfileModel->getConfirmPasswordErr())){
-                    if ($ProfileModel->EditPassword()) {
-                        //header('location: ' . URLROOT . 'users/login');
-                        flash('register_success', 'You have Updated your password successfully');
-                        redirect('users/Profile');
-                    } else {
-                        die('Error in Editing the password');
-                    }
-                // }
+                if ($ProfileModel->getNewPassword() != $ProfileModel->getConfirmPassword()) {
+                    $ProfileModel->setConfirmPasswordErr('Passwords do not match');
+                }
+                if(empty($ProfileModel->getNewPasswordErr()) && empty($ProfileModel->getConfirmPasswordErr())){
+                    echo"<script>alert('yasser gwa if kbeeraaa')</script>";
+                    $ProfileModel->EditPassword();
+                        // flash('register_success', 'You have Updated your password successfully');
+                        // redirect('users/Profile');
+                }
+                
                 //////////////////////////////////////////////////////////////////////////////////////
                 if ( empty($ProfileModel->getNameErr()) || empty($ProfileModel->getEmailErr())) {
                     //Hash Password

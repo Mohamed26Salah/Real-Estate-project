@@ -127,5 +127,14 @@ class Users extends Controller
     {
         return isset($_SESSION['user_id']);
     }
+    public function Profile()
+    {
+       
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        $viewPath = VIEWS_PATH . 'pages/Profile.php';
+        require_once $viewPath;
+        $WishListView = new Profile($this->getModel(), $this);
+        $WishListView->output();
+    }   
 }
 
