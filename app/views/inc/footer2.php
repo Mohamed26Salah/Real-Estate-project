@@ -10,14 +10,13 @@
           <h5 class="text-uppercase mb-4">About company</h5>
 
           <p>
-            At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium
-            voluptatum deleniti atque corrupti.
+          الشركة تهتم بالبناء و التشيد و المقاولات العامة و الخاصة و البيع والتسويق و الايجار و التطوير العقاري و خدمة ما بعد البيع أو الايجار.
           </p>
 
-          <p>
+          <!-- <p>
             Blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas
             molestias.
-          </p>
+          </p> -->
 
           <div class="mt-4">
             <!-- Facebook -->
@@ -41,16 +40,16 @@
 
           <ul class="fa-ul" style="margin-left: 1.65em;">
             <li class="mb-3">
-              <span class="fa-li"><i class="fas fa-home"></i></span><span class="ms-2">New York, NY 10012, US</span>
+              <span class="fa-li"><i class="fas fa-home"></i></span><span class="ms-2">New Cairo, First Settlement,elmgwrah 6</span>
             </li>
             <li class="mb-3">
-              <span class="fa-li"><i class="fas fa-envelope"></i></span><span class="ms-2">info@example.com</span>
+              <span class="fa-li"><i class="fas fa-envelope"></i></span><span class="ms-2">salah26omran@gmail.com</span>
             </li>
             <li class="mb-3">
-              <span class="fa-li"><i class="fas fa-phone"></i></span><span class="ms-2">+ 01 234 567 88</span>
+              <span class="fa-li"><i class="fas fa-phone"></i></span><span class="ms-2">+2 01144413610</span>
             </li>
             <li class="mb-3">
-              <span class="fa-li"><i class="fas fa-print"></i></span><span class="ms-2">+ 01 234 567 89</span>
+              <span class="fa-li"><i class="fas fa-phone"></i></span><span class="ms-2">+2 01094973229</span>
             </li>
           </ul>
         </div>
@@ -63,16 +62,12 @@
           <table class="table text-center text-white">
             <tbody class="font-weight-normal">
               <tr>
-                <td>Mon - Thu:</td>
-                <td>8am - 9pm</td>
+                <td>Sat - Thu:</td>
+                <td>11am - 9pm</td>
               </tr>
               <tr>
-                <td>Fri - Sat:</td>
-                <td>8am - 1am</td>
-              </tr>
-              <tr>
-                <td>Sunday:</td>
-                <td>9am - 10pm</td>
+                <td>Fri:</td>
+                <td>3am - 9am</td>
               </tr>
             </tbody>
           </table>

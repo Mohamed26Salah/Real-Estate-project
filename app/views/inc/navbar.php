@@ -85,8 +85,14 @@
                 <li class="has-children">
                   <a><span>Join Us!</span></a>
                   <ul class="dropdown arrow-top">
-                    <li><a href="<?php echo URLROOT . 'users/Login'; ?>">Login</a></li>
-                    <li><a href="<?php echo URLROOT . 'users/Register'; ?> ">Sign Up</a></li>
+                    <?php if(empty($_SESSION['user_id'])){
+                      ?>
+                       <li><a href="<?php echo URLROOT . 'users/Login'; ?>">Login</a></li>
+                       <li><a href="<?php echo URLROOT . 'users/Register'; ?> ">Sign Up</a></li>
+                      <?php
+                    }
+                   ?>
+                   
                     <?php if(!empty($_SESSION['user_id'])){
                     ?>
                 <li><a href="<?php echo URLROOT . 'users/SignOut'; ?> ">Log Out !</a></li>

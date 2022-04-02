@@ -29,11 +29,11 @@ class WishList extends view
             <div class="card-body p-4">
                 <div class="row d-flex justify-content-between align-items-center" >
                 <div class="col-md-2 col-lg-2 col-xl-2">
-                    <img src="<?php echo IMAGEROOT2 . 'shoe_1.jpg' ; ?>"
+                    <img width="125px" height="125px" src="<?php echo IMAGEROOT2 . 'sala11.jpeg' ; ?>"
                     class="img-fluid rounded-3" alt="Cotton T-shirt">
                 </div>
                 <div class="col-md-3 col-lg-3 col-xl-3">
-                    <p class="lead fw-normal mb-2 " style = "color: #00111C;">Basic T-shirt</p>
+                    <p class="lead fw-normal mb-2 " style = "color: #00111C;">Villa</p>
                    
                 </div>
                 
@@ -51,11 +51,11 @@ class WishList extends view
             <div class="card-body p-4" >
                 <div class="row d-flex justify-content-between align-items-center">
                 <div class="col-md-2 col-lg-2 col-xl-2">
-                    <img src="<?php echo IMAGEROOT2 . 'shoe_2.jpg' ; ?>"
+                    <img width="125px" height="125px" src="<?php echo IMAGEROOT2 . 'sala13.jpeg' ; ?>"
                     class="img-fluid rounded-3" alt="Cotton T-shirt">
                 </div>
                 <div class="col-md-3 col-lg-3 col-xl-3">
-                    <p class="lead fw-normal mb-2 " style = "color: #00111C;">Basic T-shirt</p>
+                    <p class="lead fw-normal mb-2 " style = "color: #00111C;">Villa</p>
                     
                 </div>
                 
@@ -73,11 +73,11 @@ class WishList extends view
             <div class="card-body p-4" >
                 <div class="row d-flex justify-content-between align-items-center">
                 <div class="col-md-2 col-lg-2 col-xl-2">
-                    <img src="<?php echo IMAGEROOT2 . 'shoe_3.jpg' ; ?>"
-                    class="img-fluid rounded-3" alt="Cotton T-shirt">
+                    <img width="125px" height="125px" src="<?php echo IMAGEROOT2 . 'sala14.jpeg' ; ?>"
+                    class="img-fluid rounded-4" alt="Cotton T-shirt">
                 </div>
                 <div class="col-md-3 col-lg-3 col-xl-3">
-                    <p class="lead fw-normal mb-2" style = "color: #00111C;">Basic T-shirt</p>
+                    <p class="lead fw-normal mb-2" style = "color: #00111C;">Villa</p>
                    
                 </div>
                 
@@ -95,11 +95,11 @@ class WishList extends view
             <div class="card-body p-4" >
                 <div class="row d-flex justify-content-between align-items-center">
                 <div class="col-md-2 col-lg-2 col-xl-2">
-                    <img src="<?php echo IMAGEROOT2 . 'shoe_4.jpg' ; ?>"
+                    <img width="125px" height="125px" src="<?php echo IMAGEROOT2 . 'sala15.jpeg' ; ?>"
                     class="img-fluid rounded-3" alt="Cotton T-shirt">
                 </div>
                 <div class="col-md-3 col-lg-3 col-xl-3">
-                    <p class="lead fw-normal mb-2" style = "color: #00111C;">Basic T-shirt</p>
+                    <p class="lead fw-normal mb-2" style = "color: #00111C;">Villa</p>
                    
                 </div>
                 

@@ -18,32 +18,32 @@ class viewDescription extends View
         <div class = "product-imgs">
           <div class = "img-display">
             <div class = "img-showcase">
-            <img src="<?php echo IMAGEROOT2 . 'shoe_1.jpg' ; ?>" alt = "shoe image">
-            <img src="<?php echo IMAGEROOT2 . 'shoe_2.jpg' ; ?>" alt = "shoe image">
-            <img src="<?php echo IMAGEROOT2 . 'shoe_3.jpg' ; ?>" alt = "shoe image">
-            <img src="<?php echo IMAGEROOT2 . 'shoe_4.jpg' ; ?>" alt = "shoe image">
+            <img src="<?php echo IMAGEROOT2 . 'sala11.jpeg' ; ?>" alt = "shoe image">
+            <img src="<?php echo IMAGEROOT2 . 'sala9.jpeg' ; ?>" alt = "shoe image">
+            <img src="<?php echo IMAGEROOT2 . 'sala7.jpeg' ; ?>" alt = "shoe image">
+            <img src="<?php echo IMAGEROOT2 . 'sala12.jpeg' ; ?>" alt = "shoe image">
           
             </div>
           </div>
           <div class = "img-select">
             <div class = "img-item">
               <a href = "#" data-id = "1">
-                <img src="<?php echo IMAGEROOT2 . 'shoe_1.jpg' ; ?>" alt = "shoe image">
+                <img src="<?php echo IMAGEROOT2 . 'sala11.jpeg' ; ?>" alt = "shoe image">
               </a>
             </div>
             <div class = "img-item">
               <a href = "#" data-id = "2">
-              <img src="<?php echo IMAGEROOT2 . 'shoe_2.jpg' ; ?>" alt = "shoe image">
+              <img src="<?php echo IMAGEROOT2 . 'sala9.jpeg' ; ?>" alt = "shoe image">
               </a>
             </div>
             <div class = "img-item">
               <a href = "#" data-id = "3">
-              <img src="<?php echo IMAGEROOT2 . 'shoe_3.jpg' ; ?>" alt = "shoe image">
+              <img src="<?php echo IMAGEROOT2 . 'sala7.jpeg' ; ?>" alt = "shoe image">
               </a>
             </div>
             <div class = "img-item">
               <a href = "#" data-id = "4">
-              <img src="<?php echo IMAGEROOT2 . 'shoe_4.jpg' ; ?>" alt = "shoe image">
+              <img src="<?php echo IMAGEROOT2 . 'sala12.jpeg' ; ?>" alt = "shoe image">
               </a>
             </div>
           </div>

@@ -42,6 +42,11 @@ img{
 .img-item{
     margin: 0.3rem;
 }
+
+.img-item img{
+    width: 125px;
+    height: 125px;
+}
 .img-item:nth-child(1),
 .img-item:nth-child(2),
 .img-item:nth-child(3){
