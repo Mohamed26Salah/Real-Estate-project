@@ -7,7 +7,7 @@
     font-family: 'Open Sans', sans-serif;
 }
 .jumbotron{
-    background-color:#cbcacc;
+    background-color:#003356;
 }
 body{
     line-height: 1.5;
@@ -19,6 +19,7 @@ body{
     background-color: #ebe2e25e;    
     padding: 10px;
     box-shadow: 5px 5px 30px 7px rgba(0,0,0,0.25), -5px -5px 30px 7px rgba(0,0,0,0.22);
+    border-radius:30px;
 }
 img{
     width: 100%;
@@ -100,11 +101,11 @@ img{
     font-weight: 400;
 }
 .last-price span{
-    color: #f64749;
+    color: #ff0000;
     text-decoration: line-through;
 }
 .new-price span{
-    color: #256eff;
+    color: #7cff25;
 }
 .product-detail h2{
     text-transform: capitalize;
@@ -134,7 +135,7 @@ img{
 }
 .product-detail i {
     font-size: 18px;
-    color:red;
+    color:#C9E0FF;
 }
 .product-detail ul li span{
     font-weight: 400;

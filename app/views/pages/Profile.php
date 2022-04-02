@@ -3,13 +3,12 @@ class Profile extends View
 {
   public function output()
   {
-    $title = $this->model->title;
-    $subtitle = $this->model->subtitle;
-
     require APPROOT . '/views/inc/header.php';  
+    $action = URLROOT . 'pages/Profile';
 ?>
 
 <head>
+
     <meta charset="utf-8">
 
     <title>View Profile</title>
@@ -41,58 +40,25 @@ class Profile extends View
             <div class="card mb-4">
                 <div class="card-header" style="background-color:#C9E0FF ;">Account Details</div>
                 <div class="card-body" style="background-color:#C9E0FF ;">
-                    <form>
+                
+                    <form action="<?php echo $action;?>" method="post">
                         <!-- Form Group (username)-->
                         <div class="mb-3">
-                            <label class="small mb-1" for="inputUsername">Username (how your name will appear to other users on the site)</label>
-                            <input class="form-control " id="inputUsername" type="text" placeholder="Enter your username" value="username">
+                            <label class="small mb-1" for="inputUsername">Username</label>
+                            <input class="form-control " id="inputUsername" type="text" value="<?php echo $_SESSION['user_name'];?>" name="name">
                         </div>
-                        <!-- Form Row-->
-                        <div class="row gx-3 mb-3">
-                            <!-- Form Group (first name)-->
-                            <div class="col-md-6">
-                                <label class="small mb-1" for="inputFirstName" >First name</label>
-                                <input class="form-control" id="inputFirstName" type="text" placeholder="Enter your first name" value="Valerie">
-                            </div>
-                            <!-- Form Group (last name)-->
-                            <div class="col-md-6">
-                                <label class="small mb-1" for="inputLastName">Last name</label>
-                                <input class="form-control" id="inputLastName" type="text" placeholder="Enter your last name" value="Luna">
-                            </div>
-                        </div>
-                        <!-- Form Row        -->
-                        <div class="row gx-3 mb-3">
-                            <!-- Form Group (organization name)-->
-                            <!-- <div class="col-md-6">
-                                <label class="small mb-1" for="inputOrgName">Organization name</label>
-                                <input class="form-control" id="inputOrgName" type="text" placeholder="Enter your organization name" value="Start Bootstrap">
-                            </div> -->
-                            <!-- Form Group (location)-->
-                            <!-- <div class="col-md-6">
-                                <label class="small mb-1" for="inputLocation">Location</label>
-                                <input class="form-control" id="inputLocation" type="text" placeholder="Enter your location" value="San Francisco, CA">
-                            </div> -->
-                        </div>
-                        <!-- Form Group (email address)-->
+    
                         <div class="mb-3">
                             <label class="small mb-1" for="inputEmailAddress">Email address</label>
-                            <input class="form-control" id="inputEmailAddress" type="email" placeholder="Enter your email address" value="name@example.com">
+                            <input class="form-control" id="inputEmailAddress" type="email" value="<?php echo $_SESSION['email'];?>" name="email">
                         </div>
-                        <!-- Form Row-->
-                        <div class="row gx-3 mb-3">
-                            <!-- Form Group (phone number)-->
-                            <div class="col-md-6">
-                                <label class="small mb-1" for="inputPhone">Phone number</label>
-                                <input class="form-control" id="inputPhone" type="tel" placeholder="Enter your phone number" value="555-123-4567">
-                            </div>
-                            <!-- Form Group (birthday)-->
-                            <div class="col-md-6">
-                                <label class="small mb-1" for="inputBirthday">Birthday</label>
-                                <input class="form-control" id="inputBirthday" type="text" name="birthday" placeholder="Enter your birthday" value="06/10/1988">
-                            </div>
+                        
+                        <div class=" mb-3 col-3">
+                            <label class="xl mb-1">Rank</label>
+                            <input class="form-control"value="<?php echo $_SESSION['Rank'];?>" disabled = "disabled">
                         </div>
-                        <!-- Save changes button-->
-                        <button class="btn btn-primary text-white " id="button" type="button">Save changes</button>
+                       
+                        <input class="btn btn-primary text-white " id="button" type="submit" name="submit" value="Save Changes">
                     </form>
                 </div>
             </div>
@@ -110,23 +76,23 @@ class Profile extends View
                 <div class="card mb-4">
                     <div class="card-header" style="background-color:#C9E0FF ;">Change Password</div>
                     <div class="card-body" style="background-color:#C9E0FF ;">
-                        <form>
+                        <form action="<?php echo $action;?>" method="post">
                             <!-- Form Group (current password)-->
                             <div class="mb-3">
                                 <label class="small mb-1" for="currentPassword">Current Password</label>
-                                <input class="form-control" id="currentPassword" type="password" placeholder="Enter current password">
+                                <input class="form-control" id="currentPassword" type="password" placeholder="Enter current password" name="currentPassword">
                             </div>
                             <!-- Form Group (new password)-->
                             <div class="mb-3">
                                 <label class="small mb-1" for="newPassword">New Password</label>
-                                <input class="form-control" id="newPassword" type="password" placeholder="Enter new password">
+                                <input class="form-control" id="newPassword" type="password" placeholder="Enter new password" name="newPassword">
                             </div>
                             <!-- Form Group (confirm password)-->
                             <div class="mb-3">
                                 <label class="small mb-1" for="confirmPassword">Confirm Password</label>
-                                <input class="form-control" id="confirmPassword" type="password" placeholder="Confirm new password">
+                                <input class="form-control" id="confirmPassword" type="password" placeholder="Confirm new password" name="confirmPassword">
                             </div>
-                            <button class="btn btn-primary text-white " type="button">Save</button>
+                            <input class="btn btn-primary text-white " id="button" type="submit" name="submit" value="Save Changes">
                         </form>
                     </div>
                 </div>
@@ -156,3 +122,4 @@ class Profile extends View
 
   }
 }
+
