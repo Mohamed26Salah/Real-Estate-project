@@ -16,7 +16,10 @@ class About extends view
   <p>Resize the browser window to see that this page is responsive by the way.</p>
 </div>
 
-<h2 style="text-align:center">Our Team</h2>
+<div class = "head" >
+  <h2 style="text-align:center">Our Team</h2>
+</div>
+
 <div class="row">
   <div class="column">
     <div class="card-about">
@@ -48,7 +51,7 @@ class About extends view
     <div class="card-about">
       <img src="https://images.unsplash.com/photo-1615109398623-88346a601842?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80" alt="John" style="width:100%">
       <div class="container-about">
-        <h2>Ehab Office</h2>
+        <h2>Ehab</h2>
         <p class="title-about">Designer</p>
         <p>Some text that describes me lorem ipsum ipsum lorem.</p>
         <p>john@example.com</p>

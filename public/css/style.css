@@ -29,7 +29,11 @@ html, body {
   
   margin-top:10%;
   color: white;
-  font: 700 normal 5em 'tahoma';
+  /* font: 700 normal 5em 'tahoma';*/
+
+  font-family: 'Lobster', cursive;
+  font-size: 5em;
+
 
   text-shadow: 5px 2px #222324, 2px 4px #222324, 3px 5px #222324;
 }
@@ -70,7 +74,7 @@ html, body {
   text-align: center;
   color: whitesmoke;
   background-color: whitesmoke;
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1), 0 2px 2px rgba(0, 0, 0, 0.1), 0 4px 4px rgba(0, 0, 0, 0.1), 0 8px 8px rgba(0, 0, 0, 0.1), 0 16px 16px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1), 0 2px 2px rgba(0, 0, 0, 1), 0 4px 4px rgba(0, 0, 0, 0.1), 0 8px 8px rgba(0, 0, 0, 0.1), 0 16px 16px rgba(0, 0, 0, 0.1);
   /* animation: slideIn 1.5s ease-in-out forwards; */
   transition: all .8s ease;
 }

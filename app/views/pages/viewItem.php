@@ -16,7 +16,7 @@ class viewItem extends View
 
 
 
-    <body>
+    <body style = "background:#003356;">
 
 
         <!-- sidebar -->

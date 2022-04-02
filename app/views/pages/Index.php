@@ -17,7 +17,7 @@ class Index extends View
 
   <!-- <body background = "<?php //echo IMAGEROOT . 'img2.png' ; ?>" style = " background-attachment: fixed;"> -->
 
-  <body background = "<?php echo IMAGEROOT . 'img2.png' ; ?>" style = " background-attachment: fixed; ">
+  <body background = "<?php echo IMAGEROOT . 'mike-enerio-w7Z0fiZw4Mw-unsplash.jpg' ; ?>">
   <div class = "header"> 
     <span class = "word"></span>
   </div>

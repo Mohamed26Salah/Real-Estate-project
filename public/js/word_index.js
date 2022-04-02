@@ -1,4 +1,4 @@
-var words = ['Welcome to Aman..', 'Feel free to contact us', 'We are here to help you'],
+var words = ['Welcome to Aman...', 'Feel free to contact us', 'We are here to help you'],
     part,
     i = 0,
     offset = 0,

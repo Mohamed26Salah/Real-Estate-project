@@ -10,7 +10,7 @@ class viewDescription extends View
    
 ?>
 <html>
-  <body style = " background-color: #003356 background-attachment: fixed;">
+  <body style = " background-color: #003356; background-attachment: fixed;">
     
     <div class = "cardd-wrapper">
       <div class = "cardd">
@@ -136,7 +136,7 @@ class viewDescription extends View
 
 <body>
 
-<section class="p-5" style="width:70%; margin-top:5%; margin-left:15%; background-color:#C9E0FF; box-shadow: 5px 5px 30px 7px rgba(0,0,0,0.25), -5px -5px 30px 7px rgba(0,0,0,0.22);    border-radius:30px;
+<section class="p-5" style="width:70%; margin-top:5%; margin-bottom:5%; margin-left:15%; background-color:#C9E0FF; box-shadow: 5px 5px 30px 7px rgba(0,0,0,0.25), -5px -5px 30px 7px rgba(0,0,0,0.22);    border-radius:30px;
 ; ">
         <h3 class="pb-2">Responsive Table</h3>
         <div class="table-responsive" id="no-more-tables">
