@@ -76,23 +76,23 @@ class Profile extends View
                 <div class="card mb-4">
                     <div class="card-header" style="background-color:#C9E0FF ;">Change Password</div>
                     <div class="card-body" style="background-color:#C9E0FF ;">
-                        <form>
+                        <form action="<?php echo $action;?>" method="post">
                             <!-- Form Group (current password)-->
                             <div class="mb-3">
                                 <label class="small mb-1" for="currentPassword">Current Password</label>
-                                <input class="form-control" id="currentPassword" type="password" placeholder="Enter current password">
+                                <input class="form-control" id="currentPassword" type="password" placeholder="Enter current password" name="currentPassword">
                             </div>
                             <!-- Form Group (new password)-->
                             <div class="mb-3">
                                 <label class="small mb-1" for="newPassword">New Password</label>
-                                <input class="form-control" id="newPassword" type="password" placeholder="Enter new password">
+                                <input class="form-control" id="newPassword" type="password" placeholder="Enter new password" name="newPassword">
                             </div>
                             <!-- Form Group (confirm password)-->
                             <div class="mb-3">
                                 <label class="small mb-1" for="confirmPassword">Confirm Password</label>
-                                <input class="form-control" id="confirmPassword" type="password" placeholder="Confirm new password">
+                                <input class="form-control" id="confirmPassword" type="password" placeholder="Confirm new password" name="confirmPassword">
                             </div>
-                            <button class="btn btn-primary text-white " type="button">Save</button>
+                            <input class="btn btn-primary text-white " id="button" type="submit" name="submit" value="Save Changes">
                         </form>
                     </div>
                 </div>

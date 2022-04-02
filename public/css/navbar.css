@@ -24,7 +24,7 @@
     .site-navbar .site-logo {
       position: relative;
       left: 0;
-      font-size: 24px !important; }
+      width: 80% !important; }
     .site-navbar .site-navigation .site-menu {
       margin-bottom: 0; }
       .site-navbar .site-navigation .site-menu .active > a span {
