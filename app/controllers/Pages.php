@@ -10,6 +10,30 @@ public function index()
     }
 public function viewItem()
     {
+        $ViewItem = $this->getModel();
+        if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+            if(!empty($_POST['area'])){
+                $ViewItem->setArea($_POST['area']);
+            }
+            if(!empty($_POST['pricerange'])){
+                $ViewItem->setprice($_POST['pricerange']);
+            }
+            if(!empty($_POST['Payment'])){
+                $ViewItem->setPayment($_POST['Payment']);
+            }
+            if(!empty($_POST['contarctType'])){
+                $ViewItem->setcontarctType($_POST['contarctType']);
+            }
+            if(!empty($_POST['Bathroom'])){
+                $ViewItem->setBathroom($_POST['Bathroom']);
+            }
+            if(!empty($_POST['Rooms'])){
+                $ViewItem->setRooms($_POST['Rooms']);
+            }
+           
+           
+        }
+
         $viewPath = VIEWS_PATH . 'pages/viewItem.php';
         require_once $viewPath;
         $indexView = new viewItem($this->getModel(), $this);
@@ -122,3 +146,4 @@ public function viewDescription()
     }
   
 }
+

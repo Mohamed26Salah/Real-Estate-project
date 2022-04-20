@@ -3,8 +3,7 @@ class viewItem extends View
 {
   public function output()
   {
-    $title = $this->model->title;
-    $subtitle = $this->model->subtitle;
+
 
     // $user_id = $_SESSION['user_id'];
     // $user_name = $_SESSION['user_name'];
@@ -19,11 +18,13 @@ class viewItem extends View
 
 
 
-    <body style = "background-color : #003356;">
+    <body style = "background-color : #fff;">
 
 
       <!-- sidebar -->
-      <form id="sidebar">
+      <?php $action = URLROOT . 'Pages/viewItem'; ?>
+      
+      <form id="sidebar" action= <?php echo $action;?>  method="post">
         <ul class="sidebar-menu">
           <li><span class="nav-section-title"></span></li>
           <li class="have-children active"><a href="#"><span class="fa fa-university"></span>Type</a>
@@ -90,7 +91,7 @@ class viewItem extends View
             <ul>
               <div class="sidebar_custom_radio">
                 <label class="labell">
-                  <input type="radio" name="Finishing" checked value="True" />
+                  <input type="radio" name="Finishing" value="True" />
                   <div class="spanr">True</div>
                 </label>
                 <label class="labell">
@@ -104,7 +105,7 @@ class viewItem extends View
             <ul>
               <div class="sidebar_custom_radio">
                 <label class="labell">
-                  <input type="radio" name="Payment" checked value="Cash" />
+                  <input type="radio" name="Payment" value="Cash" />
                   <div class="spanr">Cash</div>
                 </label>
                 <label class="labell">
@@ -118,12 +119,12 @@ class viewItem extends View
             <ul>
               <div class="sidebar_custom_radio">
                 <label class="labell">
-                  <input type="radio" name="contarctType" checked value="rent" />
-                  <div class="spanr">rent</div>
+                  <input type="radio" name="contarctType" value="1" />
+                  <div class="spanr">Purchase</div>
                 </label>
                 <label class="labell">
-                  <input type="radio" name="contarctType" value="Purchase" />
-                  <div class="spanr">Purchase</div>
+                  <input type="radio" name="contarctType" value="2" />
+                  <div class="spanr">rent</div>
                 </label>
               </div>
             </ul>
@@ -131,10 +132,6 @@ class viewItem extends View
           <li class="have-children active"><a href="#"><span class="fa fa-university"></span>Area</a>
             <ul>
               <div class="sidebar_custom_radio">
-                <label class="labell">
-                  <input type="radio" name="area" checked value="none" />
-                  <div class="spanr">none</div>
-                </label>
                 <label class="labell">
                   <input type="radio" name="area" value="100" />
                   <div class="spanr">100</div>
@@ -151,27 +148,69 @@ class viewItem extends View
                   <input type="radio" name="area" value="400" />
                   <div class="spanr">400</div>
                 </label>
-                <label class="labell">
-                  <input type="radio" name="area" value=">400" />
-                  <div class="spanr">>400</div>
-                </label>
+                
               </div>
             </ul>
           </li>
-          <li class="have-children active"><a href="#"><span class="fa fa-university"></span>No.Rooms</a>
+          <li class="have-children active"><a href="#"><span class="fa fa-university"></span>No.OF Bathrooms</a>
             <ul>
               <div class="sidebar_custom_radio">
-                <div class="price_change">
-                  <input type="number" name="price" min="0" max="10">
-
-                </div>
+                <label class="labell">
+                  <input type="radio" name="Bathroom" value="1" />
+                  <div class="spanr">1</div>
+                </label>
+                <label class="labell">
+                  <input type="radio" name="Bathroom" value="2" />
+                  <div class="spanr">2</div>
+                </label>
+                <label class="labell">
+                  <input type="radio" name="Bathroom" value="3" />
+                  <div class="spanr">3</div>
+                </label>
+                <label class="labell">
+                  <input type="radio" name="Bathroom" value="4" />
+                  <div class="spanr">4</div>
+                </label>
+                <label class="labell">
+                  <input type="radio" name="Bathroom" value="5" />
+                  <div class="spanr">5</div>
+                </label>
+                
+              </div>
+            </ul>
+          </li>
+          <li class="have-children active"><a href="#"><span class="fa fa-university"></span>No.OF Rooms</a>
+            <ul>
+              <div class="sidebar_custom_radio">
+                <label class="labell">
+                  <input type="radio" name="Rooms" value="1" />
+                  <div class="spanr">1</div>
+                </label>
+                <label class="labell">
+                  <input type="radio" name="Rooms" value="2" />
+                  <div class="spanr">2</div>
+                </label>
+                <label class="labell">
+                  <input type="radio" name="Rooms" value="3" />
+                  <div class="spanr">3</div>
+                </label>
+                <label class="labell">
+                  <input type="radio" name="Rooms" value="4" />
+                  <div class="spanr">4</div>
+                </label>
+                <label class="labell">
+                  <input type="radio" name="Rooms" value="5" />
+                  <div class="spanr">5</div>
+                </label>
+                
               </div>
             </ul>
           </li>
 
 
-
+          <input type="submit" name="submit">
         </ul>
+         
       </form>
       <!-- side bar end here -->
       <!-- search -->
@@ -194,48 +233,53 @@ class viewItem extends View
           }
 
 
-          $no_of_records_per_page = 1;
+          $no_of_records_per_page = 6;
           $offset = ($pageno - 1) * $no_of_records_per_page;
 
           $total_rows = $this->model->GetCount()->TD;
 
-          foreach ($this->model->ViewItemOn($offset, $no_of_records_per_page) as $Item) {
-            $imgroot = IMAGEROOT2;
-
-            $card = <<<EOT
-            <!-- single card start -->
-            <div class="product-card">
-            <div class="priority">
-            </div>
-            <!-- begin visible button -->
-            <label class="switch">
-            <input type="checkbox" checked><span class="slider round">
-            </span></label><div class="product-tumb">
-            <img src= "$imgroot$Item->image" alt="">
-            </div><div class="product-details">
-            <h4><a href=""><strong>$Item->Name</strong> </a>
-            </h4><div class="product-bottom-details">
-            <div class="product-price"><small>EGP 9600.00</small>EGP $Item->Price</div>
-            <div class="product-links"><a href="">
-            <i class="fa fa-heart"></i></a><a href="">
-            <i class="fa fa-shopping-cart"></i></a>
-            </div>
-            </div>
-            </div>
-            <div class="row" style="justify-content:center;">
-            <div class="priority $Item->Priroty">$Item->Priroty</div>
-            <div class="codeblock">$Item->Code</div></div>
-            <div class="row" style="justify-content:center;">
-            <div class="col-3"><i class="fa fa-bath" aria-hidden="true" >.3</i></div>
-            <div class="col-3">
-            <i class="fa fa-bed" aria-hidden="true">.5</i>
-            </div><div class="col-3">
-            <i class="fa fa-th" aria-hidden="true">.2000</i></div></div></div>
-            <!-- single card end -->
-   EOT;
-
-            echo $card;
+          if($this->model->Sort($offset, $no_of_records_per_page)==1){
+            echo "<h1>No Result for your search</h1>";
           }
+          else{
+            foreach ($this->model->Sort($offset, $no_of_records_per_page) as $Item) {
+              $imgroot = IMAGEROOT2;
+              $card = <<<EOT
+              <!-- single card start -->
+              <div class="product-card">
+              <div class="priority">
+              </div>
+              <!-- begin visible button -->
+              <label class="switch">
+              <input type="checkbox" checked><span class="slider round">
+              </span></label><div class="product-tumb">
+              <img src= "$imgroot$Item->image" alt="">
+              </div><div class="product-details">
+              <h4><a href=""><strong>$Item->Name</strong> </a>
+              </h4><div class="product-bottom-details">
+              <div class="product-price"><small>EGP 9600.00</small>EGP $Item->Price</div>
+              <div class="product-links"><a href="">
+              <i class="fa fa-heart"></i></a><a href="">
+              <i class="fa fa-shopping-cart"></i></a>
+              </div>
+              </div>
+              </div>
+              <div class="row" style="justify-content:center;">
+              <div class="priority $Item->Priroty">$Item->Priroty</div>
+              <div class="codeblock">$Item->Code</div></div>
+              <div class="row" style="justify-content:center;">
+              <div class="col-3"><i class="fa fa-bath" aria-hidden="true" >.3</i></div>
+              <div class="col-3">
+              <i class="fa fa-bed" aria-hidden="true">.5</i>
+              </div><div class="col-3">
+              <i class="fa fa-th" aria-hidden="true">.2000</i></div></div></div>
+              <!-- single card end -->
+     EOT;
+  
+              echo $card;
+            }
+          }
+         
 
 
           $total_pages = ceil($total_rows / $no_of_records_per_page);
@@ -277,3 +321,4 @@ class viewItem extends View
 <?php
   }
 }
+
