@@ -70,7 +70,6 @@
                 <li class="<?php echo $activeRent; ?>"><a href="<?php echo URLROOT . 'pages/viewRent'; ?>"><span>view Rent</span></a></li>
                 <li class="<?php echo $activeViewDescripion; ?>"><a href="<?php echo URLROOT . 'pages/viewDescription'; ?>"><span>Item</span></a></li>
                 <li class="<?php echo $activeAbout; ?>"><a href="<?php echo URLROOT . 'pages/about'; ?>"><span>About</span></a></li>
-                <li class="<?php echo $activeAbout; ?>"><a href="<?php echo URLROOT . 'pages/viewItem2'; ?>"><span>viewItem2</span></a></li>
                 <?php if($_SESSION['role']="Admin"){
                 ?>
                 <li class="<?php echo $activeDashboard; ?>"><a href="<?php echo URLROOT . "pages/DashBoard"; ?>"><span>DashBoard</span></a></li>

@@ -4,7 +4,8 @@ class viewItemModel extends model
 {
     /////////////////////////////////////////////////////////////////////////////////////////////
     protected $area;
-    protected $price;
+    protected $price1;
+    protected $price2;
     protected $Payment;
     protected $contarctType;
     protected $Finishing;
@@ -21,14 +22,22 @@ class viewItemModel extends model
     {
         $this->area = $area;
     }
-    public function getprice()
+    public function getprice1()
     {
-        return $this->price;
+        return $this->price1;
     }
   
-    public function setprice($price)
+    public function setprice1($price1)
     {
-        $this->price = $price;
+        $this->price1 = $price1;
+    }
+    public function getprice2()
+    {
+        return $this->price2;
+    }
+    public function setprice2($price2)
+    {
+        $this->price2 = $price2;
     }
     public function getPayment()
     {
@@ -117,10 +126,16 @@ class viewItemModel extends model
           }
           
         }
-        if(!empty($this->price)){
-          $AllSort.="Price <= ".$this->price;
+        if(!empty($this->price1)){
+          $AllSort.="Price >= ".$this->price1;
           $AllSort.=" AND ";
+          echo"$this->price1";
         }
+        if(!empty($this->price2)){
+            $AllSort.="Price <= ".$this->price2;
+            $AllSort.=" AND ";
+            echo"$this->price2";
+          }
         if(!empty($this->Payment)){
             $AllSort.="`PaymentMethod` = '".$this->Payment."'";
             $AllSort.=" AND ";
@@ -161,7 +176,7 @@ class viewItemModel extends model
             )";
         }
  
-        echo "Search";
+        // echo "Search";
         
         $AllSort=substr_replace($AllSort ,"", -4);
         // $UltimateJoin=substr_replace($UltimateJoin ,"", -4);

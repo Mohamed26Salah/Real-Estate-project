@@ -15,324 +15,324 @@ class viewItem extends View
 
 ?>
 
+<body>
+   
+   <main class="cd-main-content">
+   <div class="cd-tab-filter-wrapper">
+     <div class="cd-tab-filter">
+       <ul class="cd-filters">
+         <li class="placeholder"> 
+           <a data-type="all" href="#0">All</a> <!-- selected option on mobile -->
+         </li> 
+         <li class="filter" data-filter=".color-1"><a href="#0" data-type="color-1">Flats</a></li>
+         <li class="filter" data-filter=".color-2"><a href="#0" data-type="color-2">Residential Building</a></li>
+         <li class="filter" data-filter=".color-1"><a href="#0" data-type="color-1">Villa</a></li>
+         <li class="filter" data-filter=".color-1"><a href="#0" data-type="color-1">Store</a></li>
+         <li class="filter" data-filter=".color-2"><a href="#0" data-type="color-2">clinic</a></li>
+         <li class="filter" data-filter=".color-1"><a href="#0" data-type="color-1">Schools</a></li>
+         <li class="filter" data-filter=".color-2"><a href="#0" data-type="color-2">Farm</a></li>
+         <li class="filter" data-filter=".color-1"><a href="#0" data-type="color-1">Factory</a></li>
+         <li class="filter" data-filter=".color-1"><a href="#0" data-type="color-1">Land</a></li>
+       </ul> <!-- cd-filters -->
+     </div> <!-- cd-tab-filter -->
+   </div> <!-- cd-tab-filter-wrapper -->
+
+   <section class="cd-gallery">
+     <ul>
+       
+   <div class="Car-ALL">
+
+<?php
+         //  pagination start
+
+         if (isset($_GET['pageno'])) {
+           $pageno = $_GET['pageno'];
+         } else {
+           $pageno = 1;
+         }
 
 
+         $no_of_records_per_page = 6;
+         $offset = ($pageno - 1) * $no_of_records_per_page;
 
-    <body style = "background-color : #fff;">
-
-
-      <!-- sidebar -->
-      <?php $action = URLROOT . 'Pages/viewItem'; ?>
-      <form class="form" id="sidebar" <?php echo $action;?> method="post">
-        <ul class="sidebar-menu">
-          <li><span class="nav-section-title"></span></li>
-          <li class="have-children active"><a href="#"><span class="fa fa-university"></span>Type</a>
-            <ul>
-             
-              <div class="sidebar_custom_radio">
-                <div class="containerradio">
-
-                    <div class="row">
-                    <div class="bn31" href="/">
-                      <div class="bn31span" style="">Flats</div>
-                    </div>
-                    
-                    <div class="bn31" href="/">
-                      <div class="bn31span" style="">Villa</div>
-                    </div>
-                    <div class="bn31" href="/">
-                      <div class="bn31span" style="">Store</div>
-                    </div>
-                    <div class="bn31" href="/">
-                      <div class="bn31span" style="">Clinic</div>
-                    </div>
-                    <div class="bn31" href="/">
-                      <div class="bn31span" style="">Schools</div>
-                    </div>
-                    <div class="bn31" href="/">
-                      <div class="bn31span" style="">Farm</div>
-                    </div>
-                    <div class="bn31" href="/">
-                      <div class="bn31span" style="">Factory</div>
-                    </div>
-                    <div class="bn31" href="/">
-                      <div class="bn31span" style="">Land</div>
-                    </div>
-                    <div class="bn31" href="/">
-                      <div class="bn31span" style="">Residential Building</div>
-                    </div>
-                    <div class="bn31" href="/">
-                      <div class="bn31span" style="">Other</div>
-                    </div>
-                 
-                </div>
-                </div>
-              </div>
-
-            </ul>
-          </li>
-          <li class="have-children active"><a href="#"><span class="fa fa-tags"></span>Price</a>
-            <ul>
-              <div class="sidebar_custom_radio">
-
-                <div>
-                  <div class="price_change">
-                    <input type="number" class="rangeValue" id="rangeValue" name="price" min="0" max="10000000" onChange="rangeChange(this.value)">
-                    <div class="limit"> >10000000</div>
-                  </div>
-                  <div class="ranger"> <Input type="range" id="priceslider" class="range" name="pricerange" value="0" min="0" max="10000000" onChange="rangeSlide(this.value)" onmousemove="rangeSlide(this.value)" id="pricerange"></Input>
-                  </div>
-                </div>
-              </div>
-            </ul>
-          </li>
-          <li class="have-children active"><a href="#"><span class="fa fa-university"></span>Finishing</a>
-            <ul>
-              <div class="sidebar_custom_radio">
-                <label class="labell">
-                  <input type="radio" name="Finishing" value="1" id="Finishing" />
-                  <div class="spanr">True</div>
-                </label>
-                <label class="labell">
-                  <input type="radio" name="Finishing" value="2" id="Finishing" />
-                  <div class="spanr">False</div>
-                </label>
-              </div>
-            </ul>
-          </li>
-          <li class="have-children active"><a href="#"><span class="fa fa-university"></span>High/Low</a>
-            <ul>
-              <div class="sidebar_custom_radio">
-                <label class="labell">
-                  <input type="radio" name="HighLow" value="1" id="HighLow" />
-                  <div class="spanr">True</div>
-                </label>
-                <label class="labell">
-                  <input type="radio" name="HighLow" value="2" id="HighLow" />
-                  <div class="spanr">False</div>
-                </label>
-              </div>
-            </ul>
-          </li>
-          <li class="have-children active"><a href="#"><span class="fa fa-university"></span>Payment </a>
-            <ul>
-              <div class="sidebar_custom_radio">
-                <label class="labell">
-                  <input type="radio" name="Payment" value="Cash" id="Payment" />
-                  <div class="spanr">Cash</div>
-                </label>
-                <label class="labell">
-                  <input type="radio" name="Payment" value="instalment" id="Payment" />
-                  <div class="spanr">instalment</div>
-                </label>
-              </div>
-            </ul>
-          </li>
-          <li class="have-children active"><a href="#"><span class="fa fa-university"></span>contract Type</a>
-            <ul>
-              <div class="sidebar_custom_radio">
-                <label class="labell">
-                  <input type="radio" name="contarctType" value="1" id="contarctType" />
-                  <div class="spanr">Purchase</div>
-                </label>
-                <label class="labell">
-                  <input type="radio" name="contarctType" value="2" id="contarctType" />
-                  <div class="spanr">rent</div>
-                </label>
-              </div>
-            </ul>
-          </li>
-          <li class="have-children active"><a href="#"><span class="fa fa-university"></span>Area</a>
-            <ul>
-              <div class="sidebar_custom_radio">
-                <label class="labell">
-                  <input type="radio" name="area" value="100" id="area" />
-                  <div class="spanr">100</div>
-                </label>
-                <label class="labell">
-                  <input type="radio" name="area" value="200" id="area" />
-                  <div class="spanr">200</div>
-                </label>
-                <label class="labell">
-                  <input type="radio" name="area" value="300" id="area" />
-                  <div class="spanr">300</div>
-                </label>
-                <label class="labell">
-                  <input type="radio" name="area" value="400" id="area" />
-                  <div class="spanr">400</div>
-                </label>
-                
-              </div>
-            </ul>
-          </li>
-          <li class="have-children active"><a href="#"><span class="fa fa-university"></span>No.OF Bathrooms</a>
-            <ul>
-              <div class="sidebar_custom_radio">
-                <label class="labell">
-                  <input type="radio" name="Bathroom" value="1" id="Bathroom" />
-                  <div class="spanr">1</div>
-                </label>
-                <label class="labell">
-                  <input type="radio" name="Bathroom" value="2" id="Bathroom" />
-                  <div class="spanr">2</div>
-                </label>
-                <label class="labell">
-                  <input type="radio" name="Bathroom" value="3" id="Bathroom" />
-                  <div class="spanr">3</div>
-                </label>
-                <label class="labell">
-                  <input type="radio" name="Bathroom" value="4" id="Bathroom" />
-                  <div class="spanr">4</div>
-                </label>
-                <label class="labell">
-                  <input type="radio" name="Bathroom" value="5" id="Bathroom" />
-                  <div class="spanr">5</div>
-                </label>
-                
-              </div>
-            </ul>
-          </li>
-          <li class="have-children active"><a href="#"><span class="fa fa-university"></span>No.OF Rooms</a>
-            <ul>
-              <div class="sidebar_custom_radio">
-                <label class="labell">
-                  <input type="radio" name="Rooms" value="1" id="Rooms" />
-                  <div class="spanr">1</div>
-                </label>
-                <label class="labell">
-                  <input type="radio" name="Rooms" value="2" id="Rooms" />
-                  <div class="spanr">2</div>
-                </label>
-                <label class="labell">
-                  <input type="radio" name="Rooms" value="3" id="Rooms" />
-                  <div class="spanr">3</div>
-                </label>
-                <label class="labell">
-                  <input type="radio" name="Rooms" value="4" id="Rooms" />
-                  <div class="spanr">4</div>
-                </label>
-                <label class="labell">
-                  <input type="radio" name="Rooms" value="5" id="Rooms" />
-                  <div class="spanr">5</div>
-                </label>
-                
-              </div>
-            </ul>
-          </li>
-
-
-          <input type="submit" name="submit">
-        </ul>
-         
-        <div class="search__container">
-
-        <input class="search__input" type="text" placeholder="Search" name="search" id="search">
-      </div>
-      </form>
-      <!-- side bar end here -->
-      <!-- search -->
-      
-      <!-- search end here -->
-      <!-- cards start here -->
-      <div class="containere" style="min-height:1100px; margin-left: 25%; margin-right: 5%;">
-        <div class="col" id="TableList" style="max-width: 90%;">
-
-          <?php
-          //  pagination start
-
-          if (isset($_GET['pageno'])) {
-            $pageno = $_GET['pageno'];
-          } else {
-            $pageno = 1;
-          }
-
-
-          $no_of_records_per_page = 6;
-          $offset = ($pageno - 1) * $no_of_records_per_page;
-
-          $total_rows = $this->model->GetCount()->TD;
+         $total_rows = $this->model->GetCount()->TD;
+       
+         if($this->model->Sort($offset, $no_of_records_per_page)==1){
+       ?>
+           <div class="cd-fail-message">No results found</div>
+     <?php
+         }
+         else{
+           foreach ($this->model->Sort($offset, $no_of_records_per_page) as $Item) {
+             $imgroot = IMAGEROOT2;
+             $card = <<<EOT
+             <div class="containerFilter">
+             <img src="$imgroot$Item->image" width="280px" height="240px">
+             <div class="title">
+             <div class="switchAll" style = "margin-left:60%; margin-bottom:-5%; margin:top:-5%;">
+             <div class="switch-button">
+             <input class="switch-button-checkbox" type="checkbox"></input>
+             <label class="switch-button-label" for=""><span class="switch-button-label-span">اظهار</span></label>
+           </div>
+             </div>
+             <strong style="font-size:20px;">$Item->Price</strong>
+             <hr style="border-top: 5px solid #8c8b8b;">
+             <p>$Item->Name</p>
+             <p>$Item->DescriptionUser</p>
+             <div class="iconss" style="padding-top:2%;">
+             <i class="fa fa-bath fa-lg" aria-hidden="true"></i>  <i class="fa fa-bed fa-lg" aria-hidden="true" style="margin-left:10px;"></i>
+             </div>
+           <br>
+           <p>$Item->Code</p>
+     <div class = "purchase-info">
+     <button type = "button" class = "btn">
+     Add to WishList <i class="fa fa-heart" aria-hidden="true"></i>
+     </button>
+     </div>
+     </div>
+     </div>
+     <br>
+EOT;
+ 
+             echo $card;
+           }
+         }
         
-          if($this->model->Sort($offset, $no_of_records_per_page)==1){
-            echo "<h1>No Result for your search</h1>";
-          }
-          else{
-            foreach ($this->model->Sort($offset, $no_of_records_per_page) as $Item) {
-              $imgroot = IMAGEROOT2;
-              $card = <<<EOT
-              <!-- single card start -->
-              <div class="product-card">
-              <div class="priority">
-              </div>
-              <!-- begin visible button -->
-              <label class="switch">
-              <input type="checkbox" checked><span class="slider round">
-              </span></label><div class="product-tumb">
-              <img src= "$imgroot$Item->image" alt="">
-              </div><div class="product-details">
-              <h4><a href=""><strong>$Item->Name</strong> </a>
-              </h4><div class="product-bottom-details">
-              <div class="product-price"><small>EGP 9600.00</small>EGP $Item->Price</div>
-              <div class="product-links"><a href="">
-              <i class="fa fa-heart"></i></a><a href="">
-              <i class="fa fa-shopping-cart"></i></a>
-              </div>
-              </div>
-              </div>
-              <div class="row" style="justify-content:center;">
-              <div class="priority $Item->Priroty">$Item->Priroty</div>
-              <div class="codeblock">$Item->Code</div></div>
-              <div class="row" style="justify-content:center;">
-              <div class="col-3"><i class="fa fa-bath" aria-hidden="true" >.3</i></div>
-              <div class="col-3">
-              <i class="fa fa-bed" aria-hidden="true">.5</i>
-              </div><div class="col-3">
-              <i class="fa fa-th" aria-hidden="true">.2000</i></div></div></div>
-              <!-- single card end -->
-     EOT;
-  
-              echo $card;
-            }
-          }
+
+
+         $total_pages = ceil($total_rows / $no_of_records_per_page);
+
+
+         // pagination end
+         ?>
+       <!-- </div>
+       </div>
+       <li class="gap"></li>
+       <li class="gap"></li>
+       <li class="gap"></li> -->
+     </ul>
+   </section>
+     <!-- cards end here -->
+     <!-- pagination  start-->
+     <ul class="pagination">
+       <li><a href="?pageno=1">First</a></li>
+       <li class="<?php if ($pageno <= 1) {
+                     echo 'disabled';
+                   } ?>">
+         <a href="<?php if ($pageno <= 1) {
+                     echo '#';
+                   } else {
+                     echo "?pageno=" . ($pageno - 1);
+                   } ?>">Prev</a>
+       </li>
+       <li class="<?php if ($pageno >= $total_pages) {
+                     echo 'disabled';
+                   } ?>">
+         <a href="<?php if ($pageno >= $total_pages) {
+                     echo '#';
+                   } else {
+                     echo "?pageno=" . ($pageno + 1);
+                   } ?>">Next</a>
+       </li>
+       <li><a href="?pageno=<?php echo $total_pages; ?>">Last</a></li>
+     </ul>
+
+
+
+   <div class="cd-filter">
+   <?php $action = URLROOT . 'Pages/viewItem'; ?>
+     <form class="form" id="sidebar" <?php echo $action;?> method="post" >
+       <div class="cd-filter-block">
+         <h4>Search</h4>
          
+         <div class="cd-filter-content">
+           <input type="search" name="search" placeholder="أبحث">
+         </div> <!-- cd-filter-content -->
+       </div> <!-- cd-filter-block -->
 
+       <!-- <div class="cd-filter-block">
+         <h4>Check boxes</h4>
 
-          $total_pages = ceil($total_rows / $no_of_records_per_page);
+         <ul class="cd-filter-content cd-filters list">
+           <li>
+             <input class="filter" data-filter=".check1" type="checkbox" id="checkbox1">
+               <label class="checkbox-label" for="checkbox1">Option 1</label>
+           </li>
 
+           <li>
+             <input class="filter" data-filter=".check2" type="checkbox" id="checkbox2">
+             <label class="checkbox-label" for="checkbox2">Option 2</label>
+           </li>
 
-          // pagination end
-          ?>
+           <li>
+             <input class="filter" data-filter=".check3" type="checkbox" id="checkbox3">
+             <label class="checkbox-label" for="checkbox3">Option 3</label>
+           </li>
+         </ul> 
+       </div>  -->
+      
+       <div class="wrapper">
+      <header>
+        <h2>Price Range</h2>
+      </header>
+      <span style="font-size:20px; margin-left:5%; ">Min</span><span style="font-size:20px; float:right; margin-right:5%;">Max</span>
+      <div class="price-input">
+        <div class="field">
+         
+          <input type="number" class="input-min" value="0" name="pricerange1">
+        </div>
+        
+        <div class="separator">-</div>
+        
+        <div class="field">
+         
+          <input type="number" class="input-max" value="10000000" name="pricerange2">
         </div>
       </div>
-      <!-- cards end here -->
-      <!-- pagination  start-->
-      <ul class="pagination">
-        <li><a href="?pageno=1">First</a></li>
-        <li class="<?php if ($pageno <= 1) {
-                      echo 'disabled';
-                    } ?>">
-          <a href="<?php if ($pageno <= 1) {
-                      echo '#';
-                    } else {
-                      echo "?pageno=" . ($pageno - 1);
-                    } ?>">Prev</a>
-        </li>
-        <li class="<?php if ($pageno >= $total_pages) {
-                      echo 'disabled';
-                    } ?>">
-          <a href="<?php if ($pageno >= $total_pages) {
-                      echo '#';
-                    } else {
-                      echo "?pageno=" . ($pageno + 1);
-                    } ?>">Next</a>
-        </li>
-        <li><a href="?pageno=<?php echo $total_pages; ?>">Last</a></li>
-      </ul>
-      <!-- pagination end -->
+      <div class="slider">
+        <div class="progress"></div>
+      </div>
+      <div class="range-input">
+        <input type="range" class="range-min" min="0" max="10000000" value="0" step="10000">
+        <input type="range" class="range-max" min="0" max="10000000" value="10000000" step="10000">
+      </div>
+    </div>
+
+     
+       <div class="cd-filter-block">
+         <h4></h4>
+         
+         <div class="cd-filter-content">
+           <div class="cd-select cd-filters">
+             <select class="filter" name="contarctType" id="selectThis">
+               <option selected value="">نوع العقد</option>
+               <option value="1">بيع</option>
+               <option value="2">شراء</option>
+             </select>
+           </div> 
+         </div> 
+       </div> 
+       <div class="cd-filter-block">
+         <h4></h4>
+         
+         <div class="cd-filter-content">
+           <div class="cd-select cd-filters">
+             <select class="filter" name="HighLow" id="selectThis">
+               <option selected value="">ترتيب حسب</option>
+               <option value="1">من الكبير للصغير</option>
+               <option value="2">من الصغير للكبير</option>
+             </select>
+           </div>
+         </div>
+       </div>
+
+       <div class="cd-filter-block">
+         <h4>المساحة</h4>
+         
+         <div class="cd-filter-content">
+           <div class="cd-select cd-filters">
+             <select class="filter" name="area" id="selectThis">
+               <option selected value="">أختر</option>
+               <option value="100">100</option>
+               <option value="200">200</option>
+               <option value="300">300</option>
+               <option value="400">أكثر من 400</option>
+             </select>
+           </div> 
+         </div> 
+       </div> 
+        <div class="cd-filter-block">
+         <h4>عدد الفرف</h4>
+         
+         <div class="cd-filter-content">
+           <div class="cd-select cd-filters">
+             <select class="filter" name="Rooms" id="selectThis">
+               <option selected value="">أختر</option>
+               <option value="1">1</option>
+               <option value="2">2</option>
+               <option value="3">3</option>
+               <option value="4">4</option>
+               <option value="5">أكثر من 5</option>
+             </select>
+           </div> 
+         </div> 
+       </div> 
+
+       <div class="cd-filter-block">
+         <h4>عدد الحمامات</h4>
+         
+         <div class="cd-filter-content">
+           <div class="cd-select cd-filters">
+             <select class="filter" name="Bathroom" id="selectThis">
+              <option selected value="">أختر</option>
+               <option value="1">1</option>
+               <option value="2">2</option>
+               <option value="3">3</option>
+               <option value="4">4</option>
+               <option value="5">أكثر من 5</option>
+             </select>
+           </div> 
+         </div> 
+       </div>  
+             
+       
+       <div class="cd-filter-block">
+         <h4>التشطيب</h4>
+
+         <ul class="cd-filter-content cd-filters list">
+           <li>
+             <input class="filter" data-filter="" type="radio" name="Finishing" id="radio1" value="1">
+             <label class="radio-label" for="radio1">نعم</label>
+           </li>
+
+           <li>
+             <input class="filter" data-filter=".radio2" type="radio" name="Finishing" id="radio2" value="2">
+             <label class="radio-label" for="radio2">لا</label>
+           </li>
+
+         </ul> <!-- cd-filter-content -->
+       </div> <!-- cd-filter-block -->
+       
+       <div class="cd-filter-block">
+         <h4>طريقة الدفع</h4>
+
+         <ul class="cd-filter-content cd-filters list">
+           <li>
+             <input class="filter" data-filter="" type="radio" name="Payment" id="radio1" value="Cash">
+             <label class="radio-label" for="radio1">كاش</label>
+           </li>
+
+           <li>
+             <input class="filter" data-filter=".radio2" type="radio" name="Payment" id="radio2" value="instalment">
+             <label class="radio-label" for="radio2">تقسيط</label>
+           </li>
+
+         </ul> <!-- cd-filter-content -->
+       </div> <!-- cd-filter-block -->
+
+       <button type="submit" class="btn btn-primary" style="width:100px; height:40px; font-size:15px; background-color:#6E29A8;">Search</button>
+         
+
+       
+     </form>
+
+     <a href="#0" class="cd-close">Close</a>
+   </div> <!-- cd-filter -->
+
+   <a href="#0" class="cd-filter-trigger">Filters</a>
+ </main> <!-- cd-main-content -->
+
+
+    
       <footer> <?php
                 require APPROOT . '/views/inc/footer2.php';
                 ?> </footer>
     </body>
+    <script src="<?php echo URLROOT; ?>js/Slider.js"></script>
+
     <script>
+
+      
       var All="";
       function itemsAjax(){
         
