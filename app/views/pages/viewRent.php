@@ -3,8 +3,6 @@ class viewRent extends View
 {
   public function output()
   {
-    $title = $this->model->title;
-    $subtitle = $this->model->subtitle;
 
     // $user_id = $_SESSION['user_id'];
     // $user_name = $_SESSION['user_name'];
@@ -206,13 +204,14 @@ class viewRent extends View
           }
 
 
-          $no_of_records_per_page = 1;
+          $no_of_records_per_page = 4;
           $offset = ($pageno - 1) * $no_of_records_per_page;
 
           $total_rows = $this->model->GetCount()->TD;
 
           foreach ($this->model->ViewRentOn($offset, $no_of_records_per_page) as $rent) {
-            $days = $this->model->PR($rent->TOR);
+            $days = $this->model->TimeLeftForRent($rent->TOR);
+            $this->model->CheckIfRentIsStillValid($rent->TOR,$rent->TOREND);
 
             $card = <<<EOT
    <!-- single card start -->

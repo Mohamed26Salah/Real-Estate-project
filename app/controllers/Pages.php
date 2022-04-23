@@ -14,6 +14,7 @@ public function viewItem()
         if ($_SERVER['REQUEST_METHOD'] == 'POST'){
             if(!empty($_POST['area'])){
                 $ViewItem->setArea($_POST['area']);
+              echo $_POST['area'];
             }
             if(!empty($_POST['pricerange'])){
                 $ViewItem->setprice($_POST['pricerange']);
@@ -30,7 +31,16 @@ public function viewItem()
             if(!empty($_POST['Rooms'])){
                 $ViewItem->setRooms($_POST['Rooms']);
             }
-           
+            if(!empty($_POST['Finishing'])){
+                $ViewItem->setFinishing($_POST['Finishing']);
+            }
+            if(!empty($_POST['HighLow'])){
+                $ViewItem->setHighLow($_POST['HighLow']);
+            }
+            if(!empty($_POST['search'])){
+                $ViewItem->setSearch($_POST['search']);
+            }
+            // echo($ViewItem->Sort(0,6));
            
         }
 
@@ -76,6 +86,46 @@ public function viewDescription()
         $WishListView = new DashBoard($this->getModel(), $this);
         $WishListView->output();
     } 
+    public function viewItem2()
+    {
+        $ViewItem = $this->getModel();
+        if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+            if(!empty($_POST['area'])){
+                $ViewItem->setArea($_POST['area']);
+              echo $_POST['area'];
+            }
+            if(!empty($_POST['pricerange'])){
+                $ViewItem->setprice($_POST['pricerange']);
+            }
+            if(!empty($_POST['Payment'])){
+                $ViewItem->setPayment($_POST['Payment']);
+            }
+            if(!empty($_POST['contarctType'])){
+                $ViewItem->setcontarctType($_POST['contarctType']);
+            }
+            if(!empty($_POST['Bathroom'])){
+                $ViewItem->setBathroom($_POST['Bathroom']);
+            }
+            if(!empty($_POST['Rooms'])){
+                $ViewItem->setRooms($_POST['Rooms']);
+            }
+            if(!empty($_POST['Finishing'])){
+                $ViewItem->setFinishing($_POST['Finishing']);
+            }
+            if(!empty($_POST['HighLow'])){
+                $ViewItem->setHighLow($_POST['HighLow']);
+            }
+            if(!empty($_POST['search'])){
+                $ViewItem->setSearch($_POST['search']);
+            }
+            // echo($ViewItem->Sort(0,6));
+           
+        }
+        $viewPath = VIEWS_PATH . 'pages/viewItem2.php';
+        require_once $viewPath;
+        $viewItem2 = new viewItem2($this->getModel(), $this);
+        $viewItem2->output();
+    }
     public function Profile()
     {
             $ProfileModel = $this->getModel();
@@ -86,6 +136,7 @@ public function viewDescription()
                 if(!empty($_POST['currentPassword'])){ $ProfileModel->setCurrentPassword(trim($_POST['currentPassword']));}
                 if(!empty($_POST['newPassword'])){  $ProfileModel->setNewPassword(trim($_POST['newPassword']));}
                 if(!empty($_POST['name'])){ $ProfileModel->setConfirmPassword(trim($_POST['confirmPassword']));}
+                
 
                
                 $ProfileModel->EditPassword();

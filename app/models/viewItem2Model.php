@@ -1,6 +1,6 @@
 <?php
 require_once 'UserModel.php';
-class viewItemModel extends model
+class viewItem2Model extends model
 {
     /////////////////////////////////////////////////////////////////////////////////////////////
     protected $area;
@@ -200,4 +200,6 @@ class viewItemModel extends model
      }
      
 }
+
+
 

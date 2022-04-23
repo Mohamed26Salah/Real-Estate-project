@@ -23,4 +23,7 @@ function rangeChange(value) {
     console.log("in")
     document.getElementById('priceslider').value = value;
 }
+
+
 }
+

@@ -23,8 +23,7 @@ class viewItem extends View
 
       <!-- sidebar -->
       <?php $action = URLROOT . 'Pages/viewItem'; ?>
-      
-      <form id="sidebar" action= <?php echo $action;?>  method="post">
+      <form class="form" id="sidebar" <?php echo $action;?> method="post">
         <ul class="sidebar-menu">
           <li><span class="nav-section-title"></span></li>
           <li class="have-children active"><a href="#"><span class="fa fa-university"></span>Type</a>
@@ -81,7 +80,7 @@ class viewItem extends View
                     <input type="number" class="rangeValue" id="rangeValue" name="price" min="0" max="10000000" onChange="rangeChange(this.value)">
                     <div class="limit"> >10000000</div>
                   </div>
-                  <div class="ranger"> <Input type="range" id="priceslider" class="range" name="pricerange" value="0" min="0" max="10000000" onChange="rangeSlide(this.value)" onmousemove="rangeSlide(this.value)"></Input>
+                  <div class="ranger"> <Input type="range" id="priceslider" class="range" name="pricerange" value="0" min="0" max="10000000" onChange="rangeSlide(this.value)" onmousemove="rangeSlide(this.value)" id="pricerange"></Input>
                   </div>
                 </div>
               </div>
@@ -91,11 +90,25 @@ class viewItem extends View
             <ul>
               <div class="sidebar_custom_radio">
                 <label class="labell">
-                  <input type="radio" name="Finishing" value="True" />
+                  <input type="radio" name="Finishing" value="1" id="Finishing" />
                   <div class="spanr">True</div>
                 </label>
                 <label class="labell">
-                  <input type="radio" name="Finishing" value="False" />
+                  <input type="radio" name="Finishing" value="2" id="Finishing" />
+                  <div class="spanr">False</div>
+                </label>
+              </div>
+            </ul>
+          </li>
+          <li class="have-children active"><a href="#"><span class="fa fa-university"></span>High/Low</a>
+            <ul>
+              <div class="sidebar_custom_radio">
+                <label class="labell">
+                  <input type="radio" name="HighLow" value="1" id="HighLow" />
+                  <div class="spanr">True</div>
+                </label>
+                <label class="labell">
+                  <input type="radio" name="HighLow" value="2" id="HighLow" />
                   <div class="spanr">False</div>
                 </label>
               </div>
@@ -105,11 +118,11 @@ class viewItem extends View
             <ul>
               <div class="sidebar_custom_radio">
                 <label class="labell">
-                  <input type="radio" name="Payment" value="Cash" />
+                  <input type="radio" name="Payment" value="Cash" id="Payment" />
                   <div class="spanr">Cash</div>
                 </label>
                 <label class="labell">
-                  <input type="radio" name="Payment" value="instalment" />
+                  <input type="radio" name="Payment" value="instalment" id="Payment" />
                   <div class="spanr">instalment</div>
                 </label>
               </div>
@@ -119,11 +132,11 @@ class viewItem extends View
             <ul>
               <div class="sidebar_custom_radio">
                 <label class="labell">
-                  <input type="radio" name="contarctType" value="1" />
+                  <input type="radio" name="contarctType" value="1" id="contarctType" />
                   <div class="spanr">Purchase</div>
                 </label>
                 <label class="labell">
-                  <input type="radio" name="contarctType" value="2" />
+                  <input type="radio" name="contarctType" value="2" id="contarctType" />
                   <div class="spanr">rent</div>
                 </label>
               </div>
@@ -133,19 +146,19 @@ class viewItem extends View
             <ul>
               <div class="sidebar_custom_radio">
                 <label class="labell">
-                  <input type="radio" name="area" value="100" />
+                  <input type="radio" name="area" value="100" id="area" />
                   <div class="spanr">100</div>
                 </label>
                 <label class="labell">
-                  <input type="radio" name="area" value="200" />
+                  <input type="radio" name="area" value="200" id="area" />
                   <div class="spanr">200</div>
                 </label>
                 <label class="labell">
-                  <input type="radio" name="area" value="300" />
+                  <input type="radio" name="area" value="300" id="area" />
                   <div class="spanr">300</div>
                 </label>
                 <label class="labell">
-                  <input type="radio" name="area" value="400" />
+                  <input type="radio" name="area" value="400" id="area" />
                   <div class="spanr">400</div>
                 </label>
                 
@@ -156,23 +169,23 @@ class viewItem extends View
             <ul>
               <div class="sidebar_custom_radio">
                 <label class="labell">
-                  <input type="radio" name="Bathroom" value="1" />
+                  <input type="radio" name="Bathroom" value="1" id="Bathroom" />
                   <div class="spanr">1</div>
                 </label>
                 <label class="labell">
-                  <input type="radio" name="Bathroom" value="2" />
+                  <input type="radio" name="Bathroom" value="2" id="Bathroom" />
                   <div class="spanr">2</div>
                 </label>
                 <label class="labell">
-                  <input type="radio" name="Bathroom" value="3" />
+                  <input type="radio" name="Bathroom" value="3" id="Bathroom" />
                   <div class="spanr">3</div>
                 </label>
                 <label class="labell">
-                  <input type="radio" name="Bathroom" value="4" />
+                  <input type="radio" name="Bathroom" value="4" id="Bathroom" />
                   <div class="spanr">4</div>
                 </label>
                 <label class="labell">
-                  <input type="radio" name="Bathroom" value="5" />
+                  <input type="radio" name="Bathroom" value="5" id="Bathroom" />
                   <div class="spanr">5</div>
                 </label>
                 
@@ -183,23 +196,23 @@ class viewItem extends View
             <ul>
               <div class="sidebar_custom_radio">
                 <label class="labell">
-                  <input type="radio" name="Rooms" value="1" />
+                  <input type="radio" name="Rooms" value="1" id="Rooms" />
                   <div class="spanr">1</div>
                 </label>
                 <label class="labell">
-                  <input type="radio" name="Rooms" value="2" />
+                  <input type="radio" name="Rooms" value="2" id="Rooms" />
                   <div class="spanr">2</div>
                 </label>
                 <label class="labell">
-                  <input type="radio" name="Rooms" value="3" />
+                  <input type="radio" name="Rooms" value="3" id="Rooms" />
                   <div class="spanr">3</div>
                 </label>
                 <label class="labell">
-                  <input type="radio" name="Rooms" value="4" />
+                  <input type="radio" name="Rooms" value="4" id="Rooms" />
                   <div class="spanr">4</div>
                 </label>
                 <label class="labell">
-                  <input type="radio" name="Rooms" value="5" />
+                  <input type="radio" name="Rooms" value="5" id="Rooms" />
                   <div class="spanr">5</div>
                 </label>
                 
@@ -211,17 +224,18 @@ class viewItem extends View
           <input type="submit" name="submit">
         </ul>
          
+        <div class="search__container">
+
+        <input class="search__input" type="text" placeholder="Search" name="search" id="search">
+      </div>
       </form>
       <!-- side bar end here -->
       <!-- search -->
-      <div class="search__container">
-
-        <input class="search__input" type="text" placeholder="Search">
-      </div>
+      
       <!-- search end here -->
       <!-- cards start here -->
       <div class="containere" style="min-height:1100px; margin-left: 25%; margin-right: 5%;">
-        <div class="row" id="TableList" style="max-width: 90%;">
+        <div class="col" id="TableList" style="max-width: 90%;">
 
           <?php
           //  pagination start
@@ -237,7 +251,7 @@ class viewItem extends View
           $offset = ($pageno - 1) * $no_of_records_per_page;
 
           $total_rows = $this->model->GetCount()->TD;
-
+        
           if($this->model->Sort($offset, $no_of_records_per_page)==1){
             echo "<h1>No Result for your search</h1>";
           }
@@ -318,6 +332,72 @@ class viewItem extends View
                 require APPROOT . '/views/inc/footer2.php';
                 ?> </footer>
     </body>
+    <script>
+      var All="";
+      function itemsAjax(){
+        
+        // try {
+        //   if( document.getElementById('pricerange').value.length != 0) {
+        //   console.log("speeed");
+         
+        //   All.concat("pricerange:pricerange,")
+        // }
+        // }catch(error){
+        //   pricerange = document.getElementById('pricerange').value;
+        //   console.log(error);
+        // }
+        if( document.getElementById('Finishing').value.length != 0 ) {
+          Finishing = document.getElementById('Finishing').value;
+          All.concat("Finishing:Finishing,")
+        }
+        if( document.getElementById('HighLow').value ) {
+          HighLow = document.getElementById('HighLow').value;
+          All.concat("HighLow:HighLow,")
+        }
+        if( document.getElementById('Payment').value ) {
+          Payment = document.getElementById('Payment').value;
+          All.concat("Payment:Payment,")
+        }
+        if( document.getElementById('contarctType').value ) {
+          contarctType = document.getElementById('contarctType').value;
+          All.concat("contarctType:contarctType,")
+        }
+        if( document.getElementById('area').value ) {
+          area = document.getElementById('area').value;
+          All.concat("area:area,")
+        }
+        if( document.getElementById('Bathroom').value ) {
+          Bathroom = document.getElementById('Bathroom').value;
+          All.concat("Bathroom:Bathroom,")
+        }
+        if( document.getElementById('Rooms').value ) {
+          Rooms = document.getElementById('Rooms').value;
+          All.concat("Rooms:Rooms,")
+        }
+        if( document.getElementById('search').value ) {
+          search = document.getElementById('search').value;
+          All.concat("search:search,")
+        }  
+        All=All.slice(0, -1);
+        // alert(All);
+        $.ajax({
+          url:"<?php echo $action;?>",
+          method:"POST",
+          // pricerange:pricerange,Finishing:Finishing , HighLow:HighLow, Payment:Payment,contarctType:contarctType,area:area,Bathroom:Bathroom,Rooms:Rooms,search:search
+          data:{All},
+          success:function(data)
+          {
+            // console.log(data);
+          }
+        })
+        
+      }
+      $( ".form" ).change(function() {
+        // itemsAjax();
+        // console.log("sALAH AND SPEED AND JOEX AND YUONUS and oncihanaaaaaan");
+      });
+    </script>
+
 <?php
   }
 }
