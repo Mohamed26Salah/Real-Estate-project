@@ -306,13 +306,13 @@ li.active.have-children span::after {
   background: rgba(61, 60, 60, 0.56);
   border-radius: 30px;
   overflow: hidden;
-  width: 200px;
+  width: 150px;
   text-align: center;
   font-size: 18px;
   letter-spacing: 1px;
   color: #000000;
   position: relative;
-  padding-right: 120px;
+  padding-right: 50px;
   position: relative;
 }
 .switch-button:before {
@@ -321,7 +321,7 @@ li.active.have-children span::after {
   top: 0;
   bottom: 0;
   right: 0;
-  width: 120px;
+  width: 60px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -340,7 +340,7 @@ li.active.have-children span::after {
   z-index: 2;
 }
 .switch-button-checkbox:checked + .switch-button-label:before {
-  transform: translateX(120px);
+  transform: translateX(80px);
   transition: transform 300ms linear;
 }
 .switch-button-checkbox + .switch-button-label {
@@ -572,3 +572,6 @@ background-color: black;
   background: transparent;
 }
 /* type button end */
+
+
+
