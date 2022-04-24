@@ -32,13 +32,12 @@
   <link rel="stylesheet" href="<?php echo URLROOT; ?>css/style.css">
   <link rel="stylesheet" href="<?php echo URLROOT; ?>css/about.css">
   <link rel="stylesheet" href="<?php echo URLROOT; ?>css/LoginRegister.css">
-  <!-- <link rel="stylesheet" href="<?php echo URLROOT; ?>css/DashBoard.css"> -->
   <link rel="stylesheet" href="<?php echo URLROOT; ?>css/Sidebar.css">
   <link rel="stylesheet" href="<?php echo URLROOT; ?>css/viewDescription.css">
   <link rel="stylesheet" href="<?php echo URLROOT; ?>fonts/icomoon/style.css">
   <link rel="stylesheet" href="<?php echo URLROOT; ?>css/resetFilter.css">
   <link rel="stylesheet" href="<?php echo URLROOT; ?>css/styleFilter.css">
-  
+  <link rel="stylesheet" href="<?php echo URLROOT; ?>css/DashBoardStyle.css">
 
     <script src="<?php echo URLROOT; ?>js/jquery-3.3.1.min.js"></script>
     <script src="<?php echo URLROOT; ?>js/popper.min.js"></script>
@@ -54,7 +53,8 @@
     <script src="<?php echo URLROOT; ?>js/modernizr.js"></script>
     <script src="<?php echo URLROOT; ?>js/jquery.mixitup.min.js"></script>
     <script src="<?php echo URLROOT; ?>js/Slider.js"></script>
-    
+    <!-- <script src="<?php echo URLROOT; ?>js/DashBoard.js"></script> -->
+
     <!-- <script src="<?php echo URLROOT; ?>js/jquery-2.1.1.js"></script> -->
 <!--     <script src="<?php echo URLROOT; ?>js/sidebar.js"></script>
  --> 

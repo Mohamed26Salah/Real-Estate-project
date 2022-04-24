@@ -8,6 +8,7 @@ public function index()
         $indexView = new Index($this->getModel(), $this);
         $indexView->output();
     }
+
 public function viewItem()
     {
         $ViewItem = $this->getModel();
