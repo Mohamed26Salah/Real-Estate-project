@@ -44,7 +44,7 @@ public function viewItem()
             if(!empty($_POST['search'])){
                 $ViewItem->setSearch($_POST['search']);
             }
-            // echo($ViewItem->Sort(0,6));
+             
            
         }
 
@@ -97,8 +97,8 @@ public function viewItem()
                 $ViewItem->setSearch($_POST['search']);
             }
            
-             echo($ViewItem->Sort(0,6));
-            // echo($ViewItem->yasser());
+             
+             echo($ViewItem->Sort($_POST['offset'],$_POST['no_of_records_per_page']));
         }
 
         $viewPath = VIEWS_PATH . 'ajax/search.php';

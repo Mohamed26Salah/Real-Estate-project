@@ -193,7 +193,43 @@ class viewItemModel extends model
         if(empty($ALLRECORDS)){
             return 1;
         }
-        return $ALLRECORDS;
+        $output='';
+        
+        foreach ($ALLRECORDS as $Item) {
+            $imgroot = IMAGEROOT2;
+            $output.= <<<EOT
+            <div class="containerFilter">
+            <img src="$imgroot$Item->image" width="280px" height="240px">
+            <div class="title">
+            <div class="switchAll" style = "margin-left:60%; margin-bottom:-5%; margin:top:-5%;">
+            <div class="switch-button">
+            <input class="switch-button-checkbox" type="checkbox"></input>
+            <label class="switch-button-label" for=""><span class="switch-button-label-span">اظهار</span></label>
+          </div>
+            </div>
+            <strong style="font-size:20px;">$Item->Price</strong>
+            <hr style="border-top: 5px solid #8c8b8b;">
+            <p>$Item->Name</p>
+            <p>$Item->DescriptionUser</p>
+            <div class="iconss" style="padding-top:2%;">
+            <i class="fa fa-bath fa-lg" aria-hidden="true"></i>  <i class="fa fa-bed fa-lg" aria-hidden="true" style="margin-left:10px;"></i>
+            </div>
+          <br>
+          <p>$Item->Code</p>
+    <div class = "purchase-info">
+    <button type = "button" class = "btn">
+    Add to WishList <i class="fa fa-heart" aria-hidden="true"></i>
+    </button>
+    </div>
+    </div>
+    </div>
+    <br>
+EOT;
+
+           
+          }
+         return $output;
+     
     }
 
 
@@ -207,14 +243,7 @@ class viewItemModel extends model
  
          return $ALLRECORDS;
      }
-     public function ViewItemOn($offset, $no_of_records_per_page)
-     {
-         $this->dbh->query("SELECT * FROM `allestate`  LIMIT $offset, $no_of_records_per_page");
- 
-         $ALLRECORDS = $this->dbh->resultSet();
- 
-         return $ALLRECORDS;
-     }
+   
      
 }
 

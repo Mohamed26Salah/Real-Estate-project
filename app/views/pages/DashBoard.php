@@ -110,9 +110,10 @@ class DashBoard extends View
 
             <!-- ======================= Cards ================== -->
             <div class="cardBoxDashBoard" style="font-size:20px;">
+            <?php $DataArray= $this->model->getDashBoardData();?>
                 <div class="cardDashBoard">
                     <div>
-                        <div class="numbers">1,504</div>
+                        <div class="numbers"><?php echo $DataArray[0]->count1 ;?></div>
                         <div class="cardName">Total Number of Units</div>
                     </div>
 
@@ -123,7 +124,7 @@ class DashBoard extends View
 
                 <div class="cardDashBoard">
                     <div>
-                        <div class="numbers">80</div>
+                        <div class="numbers"><?php echo $DataArray[1]->count2;?></div>
                         <div class="cardName">Total Number of Rents</div>
                     </div>
 
@@ -134,7 +135,7 @@ class DashBoard extends View
 
                 <div class="cardDashBoard">
                     <div>
-                        <div class="numbers">284</div>
+                        <div class="numbers"><?php echo $DataArray[2]->count3;?></div>
                         <div class="cardName">Total Number Of Customers</div>
                     </div>
 
@@ -179,49 +180,21 @@ class DashBoard extends View
                                 <td>Edit</td>
                             </tr>
                         </thead>
-
                         <tbody>
-                            <tr>
-                                <td>Salah Omran</td>
+                        <?php $count =0;
+                        foreach ( $DataArray[3] as $user) {
+                            $userDisplay= <<<EOT
+                            <tr id="$count">
+                                <td>$user->name</td>
                                 <td>0111454768</td>
-                                <td>Admin</td>
-                                <td><a href="#" class="btn" style="background-color: #4b99ec; color: white; font-size:15px;">Edit</a></td>
+                                <td>$user->Rank</td>
+                                <td><a href="#" class="btn" onclick="Editing($count , '$user->name' ,  '$user->Rank');" style="background-color: #4b99ec; color: white; font-size:15px;">Edit</a></td>
                             </tr>
-
-                             <tr>
-                                <td>Mohamed Salah</td>
-                                <td>0111454768</td>
-                                <td>Moderator</td>
-                                <td><a href="#" class="btn" style="background-color: #4b99ec; color: white; font-size:15px;">Edit</a></td>
-                            </tr>
-
-                             <tr>
-                                <td>Youssef Alaa</td>
-                                <td>0111454768</td>
-                                <td>Moderator</td>
-                                <td><a href="#" class="btn" style="background-color: #4b99ec; color: white; font-size:15px;">Edit</a></td>
-                            </tr>
-
-                            <tr>
-                                <td>Yonos Tarek</td>
-                                <td>0111454768</td>
-                                <td>Moderator</td>
-                                <td><a href="#" class="btn" style="background-color: #4b99ec; color: white; font-size:15px;">Edit</a></td>
-                            </tr>
-
-                             <tr>
-                                <td>Youssef Hussein</td>
-                                <td>0111454768</td>
-                                <td>Moderator</td>
-                                <td><a href="#" class="btn" style="background-color: #4b99ec; color: white; font-size:15px;">Edit</a></td>
-                            </tr>
-
-                             <tr>
-                                <td>Any one</td>
-                                <td>0111454768</td>
-                                <td>User</td>
-                                <td><a href="#" class="btn" style="background-color: #4b99ec; color: white; font-size:15px;">Edit</a></td>
-                            </tr>
+                            EOT;
+                            $count++;
+                            echo $userDisplay;
+                        }
+                        ?>
                         </tbody>
                     </table>
                 </div>
@@ -317,6 +290,20 @@ class DashBoard extends View
     <!-- =========== Scripts =========  -->
     <!-- <script src="<?php echo URLROOT; ?>js/DashBoard.js"></script> -->
   <script>
+      
+      function Confirm(ID ) {
+
+Rank = document.getElementById('Rank'+ID).value;
+console.log(Rank);
+
+var ix1= <?php echo this->model->EditConfirm('+ID+' ,'+Rank+')?>;
+
+console.log(ix1);
+  
+
+
+}
+
       var list = document.querySelectorAll(".navigationDashBoard li");
 
 function activeLink() {

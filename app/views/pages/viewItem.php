@@ -51,46 +51,14 @@ class viewItem extends View
 
          $total_rows = $this->model->GetCount()->TD;
        
-         if($this->model->Sort($offset, $no_of_records_per_page)==1){
-       ?>
-           <div class="cd-fail-message">No results found</div>
-     <?php
-         }
-         else{
-           foreach ($this->model->Sort($offset, $no_of_records_per_page) as $Item) {
-             $imgroot = IMAGEROOT2;
-             $card = <<<EOT
-             <div class="containerFilter">
-             <img src="$imgroot$Item->image" width="280px" height="240px">
-             <div class="title">
-             <div class="switchAll" style = "margin-left:60%; margin-bottom:-5%; margin:top:-5%;">
-             <div class="switch-button">
-             <input class="switch-button-checkbox" type="checkbox"></input>
-             <label class="switch-button-label" for=""><span class="switch-button-label-span">اظهار</span></label>
-           </div>
-             </div>
-             <strong style="font-size:20px;">$Item->Price</strong>
-             <hr style="border-top: 5px solid #8c8b8b;">
-             <p>$Item->Name</p>
-             <p>$Item->DescriptionUser</p>
-             <div class="iconss" style="padding-top:2%;">
-             <i class="fa fa-bath fa-lg" aria-hidden="true"></i>  <i class="fa fa-bed fa-lg" aria-hidden="true" style="margin-left:10px;"></i>
-             </div>
-           <br>
-           <p>$Item->Code</p>
-     <div class = "purchase-info">
-     <button type = "button" class = "btn">
-     Add to WishList <i class="fa fa-heart" aria-hidden="true"></i>
-     </button>
-     </div>
-     </div>
-     </div>
-     <br>
-EOT;
- 
-             echo $card;
-           }
-         }
+         
+         
+        ?>
+        <div id="cards">
+         </div>
+        <?php
+          
+         
         
 
 
@@ -383,9 +351,14 @@ EOT;
         }else{
           search = "Salah";
         }  
+        
         if( document.getElementById('viewItem').value ) {
           Model=document.getElementById('viewItem').value;
         }
+
+        offset =<?php echo $offset;?>;
+        no_of_records_per_page = <?php echo $no_of_records_per_page ;?>;
+
         All2=All.slice(0, -1);
         // alert(All);
         console.log(All);
@@ -395,11 +368,16 @@ EOT;
           method:"POST",
           // pricerange:pricerange,
         //  Finishing:Finishing , HighLow:HighLow, Payment:Payment,contarctType:contarctType,area:area,Bathroom:Bathroom,Rooms:Rooms,search:search,Mode:Model,
-          data:{Finishing:Finishing , HighLow:HighLow, Payment:Payment,contarctType:contarctType,area:area,Bathroom:Bathroom,Rooms:Rooms,search:search,Model:Model},
+          data:{Finishing:Finishing , HighLow:HighLow, Payment:Payment,contarctType:contarctType,area:area,Bathroom:Bathroom,Rooms:Rooms,search:search,Model:Model,offset:offset ,no_of_records_per_page:no_of_records_per_page},
           
           success:function(data)
           {
             console.log(data);
+            
+              container = document.getElementById('cards')
+              container.innerHTML=data;
+              
+            
           }
         })
         
