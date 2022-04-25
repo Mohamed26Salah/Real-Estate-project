@@ -102,7 +102,9 @@ class viewItemModel extends model
     {
         $this->Search = $Search;
     }
-
+    public function yasser(){
+       return "Yasser";
+    }
    
     public function Sort($offset, $no_of_records_per_page)
     {

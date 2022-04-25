@@ -5,13 +5,7 @@ class viewItem extends View
   {
 
 
-    // $user_id = $_SESSION['user_id'];
-    // $user_name = $_SESSION['user_name'];
-
-
-
     require APPROOT . '/views/inc/header.php';
-
 
 ?>
 
@@ -25,7 +19,7 @@ class viewItem extends View
            <a data-type="all" href="#0">All</a> <!-- selected option on mobile -->
          </li> 
          <li class="filter" data-filter=".color-1"><a href="#0" data-type="color-1">Flats</a></li>
-         <li class="filter" data-filter=".color-2"><a href="#0" data-type="color-2">Residential Building</a></li>
+         <li class="filter" data-filter=".color-2"><a href="#0" data-type="color-2">Building</a></li>
          <li class="filter" data-filter=".color-1"><a href="#0" data-type="color-1">Villa</a></li>
          <li class="filter" data-filter=".color-1"><a href="#0" data-type="color-1">Store</a></li>
          <li class="filter" data-filter=".color-2"><a href="#0" data-type="color-2">clinic</a></li>
@@ -44,7 +38,7 @@ class viewItem extends View
 
 <?php
          //  pagination start
-
+    
          if (isset($_GET['pageno'])) {
            $pageno = $_GET['pageno'];
          } else {
@@ -141,7 +135,10 @@ EOT;
 
    <div class="cd-filter">
    <?php $action = URLROOT . 'Pages/viewItem'; ?>
-     <form class="form" id="sidebar" <?php echo $action;?> method="post" >
+   <?php $action2 = 'ajax/search.php'; ?>
+   <!-- <div class="form" id="sidebar" > -->
+   <form class="form" id="sidebar" method="post">
+     <!-- <form class="form" id="sidebar" <?php echo $action;?> method="post" > -->
        <div class="cd-filter-block">
          <h4>Search</h4>
          
@@ -170,7 +167,7 @@ EOT;
            </li>
          </ul> 
        </div>  -->
-      
+      <input type="hidden" name="viewItem" value="viewItem" id="viewItem">
        <div class="wrapper">
       <header>
         <h2>Price Range</h2>
@@ -204,7 +201,7 @@ EOT;
          
          <div class="cd-filter-content">
            <div class="cd-select cd-filters">
-             <select class="filter" name="contarctType" id="selectThis">
+             <select class="filter" name="contarctType" id="contarctType">
                <option selected value="">نوع العقد</option>
                <option value="1">بيع</option>
                <option value="2">شراء</option>
@@ -217,7 +214,7 @@ EOT;
          
          <div class="cd-filter-content">
            <div class="cd-select cd-filters">
-             <select class="filter" name="HighLow" id="selectThis">
+             <select class="filter" name="HighLow" id="HighLow">
                <option selected value="">ترتيب حسب</option>
                <option value="1">من الكبير للصغير</option>
                <option value="2">من الصغير للكبير</option>
@@ -231,7 +228,7 @@ EOT;
          
          <div class="cd-filter-content">
            <div class="cd-select cd-filters">
-             <select class="filter" name="area" id="selectThis">
+             <select class="filter" name="area" id="area">
                <option selected value="">أختر</option>
                <option value="100">100</option>
                <option value="200">200</option>
@@ -246,7 +243,7 @@ EOT;
          
          <div class="cd-filter-content">
            <div class="cd-select cd-filters">
-             <select class="filter" name="Rooms" id="selectThis">
+             <select class="filter" name="Rooms" id="Rooms">
                <option selected value="">أختر</option>
                <option value="1">1</option>
                <option value="2">2</option>
@@ -263,7 +260,7 @@ EOT;
          
          <div class="cd-filter-content">
            <div class="cd-select cd-filters">
-             <select class="filter" name="Bathroom" id="selectThis">
+             <select class="filter" name="Bathroom" id="Bathroom">
               <option selected value="">أختر</option>
                <option value="1">1</option>
                <option value="2">2</option>
@@ -281,12 +278,12 @@ EOT;
 
          <ul class="cd-filter-content cd-filters list">
            <li>
-             <input class="filter" data-filter="" type="radio" name="Finishing" id="radio1" value="1">
+             <input class="filter" data-filter="" type="radio" name="Finishing" id="Finishing" value="1">
              <label class="radio-label" for="radio1">نعم</label>
            </li>
 
            <li>
-             <input class="filter" data-filter=".radio2" type="radio" name="Finishing" id="radio2" value="2">
+             <input class="filter" data-filter=".radio2" type="radio" name="Finishing" id="Finishing" value="2">
              <label class="radio-label" for="radio2">لا</label>
            </li>
 
@@ -298,22 +295,22 @@ EOT;
 
          <ul class="cd-filter-content cd-filters list">
            <li>
-             <input class="filter" data-filter="" type="radio" name="Payment" id="radio1" value="Cash">
+             <input class="filter" data-filter="" type="radio" name="Payment" id="Payment" value="Cash">
              <label class="radio-label" for="radio1">كاش</label>
            </li>
 
            <li>
-             <input class="filter" data-filter=".radio2" type="radio" name="Payment" id="radio2" value="instalment">
+             <input class="filter" data-filter=".radio2" type="radio" name="Payment" id="Payment" value="instalment">
              <label class="radio-label" for="radio2">تقسيط</label>
            </li>
 
          </ul> <!-- cd-filter-content -->
        </div> <!-- cd-filter-block -->
 
-       <button type="submit" class="btn btn-primary" style="width:100px; height:40px; font-size:15px; background-color:#6E29A8;">Search</button>
+       <button type="submit" class="btn btn-primary" id="search" style="width:100px; height:40px; font-size:15px; background-color:#6E29A8;">Search</button>
          
 
-       
+       <!-- </div>  -->
      </form>
 
      <a href="#0" class="cd-close">Close</a>
@@ -346,55 +343,70 @@ EOT;
         //   pricerange = document.getElementById('pricerange').value;
         //   console.log(error);
         // }
-        if( document.getElementById('Finishing').value.length != 0 ) {
+        if( document.getElementById('Finishing').value ) {
           Finishing = document.getElementById('Finishing').value;
-          All.concat("Finishing:Finishing,")
+        }else{
+          Finishing = "Salah";
         }
         if( document.getElementById('HighLow').value ) {
           HighLow = document.getElementById('HighLow').value;
-          All.concat("HighLow:HighLow,")
+        }else{
+          HighLow = "Salah";
         }
         if( document.getElementById('Payment').value ) {
           Payment = document.getElementById('Payment').value;
-          All.concat("Payment:Payment,")
+        }else{
+          Payment = "Salah";
         }
         if( document.getElementById('contarctType').value ) {
           contarctType = document.getElementById('contarctType').value;
-          All.concat("contarctType:contarctType,")
+        }else{
+          contarctType = "Salah";
         }
         if( document.getElementById('area').value ) {
           area = document.getElementById('area').value;
-          All.concat("area:area,")
+        }else{
+          area = "Salah";
         }
         if( document.getElementById('Bathroom').value ) {
           Bathroom = document.getElementById('Bathroom').value;
-          All.concat("Bathroom:Bathroom,")
+        }else{
+          Bathroom = "Salah";
         }
         if( document.getElementById('Rooms').value ) {
           Rooms = document.getElementById('Rooms').value;
-          All.concat("Rooms:Rooms,")
+        }else{
+          Rooms = "Salah";
         }
         if( document.getElementById('search').value ) {
           search = document.getElementById('search').value;
-          All.concat("search:search,")
+        }else{
+          search = "Salah";
         }  
-        All=All.slice(0, -1);
+        if( document.getElementById('viewItem').value ) {
+          Model=document.getElementById('viewItem').value;
+        }
+        All2=All.slice(0, -1);
         // alert(All);
+        console.log(All);
+        console.log(All2);
         $.ajax({
-          url:"<?php echo $action;?>",
+          url:"<?php echo $action2;?>",
           method:"POST",
-          // pricerange:pricerange,Finishing:Finishing , HighLow:HighLow, Payment:Payment,contarctType:contarctType,area:area,Bathroom:Bathroom,Rooms:Rooms,search:search
-          data:{All},
+          // pricerange:pricerange,
+        //  Finishing:Finishing , HighLow:HighLow, Payment:Payment,contarctType:contarctType,area:area,Bathroom:Bathroom,Rooms:Rooms,search:search,Mode:Model,
+          data:{Finishing:Finishing , HighLow:HighLow, Payment:Payment,contarctType:contarctType,area:area,Bathroom:Bathroom,Rooms:Rooms,search:search,Model:Model},
+          
           success:function(data)
           {
-            // console.log(data);
+            console.log(data);
           }
         })
         
       }
       $( ".form" ).change(function() {
-        // itemsAjax();
-        // console.log("sALAH AND SPEED AND JOEX AND YUONUS and oncihanaaaaaan");
+        itemsAjax();
+        
       });
     </script>
 

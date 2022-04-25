@@ -53,6 +53,59 @@ public function viewItem()
         $indexView = new viewItem($this->getModel(), $this);
         $indexView->output();
     }
+    public function ajax()
+    {
+        // $ViewItem = $this->getModel();
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+           
+            $Model=$_POST['Model']."Model";
+            // echo($Model);
+            require_once APPROOT . "/models/viewItemModel.php";
+            $ViewItem = new viewItemModel();
+            
+            if($_POST['area']!="Salah"){
+                $ViewItem->setArea($_POST['area']);
+              echo $_POST['area'];
+            }
+            // if($_POST['pricerange1']!="Salah"){
+            //     $ViewItem->setprice1($_POST['pricerange1']);
+            // }
+            // if($_POST['pricerange2']!="Salah"){
+            //     $ViewItem->setprice2($_POST['pricerange2']);
+            // }
+            if($_POST['Payment']!="Salah"){
+                $ViewItem->setPayment($_POST['Payment']);
+            }
+            if($_POST['contarctType']!="Salah"){
+                $ViewItem->setcontarctType($_POST['contarctType']);
+            }
+            if($_POST['Bathroom']!="Salah"){
+                $ViewItem->setBathroom($_POST['Bathroom']);
+            }
+            if($_POST['Rooms']!="Salah"){
+                $ViewItem->setRooms($_POST['Rooms']);
+            }
+            if($_POST['Finishing']!="Salah"){
+                $ViewItem->setFinishing($_POST['Finishing']);
+            }
+            if($_POST['HighLow']!="Salah"){
+                $ViewItem->setHighLow($_POST['HighLow']);
+                echo $_POST['HighLow'];
+            }
+            if($_POST['search']!="Salah"){
+                $ViewItem->setSearch($_POST['search']);
+            }
+           
+             echo($ViewItem->Sort(0,6));
+            // echo($ViewItem->yasser());
+        }
+
+        $viewPath = VIEWS_PATH . 'ajax/search.php';
+        require_once $viewPath;
+        $ajax = new ajax($this->getModel(), $this);
+        $ajax->output();
+    }
 public function viewRent()
     {
         $viewPath = VIEWS_PATH . 'pages/viewRent.php';
