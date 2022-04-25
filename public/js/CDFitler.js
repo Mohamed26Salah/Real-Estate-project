@@ -1,3 +1,5 @@
+if( window.location.href.search("viewItem")!=-1){
+
 jQuery(document).ready(function($){
 	//open/close lateral filter
 	$('.cd-filter-trigger').on('click', function(){
@@ -56,9 +58,9 @@ jQuery(document).ready(function($){
 	});
 
 	function fixGallery() {
-		// var offsetTop = $('.cd-main-content').offset().top,
-		// 	scrollTop = $(window).scrollTop();
-		// ( scrollTop >= offsetTop ) ? $('.cd-main-content').addClass('is-fixed') : $('.cd-main-content').removeClass('is-fixed');
+		var offsetTop = $('.cd-main-content').offset().top,
+			scrollTop = $(window).scrollTop();
+		( scrollTop >= offsetTop ) ? $('.cd-main-content').addClass('is-fixed') : $('.cd-main-content').removeClass('is-fixed');
 	}
 
 	/************************************
@@ -206,4 +208,4 @@ var buttonFilter = {
 		}
   	}
 };
-
+}

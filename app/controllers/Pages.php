@@ -68,12 +68,12 @@ public function viewItem()
                 $ViewItem->setArea($_POST['area']);
               echo $_POST['area'];
             }
-            // if($_POST['pricerange1']!="Salah"){
-            //     $ViewItem->setprice1($_POST['pricerange1']);
-            // }
-            // if($_POST['pricerange2']!="Salah"){
-            //     $ViewItem->setprice2($_POST['pricerange2']);
-            // }
+            if($_POST['pricerange1']!="Salah"){
+                $ViewItem->setprice1($_POST['pricerange1']);
+            }
+            if($_POST['pricerange2']!="Salah"){
+                $ViewItem->setprice2($_POST['pricerange2']);
+            }
             if($_POST['Payment']!="Salah"){
                 $ViewItem->setPayment($_POST['Payment']);
             }
@@ -101,10 +101,10 @@ public function viewItem()
              echo($ViewItem->Sort($_POST['offset'],$_POST['no_of_records_per_page']));
         }
 
-        $viewPath = VIEWS_PATH . 'ajax/search.php';
-        require_once $viewPath;
-        $ajax = new ajax($this->getModel(), $this);
-        $ajax->output();
+        // $viewPath = VIEWS_PATH . 'ajax/search.php';
+        // require_once $viewPath;
+        // $ajax = new ajax($this->getModel(), $this);
+        // $ajax->output();
     }
 public function viewRent()
     {

@@ -11,7 +11,7 @@ class viewItem extends View
 
 <body>
    
-   <main class="cd-main-content">
+  <main class="cd-main-content">
    <div class="cd-tab-filter-wrapper">
      <div class="cd-tab-filter">
        <ul class="cd-filters">
@@ -27,16 +27,16 @@ class viewItem extends View
          <li class="filter" data-filter=".color-2"><a href="#0" data-type="color-2">Farm</a></li>
          <li class="filter" data-filter=".color-1"><a href="#0" data-type="color-1">Factory</a></li>
          <li class="filter" data-filter=".color-1"><a href="#0" data-type="color-1">Land</a></li>
-       </ul> <!-- cd-filters -->
-     </div> <!-- cd-tab-filter -->
-   </div> <!-- cd-tab-filter-wrapper -->
+       </ul> 
+     </div> 
+   </div> 
 
    <section class="cd-gallery">
      <ul>
        
    <div class="Car-ALL">
 
-<?php
+   <?php
          //  pagination start
     
          if (isset($_GET['pageno'])) {
@@ -101,17 +101,18 @@ class viewItem extends View
 
 
 
-   <div class="cd-filter">
+   
    <?php $action = URLROOT . 'Pages/viewItem'; ?>
-   <?php $action2 = 'ajax/search.php'; ?>
+   <?php $action2 = 'ajax'; ?>
    <!-- <div class="form" id="sidebar" > -->
-   <form class="form" id="sidebar" method="post">
+  <div class="cd-filter">
+   <form class="form" method="post">
      <!-- <form class="form" id="sidebar" <?php echo $action;?> method="post" > -->
        <div class="cd-filter-block">
          <h4>Search</h4>
          
          <div class="cd-filter-content">
-           <input type="search" name="search" placeholder="أبحث">
+           <input type="search" name="search" id="search" placeholder="أبحث">
          </div> <!-- cd-filter-content -->
        </div> <!-- cd-filter-block -->
 
@@ -144,14 +145,14 @@ class viewItem extends View
       <div class="price-input">
         <div class="field">
          
-          <input type="number" class="input-min" value="0" name="pricerange1">
+          <input type="number" class="input-min" value="0" name="pricerange1" id="pricerange1">
         </div>
         
         <div class="separator">-</div>
         
         <div class="field">
          
-          <input type="number" class="input-max" value="10000000" name="pricerange2">
+          <input type="number" class="input-max" value="10000000" name="pricerange2" id="pricerange2">
         </div>
       </div>
       <div class="slider">
@@ -172,7 +173,7 @@ class viewItem extends View
              <select class="filter" name="contarctType" id="contarctType">
                <option selected value="">نوع العقد</option>
                <option value="1">بيع</option>
-               <option value="2">شراء</option>
+               <option value="2">ايجار</option>
              </select>
            </div> 
          </div> 
@@ -239,9 +240,34 @@ class viewItem extends View
            </div> 
          </div> 
        </div>  
-             
-       
        <div class="cd-filter-block">
+         <h4> التشطيب</h4>
+         
+         <div class="cd-filter-content">
+           <div class="cd-select cd-filters">
+             <select class="filter" name="Finishing" id="Finishing">
+              <option selected value="">أختر</option>
+               <option value="1">1</option>
+               <option value="2">2</option>
+             </select>
+           </div> 
+         </div> 
+       </div>  
+       <div class="cd-filter-block">
+         <h4> طريقةالدفع</h4>
+         
+         <div class="cd-filter-content">
+           <div class="cd-select cd-filters">
+             <select class="filter" name="Payment" id="Payment">
+              <option selected value="">أختر</option>
+               <option value="Cash">Cash</option>
+               <option value="instalment">instalment</option>
+             </select>
+           </div> 
+         </div> 
+       </div>  
+       
+       <!-- <div class="cd-filter-block">
          <h4>التشطيب</h4>
 
          <ul class="cd-filter-content cd-filters list">
@@ -255,10 +281,10 @@ class viewItem extends View
              <label class="radio-label" for="radio2">لا</label>
            </li>
 
-         </ul> <!-- cd-filter-content -->
-       </div> <!-- cd-filter-block -->
+         </ul> 
+       </div> -->
        
-       <div class="cd-filter-block">
+       <!-- <div class="cd-filter-block">
          <h4>طريقة الدفع</h4>
 
          <ul class="cd-filter-content cd-filters list">
@@ -272,17 +298,17 @@ class viewItem extends View
              <label class="radio-label" for="radio2">تقسيط</label>
            </li>
 
-         </ul> <!-- cd-filter-content -->
-       </div> <!-- cd-filter-block -->
+         </ul> 
+       </div>  -->
 
-       <button type="submit" class="btn btn-primary" id="search" style="width:100px; height:40px; font-size:15px; background-color:#6E29A8;">Search</button>
+       <!-- <button type="submit" class="btn btn-primary" id="search" style="width:100px; height:40px; font-size:15px; background-color:#6E29A8;">Search</button> -->
          
 
        <!-- </div>  -->
-     </form>
+    </form>
 
      <a href="#0" class="cd-close">Close</a>
-   </div> <!-- cd-filter -->
+  </div> <!-- cd-filter -->
 
    <a href="#0" class="cd-filter-trigger">Filters</a>
  </main> <!-- cd-main-content -->
@@ -300,20 +326,22 @@ class viewItem extends View
       
       var All="";
       function itemsAjax(){
-        
-        // try {
-        //   if( document.getElementById('pricerange').value.length != 0) {
-        //   console.log("speeed");
-         
-        //   All.concat("pricerange:pricerange,")
-        // }
-        // }catch(error){
-        //   pricerange = document.getElementById('pricerange').value;
-        //   console.log(error);
-        // }
+        if( document.getElementById('pricerange1').value ) {
+          pricerange1 = document.getElementById('pricerange1').value;
+        }
+        else{
+          pricerange1 = "Salah";
+        }if( document.getElementById('pricerange2').value ) {
+          pricerange2 = document.getElementById('pricerange2').value;
+        }
+        else{
+          pricerange2 = "Salah";
+        }
+      
         if( document.getElementById('Finishing').value ) {
           Finishing = document.getElementById('Finishing').value;
-        }else{
+        }
+        else{
           Finishing = "Salah";
         }
         if( document.getElementById('HighLow').value ) {
@@ -367,8 +395,7 @@ class viewItem extends View
           url:"<?php echo $action2;?>",
           method:"POST",
           // pricerange:pricerange,
-        //  Finishing:Finishing , HighLow:HighLow, Payment:Payment,contarctType:contarctType,area:area,Bathroom:Bathroom,Rooms:Rooms,search:search,Mode:Model,
-          data:{Finishing:Finishing , HighLow:HighLow, Payment:Payment,contarctType:contarctType,area:area,Bathroom:Bathroom,Rooms:Rooms,search:search,Model:Model,offset:offset ,no_of_records_per_page:no_of_records_per_page},
+          data:{Finishing:Finishing , HighLow:HighLow, Payment:Payment,contarctType:contarctType,area:area,Bathroom:Bathroom,Rooms:Rooms,search:search,Model:Model,offset:offset ,no_of_records_per_page:no_of_records_per_page,pricerange1:pricerange1,pricerange2:pricerange2},
           
           success:function(data)
           {
@@ -383,9 +410,13 @@ class viewItem extends View
         
       }
       $( ".form" ).change(function() {
+        //schow item on change
         itemsAjax();
-        
+
       });
+      //Show item first time 
+      itemsAjax();
+
     </script>
 
 <?php

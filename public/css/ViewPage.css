@@ -193,11 +193,11 @@ ul.sidebar-menu {
   
   position: absolute;
   width: 23%;
-  height: 100%;
   margin-top: 66px;
   padding: 0;
   list-style: none;
   list-style-type: none;
+  
 }
 .sidebar-menu li a span {
   margin-right: 20px;

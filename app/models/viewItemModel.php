@@ -191,7 +191,7 @@ class viewItemModel extends model
         $this->dbh->query($QUERY);
         $ALLRECORDS = $this->dbh->resultSet();
         if(empty($ALLRECORDS)){
-            return 1;
+            return 55;
         }
         $output='';
         
