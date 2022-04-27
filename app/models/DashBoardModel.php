@@ -23,14 +23,25 @@ class DashBoardModel extends model
               return $ALLRECORDS;
           
      }
-     public function EditConfirm($ID ,$Rank)
+     public function EditConfirm($ID ,$Rank,$count )
      {
+          
              
               $this->dbh->query("UPDATE `user` SET `Rank`='$Rank' WHERE `ID`= $ID");
-      
+             
               $ALLRECORDS = $this->dbh->single();
 
-              return "done";
+              $this->dbh->query("SELECT *from `user` WHERE  `ID`= $ID");
+
+              $ALLRECORDS2 = $this->dbh->single();
+              $customer = <<<EOT
+              <td>$ALLRECORDS2->name</td>
+              <td>0111454768</td>
+              <td>$ALLRECORDS2->Rank</td>
+              <td><a href="#" class="btn" onclick="Editing($count , '$ALLRECORDS2->name'  , '$ALLRECORDS2->ID' );" style="background-color: #4b99ec; color: white; font-size:15px;">Edit</a></td>
+              EOT;
+
+              return $customer;
           
      }
 }

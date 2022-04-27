@@ -9,7 +9,7 @@ class DashBoard extends View
 ?>
 <html>
 <!-- <link rel="stylesheet" href="<?php echo URLROOT; ?>css/DashBoardStyle.css"> -->
-
+<?php $action3 = 'ajax2'; ?>
 <body>
     <!-- =============== Navigation ================ -->
     <div class="containerDashBoard">
@@ -188,7 +188,7 @@ class DashBoard extends View
                                 <td>$user->name</td>
                                 <td>0111454768</td>
                                 <td>$user->Rank</td>
-                                <td><a href="#" class="btn" onclick="Editing($count , '$user->name' ,  '$user->Rank');" style="background-color: #4b99ec; color: white; font-size:15px;">Edit</a></td>
+                                <td><a href="#" class="btn" onclick="Editing($count , '$user->name'  , '$user->ID' );" style="background-color: #4b99ec; color: white; font-size:15px;">Edit</a></td>
                             </tr>
                             EOT;
                             $count++;
@@ -286,23 +286,43 @@ class DashBoard extends View
         </div>
         
     </div>
+    <div id="applychange">
+
+    </div>
 
     <!-- =========== Scripts =========  -->
     <!-- <script src="<?php echo URLROOT; ?>js/DashBoard.js"></script> -->
   <script>
-      
-      function Confirm(ID ) {
 
-Rank = document.getElementById('Rank'+ID).value;
-console.log(Rank);
-
-var ix1= <?php echo this->model->EditConfirm('+ID+' ,'+Rank+')?>;
-
-console.log(ix1);
+function Confirm(ConfirmID ,valuee ) {
+  
+Rank = document.getElementById('Rank'+ConfirmID).value;
+console.log(ConfirmID);
+ $.ajax({
+          url:"<?php echo $action3;?>",
+          method:"POST",
+          // pricerange:pricerange,
+        //  Finishing:Finishing , HighLow:HighLow, Payment:Payment,contarctType:contarctType,area:area,Bathroom:Bathroom,Rooms:Rooms,search:search,Mode:Model,
+          data:{ConfirmID:ConfirmID,Rank:Rank,valuee:valuee},
+          
+          success:function(data)
+          {
+            console.log(data);
+            
+            customer = document.getElementById(valuee);
+            customer.innerHTML = data;
+              
+            
+          }
+        })
   
 
 
 }
+       
+        
+      
+    
 
       var list = document.querySelectorAll(".navigationDashBoard li");
 

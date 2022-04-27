@@ -4,7 +4,7 @@ if (window.location.href.search("DashBoard") != -1) {
 
   });
 
-  function Editing(value , name, Rank) {
+  function Editing(value , name , ID) {
     
     console.log(name);
     customer = document.getElementById(value);
@@ -15,14 +15,14 @@ if (window.location.href.search("DashBoard") != -1) {
     <form method="post" action="" >
                             <td>`+name+`</td>
                             <td>0111000000</td>
-                            <td> <select id="Rank$user->ID" name="Rank">
+                            <td> <select id="Rank`+ID+`" name="Rank">
                             <option value="Admin">Admin</option>
                             <option value="Moderator">Moderator</option>
                             <option value="User">User</option>
                           </select></td>
-                            <td><a href="#" class="btn" onclick="Delete('$user->ID');" style="background-color: #800000; color: white; font-size:15px;">Delete</a>
-                            <a href="#" class="btn" onclick="Cancel('$user->ID');" style="background-color: #daa520; color: white; font-size:15px;">Cancel</a>
-                            <a href="#" class="btn confirmation" onclick="Confirm('$user->ID');" style="background-color: #006400; color: white; font-size:15px;">Confirm</a></td>
+                            <td><a href="#" class="btn" onclick="Delete(`+ID+`);" style="background-color: #800000; color: white; font-size:15px;">Delete</a>
+                            <a href="#" class="btn" onclick="Cancel(`+ID+`);" style="background-color: #daa520; color: white; font-size:15px;">Cancel</a>
+                            <a href="#" class="btn confirmation" onclick="Confirm(`+ID+`,`+value+`);" style="background-color: #006400; color: white; font-size:15px;">Confirm</a></td>
                             
                             
                         </form>
@@ -33,6 +33,9 @@ if (window.location.href.search("DashBoard") != -1) {
  
 
  }
+
+ 
+  
 
 
 }
