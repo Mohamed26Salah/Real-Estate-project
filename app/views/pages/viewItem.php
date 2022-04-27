@@ -46,7 +46,7 @@ class viewItem extends View
          }
 
 
-         $no_of_records_per_page = 6;
+         $no_of_records_per_page = 20;
          $offset = ($pageno - 1) * $no_of_records_per_page;
 
          $total_rows = $this->model->GetCount()->TD;
