@@ -57,7 +57,12 @@ public function viewItem()
     { 
         require_once APPROOT . "/models/DashBoardModel.php";
         $DashBoard = new DashBoardModel();
-        echo($DashBoard->EditConfirm($_POST['ConfirmID'],$_POST['Rank'],$_POST['valuee']));
+        if (isset($_POST['DEL'])) {
+            echo($DashBoard->DeleteUser($_POST['ID']));
+        }else{
+            echo($DashBoard->EditConfirm($_POST['ConfirmID'],$_POST['Rank'],$_POST['valuee']));
+
+        }
        
 
     }
