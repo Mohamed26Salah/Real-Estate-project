@@ -53,6 +53,19 @@ public function viewItem()
         $indexView = new viewItem($this->getModel(), $this);
         $indexView->output();
     }
+    public function ajax2()
+    { 
+        require_once APPROOT . "/models/DashBoardModel.php";
+        $DashBoard = new DashBoardModel();
+        if (isset($_POST['DEL'])) {
+            echo($DashBoard->DeleteUser($_POST['ID']));
+        }else{
+            echo($DashBoard->EditConfirm($_POST['ConfirmID'],$_POST['Rank'],$_POST['valuee']));
+
+        }
+       
+
+    }
     public function ajax()
     {
         // $ViewItem = $this->getModel();
