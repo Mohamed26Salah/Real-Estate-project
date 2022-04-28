@@ -2,7 +2,6 @@
 require_once 'UserModel.php';
 class viewItemModel extends model
 {
-    /////////////////////////////////////////////////////////////////////////////////////////////
     protected $area;
     protected $price1;
     protected $price2;
@@ -13,6 +12,7 @@ class viewItemModel extends model
     protected $Rooms;
     protected $HighLow;
     protected $Search;
+    protected $checkBox;
     public function getArea()
     {
         return $this->area;
@@ -102,13 +102,89 @@ class viewItemModel extends model
     {
         $this->Search = $Search;
     }
-    public function yasser(){
-       return "Yasser";
+    public function getcheckBox()
+    {
+        return $this->checkBox;
     }
-   
+  
+    public function setcheckBox($checkBox)
+    {
+        $this->checkBox = $checkBox;
+    }
+    
+    function card($imgroot,$ImageArray,$PriceArray,$AreaArray,$PaymentArray,$NameArray,$DescriptionArray,$offeredArray,$BathroomArray,$RoomsArray,$FinishingArrayString,$CodeArray,$AddressArray,$VisibleArray,$Checked){
+        $output2='';
+        $output2=<<<EOT
+            <div class="containerFilter">
+            <img src="$imgroot$ImageArray" width="350px" height="240px">
+            <div class="title">
+            <div class="switchAll" style = "margin-left:80%; margin-bottom:-5%; margin:top:-5%;">
+            <form class="form2">
+            echo $VisibleArray
+            <input onchange = 'salah()' class="toggle" name="autoDiscovery" type="checkbox" id="toggle" $Checked  value="$VisibleArray" />
+            
+            </form>
+            </div>
+            <strong style="font-size:20px; ">$PriceArray EGP</strong>
+            <h2 style="font-family: Open Sans, sans-serif; color: #403b45; font-size:14px; margin-top: 1.5%; ">$NameArray</h2>
+            <div style="font-family: Open Sans, sans-serif; color: #403b45; font-size:14px;margin-top: 1%;">FLATS <i class="fa fa-bed fa-lg" aria-hidden="true"style="margin-left:10px;"> $RoomsArray </i><i class="fa fa-bath fa-lg" aria-hidden="true" style="margin-left:10px;margin-right:10px;"> $BathroomArray </i> 
+            $AreaArray sqm
+            </div>
+            <div style="font-family: Open Sans, sans-serif; color: #403b45; font-size:14px;margin-top: 1%;"><i class="fa-solid fa-paint-roller" style="color:green;"></i> $FinishingArrayString 
+            <i class="fa-solid fa-sack-dollar" style="margin-left:10px; color:green;"></i> $PaymentArray </div><br>
+            <div style="font-family: Open Sans, sans-serif; color: #403b45; font-size:16px;margin-top: 1%;">$offeredArray</div>
+            <div style="font-family: Open Sans, sans-serif; color: #403b45; font-size:16px;margin-top: 1%; font-weight: 600;"><i class="fa fa-map-marker" aria-hidden="true" style="color:green;"></i> $AddressArray </div>
+          
+            <div class = "purchase-info" style="margin-top:-0.5%;">
+            <button type = "button" class = "btn">
+            Add to WishList <i class="fa fa-heart" aria-hidden="true"></i>
+            </button>
+            </div>
+            <div style="font-size:25px;margin-left: 70%; margin-top:-7.2%;"> Code: <span style="color:red;">$CodeArray</span></div>
+            
+            
+        </div>
+        </div>
+        <br>
+        EOT;
+        
+        return $output2;
+    }
+    function ifCondition($UltimateJoinRoom,$UltimateJoinBathroom,$UltimateJoinFinishing,$RoomsArray,$BathroomArray,$FinishingArray,$UltimateIF,$ultimateIFCondition){
+        if($UltimateJoinRoom!="empty"&&$UltimateJoinBathroom=="empty"&&$UltimateJoinFinishing=="empty"){
+            $UltimateIF=$UltimateJoinRoom==$RoomsArray;
+            $ultimateIFCondition="NotEmpty";
+        }
+        if($UltimateJoinRoom=="empty"&&$UltimateJoinBathroom!="empty"&&$UltimateJoinFinishing=="empty"){
+            $UltimateIF=$UltimateJoinBathroom==$BathroomArray;
+            $ultimateIFCondition="NotEmpty";
+        }
+        if($UltimateJoinRoom=="empty"&&$UltimateJoinBathroom=="empty"&&$UltimateJoinFinishing!="empty"){
+            $UltimateIF=$UltimateJoinFinishing==$FinishingArray;
+            $ultimateIFCondition="NotEmpty";
+        }
+        if($UltimateJoinRoom!="empty"&&$UltimateJoinBathroom!="empty"&&$UltimateJoinFinishing=="empty"){
+            $UltimateIF=$UltimateJoinRoom==$RoomsArray&& $UltimateJoinBathroom==$BathroomArray;
+            $ultimateIFCondition="NotEmpty";
+        }
+        if($UltimateJoinRoom=="empty"&&$UltimateJoinBathroom!="empty"&&$UltimateJoinFinishing!="empty"){
+            $UltimateIF=$UltimateJoinFinishing==$FinishingArray&& $UltimateJoinBathroom==$BathroomArray;
+            $ultimateIFCondition="NotEmpty";
+        }
+        if($UltimateJoinRoom!="empty"&&$UltimateJoinBathroom=="empty"&&$UltimateJoinFinishing!="empty"){
+            $UltimateIF=$UltimateJoinRoom==$RoomsArray&& $UltimateJoinFinishing==$FinishingArray;
+            $ultimateIFCondition="NotEmpty";
+        }
+        if($UltimateJoinRoom!="empty"&&$UltimateJoinBathroom!="empty"&&$UltimateJoinFinishing!="empty"){
+            $UltimateIF=$UltimateJoinRoom==$RoomsArray&& $UltimateJoinBathroom==$BathroomArray && $UltimateJoinFinishing==$FinishingArray;
+            $ultimateIFCondition="NotEmpty";
+        }
+        return array($UltimateIF,$ultimateIFCondition);
+    }
     public function Sort($offset, $no_of_records_per_page)
     {
         //SELECT * FROM `allestate` WHERE Area >= 300 AND Area < 400 
+        
         $AllSort="TypeID=1 AND ";
         $join=" AS allestate, eav AS eav ";
         $AllJoin="AND eav.AllID = allestate.ID";
@@ -116,6 +192,12 @@ class viewItemModel extends model
         $Search="";
         $SearchAll=" GROUP BY allestate.ID";
         $SuperUltimateJoin="";
+        $UltimateJoinBathroom="";
+        $UltimateJoinRoom="";
+        $UltimateJoinFinishing="";
+        $UltimateIF="";
+        $ultimateIFCondition="";
+        
         if(!empty($this->area)){
             
           if($this->area==400){
@@ -131,12 +213,10 @@ class viewItemModel extends model
         if(!empty($this->price1)){
           $AllSort.="Price >= ".$this->price1;
           $AllSort.=" AND ";
-        //   echo"$this->price1";
         }
         if(!empty($this->price2)){
             $AllSort.="Price <= ".$this->price2;
             $AllSort.=" AND ";
-            // echo"$this->price2";
           }
         if(!empty($this->Payment)){
             $AllSort.="`PaymentMethod` = '".$this->Payment."'";
@@ -147,17 +227,25 @@ class viewItemModel extends model
             $AllSort.=" AND ";
         }
         if(!empty($this->Finishing)){
-            $UltimateJoin.=" AND ";
-            $UltimateJoin.="eav.AtrributeID = 2 AND eav.Value=".$this->Finishing;
+            // $UltimateJoin.=" AND ";
+            // $UltimateJoin.="eav.AtrributeID = 2 AND eav.Value=".$this->Finishing;
+            $UltimateJoinFinishing=$this->Finishing;
+        }else{
+            $UltimateJoinFinishing="empty";
         }
         if(!empty($this->Rooms)){
-            $UltimateJoin.=" AND ";
-            $UltimateJoin.="eav.AtrributeID = 3 AND eav.Value=".$this->Rooms;
+            // $UltimateJoin.=" AND ";
+            // $UltimateJoin.="eav.AtrributeID = 3 AND eav.Value=".$this->Rooms;
+            $UltimateJoinRoom=$this->Rooms;
+        }else{
+            $UltimateJoinRoom="empty";
         }
         if(!empty($this->Bathroom)){
-            $UltimateJoin.=" AND ";
-            $UltimateJoin.="eav.AtrributeID = 4 AND eav.Value=".$this->Bathroom;
-            
+            // $UltimateJoin.=" AND ";
+            // $UltimateJoin.="eav.AtrributeID = 4 AND eav.Value=".$this->Bathroom;
+            $UltimateJoinBathroom=$this->Bathroom;
+        }else{
+            $UltimateJoinBathroom="empty";
         }
         if(!empty($this->HighLow)){
             if($this->HighLow==1){
@@ -167,6 +255,7 @@ class viewItemModel extends model
             }
             
         }
+      
         if(!empty($this->Search)){
             $Search=" AND (allestate.AddressUser LIKE '%".$this->Search."%'
             OR allestate.Area LIKE '%".$this->Search."%'
@@ -178,7 +267,6 @@ class viewItemModel extends model
             )";
         }
  
-        // echo "Search";
         
         $AllSort=substr_replace($AllSort ,"", -4);
         // $UltimateJoin=substr_replace($UltimateJoin ,"", -4);
@@ -187,7 +275,7 @@ class viewItemModel extends model
         }
         // $QUERY= "SELECT * FROM `allestate`".$join."WHERE ".$AllSort.$AllJoin.$UltimateJoin.$Search.$SearchAll.$SuperUltimateJoin." LIMIT $offset, $no_of_records_per_page";
 
-        $QUERY= "SELECT * FROM `allestate`".$join."WHERE ".$AllSort.$AllJoin.$UltimateJoin.$Search.$SuperUltimateJoin." LIMIT $offset, $no_of_records_per_page";
+        $QUERY= "SELECT * FROM `allestate`".$join."WHERE ".$AllSort.$AllJoin.$Search.$SuperUltimateJoin." LIMIT $offset, $no_of_records_per_page";
         // echo $QUERY;
         $this->dbh->query($QUERY);
         $ALLRECORDS = $this->dbh->resultSet();
@@ -199,6 +287,8 @@ class viewItemModel extends model
         $counter=0;
         $oneTime=0;
         $Counter2=0;
+        $Checked="";
+
         foreach ($ALLRECORDS as $Item) {
             
             $Counter2+=1;
@@ -215,16 +305,20 @@ class viewItemModel extends model
                 if($Counter2==count($ALLRECORDS)){
                     $imgroot = IMAGEROOT2;
                     $ImageArray=$input[$counter][10];
-                    $PriceArray=$input[$counter][3];
+                    // $PriceArray=$input[$counter][3];
+                    $PriceArray=number_format($input[$counter][3]);
+                    $AddressArray=$input[$counter][1];
                     $NameArray=$input[$counter][6];
                     $DescriptionArray=$input[$counter][5];
+                    $VisibleArray=$input[$counter][7];
                     $CodeArray=$input[$counter][8];
                     $AreaArray=$input[$counter][2];
                     $PaymentArray=$input[$counter][4];
+                    $FinishingArray="";
                     if($input[$counter][9]==1){
                         $offeredArray="Selling";
                     }else{
-                        $offeredArray="egaar";
+                        $offeredArray="Rent";
                     }
                     if(!empty($input[$counter][11])){
                         if($input[$counter][11]==4){
@@ -247,6 +341,7 @@ class viewItemModel extends model
                         else if($input[$counter][13]==2){
                             $FinishingArray=$input[$counter][14];
                         }
+                 
                     }
                     if(!empty($input[$counter][15])){
                         if($input[$counter][15]==4){
@@ -258,58 +353,50 @@ class viewItemModel extends model
                         else if($input[$counter][15]==2){
                             $FinishingArray=$input[$counter][16];
                         }
+                      
                     }
                     if($FinishingArray==1){
-                        $FinishingArray="mtshtb";
+                        $FinishingArrayString="mtshtb";
                     }else{
-                        $FinishingArray="Not mtshtb";
+                        $FinishingArrayString="Not mtshtb";
                     }
-                    $output.= <<<EOT
-                    <div class="containerFilter">
-                    <img src="$imgroot$ImageArray" width="280px" height="240px">
-                    <div class="title">
-                    <div class="switchAll" style = "margin-left:60%; margin-bottom:-5%; margin:top:-5%;">
-                    <div class="switch-button">
-                    <input class="switch-button-checkbox" type="checkbox"></input>
-                    <label class="switch-button-label" for=""><span class="switch-button-label-span">اظهار</span></label>
-                  </div>
-                    </div>
-                    <strong style="font-size:20px;">$PriceArray</strong>
-                    <hr style="border-top: 5px solid #8c8b8b;">
-                    <strong style="font-size:20px;">$AreaArray</strong>
-                    <strong style="font-size:20px;">$PaymentArray</strong>
-                    <p>$NameArray</p>
-                    <p>$DescriptionArray</p>
-                    <p>$offeredArray</p>
-                    <div class="iconss" style="padding-top:2%;">
-                    <i class="fa fa-bath fa-lg" aria-hidden="true"></i>$BathroomArray <i class="fa fa-bed fa-lg" aria-hidden="true" style="margin-left:10px;">$RoomsArray</i>
-                    </div>
-                  <br>$FinishingArray
-                  <p>$CodeArray</p>
-            <div class = "purchase-info">
-            <button type = "button" class = "btn">
-            Add to WishList <i class="fa fa-heart" aria-hidden="true"></i>
-            </button>
-            </div>
-            </div>
-            </div>
-            <br>
-        EOT;
+                    if($VisibleArray==1){
+                        $VisibleArray="on";
+                        $Checked="checked";
+                        
+                    }else{
+                        $VisibleArray="off";
+                        $Checked="";
+                    }
+                    list($UltimateIF,$ultimateIFCondition)=$this->ifCondition($UltimateJoinRoom,$UltimateJoinBathroom,$UltimateJoinFinishing,$RoomsArray,$BathroomArray,$FinishingArray,$UltimateIF,$ultimateIFCondition);
+                   //it was here
+                    if($ultimateIFCondition!="NotEmpty"){  
+                        $output.= $this->card($imgroot,$ImageArray,$PriceArray,$AreaArray,$PaymentArray,$NameArray,$DescriptionArray,$offeredArray,$BathroomArray,$RoomsArray,$FinishingArrayString,$CodeArray,$AddressArray,$VisibleArray,$Checked);
+          }
+        if($ultimateIFCondition=="NotEmpty"){
+            if($UltimateIF){
+        
+            
+            $output.= $this->card($imgroot,$ImageArray,$PriceArray,$AreaArray,$PaymentArray,$NameArray,$DescriptionArray,$offeredArray,$BathroomArray,$RoomsArray,$FinishingArrayString,$CodeArray,$AddressArray,$VisibleArray,$Checked);
+            }
+        }
                 }
             }else{
                 /////////////////////////////////////////////////////////////////////////////////////////////////////
                 $imgroot = IMAGEROOT2;
                 $ImageArray=$input[$counter][10];
-                $PriceArray=$input[$counter][3];
+                $PriceArray=number_format($input[$counter][3]);
+                $AddressArray=$input[$counter][1];
                 $NameArray=$input[$counter][6];
                 $DescriptionArray=$input[$counter][5];
+                $VisibleArray=$input[$counter][7];
                 $CodeArray=$input[$counter][8];
                 $AreaArray=$input[$counter][2];
                 $PaymentArray=$input[$counter][4];
                 if($input[$counter][9]==1){
                     $offeredArray="Selling";
                 }else{
-                    $offeredArray="egaar";
+                    $offeredArray="Rent";
                 }
                 if(!empty($input[$counter][11])){
                     if($input[$counter][11]==4){
@@ -320,6 +407,7 @@ class viewItemModel extends model
                     }
                     else if($input[$counter][11]==2){
                         $FinishingArray=$input[$counter][12];
+                        // echo $FinishingArray;
                     }
                 }
                 if(!empty($input[$counter][13])){
@@ -331,6 +419,7 @@ class viewItemModel extends model
                     }
                     else if($input[$counter][13]==2){
                         $FinishingArray=$input[$counter][14];
+                        // echo $FinishingArray;
                     }
                 }
                 if(!empty($input[$counter][15])){
@@ -342,68 +431,52 @@ class viewItemModel extends model
                     }
                     else if($input[$counter][15]==2){
                         $FinishingArray=$input[$counter][16];
+                        // echo $FinishingArray;
                     }
                 }
                 if($FinishingArray==1){
-                    $FinishingArray="mtshtb";
+                    $FinishingArrayString="mtshtb";
                 }else{
-                    $FinishingArray="Not mtshtb";
+                    $FinishingArrayString="Not mtshtb";
                 }
-                $output.= <<<EOT
-                <div class="containerFilter">
-                <img src="$imgroot$ImageArray" width="280px" height="240px">
-                <div class="title">
-                <div class="switchAll" style = "margin-left:60%; margin-bottom:-5%; margin:top:-5%;">
-                <div class="switch-button">
-                <input class="switch-button-checkbox" type="checkbox"></input>
-                <label class="switch-button-label" for=""><span class="switch-button-label-span">اظهار</span></label>
-              </div>
-                </div>
-                <strong style="font-size:20px;">$PriceArray</strong>
-                <hr style="border-top: 5px solid #8c8b8b;">
-                <strong style="font-size:20px;">$AreaArray</strong>
-                <strong style="font-size:20px;">$PaymentArray</strong>
-                <p>$NameArray</p>
-                <p>$DescriptionArray</p>
-                <p>$offeredArray</p>
-                <div class="iconss" style="padding-top:2%;">
-                <i class="fa fa-bath fa-lg" aria-hidden="true"></i>$BathroomArray <i class="fa fa-bed fa-lg" aria-hidden="true" style="margin-left:10px;">$RoomsArray</i>
-                </div>
-              <br>$FinishingArray
-              <p>$CodeArray</p>
-        <div class = "purchase-info">
-        <button type = "button" class = "btn">
-        Add to WishList <i class="fa fa-heart" aria-hidden="true"></i>
-        </button>
-        </div>
-        </div>
-        </div>
-        <br>
-    EOT;
-                ////////////////////////////////////////////////////////////////////////////////////////////////////
-               
+                if($VisibleArray==1){
+                    $VisibleArray="on";
+                    $Checked="checked";
+                }else{
+                    $VisibleArray="off";
+                    $Checked="";
+                }
+                //Bl3b fe IF 
+                list($UltimateIF,$ultimateIFCondition)=$this->ifCondition($UltimateJoinRoom,$UltimateJoinBathroom,$UltimateJoinFinishing,$RoomsArray,$BathroomArray,$FinishingArray,$UltimateIF,$ultimateIFCondition);
+                //it also was here
+
+                
+                
+                if($ultimateIFCondition!="NotEmpty"){  
+                    $output.= $this->card($imgroot,$ImageArray,$PriceArray,$AreaArray,$PaymentArray,$NameArray,$DescriptionArray,$offeredArray,$BathroomArray,$RoomsArray,$FinishingArrayString,$CodeArray,$AddressArray,$VisibleArray,$Checked);
+                }
+                if($ultimateIFCondition=="NotEmpty"){
+                    if($UltimateIF){
+
+                    $output.= $this->card($imgroot,$ImageArray,$PriceArray,$AreaArray,$PaymentArray,$NameArray,$DescriptionArray,$offeredArray,$BathroomArray,$RoomsArray,$FinishingArrayString,$CodeArray,$AddressArray,$VisibleArray,$Checked);
+                    }
+                }
+            
+                
                 array_push($input,(array("$Item->ID","$Item->AddressUser","$Item->Area","$Item->Price","$Item->PaymentMethod","$Item->DescriptionUser","$Item->Name","$Item->Visible","$Item->Code","$Item->offered","$Item->image","$Item->AtrributeID","$Item->Value")));
-                // array_shift($input);
-                // echo " counter number is ". $counter;
+                unset($input[$counter]);
+              
                 $counter+=1;
-                // echo "<pre>";
-                // print_r($input);
-                // echo "<pre>";
+              
                
             }
           
-           
-           
-
            
           }
          return $output;
      
     }
 
-
-
-    ////////////////////////////////////////////////////////////////////////////////////////////
      public function GetCount()
      {
          $this->dbh->query("SELECT COUNT(*) as TD FROM `rents`");

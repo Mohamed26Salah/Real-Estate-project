@@ -247,8 +247,8 @@ class viewItem extends View
            <div class="cd-select cd-filters">
              <select class="filter" name="Finishing" id="Finishing">
               <option selected value="">أختر</option>
-               <option value="1">1</option>
-               <option value="2">2</option>
+               <option value="1">Mtshstb</option>
+               <option value="2">Not Mtshstb</option>
              </select>
            </div> 
          </div> 
@@ -267,44 +267,10 @@ class viewItem extends View
          </div> 
        </div>  
        
-       <!-- <div class="cd-filter-block">
-         <h4>التشطيب</h4>
-
-         <ul class="cd-filter-content cd-filters list">
-           <li>
-             <input class="filter" data-filter="" type="radio" name="Finishing" id="Finishing" value="1">
-             <label class="radio-label" for="radio1">نعم</label>
-           </li>
-
-           <li>
-             <input class="filter" data-filter=".radio2" type="radio" name="Finishing" id="Finishing" value="2">
-             <label class="radio-label" for="radio2">لا</label>
-           </li>
-
-         </ul> 
-       </div> -->
-       
-       <!-- <div class="cd-filter-block">
-         <h4>طريقة الدفع</h4>
-
-         <ul class="cd-filter-content cd-filters list">
-           <li>
-             <input class="filter" data-filter="" type="radio" name="Payment" id="Payment" value="Cash">
-             <label class="radio-label" for="radio1">كاش</label>
-           </li>
-
-           <li>
-             <input class="filter" data-filter=".radio2" type="radio" name="Payment" id="Payment" value="instalment">
-             <label class="radio-label" for="radio2">تقسيط</label>
-           </li>
-
-         </ul> 
-       </div>  -->
-
-       <!-- <button type="submit" class="btn btn-primary" id="search" style="width:100px; height:40px; font-size:15px; background-color:#6E29A8;">Search</button> -->
+      
          
 
-       <!-- </div>  -->
+    
     </form>
 
      <a href="#0" class="cd-close">Close</a>
@@ -323,8 +289,20 @@ class viewItem extends View
 
     <script>
 
-      
-      var All="";
+        
+        var checkBox="Salah";
+        function salah(){
+          checkBox=document.getElementById('toggle').value
+          // if(checkBox=="on"){
+          //   $('#toggle').val("off");
+          // }
+          // else if(checkBox=="off"){
+          //   $('#toggle').val("on");
+          // }
+          
+          console.log(checkBox);
+        }
+       
       function itemsAjax(){
         if( document.getElementById('pricerange1').value ) {
           pricerange1 = document.getElementById('pricerange1').value;
@@ -383,28 +361,22 @@ class viewItem extends View
         if( document.getElementById('viewItem').value ) {
           Model=document.getElementById('viewItem').value;
         }
-
+      
         offset =<?php echo $offset;?>;
         no_of_records_per_page = <?php echo $no_of_records_per_page ;?>;
 
-        All2=All.slice(0, -1);
-        // alert(All);
-        console.log(All);
-        console.log(All2);
+      
         $.ajax({
           url:"<?php echo $action2;?>",
           method:"POST",
-          // pricerange:pricerange,
           data:{Finishing:Finishing , HighLow:HighLow, Payment:Payment,contarctType:contarctType,area:area,Bathroom:Bathroom,Rooms:Rooms,search:search,Model:Model,offset:offset ,no_of_records_per_page:no_of_records_per_page,pricerange1:pricerange1,pricerange2:pricerange2},
           
           success:function(data)
           {
-            console.log(data);
-            
               container = document.getElementById('cards')
               container.innerHTML=data;
               
-            
+               
           }
         })
         

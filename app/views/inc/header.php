@@ -9,7 +9,7 @@
     <title>AMAN</title>
 
 
-
+<script src="https://kit.fontawesome.com/f97581ad27.js" crossorigin="anonymous"></script>
 <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
