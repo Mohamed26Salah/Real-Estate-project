@@ -14,42 +14,32 @@ class DashBoard extends View
         <body>
             <!-- =============== Navigation ================ -->
             <div class="containerDashBoard">
-                <div class="navigationDashBoard" id="navigationDS">
+                <div class="navigationDashBoard">
                     <ul>
                         <li>
-                            <a>
+                            <a href="#">
                                 <span class="icon">
                                     <ion-icon name="logo-apple"></ion-icon>
+                                </span>
+                                <span class="title">Brand Name</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#">
+                                <span class="icon">
+                                    <ion-icon name="home-outline"></ion-icon>
                                 </span>
                                 <span class="title">Dashboard</span>
                             </a>
                         </li>
+
                         <li>
-                            <a href="javascript:window.top.location.reload(true)">
+                            <a href="#">
                                 <span class="icon">
                                     <ion-icon name="people-outline"></ion-icon>
                                 </span>
-                                <span class="title">Main</span>
-                            </a>
-                        </li>
-
-                        <li>
-
-                            <a onclick=switchMainDashBoard(1);>
-                                <span class="icon">
-                                    <ion-icon name="home-outline"></ion-icon>
-                                </span>
-                                <span class="title">High priority</span>
-                            </a>
-
-                        </li>
-
-                        <li>
-                            <a onclick=switchMainDashBoard(2);>
-                                <span class="icon">
-                                    <ion-icon name="people-outline"></ion-icon>
-                                </span>
-                                <span class="title">About Us Edit</span>
+                                <span class="title">Customers</span>
                             </a>
                         </li>
 
@@ -101,13 +91,22 @@ class DashBoard extends View
                 </div>
 
                 <!-- ========================= Main ==================== -->
-                <div class="mainDashBoard" id="mainDashBoard">
+                <div class="mainDashBoard">
                     <div class="topbarDashBoard">
                         <div class="toggleDashBoard">
                             <ion-icon name="menu-outline"></ion-icon>
                         </div>
 
+                        <!--  <div class="search">
+                    <label>
+                        <input type="text" placeholder="Search here">
+                        <ion-icon name="search-outline"></ion-icon>
+                    </label>
+                </div> -->
 
+                        <!-- <div class="user">
+                    <img src="assets/imgs/customer01.jpg" alt="">
+                </div> -->
                     </div>
 
                     <!-- ======================= Cards ================== -->
@@ -283,9 +282,9 @@ class DashBoard extends View
                             </table>
                         </div>
                     </div>
-                    <?php
-                    require APPROOT . '/views/inc/footer2.php';
-                    ?>
+                    <footer> <?php
+                                require APPROOT . '/views/inc/footer2.php';
+                                ?> </footer>
                 </div>
 
             </div>
@@ -296,102 +295,6 @@ class DashBoard extends View
             <!-- =========== Scripts =========  -->
             <!-- <script src="<?php echo URLROOT; ?>js/DashBoard.js"></script> -->
             <script>
-                function aboutUserConfirm(email, ID) {
-                    name1 = document.getElementById("N" + ID + "V").value;
-                    title1 = document.getElementById("T" + ID + "V").value;
-                    disc1 = document.getElementById("D" + ID + "V").value;
-                    newEmail = document.getElementById("about" + ID).value
-                    if (newEmail == "") {
-                        newEmail = email;
-                    }
-                    $.ajax({
-                        url: "<?php echo $action3; ?>",
-                        method: "POST",
-                        // pricerange:pricerange,
-                        //  Finishing:Finishing , HighLow:HighLow, Payment:Payment,contarctType:contarctType,area:area,Bathroom:Bathroom,Rooms:Rooms,search:search,Mode:Model,
-                        data: {
-                            ConfirmAbout: 1,
-                            email: email,
-                            newEmail: newEmail,
-                            ID: ID,
-                            name1: name1,
-                            title1: title1,
-                            disc1: disc1
-
-                        },
-
-                        success: function(data) {
-
-
-
-                            User = document.getElementById(ID);
-                            User.innerHTML = data;
-
-                        }
-                    })
-
-                }
-
-                function aboutUserEdit(ID, image, name, title, disc, email) {
-                    User = document.getElementById(ID);
-                    console.log(User);
-                    User.innerHTML = ` 
-            <div class="card-about">
-                 <img src=` + image + `>
-                 <div class="container-about">
-                   <h2><input type="text" id='N` + ID + `V' value="` + name + `"></h2>
-                   <p class="title-about"><input type="text" id='T` + ID + `V' value="` + title + `"></p>
-                   <p><input type="textArea" id='D` + ID + `V' value="` + disc + `"></p>
-                   <p>` + email + `</p>
-                   <select id="about` + ID + `" name="about">
-                    </select>
-                   <p><button class="button-about" onclick ="aboutUserConfirm('` + email + `',` + ID + `);" >Confirm</button></p>
-                 </div>
-               </div>`;
-                    $.ajax({
-                        url: "<?php echo $action3; ?>",
-                        method: "POST",
-
-                        data: {
-                            EditAbout: 1
-                        },
-
-                        success: function(data) {
-
-
-                            listuser = document.getElementById("about" + ID);
-
-                            listuser.innerHTML = data;
-
-                        }
-                    })
-
-                }
-
-
-                function switchMainDashBoard(page) {
-                    $.ajax({
-                        url: "<?php echo $action3; ?>",
-                        method: "POST",
-                        // pricerange:pricerange,
-                        //  Finishing:Finishing , HighLow:HighLow, Payment:Payment,contarctType:contarctType,area:area,Bathroom:Bathroom,Rooms:Rooms,search:search,Mode:Model,
-                        data: {
-                            page: page
-                        },
-
-                        success: function(data) {
-
-
-                            customer = document.getElementById('mainDashBoard');
-                            customer.style.padding = "10px";
-                            customer.innerHTML = data;
-
-                        }
-                    })
-
-
-                }
-
                 function Delete(ID, valuee) {
                     $.ajax({
                         url: "<?php echo $action3; ?>",
@@ -470,7 +373,6 @@ class DashBoard extends View
                     main.classList.toggle("active");
                 };
             </script>
-
         </body>
 
 
