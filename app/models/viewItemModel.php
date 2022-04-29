@@ -134,8 +134,8 @@ class viewItemModel extends model
             <button onclick="salah($VisibleArray)" class="buttonClick" value="yasser" id="buttonClick$VisibleArray" ><span>Click Me</span></button>
            
             <div class="wrapper">
-                        <input onclick="salah($VisibleArray)" type="radio" name="select" id="option$VisibleArray" value="1111" checked>
-                        <input onclick="salah($VisibleArray)" type="radio" name="select" id="option2$VisibleArray" value="2222">
+                        <input onclick="salah($VisibleArray)" type="radio" name="select" id="option-1" value="1" checked>
+                        <input onclick="salah($VisibleArray)" type="radio" name="select" id="option-2"  value="2">
                         <label for="option-1" class="option option-1">
                         <div class="dot"></div>
                         <span>Show</span>
@@ -420,6 +420,7 @@ class viewItemModel extends model
                 $CodeArray=$input[$counter][8];
                 $AreaArray=$input[$counter][2];
                 $PaymentArray=$input[$counter][4];
+                $FinishingArray="";
                 if($input[$counter][9]==1){
                     $offeredArray="Selling";
                 }else{

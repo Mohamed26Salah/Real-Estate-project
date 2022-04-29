@@ -59,7 +59,15 @@ public function viewItem()
         $DashBoard = new DashBoardModel();
         if (isset($_POST['DEL'])) {
             echo($DashBoard->DeleteUser($_POST['ID']));
-        }else{
+        }else if(isset($_POST['EditAbout'])){
+            echo($DashBoard->Listusers());
+        }else if(isset($_POST['ConfirmAbout'])){
+            echo($DashBoard->ConfirmUser($_POST['email'],$_POST['newEmail'],$_POST['ID'],$_POST['name1'],$_POST['title1'],$_POST['disc1']));
+        }
+        else if(isset($_POST['page'])){
+            echo($DashBoard->switchMainDashBoard($_POST['page']));
+        }
+        else{
             echo($DashBoard->EditConfirm($_POST['ConfirmID'],$_POST['Rank'],$_POST['valuee']));
 
         }
@@ -79,7 +87,7 @@ public function viewItem()
             
             if($_POST['area']!="Salah"){
                 $ViewItem->setArea($_POST['area']);
-            //   echo $_POST['area'];
+              echo $_POST['area'];
             }
             if($_POST['pricerange1']!="Salah"){
                 $ViewItem->setprice1($_POST['pricerange1']);
@@ -104,7 +112,7 @@ public function viewItem()
             }
             if($_POST['HighLow']!="Salah"){
                 $ViewItem->setHighLow($_POST['HighLow']);
-                // echo $_POST['HighLow'];
+                echo $_POST['HighLow'];
             }
             if($_POST['search']!="Salah"){
                 $ViewItem->setSearch($_POST['search']);

@@ -303,10 +303,6 @@ class viewItem extends View
     <script>
 
         
-        
-      
-        // var checkBox="Salah";
-
         function salah(VisibleArray){
         const button = document.getElementById("option-1");
         const button2 = document.getElementById("option-2");
@@ -316,6 +312,18 @@ class viewItem extends View
         console.log( document.getElementById("option-2").value); 
       
         }
+      
+        // var checkBox="Salah";
+
+        // function salah(VisibleArray){
+        // const button = document.getElementById("option-1");
+        // const button2 = document.getElementById("option-2");
+        // console.log( button); 
+        // console.log( VisibleArray); 
+        // console.log( document.getElementById("option-1").value); 
+        // console.log( document.getElementById("option-2").value); 
+      
+        // }
        
       function itemsAjax(){
         if( document.getElementById('pricerange1').value ) {
