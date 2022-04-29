@@ -59,7 +59,15 @@ public function viewItem()
         $DashBoard = new DashBoardModel();
         if (isset($_POST['DEL'])) {
             echo($DashBoard->DeleteUser($_POST['ID']));
-        }else{
+        }else if(isset($_POST['EditAbout'])){
+            echo($DashBoard->Listusers());
+        }else if(isset($_POST['ConfirmAbout'])){
+            echo($DashBoard->ConfirmUser($_POST['email'],$_POST['newEmail'],$_POST['ID'],$_POST['name1'],$_POST['title1'],$_POST['disc1']));
+        }
+        else if(isset($_POST['page'])){
+            echo($DashBoard->switchMainDashBoard($_POST['page']));
+        }
+        else{
             echo($DashBoard->EditConfirm($_POST['ConfirmID'],$_POST['Rank'],$_POST['valuee']));
 
         }

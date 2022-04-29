@@ -1,6 +1,7 @@
 if (window.location.href.search("DashBoard") != -1) {
 
   $(document).ready(function () {
+    document.getElementById("navigationDS").style.height = (window.outerHeight) + "px";
 
   });
 
@@ -44,10 +45,9 @@ if (window.location.href.search("DashBoard") != -1) {
                               <td>`+ name + `</td>
                               <td>0111454768</td>
                               <td>`+ Rank + `</td>
-                              <td><a  class="btn" onclick="Editing(`+ valuee + ` , ` + name + `  , ` + ID + `,` + Rank + ` );" style="background-color: #4b99ec; color: white; font-size:15px;">Edit</a></td>
+                              <td><a  class="btn" onclick="Editing(`+ valuee + ` , '` + name + `'  , ` + ID + `,'` + Rank + `' );" style="background-color: #4b99ec; color: white; font-size:15px;">Edit</a></td>
                           
                           `;
   }
-
 
 }

@@ -393,6 +393,7 @@ class viewItemModel extends model
                 $CodeArray=$input[$counter][8];
                 $AreaArray=$input[$counter][2];
                 $PaymentArray=$input[$counter][4];
+                $FinishingArray="";
                 if($input[$counter][9]==1){
                     $offeredArray="Selling";
                 }else{
