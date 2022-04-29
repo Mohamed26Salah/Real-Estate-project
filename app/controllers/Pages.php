@@ -87,7 +87,7 @@ public function viewItem()
             
             if($_POST['area']!="Salah"){
                 $ViewItem->setArea($_POST['area']);
-              echo $_POST['area'];
+            //   echo $_POST['area'];
             }
             if($_POST['pricerange1']!="Salah"){
                 $ViewItem->setprice1($_POST['pricerange1']);
@@ -112,10 +112,13 @@ public function viewItem()
             }
             if($_POST['HighLow']!="Salah"){
                 $ViewItem->setHighLow($_POST['HighLow']);
-                echo $_POST['HighLow'];
+                // echo $_POST['HighLow'];
             }
             if($_POST['search']!="Salah"){
                 $ViewItem->setSearch($_POST['search']);
+            }
+            if($_POST['Show']!="Salah"){
+                $ViewItem->setShow($_POST['Show']);
             }
           
            
