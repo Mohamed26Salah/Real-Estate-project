@@ -13,6 +13,7 @@ class viewItemModel extends model
     protected $HighLow;
     protected $Search;
     protected $checkBox;
+    protected $Show;
     public function getArea()
     {
         return $this->area;
@@ -111,6 +112,15 @@ class viewItemModel extends model
     {
         $this->checkBox = $checkBox;
     }
+    public function getShow()
+    {
+        return $this->Show;
+    }
+  
+    public function setShow($Show)
+    {
+        $this->Show = $Show;
+    }
     
     function card($imgroot,$ImageArray,$PriceArray,$AreaArray,$PaymentArray,$NameArray,$DescriptionArray,$offeredArray,$BathroomArray,$RoomsArray,$FinishingArrayString,$CodeArray,$AddressArray,$VisibleArray,$Checked){
         $output2='';
@@ -118,12 +128,23 @@ class viewItemModel extends model
             <div class="containerFilter">
             <img src="$imgroot$ImageArray" width="350px" height="240px">
             <div class="title">
-            <div class="switchAll" style = "margin-left:80%; margin-bottom:-5%; margin:top:-5%;">
-            <form class="form2">
-            echo $VisibleArray
-            <input onchange = 'salah()' class="toggle" name="autoDiscovery" type="checkbox" id="toggle" $Checked  value="$VisibleArray" />
+            <div class="switchAll" style = "margin-left:60%; margin-bottom:-11%; margin:top:-5%;">
             
-            </form>
+            echo $VisibleArray
+            <button onclick="salah($VisibleArray)" class="buttonClick" value="yasser" id="buttonClick$VisibleArray" ><span>Click Me</span></button>
+           
+            <div class="wrapper">
+                        <input onclick="salah($VisibleArray)" type="radio" name="select" id="option-1" value="1" checked>
+                        <input onclick="salah($VisibleArray)" type="radio" name="select" id="option-2"  value="2">
+                        <label for="option-1" class="option option-1">
+                        <div class="dot"></div>
+                        <span>Show</span>
+                        </label>
+                        <label for="option-2" class="option option-2">
+                        <div class="dot"></div>
+                        <span>Hide</span>
+                        </label>
+                    </div>
             </div>
             <strong style="font-size:20px; ">$PriceArray EGP</strong>
             <h2 style="font-family: Open Sans, sans-serif; color: #403b45; font-size:14px; margin-top: 1.5%; ">$NameArray</h2>
@@ -255,6 +276,12 @@ class viewItemModel extends model
             }
             
         }
+        if(!empty($this->Show)){
+            $AllSort.="Visible = ".$this->Show;
+            $AllSort.=" AND ";
+        }else{
+            
+        }
       
         if(!empty($this->Search)){
             $Search=" AND (allestate.AddressUser LIKE '%".$this->Search."%'
@@ -310,7 +337,7 @@ class viewItemModel extends model
                     $AddressArray=$input[$counter][1];
                     $NameArray=$input[$counter][6];
                     $DescriptionArray=$input[$counter][5];
-                    $VisibleArray=$input[$counter][7];
+                    $VisibleArray=$input[$counter][0];
                     $CodeArray=$input[$counter][8];
                     $AreaArray=$input[$counter][2];
                     $PaymentArray=$input[$counter][4];
@@ -360,14 +387,14 @@ class viewItemModel extends model
                     }else{
                         $FinishingArrayString="Not mtshtb";
                     }
-                    if($VisibleArray==1){
-                        $VisibleArray="on";
-                        $Checked="checked";
+                    // if($VisibleArray==1){
+                    //     $VisibleArray="on";
+                    //     $Checked="checked";
                         
-                    }else{
-                        $VisibleArray="off";
-                        $Checked="";
-                    }
+                    // }else{
+                    //     $VisibleArray="off";
+                    //     $Checked="";
+                    // }
                     list($UltimateIF,$ultimateIFCondition)=$this->ifCondition($UltimateJoinRoom,$UltimateJoinBathroom,$UltimateJoinFinishing,$RoomsArray,$BathroomArray,$FinishingArray,$UltimateIF,$ultimateIFCondition);
                    //it was here
                     if($ultimateIFCondition!="NotEmpty"){  
@@ -389,7 +416,7 @@ class viewItemModel extends model
                 $AddressArray=$input[$counter][1];
                 $NameArray=$input[$counter][6];
                 $DescriptionArray=$input[$counter][5];
-                $VisibleArray=$input[$counter][7];
+                $VisibleArray=$input[$counter][0];
                 $CodeArray=$input[$counter][8];
                 $AreaArray=$input[$counter][2];
                 $PaymentArray=$input[$counter][4];
@@ -440,13 +467,13 @@ class viewItemModel extends model
                 }else{
                     $FinishingArrayString="Not mtshtb";
                 }
-                if($VisibleArray==1){
-                    $VisibleArray="on";
-                    $Checked="checked";
-                }else{
-                    $VisibleArray="off";
-                    $Checked="";
-                }
+                // if($VisibleArray==1){
+                //     $VisibleArray="on";
+                //     $Checked="checked";
+                // }else{
+                //     $VisibleArray="off";
+                //     $Checked="";
+                // }
                 //Bl3b fe IF 
                 list($UltimateIF,$ultimateIFCondition)=$this->ifCondition($UltimateJoinRoom,$UltimateJoinBathroom,$UltimateJoinFinishing,$RoomsArray,$BathroomArray,$FinishingArray,$UltimateIF,$ultimateIFCondition);
                 //it also was here

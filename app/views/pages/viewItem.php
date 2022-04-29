@@ -266,6 +266,19 @@ class viewItem extends View
            </div> 
          </div> 
        </div>  
+       <div class="cd-filter-block">
+         <h4> العقارات الظاهرة</h4>
+         
+         <div class="cd-filter-content">
+           <div class="cd-select cd-filters">
+             <select class="filter" name="Show" id="Show">
+              <option selected value="">أختر</option>
+               <option value="1">الظاهر</option>
+               <option value="2">الخفي</option>
+             </select>
+           </div> 
+         </div> 
+       </div>  
        
       
          
@@ -290,18 +303,27 @@ class viewItem extends View
     <script>
 
         
-        var checkBox="Salah";
-        function salah(){
-          checkBox=document.getElementById('toggle').value
-          // if(checkBox=="on"){
-          //   $('#toggle').val("off");
-          // }
-          // else if(checkBox=="off"){
-          //   $('#toggle').val("on");
-          // }
-          
-          console.log(checkBox);
+        function salah(VisibleArray){
+        const button = document.getElementById("option-1");
+        const button2 = document.getElementById("option-2");
+        console.log( button); 
+        console.log( VisibleArray); 
+        console.log( document.getElementById("option-1").value); 
+        console.log( document.getElementById("option-2").value); 
+      
         }
+      
+        // var checkBox="Salah";
+
+        // function salah(VisibleArray){
+        // const button = document.getElementById("option-1");
+        // const button2 = document.getElementById("option-2");
+        // console.log( button); 
+        // console.log( VisibleArray); 
+        // console.log( document.getElementById("option-1").value); 
+        // console.log( document.getElementById("option-2").value); 
+      
+        // }
        
       function itemsAjax(){
         if( document.getElementById('pricerange1').value ) {
@@ -357,6 +379,12 @@ class viewItem extends View
         }else{
           search = "Salah";
         }  
+        if( document.getElementById('Show').value ) {
+          Show = document.getElementById('Show').value;
+         
+        }else{
+          Show = "Salah";
+        }  
         
         if( document.getElementById('viewItem').value ) {
           Model=document.getElementById('viewItem').value;
@@ -369,7 +397,7 @@ class viewItem extends View
         $.ajax({
           url:"<?php echo $action2;?>",
           method:"POST",
-          data:{Finishing:Finishing , HighLow:HighLow, Payment:Payment,contarctType:contarctType,area:area,Bathroom:Bathroom,Rooms:Rooms,search:search,Model:Model,offset:offset ,no_of_records_per_page:no_of_records_per_page,pricerange1:pricerange1,pricerange2:pricerange2},
+          data:{Finishing:Finishing , HighLow:HighLow, Payment:Payment,contarctType:contarctType,area:area,Bathroom:Bathroom,Rooms:Rooms,search:search,Model:Model,offset:offset ,no_of_records_per_page:no_of_records_per_page,pricerange1:pricerange1,pricerange2:pricerange2,Show:Show},
           
           success:function(data)
           {

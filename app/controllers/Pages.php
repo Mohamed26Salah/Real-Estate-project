@@ -117,6 +117,9 @@ public function viewItem()
             if($_POST['search']!="Salah"){
                 $ViewItem->setSearch($_POST['search']);
             }
+            if($_POST['Show']!="Salah"){
+                $ViewItem->setShow($_POST['Show']);
+            }
           
            
              echo($ViewItem->Sort($_POST['offset'],$_POST['no_of_records_per_page']));
