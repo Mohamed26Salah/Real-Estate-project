@@ -1,3 +1,4 @@
+if( window.location.href.search("viewItem")!=-1){
 var rangeInput = document.querySelectorAll(".range-input input");
 
 var priceInput = document.querySelectorAll(".price-input input");
@@ -40,3 +41,4 @@ rangeInput.forEach(input =>{
         }
     });
 });
+}
