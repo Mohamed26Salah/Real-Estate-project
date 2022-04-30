@@ -3,7 +3,86 @@ class Users extends Controller
 {
     public function register()
     {
-        $registerModel = $this->getModel();
+         $registerModel = $this->getModel();
+
+
+        $clientID = '456173517303-1quvd4kcrdb4mnc4okv1tsujdnsqaqbk.apps.googleusercontent.com';
+        $clientSecret = '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';
+
+        $redirectUrl = 'http://localhost/mvc/public/users/Register';
+
+        // Creating client request to google
+        $client = new Google_Client();
+
+        $client->setClientId($clientID);
+        $client->setClientSecret($clientSecret);
+        $client->setRedirectUri($redirectUrl);
+
+        $client->addScope('profile');
+        $client->addScope('email');
+        $client->addScope('picture');
+
+        if(isset($_GET['code'])) {
+            $token= $client->fetchAccessTokenWithAuthCode($_GET['code']);
+            $client->setAccessToken($token);
+
+
+            $gauth = new Google_Service_Oauth2($client);
+            $google_info = $gauth->userinfo->get();
+            $email = $google_info->email;
+            $name = $google_info->name;
+
+            // $$google_info['picture']
+
+            
+            $registerModel->setEmail($email);
+            $registerModel->setName($name);
+            // $registerModel->setImage($google_info['picture']);
+
+            
+            // $sora = '<img src="'.$_SESSION['image'].'">';
+            // echo $sora;
+            if($registerModel->emailExist($email)) {
+                $loggedGoogleUser = $registerModel->loginWithGoogle();
+                    if ($loggedGoogleUser) {
+                        //create related session variables
+                        $this->createUserSession($loggedGoogleUser);
+                        $_SESSION['image'] = $google_info['picture'];
+                        die('Success log in User');
+                    }
+            }
+            if ($registerModel->signupGoogle() && !$registerModel->emailExist($email)) {
+                //header('location: ' . URLROOT . 'users/login');
+                flash('register_success', 'You have registered successfully');
+                
+                    
+                    //create related session variables
+                    // $_SESSION['user_id'] = $user->ID;
+
+                    $loggedGoogleUser = $registerModel->loginWithGoogle();
+                    if ($loggedGoogleUser) {
+                        //create related session variables
+                        $this->createUserSession($loggedGoogleUser);
+                        $_SESSION['image'] = $google_info['picture'];
+                        die('Success log in User');
+                    }
+                // $_SESSION['user_name'] = $name;
+                // $_SESSION['email'] = $email;
+                // die('Success log in User');
+                
+                // redirect('index');
+             } 
+             else {
+                $loggedGoogleUser = $registerModel->loginWithGoogle();
+                    if ($loggedGoogleUser) {
+                        //create related session variables
+                        $this->createUserSession($loggedGoogleUser);
+                        $_SESSION['image'] = $google_info['picture'];
+                        die('Success log in User');
+                    }
+            }
+        }
+
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             // Process form
             $registerModel->setName(trim($_POST['name']));
@@ -106,6 +185,7 @@ class Users extends Controller
         $_SESSION['user_name'] = $user->name;
         $_SESSION['email'] = $user->email;
         $_SESSION['Rank'] = $user->Rank;
+        $_SESSION['image'] = $user->image;
 
         //header('location: ' . URLROOT . 'pages');
         redirect('index');

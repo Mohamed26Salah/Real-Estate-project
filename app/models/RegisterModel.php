@@ -69,6 +69,32 @@ class RegisterModel extends UserModel
         $this->dbh->bind(':Ranke', $User);
         return $this->dbh->execute();
     }
+
+    public function signupGoogle() {
+        
+        $this->dbh->query("INSERT INTO user (`name`, `email`, `Rank`) VALUES(:uname, :email,:Ranke)");
+        $ValidatedName=filter_var($this->name, FILTER_SANITIZE_STRING);
+        $this->dbh->bind(':uname', $ValidatedName);
+        $ValidatedEmail=filter_var($this->email, FILTER_SANITIZE_EMAIL); 
+        $this->dbh->bind(':email', $ValidatedEmail);
+        $User="User";
+        $this->dbh->bind(':Ranke', $User);
+        return $this->dbh->execute();
+    }
+
+    public function loginWithGoogle() {
+
+        $this->dbh->query('SELECT * from user WHERE email = :email');
+        $ValidatedEmail=filter_var($this->email, FILTER_SANITIZE_EMAIL); 
+        $this->dbh->bind(':email', $ValidatedEmail);
+
+        $record = $this->dbh->single();
+
+        
+        
+        return $record;  
+
+    }
 }
 
 

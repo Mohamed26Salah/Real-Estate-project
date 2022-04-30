@@ -158,35 +158,50 @@ public function viewDescription()
                 if(!empty($_POST['email'])){ $ProfileModel->setEmail(trim($_POST['email']));}
                 if(!empty($_POST['currentPassword'])){ $ProfileModel->setCurrentPassword(trim($_POST['currentPassword']));}
                 if(!empty($_POST['newPassword'])){  $ProfileModel->setNewPassword(trim($_POST['newPassword']));}
-                if(!empty($_POST['name'])){ $ProfileModel->setConfirmPassword(trim($_POST['confirmPassword']));}
+                if(!empty($_POST['confirmPassword'])){ $ProfileModel->setConfirmPassword(trim($_POST['confirmPassword']));}
                 
 
                
-                $ProfileModel->EditPassword();
+                // $ProfileModel->EditPassword();
                 //validation
                 if (empty($ProfileModel->getName())) {
                     $ProfileModel->setNameErr('Please enter a name');
                 }
+                else if($ProfileModel->getName() == $_SESSION['user_name']) {
+                    $ProfileModel->setNameErr('');
+                }
                 if (empty($ProfileModel->getEmail())) {
                     $ProfileModel->setEmailErr('Please enter an email');
-                } elseif ($ProfileModel->emailExist($_POST['email'])) {
-                    $ProfileModel->setEmailErr('Email is already registered');
+                } elseif ($ProfileModel->getEmail() == $_SESSION['email']) {
+                    $ProfileModel->setEmailErr('');
                 }
+
+                if(!$ProfileModel->checkCurrentPassword()) {
+                    $ProfileModel->setCurrentPasswordErr('Please Enter a valid password');
+                    echo"<script>console.log('invalid')</script>";
+                }
+                
                 //////////////////////////////////////////////////////////////////////////////////////
                 if (empty($ProfileModel->getNewPassword())) {
                     $ProfileModel->setNewPasswordErr('Please enter a password');
-                } elseif (strlen($ProfileModel->getNewPassword()) < 4) {
-                    $ProfileModel->setNewPasswordErr('Password must contain at least 4 characters');
+                } elseif (strlen($ProfileModel->getNewPassword()) < 5) {
+                    $ProfileModel->setNewPasswordErr('Password must contain at least 5 characters');
                 }
     
                 if ($ProfileModel->getNewPassword() != $ProfileModel->getConfirmPassword()) {
                     $ProfileModel->setConfirmPasswordErr('Passwords do not match');
                 }
-                if(empty($ProfileModel->getNewPasswordErr()) && empty($ProfileModel->getConfirmPasswordErr())){
-                    echo"<script>alert('yasser gwa if kbeeraaa')</script>";
-                    $ProfileModel->EditPassword();
+                if(empty($ProfileModel->getNewPasswordErr()) && empty($ProfileModel->getConfirmPasswordErr()) && empty($ProfileModel->getCurrentPasswordErr())){
+                    
+                    
+                    if($ProfileModel->EditPassword()) {
+                       
+                        echo "alert('You have Updated your Profile successfully')";
+                        redirect('users/Profile');
+                    }
+                    flash('register_success', 'You have Updated your Profile successfully');
                         // flash('register_success', 'You have Updated your password successfully');
-                        // redirect('users/Profile');
+                         
                 }
                 
                 //////////////////////////////////////////////////////////////////////////////////////
@@ -194,10 +209,14 @@ public function viewDescription()
                     //Hash Password
     
                     if ($ProfileModel->EditProfile()) {
+                        $ProfileModel->setCurrentPasswordErr('');
+                        $ProfileModel->setNewPasswordErr('');
+                        $ProfileModel->setConfirmPasswordErr('');
                         //header('location: ' . URLROOT . 'users/login');
                         flash('register_success', 'You have Updated your Profile successfully');
+                        echo"<script>console.log('editprofile')</script>";
                         $this->updateUserSession($ProfileModel);
-                        redirect('pages/Profile');
+                        // redirect('pages/Profile');
                     } else {
                         die('Error in Editing the profile');
                     }
@@ -217,6 +236,53 @@ public function viewDescription()
         $_SESSION['user_name'] = $user->getName();
         $_SESSION['email'] = $user->getEmail();
        //header('location: ' . URLROOT . 'pages');
+    }
+
+    public function ImageAjax() {
+        if(!empty($_FILES['fileToUpload']['name'])){
+            $errors= array();
+            $file_name = $_FILES['fileToUpload']['name'];
+            $file_size = $_FILES['fileToUpload']['size'];
+            $file_tmp = $_FILES['fileToUpload']['tmp_name'];
+            $file_type = $_FILES['fileToUpload']['type'];
+            $file_ext = pathinfo($file_name, PATHINFO_EXTENSION);
+            
+            $expensions= array("jpeg","jpg","png");
+            
+            if(in_array($file_ext,$expensions)===false){
+              ?>
+                <div class="text-center fixed-top" style="margin-top:30px;">  
+                      <button class="btn btn-danger" id="Db" style="width:50%"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> extension not allowed,please choose a JPEG or PNG file </button>
+                    </div>
+                    <?php
+                    $errors[]="extension not allowed, please choose a JPEG or PNG file.";
+            }
+            
+            if($file_size >4194304) {
+              ?>
+              <div class="text-center fixed-top" style="margin-top:30px;">  
+                      <button class="btn btn-info" id="Db" style="width:50%"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> File size must be excately 2 MB or less</button>
+                    </div>
+                    <?php
+               $errors[]='File size must be excately 4 MB';
+            }
+            
+            if(empty($errors)==true){
+                    $target_dir = IMAGEROOT;
+                    echo $target_dir;
+                    $target_file = $target_dir.basename($_FILES['fileToUpload']['name']);
+                    $tmp_name = $_FILES['fileToUpload']['tmp_name'];
+                    $name = basename($_FILES['fileToUpload']['name']);
+                     move_uploaded_file($tmp_name, "$target_dir$name");
+
+                    // $uploadfile = $_SERVER['DOCUMENT_ROOT'] . "$target_dir$name";
+      
+                  }
+              } 
+        require_once APPROOT . "/models/ProfileModel.php";
+        $profileModel = new ProfileModel();
+
+        echo($profileModel->insertImage($name , $target_dir));
     }
   
 }

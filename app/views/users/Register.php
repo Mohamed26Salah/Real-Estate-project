@@ -16,6 +16,24 @@ class Register extends view
     $action = URLROOT . 'users/register';
     $loginUrl = URLROOT . 'users/login';
 
+
+    $clientID = '456173517303-1quvd4kcrdb4mnc4okv1tsujdnsqaqbk.apps.googleusercontent.com';
+    $clientSecret = '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';
+
+    $redirectUrl = 'http://localhost/mvc/public/users/Register';
+
+    $client = new Google_Client();
+
+    $client->setClientId($clientID);
+    $client->setClientSecret($clientSecret);
+    $client->setRedirectUri($redirectUrl);
+
+    $client->addScope('profile');
+    $client->addScope('email');
+
+    $url = $client->createAuthUrl();
+
+
     $text = <<<EOT
     <body style="background-color:#003356;">
     <div class="registration-form">
@@ -38,6 +56,7 @@ EOT;
         </div>
         <div class="col">
           <a href="$loginUrl" class="btn btn-block create-account">Current user, login here</a>
+          <a href="$url" class="btn btn-block create-account">Login with google</a>
         </div>
       </div>
       </div>

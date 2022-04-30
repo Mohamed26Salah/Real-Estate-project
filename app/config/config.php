@@ -19,4 +19,5 @@ define('VIEWS_PATH', '../app/views/');
 //Imagese
 define('IMAGEROOT','../app/views/images/');
 define('IMAGEROOT2','http://localhost/mvc/public/images/');
+define('IMAGEROOT3','http://localhost/mvc/app/views/images/');
 

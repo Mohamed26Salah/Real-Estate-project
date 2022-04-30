@@ -175,4 +175,39 @@ class ProfileModel extends model
             return false;
         }
      }
+
+     public function checkCurrentPassword() {
+        $this->dbh->query('SELECT * from user WHERE email = :email');
+        $this->dbh->bind(':email', $_SESSION['email']);
+        echo"<script>console.log('da5l el edit password')</script>";
+
+        $record = $this->dbh->single();
+        $hash_pass = $record->password;
+
+        if (password_verify($this->currentPassword, $hash_pass)) {
+
+            return true;
+        }
+        else {
+            return false;
+        }
+     }
+
+     public function insertImage($image , $target_dir) {
+        $this->dbh->query('UPDATE `user` SET `image`="'.$image.'"  WHERE ID=:id ');
+        $this->dbh->bind(':id', $_SESSION['user_id']);
+
+        $this->dbh->execute();
+
+        $target = "$target_dir$image";
+        return '<img class="img-account-profile rounded-circle mb-2" src = "'.IMAGEROOT3.$image.'">';
+     }
+
+     public function getImage() {
+        $this->dbh->query('SELECT * FROM `user` WHERE ID=:id ');
+        $this->dbh->bind(':id', $_SESSION['user_id']);
+        $image = $this->dbh->single();
+    
+        return $image;
+     }
 }
