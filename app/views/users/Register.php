@@ -6,7 +6,9 @@ class Register extends view
     $title = $this->model->title;
 
     require APPROOT . '/views/inc/header.php';
-
+    ?>
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>css/LoginRegister.css">
+    <?php
     $this->printForm();
     require APPROOT . '/views/inc/footer2.php';
   }
@@ -35,6 +37,7 @@ class Register extends view
 
 
     $text = <<<EOT
+    
     <body style="background-color:#003356;">
     <div class="registration-form">
     <form action="$action" method="post">

@@ -8,6 +8,10 @@ class Index extends View
  
 
     require APPROOT . '/views/inc/header.php';
+    ?>
+  <link rel="stylesheet" href="<?php echo URLROOT; ?>css/style.css">
+    <?php
+    
       //  echo $_SESSION['user_id'];
       //  echo $_SESSION['user_name'];
       //  echo $_SESSION['email'];

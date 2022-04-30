@@ -1,5 +1,8 @@
 if (window.location.href.search("Profile") != -1) {
     $(document).ready(function (e) {
+
+        let input = document.getElementById("inputTag");
+        let imageName = document.getElementById("imageName")
         $('#imageUploadForm').on('submit',(function(e) {
             e.preventDefault();
             var formData = new FormData(this);
@@ -24,7 +27,19 @@ if (window.location.href.search("Profile") != -1) {
         }));
     
         $("#fileToUpload").on("change", function() {
-            $("#imageUploadForm").submit();
+
+            let inputImage = document.querySelector("input[type=file]").files[0];
+            if(inputImage==null) {
+                
+            }
+            else {
+                $("#imageUploadForm").submit();
+                imageName.innerText = inputImage.name;
+            }
+            
+            
+
+           
         });
     });
 

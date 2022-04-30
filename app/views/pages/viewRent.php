@@ -15,8 +15,8 @@ class viewRent extends View
 ?>
 
 
-
-
+<link rel="stylesheet" href="<?php echo URLROOT; ?>css/ViewRent.css">
+<link rel="stylesheet" href="<?php echo URLROOT; ?>css/Sidebar.css">
     <body style = "background-color : #003356;">
 
 

@@ -9,7 +9,9 @@ class viewDescription extends View
     require APPROOT . '/views/inc/header.php';
    
 ?>
+
 <html>
+<link rel="stylesheet" href="<?php echo URLROOT; ?>css/viewDescription.css">
   <body style = " background-color: #003356; background-attachment: fixed;">
     
     <div class = "cardd-wrapper">

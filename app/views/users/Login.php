@@ -7,6 +7,9 @@ class Login extends view
 
     require APPROOT . '/views/inc/header.php';
     flash('register_success');
+    ?>
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>css/LoginRegister.css">
+    <?php
    
     $this->printForm();
     require APPROOT . '/views/inc/footer2.php';
@@ -18,7 +21,7 @@ class Login extends view
     $registerUrl = URLROOT . 'users/register';
     
     $text = <<<EOT
-    
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>css/LoginRegister.css">
     <body style="background-color:#003356;">
     <div class="registration-form">
     <form action="$action" method="post">

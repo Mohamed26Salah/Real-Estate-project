@@ -3,8 +3,12 @@ class Profile extends View
 {
   public function output()
   {
+    
     require APPROOT . '/views/inc/header.php';
     
+    ?>
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>css/Profile.css">
+<?php
     $action = URLROOT . 'pages/Profile';
 
     $actionImage = 'ImageAjax';
@@ -20,11 +24,15 @@ class Profile extends View
 
     $action = URLROOT . 'pages/Profile';
    
-    $imageRoot = IMAGEROOT3;
+    
     $image = $this->model->getImage();
-  
-
-    $img_Session_googleUser = $_SESSION['image'];
+    
+    if(substr($image->image,0,4) == 'http') {
+        $imageRoot = '';
+    }
+    else {
+        $imageRoot = IMAGEROOT3;
+    }
     $text = <<<EOT
     <head>
 
@@ -47,16 +55,23 @@ class Profile extends View
                 <div class="card-body text-center" style="background-color:#C9E0FF ;">
                     <!-- Profile picture image-->
                     <div id="imageContainer">
-                     <img class="img-account-profile rounded-circle mb-2" src=" $imageRoot$image->image" alt="">
-                    </div>
-                    <div id="imageContainer">
-                     <img class="img-account-profile rounded-circle mb-2" src=" $img_Session_googleUser" alt="">
+                    
+                     <img class="img-account-profile rounded-circle mb-2" src="$imageRoot$image->image" alt="">
                     </div>
                     <!-- Profile picture help block-->
                     <div class="small font-italic text-muted mb-4">JPG or PNG no larger than 4 MB</div>
                     <!-- Profile picture upload button-->
                     <form name="imageUploadForm" method="post" enctype="multipart/form-data" id = "imageUploadForm">
-                    <span class="btn btn-primary text-white" > Upload new image <input  type="file" name="fileToUpload" id="fileToUpload"></span>
+                    <div class="imageUpload">
+                    
+                        <label for="fileToUpload">
+                            Select Image <br/>
+                            <i class="fa fa-2x fa-camera"></i>
+                            <input type="file" name="fileToUpload" id="fileToUpload"/>
+                            <br/>
+                            <span id="imageName"></span>
+                        </label>
+                    </div>
                     </form>
                 </div>
             </div>

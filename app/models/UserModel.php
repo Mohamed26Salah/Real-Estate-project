@@ -3,7 +3,7 @@ class UserModel extends model
 {
     protected $email;
     protected $password;
-
+    protected $img;
     protected $emailErr;
     protected $passwordErr;
 
@@ -12,7 +12,7 @@ class UserModel extends model
         parent::__construct();
         $this->email    = '';
         $this->password = '';
-
+        $this->img = '';
         $this->emailErr    = '';
         $this->passwordErr = '';
     }
@@ -24,6 +24,16 @@ class UserModel extends model
     public function setEmail($email)
     {
         $this->email = $email;
+    }
+
+
+    public function getImg()
+    {
+        return $this->img;
+    }
+    public function setImg($img)
+    {
+        $this->img = $img;
     }
 
     public function getPassword()

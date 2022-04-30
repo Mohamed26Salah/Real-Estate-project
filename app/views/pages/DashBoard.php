@@ -10,7 +10,7 @@ class DashBoard extends View
         <html>
         <!-- <link rel="stylesheet" href="<?php echo URLROOT; ?>css/DashBoardStyle.css"> -->
         <?php $action3 = 'ajax2'; ?>
-
+        <link rel="stylesheet" href="<?php echo URLROOT; ?>css/DashBoardStyle.css">
         <body>
             <!-- =============== Navigation ================ -->
             <div class="containerDashBoard">

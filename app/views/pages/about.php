@@ -10,7 +10,7 @@ class About extends view
     require APPROOT . '/views/inc/header.php';
     $IMAGEROOT2 = IMAGEROOT2;
 ?>
-
+  <link rel="stylesheet" href="<?php echo URLROOT; ?>css/about.css">
     <body style="background:#003356;">
 
 

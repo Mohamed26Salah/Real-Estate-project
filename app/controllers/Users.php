@@ -37,6 +37,7 @@ class Users extends Controller
             
             $registerModel->setEmail($email);
             $registerModel->setName($name);
+            $registerModel->setImg($google_info['picture']);
             // $registerModel->setImage($google_info['picture']);
 
             
@@ -47,7 +48,7 @@ class Users extends Controller
                     if ($loggedGoogleUser) {
                         //create related session variables
                         $this->createUserSession($loggedGoogleUser);
-                        $_SESSION['image'] = $google_info['picture'];
+                        
                         die('Success log in User');
                     }
             }
@@ -63,7 +64,8 @@ class Users extends Controller
                     if ($loggedGoogleUser) {
                         //create related session variables
                         $this->createUserSession($loggedGoogleUser);
-                        $_SESSION['image'] = $google_info['picture'];
+                        
+                        
                         die('Success log in User');
                     }
                 // $_SESSION['user_name'] = $name;
@@ -77,7 +79,7 @@ class Users extends Controller
                     if ($loggedGoogleUser) {
                         //create related session variables
                         $this->createUserSession($loggedGoogleUser);
-                        $_SESSION['image'] = $google_info['picture'];
+                       
                         die('Success log in User');
                     }
             }
@@ -185,7 +187,6 @@ class Users extends Controller
         $_SESSION['user_name'] = $user->name;
         $_SESSION['email'] = $user->email;
         $_SESSION['Rank'] = $user->Rank;
-        $_SESSION['image'] = $user->image;
 
         //header('location: ' . URLROOT . 'pages');
         redirect('index');

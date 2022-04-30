@@ -261,7 +261,7 @@ public function viewDescription()
             if($file_size >4194304) {
               ?>
               <div class="text-center fixed-top" style="margin-top:30px;">  
-                      <button class="btn btn-info" id="Db" style="width:50%"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> File size must be excately 2 MB or less</button>
+                      <button class="btn btn-info" id="Db" style="width:50%"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> File size must be excately 4 MB or less</button>
                     </div>
                     <?php
                $errors[]='File size must be excately 4 MB';
@@ -269,20 +269,32 @@ public function viewDescription()
             
             if(empty($errors)==true){
                     $target_dir = IMAGEROOT;
-                    echo $target_dir;
+                   
                     $target_file = $target_dir.basename($_FILES['fileToUpload']['name']);
                     $tmp_name = $_FILES['fileToUpload']['tmp_name'];
                     $name = basename($_FILES['fileToUpload']['name']);
                      move_uploaded_file($tmp_name, "$target_dir$name");
 
                     // $uploadfile = $_SERVER['DOCUMENT_ROOT'] . "$target_dir$name";
-      
+                    require_once APPROOT . "/models/ProfileModel.php";
+                    $profileModel = new ProfileModel();
+            
+                    echo($profileModel->insertImage($name , $target_dir));
                   }
+                else {
+                    require_once APPROOT . "/models/ProfileModel.php";
+                    $profileModel = new ProfileModel();
+                    if(empty($profileModel->getImage()->image)) {
+                        echo '';
+                    }
+                    else {
+                        echo '<img class="img-account-profile rounded-circle mb-2" src = "'.IMAGEROOT3.$profileModel->getImage()->image.'">';
+                    }
+                    
+                }
+            
               } 
-        require_once APPROOT . "/models/ProfileModel.php";
-        $profileModel = new ProfileModel();
-
-        echo($profileModel->insertImage($name , $target_dir));
+       
     }
   
 }

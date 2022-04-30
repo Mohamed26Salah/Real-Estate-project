@@ -8,7 +8,9 @@ class viewItem extends View
     require APPROOT . '/views/inc/header.php';
 
 ?>
-
+<link rel="stylesheet" href="<?php echo URLROOT; ?>css/ViewPage.css">
+<link rel="stylesheet" href="<?php echo URLROOT; ?>css/resetFilter.css">
+<link rel="stylesheet" href="<?php echo URLROOT; ?>css/styleFilter.css">
 <body>
    
   <main class="cd-main-content">
