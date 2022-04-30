@@ -128,10 +128,21 @@ public function viewDescription()
 
     public function WishList()
     {
+        $WishListView = $this->getModel();
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            if(isset($_POST['work'])){
+                echo($WishListView->sort());
+            }else if(isset($_POST['WishListValue'])){
+                $WishListView->setID($_POST['CardID']);
+                echo($WishListView->AddToWishlist($_POST['WishListValue']));
+            }
+        }else{
         $viewPath = VIEWS_PATH . 'pages/wishlist.php';
         require_once $viewPath;
         $WishListView = new WishList($this->getModel(), $this);
         $WishListView->output();
+        }
+      
     }
     
     public function about()

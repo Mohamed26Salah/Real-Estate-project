@@ -73,8 +73,13 @@
                 ?>
                 <li class="<?php echo $activeDashboard; ?>"><a href="<?php echo URLROOT . "pages/DashBoard"; ?>"><span>DashBoard</span></a></li>
                 <?php } ?>
-
-                <li class="<?php echo $activeWishList; ?>"><a href="<?php echo URLROOT . 'pages/wishlist'; ?>"><span><i class="fa fa-heart" aria-hidden="true"></i></span></a></li>
+                 <?php
+                 if(!empty($_SESSION['user_id'])){
+                   ?>
+                  <li class="<?php echo $activeWishList; ?>"><a href="<?php echo URLROOT . 'pages/wishlist'; ?>"><span><i class="fa fa-heart" aria-hidden="true"></i></span></a></li>
+                  <?php
+                 } 
+                 ?>
 
                 <?php if(!empty($_SESSION['user_id'])){
                     ?>
