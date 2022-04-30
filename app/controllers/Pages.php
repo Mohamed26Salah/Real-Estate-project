@@ -13,45 +13,25 @@ public function viewItem()
     {
         $ViewItem = $this->getModel();
         if ($_SERVER['REQUEST_METHOD'] == 'POST'){
-            if(!empty($_POST['area'])){
-                $ViewItem->setArea($_POST['area']);
-              echo $_POST['area'];
-            }
-            if(!empty($_POST['pricerange1'])){
-                $ViewItem->setprice1($_POST['pricerange1']);
-            }
-            if(!empty($_POST['pricerange2'])){
-                $ViewItem->setprice2($_POST['pricerange2']);
-            }
-            if(!empty($_POST['Payment'])){
-                $ViewItem->setPayment($_POST['Payment']);
-            }
-            if(!empty($_POST['contarctType'])){
-                $ViewItem->setcontarctType($_POST['contarctType']);
-            }
-            if(!empty($_POST['Bathroom'])){
-                $ViewItem->setBathroom($_POST['Bathroom']);
-            }
-            if(!empty($_POST['Rooms'])){
-                $ViewItem->setRooms($_POST['Rooms']);
-            }
-            if(!empty($_POST['Finishing'])){
-                $ViewItem->setFinishing($_POST['Finishing']);
-            }
-            if(!empty($_POST['HighLow'])){
-                $ViewItem->setHighLow($_POST['HighLow']);
-            }
-            if(!empty($_POST['search'])){
-                $ViewItem->setSearch($_POST['search']);
-            }
-             
-           
-        }
 
-        $viewPath = VIEWS_PATH . 'pages/viewItem.php';
-        require_once $viewPath;
-        $indexView = new viewItem($this->getModel(), $this);
-        $indexView->output();
+            if(isset($_POST['ShowButton'])){
+                $ViewItem->setButtonShow($_POST['ShowButton']);
+                $ViewItem->setID($_POST['CardID']);
+                echo($ViewItem->button());
+            }else if(isset($_POST['WishListValue'])){
+                $ViewItem->setID($_POST['CardID']);
+                echo($ViewItem->AddToWishlist($_POST['WishListValue']));
+            }
+
+        }else{
+            $viewPath = VIEWS_PATH . 'pages/viewItem.php';
+            require_once $viewPath;
+            $indexView = new viewItem($this->getModel(), $this);
+            $indexView->output();
+        }
+       
+
+       
     }
     public function ajax2()
     { 
@@ -87,7 +67,7 @@ public function viewItem()
             
             if($_POST['area']!="Salah"){
                 $ViewItem->setArea($_POST['area']);
-              echo $_POST['area'];
+            //   echo $_POST['area'];
             }
             if($_POST['pricerange1']!="Salah"){
                 $ViewItem->setprice1($_POST['pricerange1']);
@@ -112,7 +92,7 @@ public function viewItem()
             }
             if($_POST['HighLow']!="Salah"){
                 $ViewItem->setHighLow($_POST['HighLow']);
-                echo $_POST['HighLow'];
+                // echo $_POST['HighLow'];
             }
             if($_POST['search']!="Salah"){
                 $ViewItem->setSearch($_POST['search']);
@@ -130,6 +110,7 @@ public function viewItem()
         // $ajax = new ajax($this->getModel(), $this);
         // $ajax->output();
     }
+
 public function viewRent()
     {
         $viewPath = VIEWS_PATH . 'pages/viewRent.php';

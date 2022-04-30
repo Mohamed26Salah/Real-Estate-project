@@ -14,6 +14,10 @@ class viewItemModel extends model
     protected $Search;
     protected $checkBox;
     protected $Show;
+    protected $ButtonShow;
+    protected $ID;
+    protected $visibleAll;
+    protected $WishListValue;
     public function getArea()
     {
         return $this->area;
@@ -121,30 +125,95 @@ class viewItemModel extends model
     {
         $this->Show = $Show;
     }
-    
-    function card($imgroot,$ImageArray,$PriceArray,$AreaArray,$PaymentArray,$NameArray,$DescriptionArray,$offeredArray,$BathroomArray,$RoomsArray,$FinishingArrayString,$CodeArray,$AddressArray,$VisibleArray,$Checked){
+    public function getButtonShow()
+    {
+        return $this->ButtonShow;
+    }
+    public function setButtonShow($ButtonShow)
+    {
+        $this->ButtonShow = $ButtonShow;
+    }
+    public function getID()
+    {
+        return $this->ID;
+    }
+    public function setID($ID)
+    {
+        $this->ID = $ID;
+    }
+    public function getvisibleAll()
+    {
+        return $this->visibleAll;
+    }
+    public function setvisibleAll($visibleAll)
+    {
+        $this->visibleAll = $visibleAll;
+    }
+    public function getWishListValue()
+    {
+        return $this->WishListValue;
+    }
+    public function setWishListValue($WishListValue)
+    {
+        $this->WishListValue = $WishListValue;
+    }
+    public function button(){
+        $Change=0;
+       if($this->ButtonShow=="on"){
+        $Change=2;
+        // $this->visibleAll="off";
+       }else if($this->ButtonShow=="off"){
+        $Change=1;
+        // $this->visibleAll="on";
+       }
+       $VarID=$this->ID;
+      
+       $QUERY= "UPDATE `allestate` SET `Visible`=$Change WHERE ID=$VarID";
+       $this->dbh->query($QUERY);
+       $this->dbh->execute();
+       return $Change;
+    }
+    //Check wishlist for each card
+    function wishlist($IDArray){
+        if(!empty($_SESSION['user_id'])){
+            $QUERY= "SELECT * FROM `wishlist` WHERE AllID = $IDArray AND UserID='".$_SESSION['user_id']."' ";
+            $this->dbh->query($QUERY);
+            if(empty($this->dbh->single())){
+               return false;
+            }else{
+                return true;
+            }
+        }else{
+            return false;
+        }
+       
+    }
+    public function AddToWishlist($WishListValue){
+    if(!empty($_SESSION['user_id'])){
+        if($WishListValue=="green"){
+            $IDSalah=$this->ID;
+            $this->dbh->query("DELETE FROM `wishlist` WHERE AllID = $IDSalah AND `UserID`='".$_SESSION['user_id']."'");
+            return $this->dbh->execute();
+        }else if($WishListValue=="red"){
+            $this->dbh->query("INSERT INTO `wishlist`(`UserID`, `AllID`) VALUES (:UIDD, :UALLID)");
+            $this->dbh->bind(':UIDD', $_SESSION['user_id']);
+            $this->dbh->bind(':UALLID', $this->ID);
+            return $this->dbh->execute();
+        }
+    }else{
+      return "denied";
+    }
+    }
+    function card($imgroot,$ImageArray,$PriceArray,$AreaArray,$PaymentArray,$NameArray,$DescriptionArray,$offeredArray,$BathroomArray,$RoomsArray,$FinishingArrayString,$CodeArray,$AddressArray,$VisibleArray,$Checked,$IDArray,$WishList,$WishListString){
         $output2='';
         $output2=<<<EOT
             <div class="containerFilter">
             <img src="$imgroot$ImageArray" width="350px" height="240px">
             <div class="title">
-            <div class="switchAll" style = "margin-left:60%; margin-bottom:-11%; margin:top:-5%;">
+            <div class="switchAll" style = "margin-left:70%; margin-bottom:-5%; margin:top:-5%;">
             
-            echo $VisibleArray
-            <button onclick="salah($VisibleArray)" class="buttonClick" value="yasser" id="buttonClick$VisibleArray" ><span>Click Me</span></button>
-           
-            <div class="wrapper">
-                        <input onclick="salah($VisibleArray)" type="radio" name="select" id="option-1" value="1" checked>
-                        <input onclick="salah($VisibleArray)" type="radio" name="select" id="option-2"  value="2">
-                        <label for="option-1" class="option option-1">
-                        <div class="dot"></div>
-                        <span>Show</span>
-                        </label>
-                        <label for="option-2" class="option option-2">
-                        <div class="dot"></div>
-                        <span>Hide</span>
-                        </label>
-                    </div>
+            <input onclick="salah($IDArray)" id="buttonClick$IDArray" class="toggle" $Checked type="checkbox" value=$VisibleArray />
+            
             </div>
             <strong style="font-size:20px; ">$PriceArray EGP</strong>
             <h2 style="font-family: Open Sans, sans-serif; color: #403b45; font-size:14px; margin-top: 1.5%; ">$NameArray</h2>
@@ -154,13 +223,14 @@ class viewItemModel extends model
             <div style="font-family: Open Sans, sans-serif; color: #403b45; font-size:14px;margin-top: 1%;"><i class="fa-solid fa-paint-roller" style="color:green;"></i> $FinishingArrayString 
             <i class="fa-solid fa-sack-dollar" style="margin-left:10px; color:green;"></i> $PaymentArray </div><br>
             <div style="font-family: Open Sans, sans-serif; color: #403b45; font-size:16px;margin-top: 1%;">$offeredArray</div>
-            <div style="font-family: Open Sans, sans-serif; color: #403b45; font-size:16px;margin-top: 1%; font-weight: 600;"><i class="fa fa-map-marker" aria-hidden="true" style="color:green;"></i> $AddressArray </div>
-          
-            <div class = "purchase-info" style="margin-top:-0.5%;">
-            <button type = "button" class = "btn">
-            Add to WishList <i class="fa fa-heart" aria-hidden="true"></i>
-            </button>
+            <div class="solo" style="font-family: Open Sans, sans-serif; color: #403b45; font-size:16px;margin-top: 1%;margin-bottom: 1.5%; font-weight: 600;"><i class="fa fa-map-marker" aria-hidden="true" style="color:green;"></i> $AddressArray </div>
+            <div class="switchAll" >
+            
+            <button onclick="WishList($IDArray)" class="buttonWishList" value = $WishList id="button$IDArray" style="background-color:$WishList" ><span id="Span$IDArray"> $WishListString </span></button>
+
             </div>
+
+            
             <div style="font-size:25px;margin-left: 70%; margin-top:-7.2%;"> Code: <span style="color:red;">$CodeArray</span></div>
             
             
@@ -337,7 +407,8 @@ class viewItemModel extends model
                     $AddressArray=$input[$counter][1];
                     $NameArray=$input[$counter][6];
                     $DescriptionArray=$input[$counter][5];
-                    $VisibleArray=$input[$counter][0];
+                    $VisibleArray=$input[$counter][7];
+                    $IDArray=$input[$counter][0];
                     $CodeArray=$input[$counter][8];
                     $AreaArray=$input[$counter][2];
                     $PaymentArray=$input[$counter][4];
@@ -387,24 +458,33 @@ class viewItemModel extends model
                     }else{
                         $FinishingArrayString="Not mtshtb";
                     }
-                    // if($VisibleArray==1){
-                    //     $VisibleArray="on";
-                    //     $Checked="checked";
+                    if($VisibleArray==1){
+                        $VisibleArray="on";
+                        $Checked="checked";
+                        // $this->visibleAll="on";
                         
-                    // }else{
-                    //     $VisibleArray="off";
-                    //     $Checked="";
-                    // }
+                    }else{
+                        $VisibleArray="off";
+                        $Checked="";
+                        // $this->visibleAll="off";
+                    }
+                    if($this->wishlist($IDArray)==true){
+                        $WishList="green";
+                        $WishListString="Saved";
+                    }else{
+                        $WishList="red";
+                        $WishListString="Add to WishList";
+                    }
                     list($UltimateIF,$ultimateIFCondition)=$this->ifCondition($UltimateJoinRoom,$UltimateJoinBathroom,$UltimateJoinFinishing,$RoomsArray,$BathroomArray,$FinishingArray,$UltimateIF,$ultimateIFCondition);
                    //it was here
                     if($ultimateIFCondition!="NotEmpty"){  
-                        $output.= $this->card($imgroot,$ImageArray,$PriceArray,$AreaArray,$PaymentArray,$NameArray,$DescriptionArray,$offeredArray,$BathroomArray,$RoomsArray,$FinishingArrayString,$CodeArray,$AddressArray,$VisibleArray,$Checked);
+                        $output.= $this->card($imgroot,$ImageArray,$PriceArray,$AreaArray,$PaymentArray,$NameArray,$DescriptionArray,$offeredArray,$BathroomArray,$RoomsArray,$FinishingArrayString,$CodeArray,$AddressArray,$VisibleArray,$Checked,$IDArray,$WishList,$WishListString);
           }
         if($ultimateIFCondition=="NotEmpty"){
             if($UltimateIF){
         
             
-            $output.= $this->card($imgroot,$ImageArray,$PriceArray,$AreaArray,$PaymentArray,$NameArray,$DescriptionArray,$offeredArray,$BathroomArray,$RoomsArray,$FinishingArrayString,$CodeArray,$AddressArray,$VisibleArray,$Checked);
+            $output.= $this->card($imgroot,$ImageArray,$PriceArray,$AreaArray,$PaymentArray,$NameArray,$DescriptionArray,$offeredArray,$BathroomArray,$RoomsArray,$FinishingArrayString,$CodeArray,$AddressArray,$VisibleArray,$Checked,$IDArray,$WishList,$WishListString);
             }
         }
                 }
@@ -416,11 +496,14 @@ class viewItemModel extends model
                 $AddressArray=$input[$counter][1];
                 $NameArray=$input[$counter][6];
                 $DescriptionArray=$input[$counter][5];
-                $VisibleArray=$input[$counter][0];
+                $VisibleArray=$input[$counter][7];
+                $IDArray=$input[$counter][0];
                 $CodeArray=$input[$counter][8];
                 $AreaArray=$input[$counter][2];
                 $PaymentArray=$input[$counter][4];
                 $FinishingArray="";
+                $WishList="";
+                $WishListString="";
                 if($input[$counter][9]==1){
                     $offeredArray="Selling";
                 }else{
@@ -467,13 +550,23 @@ class viewItemModel extends model
                 }else{
                     $FinishingArrayString="Not mtshtb";
                 }
-                // if($VisibleArray==1){
-                //     $VisibleArray="on";
-                //     $Checked="checked";
-                // }else{
-                //     $VisibleArray="off";
-                //     $Checked="";
-                // }
+                if($VisibleArray==1){
+                    $VisibleArray="on";
+                    $Checked="checked";
+                    // $this->visibleAll="on";
+                }else{
+                    $VisibleArray="off";
+                    $Checked="";
+                    // $this->visibleAll="off";
+                }
+                if($this->wishlist($IDArray)==true){
+                    $WishList="green";
+                    $WishListString="Saved";
+                }else{
+                    $WishList="red";
+                    $WishListString="Add to WishList <i class='fa fa-heart' aria-hidden='true'></i>";
+                }
+               
                 //Bl3b fe IF 
                 list($UltimateIF,$ultimateIFCondition)=$this->ifCondition($UltimateJoinRoom,$UltimateJoinBathroom,$UltimateJoinFinishing,$RoomsArray,$BathroomArray,$FinishingArray,$UltimateIF,$ultimateIFCondition);
                 //it also was here
@@ -481,12 +574,12 @@ class viewItemModel extends model
                 
                 
                 if($ultimateIFCondition!="NotEmpty"){  
-                    $output.= $this->card($imgroot,$ImageArray,$PriceArray,$AreaArray,$PaymentArray,$NameArray,$DescriptionArray,$offeredArray,$BathroomArray,$RoomsArray,$FinishingArrayString,$CodeArray,$AddressArray,$VisibleArray,$Checked);
+                    $output.= $this->card($imgroot,$ImageArray,$PriceArray,$AreaArray,$PaymentArray,$NameArray,$DescriptionArray,$offeredArray,$BathroomArray,$RoomsArray,$FinishingArrayString,$CodeArray,$AddressArray,$VisibleArray,$Checked,$IDArray,$WishList,$WishListString);
                 }
                 if($ultimateIFCondition=="NotEmpty"){
                     if($UltimateIF){
 
-                    $output.= $this->card($imgroot,$ImageArray,$PriceArray,$AreaArray,$PaymentArray,$NameArray,$DescriptionArray,$offeredArray,$BathroomArray,$RoomsArray,$FinishingArrayString,$CodeArray,$AddressArray,$VisibleArray,$Checked);
+                    $output.= $this->card($imgroot,$ImageArray,$PriceArray,$AreaArray,$PaymentArray,$NameArray,$DescriptionArray,$offeredArray,$BathroomArray,$RoomsArray,$FinishingArrayString,$CodeArray,$AddressArray,$VisibleArray,$Checked,$IDArray,$WishList,$WishListString);
                     }
                 }
             

@@ -18,7 +18,15 @@ class viewItem extends View
          <li class="placeholder"> 
            <a data-type="all" href="#0">All</a> <!-- selected option on mobile -->
          </li> 
-         <li class="filter" data-filter=".color-1"><a href="#0" data-type="color-1">Flats</a></li>
+         <?php 
+         $uri = $_SERVER['REQUEST_URI'];
+         if (str_contains($uri, 'viewItem')) { 
+          ?>
+          <li class="filter" style="background-color:purple; border-radius:4px;" data-filter=".color-1"><a href="viewItem" data-type="color-1" style="color:white;">Flats</a></li>
+          <?php
+         }
+         ?>
+        
          <li class="filter" data-filter=".color-2"><a href="#0" data-type="color-2">Building</a></li>
          <li class="filter" data-filter=".color-1"><a href="#0" data-type="color-1">Villa</a></li>
          <li class="filter" data-filter=".color-1"><a href="#0" data-type="color-1">Store</a></li>
@@ -104,6 +112,10 @@ class viewItem extends View
    
    <?php $action = URLROOT . 'Pages/viewItem'; ?>
    <?php $action2 = 'ajax'; ?>
+   <?php $action3 = 'viewItem'; ?>
+   <?php $action4 = URLROOT . 'users/Login'; ?>
+
+   
    <!-- <div class="form" id="sidebar" > -->
   <div class="cd-filter">
    <form class="form" method="post">
@@ -302,28 +314,67 @@ class viewItem extends View
 
     <script>
 
-        
-        function salah(VisibleArray){
-        const button = document.getElementById("option-1");
-        const button2 = document.getElementById("option-2");
-        console.log( button); 
-        console.log( VisibleArray); 
-        console.log( document.getElementById("option-1").value); 
-        console.log( document.getElementById("option-2").value); 
+function WishList(IDArray){
+        // console.log(IDArray); 
+        // console.log(document.getElementById('button'+IDArray).value);
+       
+        var CardID=IDArray;
+        var WishListValue=document.getElementById('button'+IDArray).value;
+      
+         $.ajax({
+          url:"<?php echo $action3;?>",
+          method:"POST",
+          data:{CardID:CardID,WishListValue:WishListValue},
+          
+          success:function(data)
+          {
+            if(data=="denied"){
+              // window.location.replace("http://localhost/mvc/public/users/Login");
+              window.location.replace("<?php echo $action4; ?>");
+
+            }
+            if(WishListValue=="green"){
+              WishListValue="red";
+              $('#button'+IDArray).css("background-color", "red");
+              $('#Span'+IDArray).html("Add to WishList <i class='fa fa-heart' aria-hidden='true'></i>");
+              }else if(WishListValue=="red"){
+              WishListValue="green";
+              $('#button'+IDArray).css("background-color", "green");
+              $('#Span'+IDArray).html("Saved");
+              }
+            document.getElementById('button'+IDArray).value=WishListValue;
+          }
+        })
+      
+        }
+
+        var change;
+        function salah(IDArray){
+        console.log( IDArray); 
+        console.log( document.getElementById('buttonClick'+IDArray).value);
+        var CardID=IDArray;
+        var ShowButton=document.getElementById('buttonClick'+IDArray).value;
+         $.ajax({
+          url:"<?php echo $action3;?>",
+          method:"POST",
+          data:{ShowButton:ShowButton,CardID:CardID},
+          
+          success:function(data)
+          {
+              change=data;
+              if(change==2){
+                change="off";
+              }else if(change==1){
+                change="on";
+              }
+              document.getElementById('buttonClick'+IDArray).value=change
+               
+          }
+        })
       
         }
       
-        // var checkBox="Salah";
-
-        // function salah(VisibleArray){
-        // const button = document.getElementById("option-1");
-        // const button2 = document.getElementById("option-2");
-        // console.log( button); 
-        // console.log( VisibleArray); 
-        // console.log( document.getElementById("option-1").value); 
-        // console.log( document.getElementById("option-2").value); 
       
-        // }
        
       function itemsAjax(){
         if( document.getElementById('pricerange1').value ) {

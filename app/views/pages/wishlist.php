@@ -116,7 +116,7 @@ class WishList extends view
 
                                                         <!-- Ta7zer -->
 
-            <!-- <div class="card mb-4">
+             <div class="card mb-4">
             <div class="card-body p-4 d-flex flex-row" >
                 <div class="form-outline flex-fill">
                 
@@ -128,15 +128,15 @@ class WishList extends view
                
                 
             </div>
-            </div> -->
+            </div> 
 
 
 
-            <!-- <div class="card">
+             <!-- <div class="card">
             <div class="card-body">
                 <button type="button" class="btn btn-warning btn-block btn-lg">Proceed to Pay</button>
             </div>
-            </div> -->
+            </div>  -->
 
         </div>
         </div>

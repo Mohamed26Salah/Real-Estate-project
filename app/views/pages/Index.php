@@ -31,7 +31,7 @@ class Index extends View
             <div class="content">
               <h2 class="title">Houses</h2>
               <p class="copy">Seriously, straight up, just blast off into outer space today</p>
-              <a href="#"><button class="btn">View Houses</button></a>
+              <a href="<?php echo URLROOT . 'pages/viewItem'; ?>"><button class="btn">View Houses</button></a>
             </div>
     </div>
 
