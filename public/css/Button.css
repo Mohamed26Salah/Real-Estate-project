@@ -1,0 +1,133 @@
+
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,700);
+
+
+
+.description {
+  margin-top: 50px;
+  text-align: center;
+  color: #999;
+  transition: opacity 0.3s ease;
+}
+
+.description a {
+  color: #4A9DF6;
+  text-decoration: none;
+}
+
+.btn.is-open ~ .description {
+  opacity: 0;
+}
+
+.btnRent {
+  margin-top: 2%;
+  margin-left: 19%;
+  display: block;
+  position: relative;
+  width: 100px;
+  height: 40px;
+  transition: width 0.8s cubic-bezier(0.23, 1, 0.32, 1), height 0.8s cubic-bezier(0.23, 1, 0.32, 1), transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transform-style: preserve-3d;
+  transform-origin: 32% 50%;
+  text-align: center;
+}
+
+.btnRent-front {
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 100%;
+  line-height: 40px;
+  background-color: #4c4b4b;
+  color: #fff;
+  cursor: pointer;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  transition: background 0.15s ease, line-height 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.btnRent-front:hover {
+  background-color: #a5a4a4;
+}
+
+.btnRent.is-open .btnRent-front {
+  pointer-events: none;
+  line-height: 160px;
+}
+
+.btnRent-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #eee;
+  color: #222;
+  transform: translateZ(-2px) rotateX(180deg);
+  overflow: hidden;
+  transition: box-shadow 0.8s ease;
+}
+
+.btnRent-back p {
+  margin-top: 27px;
+  margin-bottom: 25px;
+}
+
+.btnRent-back button {
+  padding: 12px 20px;
+  width: 30%;
+  margin: 0 5px;
+  background-color: transparent;
+  border: 0;
+  border-radius: 2px;
+  font-size: 1em;
+  cursor: pointer;
+  -webkit-appearance: none;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  transition: background 0.15s ease;
+}
+.btnRent-back button:focus {
+  outline: 0;
+}
+.btnRent-back button.yes {
+  background-color: #2196F3;
+  color: #fff;
+}
+.btnRent-back button.yes:hover {
+  background-color: #51adf6;
+}
+.btnRent-back button.no {
+  color: #2196F3;
+}
+.btnRent-back button.no:hover {
+  background-color: #ddd;
+}
+
+.btnRent.is-open .btnRent-back {
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+}
+
+.btnRent[data-direction=left] .btnRent-back,
+.btnRent[data-direction=right] .btnRent-back {
+  transform: translateZ(-2px) rotateY(180deg);
+}
+
+.btnRent.is-open {
+  width: 400px;
+  height: 160px;
+}
+
+.btnRent[data-direction=top].is-open {
+  transform: rotateX(180deg);
+}
+
+.btnRent[data-direction=right].is-open {
+  transform: rotateY(180deg);
+}
+
+.btnRent[data-direction=bottom].is-open {
+  transform: rotateX(-180deg);
+}
+
+.btnRent[data-direction=left].is-open {
+  transform: rotateY(-180deg);
+}

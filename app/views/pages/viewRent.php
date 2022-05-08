@@ -1,291 +1,305 @@
 <?php
 class viewRent extends View
 {
-  public function output()
+   public function output()
   {
-
-    // $user_id = $_SESSION['user_id'];
-    // $user_name = $_SESSION['user_name'];
-
 
 
     require APPROOT . '/views/inc/header.php';
 
-
 ?>
+<link rel="stylesheet" href="<?php echo URLROOT; ?>css/ViewPage.css">
+<link rel="stylesheet" href="<?php echo URLROOT; ?>css/resetFilter.css">
+<link rel="stylesheet" href="<?php echo URLROOT; ?>css/styleFilter.css">
+<link rel="stylesheet" href="<?php echo URLROOT; ?>css/RentCards.css">
+<link rel="stylesheet" href="<?php echo URLROOT; ?>css/Button.css">
+
+<body>
+   
+
+  <main class="cd-main-content">
+  
+
+   <section class="cd-gallery">
+     <ul>
+       
+   <div class="Car-ALL">
+
+   <?php
+         //  pagination start
+        //  $this->model->CheckIfRentIsStillValid(0,6);
+         if (isset($_GET['pageno'])) {
+           $pageno = $_GET['pageno'];
+         } else {
+           $pageno = 1;
+         }
 
 
-<link rel="stylesheet" href="<?php echo URLROOT; ?>css/ViewRent.css">
-<link rel="stylesheet" href="<?php echo URLROOT; ?>css/Sidebar.css">
-    <body style = "background-color : #003356;">
+         $no_of_records_per_page = 20;
+         $offset = ($pageno - 1) * $no_of_records_per_page;
 
-
-      <!-- sidebar -->
-      <form id="sidebar">
-        <ul class="sidebar-menu">
-          <li><span class="nav-section-title"></span></li>
-          <li class="have-children active"><a href="#"><span class="fa fa-university"></span>Type</a>
-            <ul>
-              <div class="sidebar_custom_radio">
-                <div class="containerradio">
-
-                  <label class="labell">
-                    <input type="radio" name="radio" checked value="Flats" />
-                    <div class="spanr">Flats</div>
-                  </label>
-                  <label class="labell">
-                    <input type="radio" name="radio" value="Villa" />
-                    <div class="spanr">Villa</div>
-                  </label>
-                  <label class="labell">
-                    <input type="radio" name="radio" value="Store">
-                    <div class="spanr">Store</div>
-                  </label>
-                  <label class="labell">
-                    <input type="radio" name="radio" value="Clinic" />
-                    <div class="spanr">Clinic</div>
-                  </label>
-                  <label class="labell">
-                    <input type="radio" name="radio" value="Schools" />
-                    <div class="spanr">Schools</div>
-                  </label>
-                  <label class="labell">
-                    <input type="radio" name="radio" value="Farm" />
-                    <div class="spanr">Farm</div>
-                  </label>
-                  <label class="labell">
-                    <input type="radio" name="radio" value="Factory" />
-                    <div class="spanr">Factory</div>
-                  </label>
-                  <label class="labell">
-                    <input type="radio" name="radio" value="Land" />
-                    <div class="spanr">Land</div>
-                  </label>
-                  <label class="labell">
-                    <input type="radio" name="radio" value="Residential Building" />
-                    <div class="spanr">Residential Building</div>
-                  </label>
-                  <label class="labell">
-                    <input type="radio" name="radio" value="Other" />
-                    <div class="spanr">Other</div>
-                  </label>
-
-                </div>
-
-              </div>
-
-            </ul>
-          </li>
-          <li class="have-children active"><a href="#"><span class="fa fa-tags"></span>Price</a>
-            <ul>
-              <div class="sidebar_custom_radio">
-
-                <div>
-                  <div class="price_change">
-                    <input type="number" class="rangeValue" id="rangeValue" name="price" min="0" max="10000000" onChange="rangeChange(this.value)">
-                    <div class="limit"> >10000000</div>
-                  </div>
-                  <div class="ranger"> <Input type="range" id="priceslider" class="range" name="pricerange" value="0" min="0" max="10000000" onChange="rangeSlide(this.value)" onmousemove="rangeSlide(this.value)"></Input>
-                  </div>
-                </div>
-              </div>
-            </ul>
-          </li>
-          <li class="have-children active"><a href="#"><span class="fa fa-university"></span>Finishing</a>
-            <ul>
-              <div class="sidebar_custom_radio">
-                <label class="labell">
-                  <input type="radio" name="Finishing" checked value="True" />
-                  <div class="spanr">True</div>
-                </label>
-                <label class="labell">
-                  <input type="radio" name="Finishing" value="False" />
-                  <div class="spanr">False</div>
-                </label>
-              </div>
-            </ul>
-          </li>
-          <li class="have-children active"><a href="#"><span class="fa fa-university"></span>Payment </a>
-            <ul>
-              <div class="sidebar_custom_radio">
-                <label class="labell">
-                  <input type="radio" name="Payment" checked value="Cash" />
-                  <div class="spanr">Cash</div>
-                </label>
-                <label class="labell">
-                  <input type="radio" name="Payment" value="instalment" />
-                  <div class="spanr">instalment</div>
-                </label>
-              </div>
-            </ul>
-          </li>
-          <li class="have-children active"><a href="#"><span class="fa fa-university"></span>contract Type</a>
-            <ul>
-              <div class="sidebar_custom_radio">
-                <label class="labell">
-                  <input type="radio" name="contarctType" checked value="rent" />
-                  <div class="spanr">rent</div>
-                </label>
-                <label class="labell">
-                  <input type="radio" name="contarctType" value="Purchase" />
-                  <div class="spanr">Purchase</div>
-                </label>
-              </div>
-            </ul>
-          </li>
-          <li class="have-children active"><a href="#"><span class="fa fa-university"></span>Area</a>
-            <ul>
-              <div class="sidebar_custom_radio">
-                <label class="labell">
-                  <input type="radio" name="area" checked value="none" />
-                  <div class="spanr">none</div>
-                </label>
-                <label class="labell">
-                  <input type="radio" name="area" value="100" />
-                  <div class="spanr">100</div>
-                </label>
-                <label class="labell">
-                  <input type="radio" name="area" value="200" />
-                  <div class="spanr">200</div>
-                </label>
-                <label class="labell">
-                  <input type="radio" name="area" value="300" />
-                  <div class="spanr">300</div>
-                </label>
-                <label class="labell">
-                  <input type="radio" name="area" value="400" />
-                  <div class="spanr">400</div>
-                </label>
-                <label class="labell">
-                  <input type="radio" name="area" value=">400" />
-                  <div class="spanr">>400</div>
-                </label>
-              </div>
-            </ul>
-          </li>
-          <li class="have-children active"><a href="#"><span class="fa fa-university"></span>No.Rooms</a>
-            <ul>
-              <div class="sidebar_custom_radio">
-                <div class="price_change">
-                  <input type="number" name="price" min="0" max="10">
-
-                </div>
-              </div>
-            </ul>
-          </li>
-
-
-
-        </ul>
-      </form>
-      <!-- side bar end here -->
-      <!-- search -->
-      <div class="search__container">
-
-        <input class="search__input" type="text" placeholder="Search">
-      </div>
-      <!-- search end here -->
-      <!-- cards start here -->
-      <div class="containere" style="min-height:1100px; margin-left: 25%; margin-right: 5%;">
-        <div class="pcontainer">
-          <div class="submit-feedback high">High</div>
-          <div class="submit-feedback medium">Medium</div>
-          <div class="submit-feedback low">Low</div>
+         $total_rows = $this->model->GetCount()->TD;
+       
+        ?>
+         <div class="container bootstrap snippets bootdeys">
+           
+        <div id="cards" class="row"></div>
         </div>
-        <div class="row" id="TableList" style="max-width: 90%;">
+       
 
-          <?php
-          //  pagination start
-
-          if (isset($_GET['pageno'])) {
-            $pageno = $_GET['pageno'];
-          } else {
-            $pageno = 1;
-          }
+        <?php
+          
+         
+         $total_pages = ceil($total_rows / $no_of_records_per_page);
 
 
-          $no_of_records_per_page = 4;
-          $offset = ($pageno - 1) * $no_of_records_per_page;
-
-          $total_rows = $this->model->GetCount()->TD;
-
-          foreach ($this->model->ViewRentOn($offset, $no_of_records_per_page) as $rent) {
-            $days = $this->model->TimeLeftForRent($rent->TOR);
-            $this->model->CheckIfRentIsStillValid($rent->TOR,$rent->TOREND);
-
-            $card = <<<EOT
-   <!-- single card start -->
-   <div class="product-card-Rent">
-   <div class="priority"></div>
-   <!-- begin visible button -->
-   <div class="product-details">
-   <h4><div class="arabic">
-   <div class="left">$rent->LessorName </div>
-   <div class="right">:اسم صاحب العقار
-   </div>  <br>
-   </div>
-   <div class="arabic">
-   <div class="left">$rent->TenantName </div>
-   <div class="right">:اسم المستأجر</div></div>
-   <!--  -->
-   <div class="arabic">
-   <div class="left">$rent->Start_OF_Rent </div>
-   <div class="right">:تاريخ البداية</div></div>
-   <br>
-   <div class="arabic">
-   <div class="left">$rent->END_OF_Rent </div>
-   <div class="right">:تاريخ النهاية</div></div>
-   <!--  -->
-   </h4>
-   <div class="Rent_Price">EGP$rent->rentPrice </div>
-   <!-- Timer start -->
-   <div class="timer">Time left : $days days</div>
-   <!-- Timer End -->
-   </div>
-   <div class="row" style="justify-content:center; margin-top:-15%"><div class="priority high">high</div>
-   <div class="codeblock">$rent->code</div></div></div><!-- single card end -->
-   EOT;
-
-            echo $card;
-          }
+         // pagination end
+         ?>
+       <!-- </div>
+       </div>
+       <li class="gap"></li>
+       <li class="gap"></li>
+       <li class="gap"></li> -->
+     </ul>
+   </section>
+   
+     <ul class="pagination">
+       <li><a href="?pageno=1">First</a></li>
+       <li class="<?php if ($pageno <= 1) {
+                     echo 'disabled';
+                   } ?>">
+         <a href="<?php if ($pageno <= 1) {
+                     echo '#';
+                   } else {
+                     echo "?pageno=" . ($pageno - 1);
+                   } ?>">Prev</a>
+       </li>
+       <li class="<?php if ($pageno >= $total_pages) {
+                     echo 'disabled';
+                   } ?>">
+         <a href="<?php if ($pageno >= $total_pages) {
+                     echo '#';
+                   } else {
+                     echo "?pageno=" . ($pageno + 1);
+                   } ?>">Next</a>
+       </li>
+       <li><a href="?pageno=<?php echo $total_pages; ?>">Last</a></li>
+     </ul>
 
 
-          $total_pages = ceil($total_rows / $no_of_records_per_page);
+
+   
+   <?php $action = URLROOT . 'Pages/viewRent'; ?>
+   <?php $action2 = 'viewRent'; ?>
 
 
-          // pagination end
-          ?>
-        </div>
-      </div>
-      <!-- cards end here -->
-      <!-- pagination  start-->
-      <ul class="pagination">
-        <li><a href="?pageno=1">First</a></li>
-        <li class="<?php if ($pageno <= 1) {
-                      echo 'disabled';
-                    } ?>">
-          <a href="<?php if ($pageno <= 1) {
-                      echo '#';
-                    } else {
-                      echo "?pageno=" . ($pageno - 1);
-                    } ?>">Prev</a>
-        </li>
-        <li class="<?php if ($pageno >= $total_pages) {
-                      echo 'disabled';
-                    } ?>">
-          <a href="<?php if ($pageno >= $total_pages) {
-                      echo '#';
-                    } else {
-                      echo "?pageno=" . ($pageno + 1);
-                    } ?>">Next</a>
-        </li>
-        <li><a href="?pageno=<?php echo $total_pages; ?>">Last</a></li>
-      </ul>
-      <!-- pagination end -->
+   
+   <!-- <div class="form" id="sidebar" > -->
+  <div class="cd-filter">
+   <form class="form">
+     <!-- <form class="form" id="sidebar" <?php echo $action;?> method="post" > -->
+       <div class="cd-filter-block">
+         <h4>Search</h4>
+         
+         <div class="cd-filter-content">
+           <input type="search" name="search" id="search" placeholder="أبحث" onkeyup="RentAjax()" >
+         </div> <!-- cd-filter-content -->
+       </div> <!-- cd-filter-block -->
+
+       <!-- <div class="cd-filter-block">
+         <h4>Check boxes</h4>
+
+         <ul class="cd-filter-content cd-filters list">
+           <li>
+             <input class="filter" data-filter=".check1" type="checkbox" id="checkbox1">
+               <label class="checkbox-label" for="checkbox1">Option 1</label>
+           </li>
+
+           <li>
+             <input class="filter" data-filter=".check2" type="checkbox" id="checkbox2">
+             <label class="checkbox-label" for="checkbox2">Option 2</label>
+           </li>
+
+           <li>
+             <input class="filter" data-filter=".check3" type="checkbox" id="checkbox3">
+             <label class="checkbox-label" for="checkbox3">Option 3</label>
+           </li>
+         </ul> 
+       </div>  -->
+       <input id="offset" name="offset" type="text" hidden value="<?php echo $offset;?>">
+       <input id="no_of_records_per_page" name="no_of_records_per_page" type="text" hidden value="<?php echo $no_of_records_per_page;?>">
+
+       <div class="cd-filter-block">
+         <h4>المساحة</h4>
+         
+         <div class="cd-filter-content">
+           <div class="cd-select cd-filters">
+             <select class="filter" name="Rent" id="Rent">
+               <option selected value="">الايجارات</option>
+               <option value="1">مستمر </option>
+               <option value="2">يجب الدفع</option>
+               <option value="3">انتهي</option>
+               <option value="4">لم يبدأ</option>
+             </select>
+           </div> 
+         </div> 
+       </div> 
+     
+
+    
+    </form>
+
+     <a href="#0" class="cd-close">Close</a>
+  </div>
+
+   <a href="#0" class="cd-filter-trigger">Filters</a>
+ </main> 
+
+
+    
       <footer> <?php
                 require APPROOT . '/views/inc/footer2.php';
                 ?> </footer>
     </body>
+
+    <script>
+
+function button(CardID){
+var CardID=CardID;
+// console.log(CardID);
+// var btnRent = document.querySelector( '.btnRent' );
+// var btnFront = btnRent.querySelector( '.btnRent-front' );
+// var btnYes = btnRent.querySelector( '.btnRent-back .yes' );
+// var btnNo = btnRent.querySelector( '.btnRent-back .no' );
+
+var btnRent = document.getElementById( 'btnRent'+CardID );
+var btnFront = document.getElementById( 'btnRent-front'+CardID );
+var btnYes = document.getElementById( 'yes'+CardID );
+var btnNo = document.getElementById( 'no'+CardID );
+
+// btnFront.addEventListener( 'click', function( event ) {
+  var mx = event.clientX - btnRent.offsetLeft,
+      my = event.clientY - btnRent.offsetTop;
+
+  var w = btnRent.offsetWidth,
+      h = btnRent.offsetHeight;
+    
+  var directions = [
+    { id: 'top', x: w/2, y: 0 },
+    { id: 'right', x: w, y: h/2 },
+    { id: 'bottom', x: w/2, y: h },
+    { id: 'left', x: 0, y: h/2 }
+  ];
+  
+  directions.sort( function( a, b ) {
+    return distance( mx, my, a.x, a.y ) - distance( mx, my, b.x, b.y );
+  } );
+  
+  btnRent.setAttribute( 'data-direction', directions.shift().id );
+  btnRent.classList.add( 'is-open' );
+
+// } );
+
+// btnYes.addEventListener( 'click', function( event ) { 
+ 
+ 
+// } );
+
+// btnNo.addEventListener( 'click', function( event ) {
+//    console.log("No");
+  
+  
+// } );
+$('#yes'+CardID).unbind().click(function() {
+  $.ajax({
+          url:"viewRent",
+          method:"POST",
+          data:{CardID:CardID},
+          
+          success:function(data)
+          {
+            //  console.log(data);
+             var result = data.substr(22, 1);
+             var result2=data.substr(0, 21);
+             if(result=="1"){
+            $('#btnRent'+CardID).html("");
+            $('#btnRent'+CardID).remove();
+            $('#TOR'+CardID).html(data);
+            $('#Background'+CardID).css({backgroundColor: "#20AF1C"});
+             }else if(result=="2"){
+            $('#TOR'+CardID).html(result2);
+            $('#Background'+CardID).css({backgroundColor: "#B709D3"});
+             }
+           
+          }
+        })  
+  btnRent.classList.remove( 'is-open' );
+ 
+});
+$('#no'+CardID).unbind().click(function() {
+  btnRent.classList.remove( 'is-open' );
+  console.log("No");
+});
+
+function distance( x1, y1, x2, y2 ) {
+  var dx = x1-x2;
+  var dy = y1-y2;
+  return Math.sqrt( dx*dx + dy*dy );
+}
+}
+
+      function RentAjax(){
+      var offset
+      var no_of_records_per_page
+        if( document.getElementById('Rent').value ) {
+          Rent = document.getElementById('Rent').value;
+        }else{
+          Rent = "Salah";
+        }
+       
+        if( document.getElementById('search').value ) {
+          search = document.getElementById('search').value;
+        }else{
+          search = "Salah";
+        }  
+        if( document.getElementById('offset').value ) {
+          offset = document.getElementById('offset').value;
+        }else{
+          offset = "Salah";
+        } 
+        if( document.getElementById('no_of_records_per_page').value ) {
+          no_of_records_per_page = document.getElementById('no_of_records_per_page').value;
+        }else{
+          no_of_records_per_page = "Salah";
+        } 
+        
+      
+       
+        var joex="joex";
+        $.ajax({
+          url:"<?php echo $action2;?>",
+          method:"POST",
+          data:{joex:joex,Rent:Rent,search:search,offset:offset ,no_of_records_per_page:no_of_records_per_page},
+          
+          success:function(data)
+          {
+              container = document.getElementById('cards')
+              container.innerHTML=data;
+            
+          }
+        })
+        
+      }
+      $( ".form" ).change(function() {
+        //schow item on change
+        RentAjax();
+
+      });
+      //Show item first time 
+      RentAjax();
+
+    </script>
+
 <?php
   }
 }

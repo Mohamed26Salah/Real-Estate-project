@@ -1,5 +1,6 @@
-var rangeInput = document.querySelectorAll(".range-input input");
+if( window.location.href.search("viewItem")!=-1||window.location.href.search("viewRent")!=-1){
 
+var rangeInput = document.querySelectorAll(".range-input input");
 var priceInput = document.querySelectorAll(".price-input input");
 var range = document.querySelector(".slider .progress");
 var priceGap = 1000;
@@ -40,3 +41,4 @@ rangeInput.forEach(input =>{
         }
     });
 });
+}

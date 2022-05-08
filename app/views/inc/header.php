@@ -32,7 +32,7 @@
 
 
 
-    <script src="<?php echo URLROOT; ?>js/jquery-3.3.1.min.js"></script>
+    
     <script src="<?php echo URLROOT; ?>js/popper.min.js"></script>
     <script src="<?php echo URLROOT; ?>js/bootstrap.min.js"></script>
     <script src="<?php echo URLROOT; ?>js/jquery.sticky.js"></script>
@@ -48,6 +48,8 @@
     <script src="<?php echo URLROOT; ?>js/Slider.js"></script>
     <script src="<?php echo URLROOT; ?>js/DashBoard.js"></script>
     <script src="<?php echo URLROOT; ?>js/form-image.js"></script>
+    <script src="<?php echo URLROOT; ?>js/button.js"></script>
+
     <!-- <script src="<?php echo URLROOT; ?>js/DashBoard.js"></script> -->
 
     <!-- <script src="<?php echo URLROOT; ?>js/jquery-2.1.1.js"></script> -->

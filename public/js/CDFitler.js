@@ -1,4 +1,4 @@
-if( window.location.href.search("viewItem")!=-1){
+if( window.location.href.search("viewItem")!=-1||window.location.href.search("viewRent")!=-1){
 
 jQuery(document).ready(function($){
 	//open/close lateral filter

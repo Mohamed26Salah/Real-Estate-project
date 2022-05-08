@@ -1,4 +1,3 @@
-console.log("Speed");
 var settings = {
   visible: 0, 
   theme: {

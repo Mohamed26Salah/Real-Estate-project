@@ -113,10 +113,28 @@ public function viewItem()
 
 public function viewRent()
     {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') { 
+            require_once APPROOT . "/models/viewRentModel.php";
+            $ViewRent = new viewRentModel();
+            if(isset($_POST['CardID'])){
+                echo ($ViewRent->Paid($_POST['CardID']));
+            }
+            if(isset($_POST['joex'])){
+                if($_POST['search']!="Salah"){
+                    $ViewRent->setSearch($_POST['search']);
+                }
+                if($_POST['Rent']!="Salah"){
+                    $ViewRent->setRent($_POST['Rent']);
+                }
+                echo($ViewRent->CheckIfRentIsStillValid($_POST['offset'],$_POST['no_of_records_per_page']));
+            }
+          
+        }else{
         $viewPath = VIEWS_PATH . 'pages/viewRent.php';
         require_once $viewPath;
         $indexView = new viewRent($this->getModel(), $this);
         $indexView->output();
+        }
     }
 public function viewDescription()
     {
