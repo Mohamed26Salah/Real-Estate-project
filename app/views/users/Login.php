@@ -19,6 +19,24 @@ class Login extends view
   {
     $action = URLROOT . 'users/login';
     $registerUrl = URLROOT . 'users/register';
+
+
+    $clientID = '456173517303-1quvd4kcrdb4mnc4okv1tsujdnsqaqbk.apps.googleusercontent.com';
+    $clientSecret = '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';
+
+    $redirectUrl = 'http://localhost/mvc/public/users/Login';
+
+    $client = new Google_Client();
+
+    $client->setClientId($clientID);
+    $client->setClientSecret($clientSecret);
+    $client->setRedirectUri($redirectUrl);
+
+    $client->addScope('profile');
+    $client->addScope('email');
+
+    $url = $client->createAuthUrl();
+
     
     $text = <<<EOT
     <link rel="stylesheet" href="<?php echo URLROOT; ?>css/LoginRegister.css">
@@ -51,7 +69,8 @@ EOT;
         </div>
         <div class="col">
           <a href="$registerUrl" class="btn btn-block create-account">New User, Sign up</a>
-
+          <a href="$url" class="btn btn-block create-account">Login with google</a>
+          
         </div>
       </div>
       </div>

@@ -138,10 +138,22 @@ public function viewRent()
     }
 public function viewDescription()
     {
+        
+        $viewDescription = $this->getModel();
+        if ($_SERVER['REQUEST_METHOD'] == 'GET'){
+
+            if(isset($_GET['code'])){
+                $viewDescription->setCode($_GET['code']);
+                
+                
+            }
+
+        }
+
         $viewPath = VIEWS_PATH . 'pages/viewDescription.php';
         require_once $viewPath;
-        $indexView = new viewDescription($this->getModel(), $this);
-        $indexView->output();
+        $viewDescription = new viewDescription($this->getModel(), $this);
+        $viewDescription->output();
     }    
 
     public function WishList()
@@ -267,6 +279,8 @@ public function viewDescription()
        //header('location: ' . URLROOT . 'pages');
     }
 
+    
+
     public function ImageAjax() {
         if(!empty($_FILES['fileToUpload']['name'])){
             $errors= array();
@@ -317,7 +331,13 @@ public function viewDescription()
                         echo '';
                     }
                     else {
-                        echo '<img class="img-account-profile rounded-circle mb-2" src = "'.IMAGEROOT3.$profileModel->getImage()->image.'">';
+                        if(substr($profileModel->getImage()->image,0,4) == 'http') {
+                            $imageRoot = '';
+                        }
+                        else {
+                            $imageRoot = IMAGEROOT3;
+                        }
+                        echo '<img class="img-account-profile rounded-circle mb-2" src = "'.$imageRoot.$profileModel->getImage()->image.'">';
                     }
                     
                 }
@@ -325,6 +345,9 @@ public function viewDescription()
               } 
        
     }
+
+
+    
   
 }
 

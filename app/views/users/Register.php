@@ -59,7 +59,7 @@ EOT;
         </div>
         <div class="col">
           <a href="$loginUrl" class="btn btn-block create-account">Current user, login here</a>
-          <a href="$url" class="btn btn-block create-account">Login with google</a>
+          <a href="$url" class="btn btn-block create-account">Sign Up with google</a>
         </div>
       </div>
       </div>

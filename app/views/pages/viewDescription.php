@@ -3,207 +3,256 @@ class viewDescription extends View
 {
   public function output()
   {
-    $title = $this->model->title;
-    $subtitle = $this->model->subtitle;
-
     require APPROOT . '/views/inc/header.php';
+
+    $cardDetails = $this->model->cardDetails();
+
+    $this->model->bathroomAndRooms();
+
+    $bathrooms = $this->model->getBathroom();
+    $rooms = $this->model->getRooms();
+
+    $type = $this->model->propertyType();
    
 ?>
 
 <html>
 <link rel="stylesheet" href="<?php echo URLROOT; ?>css/viewDescription.css">
-  <body style = " background-color: #003356; background-attachment: fixed;">
-    
-    <div class = "cardd-wrapper">
-      <div class = "cardd">
-        <!-- card left -->
-        <div class = "product-imgs">
-          <div class = "img-display">
-            <div class = "img-showcase">
-            <img src="<?php echo IMAGEROOT2 . 'sala11.jpeg' ; ?>" alt = "shoe image">
-            <img src="<?php echo IMAGEROOT2 . 'sala9.jpeg' ; ?>" alt = "shoe image">
-            <img src="<?php echo IMAGEROOT2 . 'sala7.jpeg' ; ?>" alt = "shoe image">
-            <img src="<?php echo IMAGEROOT2 . 'sala12.jpeg' ; ?>" alt = "shoe image">
-          
-            </div>
-          </div>
-          <div class = "img-select">
-            <div class = "img-item">
-              <a href = "#" data-id = "1">
-                <img src="<?php echo IMAGEROOT2 . 'sala11.jpeg' ; ?>" alt = "shoe image">
-              </a>
-            </div>
-            <div class = "img-item">
-              <a href = "#" data-id = "2">
-              <img src="<?php echo IMAGEROOT2 . 'sala9.jpeg' ; ?>" alt = "shoe image">
-              </a>
-            </div>
-            <div class = "img-item">
-              <a href = "#" data-id = "3">
-              <img src="<?php echo IMAGEROOT2 . 'sala7.jpeg' ; ?>" alt = "shoe image">
-              </a>
-            </div>
-            <div class = "img-item">
-              <a href = "#" data-id = "4">
-              <img src="<?php echo IMAGEROOT2 . 'sala12.jpeg' ; ?>" alt = "shoe image">
-              </a>
-            </div>
-          </div>
-        </div>
-        <!-- card right -->
-        <div class = "product-content">
-          <h2 class = "product-title">فيلا دوبلكس </h2>
-          <a href = "#" class = "product-link">التجمع الخامس</a>
-         
+  <!--Important link from https://bootsnipp.com/snippets/XqvZr-->
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
 
-          <div class = "product-price">
-            <!-- <p class = "last-price text-light h3">Old Price: <span>$257.00</span></p> -->
-            <p class = "new-price text-light h3">Price: <span>$249.00 (5%)</span></p>
-          </div>
+<link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800&display=swap" rel="stylesheet">
 
-          <div class = "product-detail">
-            <h2>about this item: </h2>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo eveniet veniam tempora fuga tenetur placeat sapiente architecto illum soluta consequuntur, aspernatur quidem at sequi ipsa!</p>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur, perferendis eius. Dignissimos, labore suscipit. Unde.</p>
-            <ul>
-            <li> <i class="fa fa-check-circle" aria-hidden="true"></i> Color: <span>Black</span></li>
-            <li><i class="fa fa-check-circle" aria-hidden="true"></i> Available: <span>in stock</span></li>
-            <li><i class="fa fa-check-circle" aria-hidden="true"></i> Category: <span>Shoes</span></li>
-            <li><i class="fa fa-check-circle" aria-hidden="true"></i> Shipping Area: <span>All over the world</span></li>
-            <li><i class="fa fa-check-circle" aria-hidden="true"></i>  Shipping Fee: <span>Free</span></li>
-            </ul>
-          </div>
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+<div class="pd-wrap">
+		<div class="container">
+	        <div class="heading-section">
+	            <h2>Unit Details</h2>
+	        </div>
+	        <div class="row" >
+	        	<div class="col-lg-12 shadow p-4 mb-4 bg-white">
+            <!-- ################################################################################################ -->
+            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators">
+                  <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                  <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                  <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                  <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+                  <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
+                  <li data-target="#carouselExampleIndicators" data-slide-to="5"></li>
+                  <li data-target="#carouselExampleIndicators" data-slide-to="6"></li>
+                  <li data-target="#carouselExampleIndicators" data-slide-to="7"></li>
+                  <li data-target="#carouselExampleIndicators" data-slide-to="8"></li>
+                  <li data-target="#carouselExampleIndicators" data-slide-to="9"></li>
+                  <li data-target="#carouselExampleIndicators" data-slide-to="10"></li>
+                  <li data-target="#carouselExampleIndicators" data-slide-to="11"></li>
+                  <li data-target="#carouselExampleIndicators" data-slide-to="12"></li>
+                  <li data-target="#carouselExampleIndicators" data-slide-to="13"></li>
+                  <li data-target="#carouselExampleIndicators" data-slide-to="14"></li>
+                  <li data-target="#carouselExampleIndicators" data-slide-to="15"></li>
+                  <li data-target="#carouselExampleIndicators" data-slide-to="16"></li>
+                  
+                </ol>
+                <div class="carousel-inner">
+                  <div class="carousel-item active">
+                    <img class="d-block w-100" src="<?php echo IMAGEROOT2 . 'image-slider-3.jpg' ;?>" alt="First slide">
+                  </div>
+                  <div class="carousel-item">
+                    <img class="d-block w-100" src="<?php echo IMAGEROOT2 . 'image-slider-2.jpg' ;?>" alt="Second slide">
+                  </div>
+                  <div class="carousel-item">
+                    <img class="d-block w-100" src="<?php echo IMAGEROOT2 . 'image-slider-4.jpg' ;?>" alt="Third slide">
+                  </div>
+                  <div class="carousel-item">
+                    <img class="d-block w-100" src="<?php echo IMAGEROOT2 . 'image-slider-2.jpg' ;?>" alt="Second slide">
+                  </div>
+                  <div class="carousel-item">
+                    <img class="d-block w-100" src="<?php echo IMAGEROOT2 . 'image-slider-4.jpg' ;?>" alt="Third slide">
+                  </div>
+                  <div class="carousel-item">
+                    <img class="d-block w-100" src="<?php echo IMAGEROOT2 . 'image-slider-2.jpg' ;?>" alt="Second slide">
+                  </div>
+                  <div class="carousel-item">
+                    <img class="d-block w-100" src="<?php echo IMAGEROOT2 . 'image-slider-4.jpg' ;?>" alt="Third slide">
+                  </div>
+                  <div class="carousel-item">
+                    <img class="d-block w-100" src="<?php echo IMAGEROOT2 . 'image-slider-4.jpg' ;?>" alt="Third slide">
+                  </div>
 
-          <div class = "purchase-info">
-           
-            <button type = "button" class = "btn">
-              Add to WishList <i class="fa fa-heart" aria-hidden="true"></i>
-            </button>
-           
-          </div>
+                  <div class="carousel-item">
+                    <img class="d-block w-100" src="<?php echo IMAGEROOT2 . 'image-slider-2.jpg' ;?>" alt="Second slide">
+                  </div>
+                  <div class="carousel-item">
+                    <img class="d-block w-100" src="<?php echo IMAGEROOT2 . 'image-slider-4.jpg' ;?>" alt="Third slide">
+                  </div>
+                  <div class="carousel-item">
+                    <img class="d-block w-100" src="<?php echo IMAGEROOT2 . 'image-slider-2.jpg' ;?>" alt="Second slide">
+                  </div>
+                  <div class="carousel-item">
+                    <img class="d-block w-100" src="<?php echo IMAGEROOT2 . 'image-slider-4.jpg' ;?>" alt="Third slide">
+                  </div>
+                  <div class="carousel-item">
+                    <img class="d-block w-100" src="<?php echo IMAGEROOT2 . 'image-slider-2.jpg' ;?>" alt="Second slide">
+                  </div>
+                  <div class="carousel-item">
+                    <img class="d-block w-100" src="<?php echo IMAGEROOT2 . 'image-slider-4.jpg' ;?>" alt="Third slide">
+                  </div>
+                  <div class="carousel-item">
+                    <img class="d-block w-100" src="<?php echo IMAGEROOT2 . 'image-slider-4.jpg' ;?>" alt="Third slide">
+                  </div>
+                </div>
+                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="sr-only">Next</span>
+                </a>
+              </div>
 
-          <div class = "social-links">
-            <a href = "#">
-              <i class = "fab fa-facebook-f"></i>
-            </a>
-            <a href = "#">
-              <i class = "fab fa-twitter"></i>
-            </a>
-            <a href = "#">
-              <i class = "fab fa-instagram"></i>
-            </a>
-            <a href = "#">
-              <i class = "fab fa-whatsapp"></i>
-            </a>
-            <a href = "#">
-              <i class = "fab fa-pinterest"></i>
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
 
-    <style>
-        
-            #no-more-tables tbody,
-            #no-more-tables tr,
-            #no-more-tables td {
-                display: block;
-         
-            }
-            #no-more-tables thead tr {
-                position: absolute;
-                top: -9999px;
-                left: -9999px;
-            }
-            #no-more-tables td {
-                position: relative;
-                padding-left: 50%;
-                border: none;
-                border-bottom: 1px solid #eee;
-            }
-            #no-more-tables td:before {
-                content: attr(data-title);
-                position: absolute;
-                left: 6px;
-                font-weight: bold;
-               
-            }
-            #no-more-tables tr {
-                border-bottom: 1px solid #ccc;
-            }
-        
-    </style>
-</head>
+             <!-- ################################################################################################ -->
 
-<body>
+            <div class="col-md-12 mt-5">
+	        		<div class="product-dtl">
+        				<div class="product-info">
+		        			<div class="product-name"><?php echo $cardDetails->Name; ?></div>
+		        			
+		        			<div class="product-price-discount"><span><?php echo number_format($cardDetails->Price); ?> EGP</span></div>
 
-<section class="p-5" style="width:70%; margin-top:5%; margin-bottom:5%; margin-left:15%; background-color:#C9E0FF; box-shadow: 5px 5px 30px 7px rgba(0,0,0,0.25), -5px -5px 30px 7px rgba(0,0,0,0.22);    border-radius:30px;
-; ">
-        <h3 class="pb-2">Responsive Table</h3>
-        <div class="table-responsive" id="no-more-tables">
-            <table class="table">
-                <thead class="bg-dark text-light">
-                    <tr>
-                        <th>First Name</th>
-                        <th>Last Name</th>
+                  <div class="col-md-6 mt-3">
+	        					<label for="color" style="font-size:22px;">Code: </label>
+								<span style="font-size:30px; color:red; "><?php echo $cardDetails->Code; ?> </span>
+	        				</div>
+
+		        		</div>
+	        			
+	        			<div class="row">
+                  <div class="col-md-6 mt-4">
+                  <i class="fa fa-home fa-lg" aria-hidden="true"style="font-weight: bold;"></i><label for="color" >Property Type:</label>
+								<span><?php echo $type->TypeName; ?></span>
+	        				</div>
+	        				<div class="col-md-6 mt-4">
+                  <i class="fa fa-bath fa-lg" aria-hidden="true"style="font-weight: bold;"></i><label for="size"  > Bathrooms:  </label>
+								<span><?php echo $bathrooms; ?></span>
+	        				</div>
+
+                  <div class="col-md-6 mt-3">
+                    <i class="fa fa-bed fa-lg" aria-hidden="true"style="font-weight: bold;"></i><label for="color" > Rooms: </label>
+								<span><?php echo $rooms; ?> </span>
+	        				</div>
+
+                  
+
+
+                  <div class="col-md-6 mt-3">
+                  <i class="fa fa-table-cells-large fa-lg" aria-hidden="true"style="font-weight: bold;"></i><label for="color" >Area: </label>
+								<span><?php echo $cardDetails->Area; ?> sqm</span>
+	        				</div>
+
+
+                  <div class="col-md-6 mt-3">
+                  <i class="fa fa-sack-dollar fa-lg" aria-hidden="true"style="font-weight: bold; "></i><label for="color">Payment Method: </label>
+								<span><?php echo $cardDetails->PaymentMethod; ?></span>
+	        				</div>
+
+                  <?php
+                  if(!empty($_SESSION['Rank'])) {
+                  if($_SESSION['Rank'] == "Admin") {
+                  ?>
+                        <div class="col-md-6 mt-3">
+                        <i class="fa fa-user fa-lg" aria-hidden="true"style="font-weight: bold; "></i><label for="color" > Owner Name: </label>
+                            <span><?php echo $cardDetails->Owner; ?> </span>
+                        </div>
+
+                        <div class="col-md-6 mt-3">
+                        <i class="fa fa-location-dot fa-lg" aria-hidden="true"style="font-weight: bold; "></i><label for="color" > Address(User):  </label>
+                            <span><?php echo $cardDetails->AddressUser; ?> </span>
+                        </div>
+
+                        <div class="col-md-6 mt-3">
+                        <i class="fa fa-phone-flip fa-lg" aria-hidden="true"style="font-weight: bold; "></i><label for="color"> Owner Number: </label>
+                            <span><?php echo $cardDetails->OwnerNumber; ?> </span>
+                        </div>
+
                         
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td data-title="First Name">Alisha</td>
-                        <td data-title="Last Name">Roy</td>
-                        
-                    </tr>
-                    <tr>
-                        <td data-title="First Name">Barun</td>
-                        <td data-title="Last Name">Basu</td>
-                      
-                    </tr>
-                    <tr>
-                        <td data-title="First Name">Deena</td>
-                        <td data-title="Last Name">Sharma</td>
-                     
-                    </tr>
-                    <tr>
-                        <td data-title="First Name">Suman</td>
-                        <td data-title="Last Name">Kashyap</td>
-                    
-                    </tr>
-                    <tr>
-                        <td data-title="First Name">Seema</td>
-                        <td data-title="Last Name">Bose</td>
                        
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </section>
 
- 
-  </body>
-  </html>
-  <script>
-    const imgs = document.querySelectorAll('.img-select a');
-const imgBtns = [...imgs];
-let imgId = 1;
-imgBtns.forEach((imgItem) => {
-    imgItem.addEventListener('click', (event) => {
-        event.preventDefault();
-        imgId = imgItem.dataset.id;
-        slideImage();
-    });
-});
+                        <div class="col-md-6 mt-3">
+                        <i class="fa fa-location-dot fa-lg" aria-hidden="true"style="font-weight: bold; "></i><label for="color" > Address(Admin):  </label>
+                            <span><?php echo $cardDetails->AddressAdmin; ?> </span>
+                        </div>
 
-function slideImage(){
-    const displayWidth = document.querySelector('.img-showcase img:first-child').clientWidth;
 
-    document.querySelector('.img-showcase').style.transform = `translateX(${- (imgId - 1) * displayWidth}px)`;
-}
+                  <?php
+                  }
+                }
+                  ?>
+                  
+	        				
+	        			</div>
+	        			<div class="product-count">
+	        				
+							    <a href="#" class="round-black-btn btn-lg" style= "float:right;">Add to wishlist<i class='fa fa-heart' aria-hidden='true'></i></a>
+	        			</div>
+	        		</div>
+	        	</div>
+	        </div>
+	        	
+	        <div class="product-info-tabs shadow p-4 mb-4 bg-white">
+		        <ul class="nav nav-tabs" id="myTab" role="tablist">
+				  	<li class="nav-item">
+				    	<a class="nav-link active" id="description-tab" data-toggle="tab" href="#description" role="tab" aria-controls="description" aria-selected="true" style = "font-size: 30px;">Description</a>
+				  	</li>
+				  	<!-- <li class="nav-item">
+				    	<a class="nav-link" id="review-tab" data-toggle="tab" href="#review" role="tab" aria-controls="review" aria-selected="false">Reviews (0)</a>
+				  	</li> -->
+				</ul>
+				<div class="tab-content" id="myTabContent">
+				  	<div class="tab-pane fade show active" id="description" role="tabpanel" aria-labelledby="description-tab">
+              <?php
+              if(!empty($_SESSION['Rank'])) {
 
-window.addEventListener('resize', slideImage);
-  </script>
+              
+                if($_SESSION['Rank'] == "Admin") {
+                  ?>
+                  <span style = "font-weight:bold;">User Description:</span><br><br>
+                  <?php
+                   echo $cardDetails->DescriptionUser . "<br><br>"; 
+
+                   ?>
+                  <span style = "font-weight:bold;">Admin Description:</span><br><br>
+                  <?php
+                   echo $cardDetails->DescriptionAdmin; 
+                }
+              }
+                
+                  echo $cardDetails->DescriptionUser . "<br><br>"; 
+                
+                
+                
+                
+              ?>
+				  	
+				  	</div>
+
+
+				  	<!-- <div class="tab-pane fade" id="review" role="tabpanel" aria-labelledby="review-tab"> -->
+				  		
+				    </div>
+			</div>
+			
+			
+		</div>
+	</div>
+	<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="	sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> -->
 
   <footer> <?php
   require APPROOT . '/views/inc/footer2.php';

@@ -206,9 +206,11 @@ class viewItemModel extends model
     }
     function card($imgroot,$ImageArray,$PriceArray,$AreaArray,$PaymentArray,$NameArray,$DescriptionArray,$offeredArray,$BathroomArray,$RoomsArray,$FinishingArrayString,$CodeArray,$AddressArray,$VisibleArray,$Checked,$IDArray,$WishList,$WishListString){
         $output2='';
+        $approot = URLROOT . 'pages/viewDescription';
         $output2=<<<EOT
+        
             <div class="containerFilter">
-            <img src="$imgroot$ImageArray" width="350px" height="240px">
+            <a href="$approot?code=$CodeArray"><img src="$imgroot$ImageArray" width="350px" height="240px"> </a>
             <div class="title">
             <div class="switchAll" style = "margin-left:70%; margin-bottom:-5%; margin:top:-5%;">
             
@@ -216,7 +218,7 @@ class viewItemModel extends model
             
             </div>
             <strong style="font-size:20px;font-weight: bold; ">$PriceArray EGP</strong>
-            <h2 style="font-family: Open Sans, sans-serif; color: #403b45; font-weight: bold;font-size:16px; margin-top: 1.5%; ">$NameArray</h2>
+            <a href="$approot?code=$CodeArray"> <h2 style="font-family: Open Sans, sans-serif; color: #403b45; font-weight: bold;font-size:16px; margin-top: 1.5%; ">$NameArray</h2></a>
             <div style="font-family: Open Sans, sans-serif; color: #403b45;font-weight: bold; font-size:16px;margin-top: 1%;">FLATS <i class="fa fa-bed fa-lg" aria-hidden="true"style="margin-left:10px;font-weight: bold;"> $RoomsArray </i><i class="fa fa-bath fa-lg" aria-hidden="true" style="margin-left:10px;margin-right:10px;font-weight: bold;"> $BathroomArray </i> 
             $AreaArray sqm
             </div>
@@ -237,6 +239,7 @@ class viewItemModel extends model
         </div>
         </div>
         <br>
+       
         EOT;
         
         return $output2;

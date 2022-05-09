@@ -14,6 +14,8 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
@@ -48,8 +50,11 @@
     <script src="<?php echo URLROOT; ?>js/Slider.js"></script>
     <script src="<?php echo URLROOT; ?>js/DashBoard.js"></script>
     <script src="<?php echo URLROOT; ?>js/form-image.js"></script>
+
     <script src="<?php echo URLROOT; ?>js/button.js"></script>
 
+
+    <script src="<?php echo URLROOT; ?>js/viewItemDesc.js"></script>
     <!-- <script src="<?php echo URLROOT; ?>js/DashBoard.js"></script> -->
 
     <!-- <script src="<?php echo URLROOT; ?>js/jquery-2.1.1.js"></script> -->

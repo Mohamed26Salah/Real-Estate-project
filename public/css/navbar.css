@@ -50,7 +50,9 @@
             -webkit-transition: .3s all ease;
             -o-transition: .3s all ease;
             transition: .3s all ease;
-            border-radius: 30px; }
+            border-radius: 30px;
+            color:black;
+           }
           .site-navbar .site-navigation .site-menu > li > a:hover > span {
             background: #C9E0FF;
             color: #000;

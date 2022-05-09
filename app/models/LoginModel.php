@@ -19,6 +19,21 @@ class LoginModel extends UserModel
             return false;
         }
     }
+
+
+    public function loginWithGoogle() {
+
+        $this->dbh->query('SELECT * from user WHERE email = :email');
+        $ValidatedEmail=filter_var($this->email, FILTER_SANITIZE_EMAIL); 
+        $this->dbh->bind(':email', $ValidatedEmail);
+
+        $record = $this->dbh->single();
+
+        
+        
+        return $record;  
+
+    }
 }
 
 

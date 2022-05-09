@@ -139,6 +139,58 @@ class Users extends Controller
     public function login()
     {
         $userModel = $this->getModel();
+
+
+        $clientID = '456173517303-1quvd4kcrdb4mnc4okv1tsujdnsqaqbk.apps.googleusercontent.com';
+        $clientSecret = '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';
+
+        $redirectUrl = 'http://localhost/mvc/public/users/Login';
+
+        // Creating client request to google
+        $client = new Google_Client();
+
+        $client->setClientId($clientID);
+        $client->setClientSecret($clientSecret);
+        $client->setRedirectUri($redirectUrl);
+
+        $client->addScope('profile');
+        $client->addScope('email');
+        $client->addScope('picture');
+
+        if(isset($_GET['code'])) {
+            $token= $client->fetchAccessTokenWithAuthCode($_GET['code']);
+            $client->setAccessToken($token);
+
+
+            $gauth = new Google_Service_Oauth2($client);
+            $google_info = $gauth->userinfo->get();
+            $email = $google_info->email;
+            $name = $google_info->name;
+
+            // $$google_info['picture']
+
+            
+            $userModel->setEmail($email);
+            // $userModel->setName($name);
+            $userModel->setImg($google_info['picture']);
+            // $registerModel->setImage($google_info['picture']);
+
+            
+            // $sora = '<img src="'.$_SESSION['image'].'">';
+            // echo $sora;
+            if($userModel->emailExist($email)) {
+                $loggedGoogleUser = $userModel->loginWithGoogle();
+                    if ($loggedGoogleUser) {
+                        //create related session variables
+                        $this->createUserSession($loggedGoogleUser);
+                        
+                        die('Success log in User');
+                    }
+            }
+             else if(!$userModel->emailExist($email)) {
+                $userModel->setEmailErr('No user found');
+            }
+        }
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             //process form
             $userModel->setEmail(trim($_POST['email']));
