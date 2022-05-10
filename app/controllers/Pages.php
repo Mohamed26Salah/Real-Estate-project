@@ -156,6 +156,102 @@ public function viewDescription()
         $viewDescription->output();
     }    
 
+       
+ 
+public function ViewADD()
+    {
+
+        $Add = $this->getModel();
+        if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+
+            if(isset($_POST['name'])){
+            if($_POST['name']!="Salah"){
+                $Add->setname($_POST['name']);
+            }
+            if($_POST['Price']!="Salah"){
+                $Add->setPrice($_POST['Price']);
+            }
+            if($_POST['Area']!="Salah"){
+                $Add->setArea($_POST['Area']);
+            }
+            if($_POST['AddressUser']!="Salah"){
+                $Add->setAddressUser($_POST['AddressUser']);
+            }
+            if($_POST['AddressAdmin']!="Salah"){
+                $Add->setAddressAdmin($_POST['AddressAdmin']);
+            }
+            if($_POST['Owner']!="Salah"){
+                $Add->setOwner($_POST['Owner']);
+            }
+            if($_POST['OwnerNum']!="Salah"){
+                $Add->setOwnerNum($_POST['OwnerNum']);
+            }
+            if($_POST['Code']!="Salah"){
+                $Add->setCode($_POST['Code']);
+            }
+            if($_POST['DescriptionUser']!="Salah"){
+                $Add->setDescriptionUser($_POST['DescriptionUser']);
+            }
+            if($_POST['DescriptionAdmin']!="Salah"){
+                $Add->setDescriptionAdmin($_POST['DescriptionAdmin']);
+            }
+            if($_POST['contarctType']!="Salah"){
+                $Add->setcontarctType($_POST['contarctType']);
+            }
+            if($_POST['Show']!="Salah"){
+                $Add->setShow($_POST['Show']);
+            }
+            if($_POST['Payment']!="Salah"){
+                $Add->setPayment($_POST['Payment']);
+            }
+            if($_POST['Importance']!="Salah"){
+                $Add->setImportance($_POST['Importance']);
+            }
+            if($_POST['Floor']!="Salah"){
+                $Add->setFloor($_POST['Floor']);
+            }
+            if($_POST['NUMOFRooms']!="Salah"){
+                $Add->setNUMOFRooms($_POST['NUMOFRooms']);
+            }
+            if($_POST['NUMOFBathrooms']!="Salah"){
+                $Add->setNUMOFBathrooms($_POST['NUMOFBathrooms']);
+            }
+            if($_POST['NUMOFFloors']!="Salah"){
+                $Add->setNUMOFFloors($_POST['NUMOFFloors']);
+            }
+            if($_POST['Furnished']!="Salah"){
+                $Add->setFurnished($_POST['Furnished']);
+            }
+            if($_POST['Finishing']!="Salah"){
+                $Add->setFinishing($_POST['Finishing']);
+            }
+            if($_POST['Doublex']!="Salah"){
+                $Add->setDoublex($_POST['Doublex']);
+            }
+            if($_POST['TypeActivity']!="Salah"){
+                $Add->setTypeActivity($_POST['TypeActivity']);
+            }
+            if($_POST['NUMOFAb']!="Salah"){
+                $Add->setNUMOFAb($_POST['NUMOFAb']);
+            }
+            if($_POST['TypeID']!="Salah"){
+                $Add->setTypeID($_POST['TypeID']);
+            }
+            echo($Add->Add());
+            }else if($_POST['codeInput']){
+                $Add->setcodeInput($_POST['codeInput']);
+                echo($Add->CheckCode()); 
+            }
+
+        }else{
+            $viewPath = VIEWS_PATH . 'pages/ViewADD.php';
+        require_once $viewPath;
+        $ViewADD = new ViewADD($this->getModel(), $this);
+        $ViewADD->output();
+        }
+      
+    }  
+
     public function WishList()
     {
         $WishListView = $this->getModel();

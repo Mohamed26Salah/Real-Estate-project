@@ -12,7 +12,8 @@ class viewItem extends View
 <link rel="stylesheet" href="<?php echo URLROOT; ?>css/resetFilter.css">
 <link rel="stylesheet" href="<?php echo URLROOT; ?>css/styleFilter.css">
 <body>
-   
+ 
+
   <main class="cd-main-content">
    <div class="cd-tab-filter-wrapper">
      <div class="cd-tab-filter">
@@ -26,6 +27,7 @@ class viewItem extends View
           ?>
           <li class="filter" style="background-color:purple; border-radius:4px;" data-filter=".color-1"><a href="viewItem" data-type="color-1" style="color:white;">Flats</a></li>
           <?php
+           $actionAdd = URLROOT . 'Pages/ViewADD';
          }
          ?>
         
@@ -37,6 +39,7 @@ class viewItem extends View
          <li class="filter" data-filter=".color-2"><a href="#0" data-type="color-2">Farm</a></li>
          <li class="filter" data-filter=".color-1"><a href="#0" data-type="color-1">Factory</a></li>
          <li class="filter" data-filter=".color-1"><a href="#0" data-type="color-1">Land</a></li>
+         <li><a href="<?php echo $actionAdd;?>?ID=1" class="AddbuttonViewPage" style="color:white; font-size:20px;">أضافة شقة جديدة</a></li>
        </ul> 
      </div> 
    </div> 

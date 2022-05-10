@@ -50,11 +50,10 @@
     <script src="<?php echo URLROOT; ?>js/Slider.js"></script>
     <script src="<?php echo URLROOT; ?>js/DashBoard.js"></script>
     <script src="<?php echo URLROOT; ?>js/form-image.js"></script>
-
     <script src="<?php echo URLROOT; ?>js/button.js"></script>
-
-
     <script src="<?php echo URLROOT; ?>js/viewItemDesc.js"></script>
+    <script src="<?php echo URLROOT; ?>js/inputValidation.js"></script>
+
     <!-- <script src="<?php echo URLROOT; ?>js/DashBoard.js"></script> -->
 
     <!-- <script src="<?php echo URLROOT; ?>js/jquery-2.1.1.js"></script> -->

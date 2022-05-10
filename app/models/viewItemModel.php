@@ -388,7 +388,6 @@ class viewItemModel extends model
         $oneTime=0;
         $Counter2=0;
         $Checked="";
-
         foreach ($ALLRECORDS as $Item) {
             
             $Counter2+=1;

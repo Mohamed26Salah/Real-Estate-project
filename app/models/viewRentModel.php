@@ -61,7 +61,7 @@ class viewRentModel extends model
         $output2=<<<EOT
         
            
-                <div class="col-lg-4 col-lg-3 content-card">
+                <div class="col-lg-4 col-lg-6 content-card">
                     <div class="card-big-shadow">
                         <div class="card card-just-text" id="Background$ID" style="background-color:$Background_Color; color:$Font_Color;" data-radius="none">
                             <div class="content">
