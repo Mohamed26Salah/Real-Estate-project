@@ -58,7 +58,12 @@ class viewRentModel extends model
     function card($YesNo,$ID,$Background_Color,$Font_Color,$typeName,$rentPrice,$TOR,$TOREND,$Start_OF_Rent,$END_OF_Rent,$LessorName,$TenantName,$LessorNum,$TenantNum,$code){
         $output2='';
         $className="btnRent-front".$ID;
+        
+        $colorWithOutHash = substr($Background_Color , 1 , 6);
+        $approot = URLROOT . 'pages/viewRentDescription';
         $output2=<<<EOT
+
+        
         
            
                 <div class="col-lg-4 col-lg-6 content-card">
@@ -77,7 +82,7 @@ class viewRentModel extends model
                                 <hr style="height:5px;">
                                 <div>المستأجر:$TenantName / $TenantNum</div>
                                 $YesNo
-                               
+                                <a href="$approot?code=$code&color=$colorWithOutHash">Read More</a>
 
                             </div>
                         </div> <!-- end card -->
@@ -210,6 +215,7 @@ class viewRentModel extends model
                     <button class="no" id="no$CardID">No</button>
                     </div>
                     <div class="btnRent-front" ID="btnRent-front$CardID" onclick="button($CardID)">هل دفع ؟</div>
+                   
                     </div>
                 EOT;
                 $output.= $this->card($YesNo,$CardID,$Background_Color,$Font_Color,$typeName,$rentPrice,$TOR,$TOREND,$Start_OF_Rent,$END_OF_Rent,$LessorName,$TenantName,$LessorNum,$TenantNum,$code);
