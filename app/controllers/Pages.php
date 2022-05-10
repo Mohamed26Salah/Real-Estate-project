@@ -136,7 +136,7 @@ public function viewRent()
         $indexView->output();
         }
     }
-public function viewDescription()
+    public function viewDescription()
     {
         
         $viewDescription = $this->getModel();
@@ -154,6 +154,27 @@ public function viewDescription()
         require_once $viewPath;
         $viewDescription = new viewDescription($this->getModel(), $this);
         $viewDescription->output();
+    }    
+
+    public function viewRentDescription()
+    {
+        
+        $viewRentDescription = $this->getModel();
+        if ($_SERVER['REQUEST_METHOD'] == 'GET'){
+
+            if(isset($_GET['code']) && isset($_GET['color'])){
+                $viewRentDescription->setCode($_GET['code']);
+                $viewRentDescription->setDotColor($_GET['color']);
+                
+                
+            }
+
+        }
+
+        $viewPath = VIEWS_PATH . 'pages/viewRentDescription.php';
+        require_once $viewPath;
+        $viewRentDescription = new viewRentDescription($this->getModel(), $this);
+        $viewRentDescription->output();
     }    
 
     public function WishList()
