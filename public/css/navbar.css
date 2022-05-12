@@ -9,10 +9,10 @@
     background-repeat: no-repeat; }
   
   .site-navbar {
-    margin-bottom: 0px;
+    margin-bottom: 10px;
     z-index: 1999;
     position: relative;
-    top: 2rem;
+    /* top: 2rem; */
     width: 100%; }
     .site-navbar.transparent {
       background: transparent; }

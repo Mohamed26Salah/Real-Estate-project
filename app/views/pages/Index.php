@@ -20,13 +20,35 @@ class Index extends View
 ?>
 
   <!-- <body background = "<?php //echo IMAGEROOT . 'img2.png' ; ?>" style = " background-attachment: fixed;"> -->
-
-  <body background = "<?php echo IMAGEROOT . 'mike-enerio-w7Z0fiZw4Mw-unsplash.jpg' ; ?>">
-  <div class = "header"> 
-    <span class = "word"></span>
-  </div>
+  <!-- background = "<?php echo IMAGEROOT . 'mike-enerio-w7Z0fiZw4Mw-unsplash.jpg' ; ?>" -->
+  <body >
+<div class = "homepage" style = "background-image: url(<?php echo IMAGEROOT3 . 'main.jpg' ; ?>);">
   
-   <!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+  <div class = "header"> 
+        <span class = "word"> Find your future home</span>
+  </div>
+
+  <div class="homepage-search" >
+    <form>
+        <input class="form-control" type = "text" placeholder="Search" id = "myInput">
+        <select name="property" id="property">
+          <option value="houses">Houses</option>
+          <option value="buildings">Buildings</option>
+          <option value="villas">Villas</option>
+          <option value="stores">Stores</option>
+          <option value="clinics">Clinics</option>
+          <option value="schools">Schools</option>
+          <option value="factories">Factories</option>
+          <option value="farms">Farms</option>
+          <option value="lands">Lands</option>
+        </select>
+        <input type="submit">
+
+    </form>
+  </div>
+</div>
+
+<!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////// -->
    <main class = "page-content">
 
    

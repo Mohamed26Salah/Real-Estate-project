@@ -52,13 +52,13 @@
       <div class="site-mobile-menu-body"></div>
     </div>
     
-    <header class="site-navbar" style="position: relative;" role="banner">
+    <header class="site-navbar" style="position: relative; background-color: white; " role="banner">
 
       <div class="container">
         <div class="row align-items-center">
           
           <div class="col-11 col-xl-2">
-            <h1 class="mb-0 site-logo"><a href="<?php echo URLROOT . 'index'; ?>"><img src="<?php echo IMAGEROOT2 . 'LogoAman.png';?>" alt = "shoe image" width="100px" height="150px"></a></h1>
+            <h1 class="mb-0 site-logo"><a href="<?php echo URLROOT . 'index'; ?>"><img src="<?php echo IMAGEROOT2 . 'LogoAman.png';?>" alt = "shoe image" width="70px" height="100px"></a></h1>
           </div>
           <div class="col-12 col-md-10 d-none d-xl-block">
             <nav class="site-navigation position-relative text-right" role="navigation">
