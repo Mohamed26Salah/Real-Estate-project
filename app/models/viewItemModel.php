@@ -230,7 +230,7 @@ class viewItemModel extends model
         $output2=<<<EOT
         
             <div class="containerFilter">
-            <a href="$approot?code=$CodeArray"><img src="$imgroot$Image" width="350px" height="240px"> </a>
+            <a href="$approot?code=$CodeArray"><img src="$imgroot$Image" width="350px" height="238px"> </a>
             <div class="title">
             <div class="switchAll" style = "margin-left:70%; margin-bottom:-5%; margin:top:-5%;">
             
@@ -297,7 +297,12 @@ class viewItemModel extends model
         $this->dbh->query("SELECT `Image` FROM `allestateimages` WHERE allestateID = ".$ID." Limit 1") ;
         $ALLRECORDS = $this->dbh->single();
         // echo($ALLRECORDS->Image);
-        return $ALLRECORDS->Image;
+        if(!empty($ALLRECORDS)){
+            return $ALLRECORDS->Image;
+        }else{
+            return "no-image.png";
+        }
+        
     }
     public function Sort($offset, $no_of_records_per_page)
     {

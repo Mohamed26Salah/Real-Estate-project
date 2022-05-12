@@ -261,7 +261,8 @@ public function ViewADD()
                    if(isset($_FILES['files']['name'][$index]) && $_FILES['files']['name'][$index] != ''){
                       // File name
                       $filename = $_FILES['files']['name'][$index];
-                
+                      $file_size = $_FILES['files']['size'][$index];
+                      
                       // Get extension
                       $ext = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
                 
@@ -270,7 +271,7 @@ public function ViewADD()
                 
                       // Check extension
                       if(in_array($ext, $valid_ext)){
-                
+                        if($file_size < 4194304){
                          // File path
                          $path = $upload_location.$filename;
                 
@@ -278,6 +279,9 @@ public function ViewADD()
                          if(move_uploaded_file($_FILES['files']['tmp_name'][$index],$path)){
                             $Add->UploadImages($filename);
                          }
+                        }
+                      }else{
+                          echo "<div class='text-center fixed-top' style='margin-top:30px;'><button class='btn btn-danger' id='Db' style='width:50%'><i class='fa fa-exclamation-triangle' aria-hidden='true'></i> واحدة من الصور ليست بصورة لذا تم رفضها</button></div>";
                       }
                    }
                 }
@@ -503,7 +507,7 @@ public function ViewADD()
                         else {
                             $imageRoot = IMAGEROOT3;
                         }
-                        echo '<img class="img-account-profile rounded-circle mb-2" src = "'.$imageRoot.$profileModel->getImage()->image.'">';
+                        echo("Warning");
                     }
                     
                 }

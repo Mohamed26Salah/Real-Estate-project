@@ -187,13 +187,21 @@ class ViewADD extends view
    }  
   ?>
   <p class='field required'>
-   Select Image Files to Upload:
-    <input type="file" id='files' name="files[]" multiple><br>
-    </p>
+  <div class="alert alert-danger"role="alert">
+  اذا كانت الصور ليست من نوع "png","jpeg","jpg" 
+  أو حجمها أكبر من 4 ميجا 
 
+  ,فسيتم رفضها تلقائيا !
+</div>
+</p>
+  <p class='field required'>
+   Select Image Files to Upload:
+    <input type="file" id='files' name="files[]" multiple required><br>
+    </p>
+    
   <p class='field half'>
-    <button class='button' id="submit" onclick="Start(this)">Submit</button>
-    <!-- <input class='button' id="submit" type='submit' onclick="Start()"> -->
+    <!-- <button class='button' id="submit" onclick="Start(this)">Submit</button> -->
+    <input class='button' id="submit" type='submit' onclick="Start()">
    
   </p>
 </form>
@@ -402,42 +410,29 @@ class ViewADD extends view
           contentType: false,
           processData: false,
           success: function (response) {
-           
+            $('#Caution').html(response);
           }
           });
         
       }
-
-function start(e){
-  e.preventDefault();
+      document.getElementById("form").addEventListener("submit", function(event){
+      event.preventDefault();
+      });
+function Start(){
   if(document.getElementById('CodeError').innerHTML=="\"هذا الكود موجود مسبقا\"")
   {
     
     $('#Caution').html("<div class='text-center fixed-top' style='margin-top:30px;'><button class='btn btn-danger' id='Db' style='width:50%'><i class='fa fa-exclamation-triangle' aria-hidden='true'></i> يا حج غير الكود </button></div>");
-  }else{
+  }else if( !document.getElementById('files').value){
+    $('#Caution').html("<div class='text-center fixed-top' style='margin-top:30px;'><button class='btn btn-danger' id='Db' style='width:50%'><i class='fa fa-exclamation-triangle' aria-hidden='true'></i> يا حج  حط صورة </button></div>");
+  }
+  else{
     AddAjax()
     Image()
   }
 
 }
-// $('#submit').click(function() {
-//   if(document.getElementById('CodeError').innerHTML=="\"هذا الكود موجود مسبقا\"")
-//   {
-// //     $("submit").click(function(event){
-// //   event.preventDefault();
-// // });
-//     $('#Caution').html("<div class='text-center fixed-top' style='margin-top:30px;'><button class='btn btn-danger' id='Db' style='width:50%'><i class='fa fa-exclamation-triangle' aria-hidden='true'></i> يا حج غير الكود </button></div>");
-//   }else{
-//     AddAjax()
-//     Image()
-//   }
 
-  
-// });
-
-// $("form").click(function(event){
-//   event.preventDefault();
-// });
 </script>
     <?php
   }

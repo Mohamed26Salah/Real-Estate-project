@@ -39,7 +39,7 @@ class viewItem extends View
          <li class="filter" data-filter=".color-2"><a href="#0" data-type="color-2">Farm</a></li>
          <li class="filter" data-filter=".color-1"><a href="#0" data-type="color-1">Factory</a></li>
          <li class="filter" data-filter=".color-1"><a href="#0" data-type="color-1">Land</a></li>
-         <li><a href="<?php echo $actionAdd;?>?ID=1" class="AddbuttonViewPage" style="color:white; font-size:20px;">أضافة شقة جديدة</a></li>
+         <li><a href="<?php echo $actionAdd;?>?ID=1" class="AddbuttonViewPage" style="color:white; font-size:20px; ">أضافة شقة جديدة</a></li>
        </ul> 
      </div> 
    </div> 
