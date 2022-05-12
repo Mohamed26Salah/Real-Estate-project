@@ -18,6 +18,17 @@ class viewItemModel extends model
     protected $ID;
     protected $visibleAll;
     protected $WishListValue;
+    protected $Floor;
+
+    public function getFloor()
+    {
+        return $this->Floor;
+    }
+    public function setFloor($Floor)
+    {
+        $this->Floor = $Floor;
+    }
+
     public function getArea()
     {
         return $this->area;
@@ -120,11 +131,20 @@ class viewItemModel extends model
     {
         return $this->Show;
     }
-  
     public function setShow($Show)
     {
         $this->Show = $Show;
     }
+
+    public function getFurnished()
+    {
+        return $this->Furnished;
+    }
+    public function setFurnished($Furnished)
+    {
+        $this->Furnished = $Furnished;
+    }
+
     public function getButtonShow()
     {
         return $this->ButtonShow;
@@ -204,13 +224,13 @@ class viewItemModel extends model
       return "denied";
     }
     }
-    function card($imgroot,$ImageArray,$PriceArray,$AreaArray,$PaymentArray,$NameArray,$DescriptionArray,$offeredArray,$BathroomArray,$RoomsArray,$FinishingArrayString,$CodeArray,$AddressArray,$VisibleArray,$Checked,$IDArray,$WishList,$WishListString){
+    function card($imgroot,$PriceArray,$AreaArray,$PaymentArray,$NameArray,$DescriptionArray,$offeredArray,$BathroomArray,$RoomsArray,$FinishingArrayString,$CodeArray,$AddressArray,$VisibleArray,$Checked,$IDArray,$WishList,$WishListString, $FurnishedArrayString,$FloorArray,$Image){
         $output2='';
         $approot = URLROOT . 'pages/viewDescription';
         $output2=<<<EOT
         
             <div class="containerFilter">
-            <a href="$approot?code=$CodeArray"><img src="$imgroot$ImageArray" width="350px" height="240px"> </a>
+            <a href="$approot?code=$CodeArray"><img src="$imgroot$Image" width="350px" height="240px"> </a>
             <div class="title">
             <div class="switchAll" style = "margin-left:70%; margin-bottom:-5%; margin:top:-5%;">
             
@@ -223,11 +243,11 @@ class viewItemModel extends model
             $AreaArray sqm
             </div>
             <div style="font-family: Open Sans, sans-serif; color: #403b45; font-size:16px;margin-top: 1%;"><i class="fa-solid fa-paint-roller" style="color:green;"></i> $FinishingArrayString 
-            <i class="fa-solid fa-sack-dollar" style="margin-left:10px; color:green;"></i> $PaymentArray </div><br>
+            <i class="fa-solid fa-sack-dollar" style="margin-left:10px; color:green;"></i> $PaymentArray </div>
+            <div style="font-family: Open Sans, sans-serif; color: #403b45; font-size:16px;margin-top: 1%;"><i class="fa-solid fa-couch" style = "color:blue;"> $FurnishedArrayString </i>  <i class="fa-solid fa-arrow-right-to-city" style="margin-left:10px; color:purple;"> $FloorArray</i> </div>
             <div style="font-family: Open Sans, sans-serif; color: #403b45; font-size:18px;margin-top: 1%;">$offeredArray</div>
             <div class="solo" style="font-family: Open Sans, sans-serif; color: #403b45; font-size:18px;margin-top: 1%;margin-bottom: 1.5%; font-weight: 600;"><i class="fa fa-map-marker" aria-hidden="true" style="color:green;"></i> $AddressArray </div>
             <div class="switchAll" >
-            
             <button onclick="WishList($IDArray)" class="buttonWishList" value = $WishList id="button$IDArray" style="background-color:$WishList" ><span id="Span$IDArray"> $WishListString </span></button>
 
             </div>
@@ -244,36 +264,40 @@ class viewItemModel extends model
         
         return $output2;
     }
-    function ifCondition($UltimateJoinRoom,$UltimateJoinBathroom,$UltimateJoinFinishing,$RoomsArray,$BathroomArray,$FinishingArray,$UltimateIF,$ultimateIFCondition){
-        if($UltimateJoinRoom!="empty"&&$UltimateJoinBathroom=="empty"&&$UltimateJoinFinishing=="empty"){
-            $UltimateIF=$UltimateJoinRoom==$RoomsArray;
-            $ultimateIFCondition="NotEmpty";
+    function ifCondition($UltimateJoinRoom,$UltimateJoinBathroom,$UltimateJoinFinishing,$UltimateJoinFurnished,$UltimateJoinFloor,$RoomsArray,$BathroomArray,$FinishingArray,$FurnishedArray,$FloorArray,$UltimateIF,$ultimateIFCondition){
+        $UltimateIF=false;
+    if($UltimateJoinRoom!="empty" || $UltimateJoinBathroom!="empty" || $UltimateJoinFurnished!="empty" || $UltimateJoinFinishing!="empty"|| $UltimateJoinFloor!="empty"){
+        $UltimateIF=true;
+        if ($UltimateJoinBathroom=="empty") {
+            $UltimateJoinBathroom=$BathroomArray;
         }
-        if($UltimateJoinRoom=="empty"&&$UltimateJoinBathroom!="empty"&&$UltimateJoinFinishing=="empty"){
-            $UltimateIF=$UltimateJoinBathroom==$BathroomArray;
-            $ultimateIFCondition="NotEmpty";
+        if ($UltimateJoinRoom=="empty") {
+            $UltimateJoinRoom=$RoomsArray;
         }
-        if($UltimateJoinRoom=="empty"&&$UltimateJoinBathroom=="empty"&&$UltimateJoinFinishing!="empty"){
-            $UltimateIF=$UltimateJoinFinishing==$FinishingArray;
-            $ultimateIFCondition="NotEmpty";
+        if ($UltimateJoinFurnished=="empty") {
+            $UltimateJoinFurnished=$FurnishedArray;
         }
-        if($UltimateJoinRoom!="empty"&&$UltimateJoinBathroom!="empty"&&$UltimateJoinFinishing=="empty"){
-            $UltimateIF=$UltimateJoinRoom==$RoomsArray&& $UltimateJoinBathroom==$BathroomArray;
-            $ultimateIFCondition="NotEmpty";
+        if ($UltimateJoinFinishing=="empty") {
+            $UltimateJoinFinishing=$FinishingArray;
         }
-        if($UltimateJoinRoom=="empty"&&$UltimateJoinBathroom!="empty"&&$UltimateJoinFinishing!="empty"){
-            $UltimateIF=$UltimateJoinFinishing==$FinishingArray&& $UltimateJoinBathroom==$BathroomArray;
-            $ultimateIFCondition="NotEmpty";
+        if ($UltimateJoinFloor=="empty") {
+            $UltimateJoinFloor=$FloorArray;
         }
-        if($UltimateJoinRoom!="empty"&&$UltimateJoinBathroom=="empty"&&$UltimateJoinFinishing!="empty"){
-            $UltimateIF=$UltimateJoinRoom==$RoomsArray&& $UltimateJoinFinishing==$FinishingArray;
-            $ultimateIFCondition="NotEmpty";
+        if($UltimateJoinBathroom==$BathroomArray&&$UltimateJoinRoom==$RoomsArray&&$UltimateJoinFurnished==$FurnishedArray&&$UltimateJoinFinishing==$FinishingArray&&$UltimateJoinFloor==$FloorArray){
+        //  $UltimateIF=true;
+         $ultimateIFCondition="NotEmpty";
         }
-        if($UltimateJoinRoom!="empty"&&$UltimateJoinBathroom!="empty"&&$UltimateJoinFinishing!="empty"){
-            $UltimateIF=$UltimateJoinRoom==$RoomsArray&& $UltimateJoinBathroom==$BathroomArray && $UltimateJoinFinishing==$FinishingArray;
-            $ultimateIFCondition="NotEmpty";
-        }
+
+    }
+  
         return array($UltimateIF,$ultimateIFCondition);
+    }
+    public function getFirstImage($ID){
+        // echo($ID);
+        $this->dbh->query("SELECT `Image` FROM `allestateimages` WHERE allestateID = ".$ID." Limit 1") ;
+        $ALLRECORDS = $this->dbh->single();
+        // echo($ALLRECORDS->Image);
+        return $ALLRECORDS->Image;
     }
     public function Sort($offset, $no_of_records_per_page)
     {
@@ -289,9 +313,10 @@ class viewItemModel extends model
         $UltimateJoinBathroom="";
         $UltimateJoinRoom="";
         $UltimateJoinFinishing="";
+        $UltimateJoinFurnished="";
         $UltimateIF="";
         $ultimateIFCondition="";
-        
+        $UltimateJoinFloor="";
         if(!empty($this->area)){
             
           if($this->area==400){
@@ -327,6 +352,13 @@ class viewItemModel extends model
         }else{
             $UltimateJoinFinishing="empty";
         }
+        ////////////////////////////////////////////////////////
+        if(!empty($this->Furnished)){
+            $UltimateJoinFurnished=$this->Furnished;
+        }else{
+            $UltimateJoinFurnished="empty";
+        }
+        ////////////////////////////////////////////////////////
         if(!empty($this->Rooms)){
             // $UltimateJoin.=" AND ";
             // $UltimateJoin.="eav.AtrributeID = 3 AND eav.Value=".$this->Rooms;
@@ -340,6 +372,11 @@ class viewItemModel extends model
             $UltimateJoinBathroom=$this->Bathroom;
         }else{
             $UltimateJoinBathroom="empty";
+        }
+        if(!empty($this->Floor)){
+            $UltimateJoinFloor=$this->Floor;
+        }else{
+            $UltimateJoinFloor="empty";
         }
         if(!empty($this->HighLow)){
             if($this->HighLow==1){
@@ -392,7 +429,7 @@ class viewItemModel extends model
             
             $Counter2+=1;
             if($oneTime==0){
-                array_push($input,(array("$Item->ID","$Item->AddressUser","$Item->Area","$Item->Price","$Item->PaymentMethod","$Item->DescriptionUser","$Item->Name","$Item->Visible","$Item->Code","$Item->offered","$Item->image","$Item->AtrributeID","$Item->Value")));
+                array_push($input,(array("$Item->ID","$Item->AddressUser","$Item->Area","$Item->Price","$Item->PaymentMethod","$Item->DescriptionUser","$Item->Name","$Item->Visible","$Item->Code","$Item->offered","$Item->AtrributeID","$Item->Value")));
                 $oneTime+=1;
                 continue;
             }
@@ -402,8 +439,8 @@ class viewItemModel extends model
                 array_push($input[$counter], "$Item->AtrributeID", "$Item->Value");
                 // echo("Number OF records".count($ALLRECORDS));
                 if($Counter2==count($ALLRECORDS)){
-                    $imgroot = IMAGEROOT2;
-                    $ImageArray=$input[$counter][10];
+                    $imgroot = IMAGEROOT3;
+                    // $ImageArray=$input[$counter][10];
                     // $PriceArray=$input[$counter][3];
                     $PriceArray=number_format($input[$counter][3]);
                     $AddressArray=$input[$counter][1];
@@ -415,45 +452,105 @@ class viewItemModel extends model
                     $AreaArray=$input[$counter][2];
                     $PaymentArray=$input[$counter][4];
                     $FinishingArray="";
+                    $FurnishedArray="";
+                    $Image=$this->getFirstImage($IDArray);
                     if($input[$counter][9]==1){
                         $offeredArray="Selling";
                     }else{
                         $offeredArray="Rent";
                     }
-                    if(!empty($input[$counter][11])){
-                        if($input[$counter][11]==4){
-                            $BathroomArray=$input[$counter][12];
+                    if(!empty($input[$counter][10])){
+                        if($input[$counter][10]==4){
+                            $BathroomArray=$input[$counter][11];
                         }
-                        else if($input[$counter][11]==3){
-                            $RoomsArray=$input[$counter][12];
+                        else if($input[$counter][10]==3){
+                            $RoomsArray=$input[$counter][11];
                         }
-                        else if($input[$counter][11]==2){
-                            $FinishingArray=$input[$counter][12];
+                        else if($input[$counter][10]==2){
+                            $FinishingArray=$input[$counter][11];
+                        }
+                        else if($input[$counter][10]==9){
+                            $FurnishedArray=$input[$counter][11];
+                        }else if($input[$counter][10]==1){
+                            $FloorArray=$input[$counter][11];
                         }
                     }
-                    if(!empty($input[$counter][13])){
-                        if($input[$counter][13]==4){
-                            $BathroomArray=$input[$counter][14];
+                    if(!empty($input[$counter][12])){
+                        if($input[$counter][12]==4){
+                            $BathroomArray=$input[$counter][13];
                         }
-                        else if($input[$counter][13]==3){
-                            $RoomsArray=$input[$counter][14];
+                        else if($input[$counter][12]==3){
+                            $RoomsArray=$input[$counter][13];
                         }
-                        else if($input[$counter][13]==2){
-                            $FinishingArray=$input[$counter][14];
+                        else if($input[$counter][12]==2){
+                            $FinishingArray=$input[$counter][13];
+                        }
+                        else if($input[$counter][12]==9){
+                            $FurnishedArray=$input[$counter][13];
+                        }
+                        else if($input[$counter][12]==1){
+                            $FloorArray=$input[$counter][13];
                         }
                  
                     }
-                    if(!empty($input[$counter][15])){
-                        if($input[$counter][15]==4){
-                            $BathroomArray=$input[$counter][16];
+                    if(!empty($input[$counter][14])){
+                        if($input[$counter][14]==4){
+                            $BathroomArray=$input[$counter][15];
                         }
-                        else if($input[$counter][15]==3){
-                            $RoomsArray=$input[$counter][16];
+                        else if($input[$counter][14]==3){
+                            $RoomsArray=$input[$counter][15];
                         }
-                        else if($input[$counter][15]==2){
-                            $FinishingArray=$input[$counter][16];
+                        else if($input[$counter][14]==2){
+                            $FinishingArray=$input[$counter][15];
+                        }
+                        else if($input[$counter][14]==9){
+                            $FurnishedArray=$input[$counter][15];
+                        }
+                        else if($input[$counter][14]==1){
+                            $FloorArray=$input[$counter][15];
                         }
                       
+                    }
+                    if(!empty($input[$counter][16])){
+                        if($input[$counter][16]==4){
+                            $BathroomArray=$input[$counter][17];
+                        }
+                        else if($input[$counter][16]==3){
+                            $RoomsArray=$input[$counter][17];
+                        }
+                        else if($input[$counter][16]==2){
+                            $FinishingArray=$input[$counter][17];
+                            // echo $FinishingArray;
+                        }
+                        else if($input[$counter][16]==9){
+                            $FurnishedArray=$input[$counter][17];
+                        }
+                        else if($input[$counter][16]==1){
+                            $FloorArray=$input[$counter][17];
+                        }
+                    }
+                    if(!empty($input[$counter][18])){
+                        if($input[$counter][18]==4){
+                            $BathroomArray=$input[$counter][19];
+                        }
+                        else if($input[$counter][18]==3){
+                            $RoomsArray=$input[$counter][19];
+                        }
+                        else if($input[$counter][18]==2){
+                            $FinishingArray=$input[$counter][19];
+                            // echo $FinishingArray;
+                        }
+                        else if($input[$counter][18]==9){
+                            $FurnishedArray=$input[$counter][19];
+                        }
+                        else if($input[$counter][18]==1){
+                            $FloorArray=$input[$counter][19];
+                        }
+                    }
+                    if($FurnishedArray==1){
+                        $FurnishedArrayString="مفروشة";
+                    }else{
+                        $FurnishedArrayString="ليست مفروشة";
                     }
                     if($FinishingArray==1){
                         $FinishingArrayString="mtshtb";
@@ -477,23 +574,29 @@ class viewItemModel extends model
                         $WishList="red";
                         $WishListString="Add to WishList";
                     }
-                    list($UltimateIF,$ultimateIFCondition)=$this->ifCondition($UltimateJoinRoom,$UltimateJoinBathroom,$UltimateJoinFinishing,$RoomsArray,$BathroomArray,$FinishingArray,$UltimateIF,$ultimateIFCondition);
+                    list($UltimateIF,$ultimateIFCondition)=$this->ifCondition($UltimateJoinRoom,$UltimateJoinBathroom,$UltimateJoinFinishing,$UltimateJoinFurnished,$UltimateJoinFloor,$RoomsArray,$BathroomArray,$FinishingArray,$FurnishedArray,$FloorArray,$UltimateIF,$ultimateIFCondition);
                    //it was here
-                    if($ultimateIFCondition!="NotEmpty"){  
-                        $output.= $this->card($imgroot,$ImageArray,$PriceArray,$AreaArray,$PaymentArray,$NameArray,$DescriptionArray,$offeredArray,$BathroomArray,$RoomsArray,$FinishingArrayString,$CodeArray,$AddressArray,$VisibleArray,$Checked,$IDArray,$WishList,$WishListString);
-          }
-        if($ultimateIFCondition=="NotEmpty"){
-            if($UltimateIF){
-        
-            
-            $output.= $this->card($imgroot,$ImageArray,$PriceArray,$AreaArray,$PaymentArray,$NameArray,$DescriptionArray,$offeredArray,$BathroomArray,$RoomsArray,$FinishingArrayString,$CodeArray,$AddressArray,$VisibleArray,$Checked,$IDArray,$WishList,$WishListString);
+                // echo($ultimateIFCondition);
+                
+         if($UltimateIF!=true){  
+                        $output.= $this->card($imgroot,$PriceArray,$AreaArray,$PaymentArray,$NameArray,$DescriptionArray,$offeredArray,$BathroomArray,$RoomsArray,$FinishingArrayString,$CodeArray,$AddressArray,$VisibleArray,$Checked,$IDArray,$WishList,$WishListString, $FurnishedArrayString,$FloorArray,$Image);
+          }else{
+            if($ultimateIFCondition=="NotEmpty"){
+                // if($UltimateIF){
+                $output.= $this->card($imgroot,$PriceArray,$AreaArray,$PaymentArray,$NameArray,$DescriptionArray,$offeredArray,$BathroomArray,$RoomsArray,$FinishingArrayString,$CodeArray,$AddressArray,$VisibleArray,$Checked,$IDArray,$WishList,$WishListString, $FurnishedArrayString,$FloorArray,$Image);
+                // }
+                
             }
-        }
+          }
+      
                 }
+                
+                
+                $ultimateIFCondition="Speed";
             }else{
                 /////////////////////////////////////////////////////////////////////////////////////////////////////
-                $imgroot = IMAGEROOT2;
-                $ImageArray=$input[$counter][10];
+                $imgroot = IMAGEROOT3;
+                // $ImageArray=$input[$counter][10];
                 $PriceArray=number_format($input[$counter][3]);
                 $AddressArray=$input[$counter][1];
                 $NameArray=$input[$counter][6];
@@ -504,48 +607,107 @@ class viewItemModel extends model
                 $AreaArray=$input[$counter][2];
                 $PaymentArray=$input[$counter][4];
                 $FinishingArray="";
+                $FurnishedArray="";
                 $WishList="";
                 $WishListString="";
+                $Image=$this->getFirstImage($IDArray);
                 if($input[$counter][9]==1){
                     $offeredArray="Selling";
                 }else{
                     $offeredArray="Rent";
                 }
-                if(!empty($input[$counter][11])){
-                    if($input[$counter][11]==4){
-                        $BathroomArray=$input[$counter][12];
+                if(!empty($input[$counter][10])){
+                    if($input[$counter][10]==4){
+                        $BathroomArray=$input[$counter][11];
                     }
-                    else if($input[$counter][11]==3){
-                        $RoomsArray=$input[$counter][12];
+                    else if($input[$counter][10]==3){
+                        $RoomsArray=$input[$counter][11];
                     }
-                    else if($input[$counter][11]==2){
-                        $FinishingArray=$input[$counter][12];
-                        // echo $FinishingArray;
+                    else if($input[$counter][10]==2){
+                        $FinishingArray=$input[$counter][11];
                     }
-                }
-                if(!empty($input[$counter][13])){
-                    if($input[$counter][13]==4){
-                        $BathroomArray=$input[$counter][14];
-                    }
-                    else if($input[$counter][13]==3){
-                        $RoomsArray=$input[$counter][14];
-                    }
-                    else if($input[$counter][13]==2){
-                        $FinishingArray=$input[$counter][14];
-                        // echo $FinishingArray;
+                    else if($input[$counter][10]==9){
+                        $FurnishedArray=$input[$counter][11];
+                    }else if($input[$counter][10]==1){
+                        $FloorArray=$input[$counter][11];
                     }
                 }
-                if(!empty($input[$counter][15])){
-                    if($input[$counter][15]==4){
-                        $BathroomArray=$input[$counter][16];
+                if(!empty($input[$counter][12])){
+                    if($input[$counter][12]==4){
+                        $BathroomArray=$input[$counter][13];
                     }
-                    else if($input[$counter][15]==3){
-                        $RoomsArray=$input[$counter][16];
+                    else if($input[$counter][12]==3){
+                        $RoomsArray=$input[$counter][13];
                     }
-                    else if($input[$counter][15]==2){
-                        $FinishingArray=$input[$counter][16];
+                    else if($input[$counter][12]==2){
+                        $FinishingArray=$input[$counter][13];
+                    }
+                    else if($input[$counter][12]==9){
+                        $FurnishedArray=$input[$counter][13];
+                    }
+                    else if($input[$counter][12]==1){
+                        $FloorArray=$input[$counter][13];
+                    }
+             
+                }
+                if(!empty($input[$counter][14])){
+                    if($input[$counter][14]==4){
+                        $BathroomArray=$input[$counter][15];
+                    }
+                    else if($input[$counter][14]==3){
+                        $RoomsArray=$input[$counter][15];
+                    }
+                    else if($input[$counter][14]==2){
+                        $FinishingArray=$input[$counter][15];
+                    }
+                    else if($input[$counter][14]==9){
+                        $FurnishedArray=$input[$counter][15];
+                    }
+                    else if($input[$counter][14]==1){
+                        $FloorArray=$input[$counter][15];
+                    }
+                  
+                }
+                if(!empty($input[$counter][16])){
+                    if($input[$counter][16]==4){
+                        $BathroomArray=$input[$counter][17];
+                    }
+                    else if($input[$counter][16]==3){
+                        $RoomsArray=$input[$counter][17];
+                    }
+                    else if($input[$counter][16]==2){
+                        $FinishingArray=$input[$counter][17];
                         // echo $FinishingArray;
                     }
+                    else if($input[$counter][16]==9){
+                        $FurnishedArray=$input[$counter][17];
+                    }
+                    else if($input[$counter][16]==1){
+                        $FloorArray=$input[$counter][17];
+                    }
+                }
+                if(!empty($input[$counter][18])){
+                    if($input[$counter][18]==4){
+                        $BathroomArray=$input[$counter][19];
+                    }
+                    else if($input[$counter][18]==3){
+                        $RoomsArray=$input[$counter][19];
+                    }
+                    else if($input[$counter][18]==2){
+                        $FinishingArray=$input[$counter][19];
+                        // echo $FinishingArray;
+                    }
+                    else if($input[$counter][18]==9){
+                        $FurnishedArray=$input[$counter][19];
+                    }
+                    else if($input[$counter][18]==1){
+                        $FloorArray=$input[$counter][19];
+                    }
+                }
+                if($FurnishedArray==1){
+                    $FurnishedArrayString="مفروشة";
+                }else{
+                    $FurnishedArrayString="ليست مفروشة";
                 }
                 if($FinishingArray==1){
                     $FinishingArrayString="mtshtb";
@@ -570,23 +732,23 @@ class viewItemModel extends model
                 }
                
                 //Bl3b fe IF 
-                list($UltimateIF,$ultimateIFCondition)=$this->ifCondition($UltimateJoinRoom,$UltimateJoinBathroom,$UltimateJoinFinishing,$RoomsArray,$BathroomArray,$FinishingArray,$UltimateIF,$ultimateIFCondition);
+                list($UltimateIF,$ultimateIFCondition)=$this->ifCondition($UltimateJoinRoom,$UltimateJoinBathroom,$UltimateJoinFinishing,$UltimateJoinFurnished,$UltimateJoinFloor,$RoomsArray,$BathroomArray,$FinishingArray,$FurnishedArray,$FloorArray,$UltimateIF,$ultimateIFCondition);
                 //it also was here
 
-                
-                
-                if($ultimateIFCondition!="NotEmpty"){  
-                    $output.= $this->card($imgroot,$ImageArray,$PriceArray,$AreaArray,$PaymentArray,$NameArray,$DescriptionArray,$offeredArray,$BathroomArray,$RoomsArray,$FinishingArrayString,$CodeArray,$AddressArray,$VisibleArray,$Checked,$IDArray,$WishList,$WishListString);
-                }
-                if($ultimateIFCondition=="NotEmpty"){
-                    if($UltimateIF){
-
-                    $output.= $this->card($imgroot,$ImageArray,$PriceArray,$AreaArray,$PaymentArray,$NameArray,$DescriptionArray,$offeredArray,$BathroomArray,$RoomsArray,$FinishingArrayString,$CodeArray,$AddressArray,$VisibleArray,$Checked,$IDArray,$WishList,$WishListString);
+               
+                if($UltimateIF!=true){  
+                    $output.= $this->card($imgroot,$PriceArray,$AreaArray,$PaymentArray,$NameArray,$DescriptionArray,$offeredArray,$BathroomArray,$RoomsArray,$FinishingArrayString,$CodeArray,$AddressArray,$VisibleArray,$Checked,$IDArray,$WishList,$WishListString, $FurnishedArrayString,$FloorArray,$Image);
+                }else{
+                    if($ultimateIFCondition=="NotEmpty"){
+                        // if($UltimateIF){
+                        $output.= $this->card($imgroot,$PriceArray,$AreaArray,$PaymentArray,$NameArray,$DescriptionArray,$offeredArray,$BathroomArray,$RoomsArray,$FinishingArrayString,$CodeArray,$AddressArray,$VisibleArray,$Checked,$IDArray,$WishList,$WishListString, $FurnishedArrayString,$FloorArray,$Image);
+                        // }
+                        
                     }
                 }
             
                 
-                array_push($input,(array("$Item->ID","$Item->AddressUser","$Item->Area","$Item->Price","$Item->PaymentMethod","$Item->DescriptionUser","$Item->Name","$Item->Visible","$Item->Code","$Item->offered","$Item->image","$Item->AtrributeID","$Item->Value")));
+                array_push($input,(array("$Item->ID","$Item->AddressUser","$Item->Area","$Item->Price","$Item->PaymentMethod","$Item->DescriptionUser","$Item->Name","$Item->Visible","$Item->Code","$Item->offered","$Item->AtrributeID","$Item->Value")));
                 unset($input[$counter]);
               
                 $counter+=1;
@@ -594,7 +756,7 @@ class viewItemModel extends model
                
             }
           
-           
+            $ultimateIFCondition="Speed";
           }
          return $output;
      

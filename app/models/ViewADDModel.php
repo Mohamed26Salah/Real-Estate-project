@@ -267,6 +267,15 @@ class ViewADDModel extends model
             echo("\"هذا الكود موجود مسبقا\"");
         }
         }
+        public function UploadImages($Value){
+            $this->dbh->query("SELECT * FROM allestate ORDER BY ID DESC LIMIT 1");
+            $ALLRECORDS = $this->dbh->single();
+            $this->dbh->query("INSERT INTO `allestateimages`(`allestateID`, `Image`) VALUES (:uIID, :uImage)"); 
+            $this->dbh->bind(':uIID', $ALLRECORDS->ID);
+            $this->dbh->bind(':uImage', $Value);
+            $this->dbh->execute();
+            // echo($ALLRECORDS->ID);
+        }
         public function Eav($AllID,$AtrributeID,$Value){
             $this->dbh->query("INSERT INTO `eav`(`AllID`, `AtrributeID`, `Value`) VALUES (:uAllID, :uAtrributeID, :uValue)"); 
             $this->dbh->bind(':uAllID', $AllID);

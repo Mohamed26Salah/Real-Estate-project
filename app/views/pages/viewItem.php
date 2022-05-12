@@ -59,7 +59,7 @@ class viewItem extends View
          }
 
 
-         $no_of_records_per_page = 20;
+         $no_of_records_per_page = 40;
          $offset = ($pageno - 1) * $no_of_records_per_page;
 
          $total_rows = $this->model->GetCount()->TD;
@@ -129,7 +129,7 @@ class viewItem extends View
          <h4>Search</h4>
          
          <div class="cd-filter-content">
-           <input type="search" name="search" id="search" placeholder="أبحث">
+           <input type="search" name="search" id="search" placeholder="أبحث" onkeyup="itemsAjax()">
          </div> <!-- cd-filter-content -->
        </div> <!-- cd-filter-block -->
 
@@ -224,7 +224,7 @@ class viewItem extends View
            </div> 
          </div> 
        </div> 
-        <div class="cd-filter-block">
+        <!-- <div class="cd-filter-block">
          <h4>عدد الفرف</h4>
          
          <div class="cd-filter-content">
@@ -239,9 +239,14 @@ class viewItem extends View
              </select>
            </div> 
          </div> 
-       </div> 
-
+       </div>  -->
        <div class="cd-filter-block">
+         <h4> عدد الفرف</h4>
+         <div class="cd-filter-content">
+             <input type="text" id="Rooms" name="Rooms" onkeyup="itemsAjax(),numbers(this)"> 
+         </div> 
+       </div> 
+       <!-- <div class="cd-filter-block">
          <h4>عدد الحمامات</h4>
          
          <div class="cd-filter-content">
@@ -256,7 +261,13 @@ class viewItem extends View
              </select>
            </div> 
          </div> 
-       </div>  
+       </div>   -->
+       <div class="cd-filter-block">
+         <h4> عدد الحمامات</h4>
+         <div class="cd-filter-content">
+             <input type="text" id="Bathroom" name="Bathroom" onkeyup="itemsAjax(),numbers(this)"> 
+         </div> 
+       </div> 
        <div class="cd-filter-block">
          <h4> التشطيب</h4>
          
@@ -271,6 +282,12 @@ class viewItem extends View
          </div> 
        </div>  
        <div class="cd-filter-block">
+         <h4>الدور</h4>
+         <div class="cd-filter-content">
+             <input type="text" id="Floor" name="Floor" onkeyup="itemsAjax(),numbers(this)"> 
+         </div> 
+       </div> 
+       <div class="cd-filter-block">
          <h4> طريقةالدفع</h4>
          
          <div class="cd-filter-content">
@@ -279,6 +296,18 @@ class viewItem extends View
               <option selected value="">أختر</option>
                <option value="Cash">Cash</option>
                <option value="instalment">instalment</option>
+             </select>
+           </div> 
+         </div> 
+       </div>  
+       <div class="cd-filter-block">
+         <h4> مفروشة ؟</h4>
+         <div class="cd-filter-content">
+           <div class="cd-select cd-filters">
+             <select class="filter" name="Furnished" id="Furnished">
+              <option selected value="">أختر</option>
+               <option value="1">نعم</option>
+               <option value="2">لا</option>
              </select>
            </div> 
          </div> 
@@ -441,6 +470,16 @@ function WishList(IDArray){
         }else{
           Show = "Salah";
         }  
+        if( document.getElementById('Furnished').value ) {
+          Furnished = document.getElementById('Furnished').value;
+        }else{
+          Furnished = "Salah";
+        }  
+        if( document.getElementById('Floor').value ) {
+          Floor = document.getElementById('Floor').value;
+        }else{
+          Floor = "Salah";
+        }  
         
         if( document.getElementById('viewItem').value ) {
           Model=document.getElementById('viewItem').value;
@@ -453,10 +492,11 @@ function WishList(IDArray){
         $.ajax({
           url:"<?php echo $action2;?>",
           method:"POST",
-          data:{Finishing:Finishing , HighLow:HighLow, Payment:Payment,contarctType:contarctType,area:area,Bathroom:Bathroom,Rooms:Rooms,search:search,Model:Model,offset:offset ,no_of_records_per_page:no_of_records_per_page,pricerange1:pricerange1,pricerange2:pricerange2,Show:Show},
+          data:{Floor:Floor,Finishing:Finishing , HighLow:HighLow, Payment:Payment,contarctType:contarctType,area:area,Bathroom:Bathroom,Rooms:Rooms,search:search,Model:Model,offset:offset ,no_of_records_per_page:no_of_records_per_page,pricerange1:pricerange1,pricerange2:pricerange2,Show:Show,Furnished:Furnished},
           
           success:function(data)
           {
+            console.log(data);
               container = document.getElementById('cards')
               container.innerHTML=data;
               

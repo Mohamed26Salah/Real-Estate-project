@@ -7,9 +7,11 @@ class ViewADD extends view
     require APPROOT . '/views/inc/header.php';
     
     if(isset($_GET['ID'])){
-       $ID=$_GET['ID'];
+      //  $ID=$_GET['ID'];
+       $_SESSION['UnitID']=$_GET['ID'];
       }
     $action = 'ViewADD'; 
+    $action2 = URLROOT . 'Pages/viewItem'; 
 
       ?>
 
@@ -17,9 +19,9 @@ class ViewADD extends view
 <html>
     <body>
 
-<div class="All">
+<div class="All text-right" dir="rtl">
   <div class="Caution" id="Caution"></div>
-<form class="form" id="form">
+<form class="form" id="form" enctype="multipart/form-data">
   <p class='field required'>
     <label class='label required' for='name'>الأسم</label>
     <input class='text-input' id='name' name='name' onkeyup="lettersandnumbers(this)" maxlength="83" required type='text'>
@@ -114,7 +116,7 @@ class ViewADD extends view
     </select>
   </p> -->
   <?php
-  if($ID==1){
+  if($_SESSION['UnitID']==1){
 ?>
   
   <p class='field required half'>
@@ -184,9 +186,14 @@ class ViewADD extends view
   <?php
    }  
   ?>
+  <p class='field required'>
+   Select Image Files to Upload:
+    <input type="file" id='files' name="files[]" multiple><br>
+    </p>
+
   <p class='field half'>
-    <button class='button'  id="submit">Submit</button>
-    <!-- <input class='button' id="submit" type='submit'> -->
+    <button class='button' id="submit" onclick="Start(this)">Submit</button>
+    <!-- <input class='button' id="submit" type='submit' onclick="Start()"> -->
    
   </p>
 </form>
@@ -368,24 +375,69 @@ class ViewADD extends view
           success:function(data)
           {
            
-            // console.log(data);
+            window.location.replace("<?php echo $action2;?>")
+
           }
         })
       
         
       }
-$('#submit').unbind().click(function() {
+
+      function Image(){
+        var form_data = new FormData();
+          // Read selected files
+          var totalfiles = document.getElementById('files').files.length;
+          for (var index = 0; index < totalfiles; index++) {
+            console.log(document.getElementById('files').files[index]);
+            // form_data.append("array",document.getElementById('files').files[index]);
+            form_data.append("files[]", document.getElementById('files').files[index]);
+          // console.log(form_data.array);
+          }
+          // AJAX request
+          $.ajax({
+          url: "<?php echo $action;?>", 
+          method:"POST",
+          data: form_data,
+          // dataType: 'json',
+          contentType: false,
+          processData: false,
+          success: function (response) {
+           
+          }
+          });
+        
+      }
+
+function start(e){
+  e.preventDefault();
   if(document.getElementById('CodeError').innerHTML=="\"هذا الكود موجود مسبقا\"")
   {
+    
     $('#Caution').html("<div class='text-center fixed-top' style='margin-top:30px;'><button class='btn btn-danger' id='Db' style='width:50%'><i class='fa fa-exclamation-triangle' aria-hidden='true'></i> يا حج غير الكود </button></div>");
   }else{
-    AddAjax();
+    AddAjax()
+    Image()
   }
+
+}
+// $('#submit').click(function() {
+//   if(document.getElementById('CodeError').innerHTML=="\"هذا الكود موجود مسبقا\"")
+//   {
+// //     $("submit").click(function(event){
+// //   event.preventDefault();
+// // });
+//     $('#Caution').html("<div class='text-center fixed-top' style='margin-top:30px;'><button class='btn btn-danger' id='Db' style='width:50%'><i class='fa fa-exclamation-triangle' aria-hidden='true'></i> يا حج غير الكود </button></div>");
+//   }else{
+//     AddAjax()
+//     Image()
+//   }
+
   
-});
-$("form").click(function(event){
-  event.preventDefault();
-});
+// });
+
+// $("form").click(function(event){
+//   event.preventDefault();
+// });
 </script>
     <?php
   }

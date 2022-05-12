@@ -100,6 +100,12 @@ public function viewItem()
             if($_POST['Show']!="Salah"){
                 $ViewItem->setShow($_POST['Show']);
             }
+            if($_POST['Furnished']!="Salah"){
+                $ViewItem->setFurnished($_POST['Furnished']);
+            }
+            if($_POST['Floor']!="Salah"){
+                $ViewItem->setFloor($_POST['Floor']);
+            }
           
            
              echo($ViewItem->Sort($_POST['offset'],$_POST['no_of_records_per_page']));
@@ -239,10 +245,51 @@ public function ViewADD()
                 $Add->setTypeID($_POST['TypeID']);
             }
             echo($Add->Add());
-            }else if($_POST['codeInput']){
+            }
+            if(!empty($_FILES['files']['name'])){
+                $countfiles = count($_FILES['files']['name']);
+
+                // Upload Location
+                $upload_location = IMAGEROOT;
+                
+                // To store uploaded files path
+                $files_arr = array();
+                
+                // Loop all files
+                for($index = 0;$index < $countfiles;$index++){
+                
+                   if(isset($_FILES['files']['name'][$index]) && $_FILES['files']['name'][$index] != ''){
+                      // File name
+                      $filename = $_FILES['files']['name'][$index];
+                
+                      // Get extension
+                      $ext = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
+                
+                      // Valid image extension
+                      $valid_ext = array("png","jpeg","jpg");
+                
+                      // Check extension
+                      if(in_array($ext, $valid_ext)){
+                
+                         // File path
+                         $path = $upload_location.$filename;
+                
+                         // Upload file
+                         if(move_uploaded_file($_FILES['files']['tmp_name'][$index],$path)){
+                            $Add->UploadImages($filename);
+                         }
+                      }
+                   }
+                }
+                echo("da5l");
+                
+            }
+            if($_POST['codeInput']){
                 $Add->setcodeInput($_POST['codeInput']);
                 echo($Add->CheckCode()); 
             }
+           
+
 
         }else{
             $viewPath = VIEWS_PATH . 'pages/ViewADD.php';
@@ -251,7 +298,7 @@ public function ViewADD()
         $ViewADD->output();
         }
       
-    }  
+    } 
 
     public function viewRentDescription()
     {
