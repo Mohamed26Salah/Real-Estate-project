@@ -161,6 +161,27 @@
     border: solid 1px #212529; 
     transition: all 0.5s ease-in-out 0s;
 }
+
+.product-count a {
+	text-decoration: none;
+}
+                                                                         
+.btn-success {
+	border-radius: 4px;
+    background: green;
+    color: #fff;
+    padding: 7px 45px;
+    display: inline-block;
+    margin-top: 20px;
+    border: solid 1px #212529; 
+    transition: all 0.5s ease-in-out 0s;
+	text-decoration: none; /* remove underline */
+	color: inherit; /* remove blue */
+}
+
+.btn-success:hover{
+	color: white;
+}
 .round-black-btn:hover,
 .round-black-btn:focus {
 	background: transparent;

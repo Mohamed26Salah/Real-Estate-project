@@ -14,6 +14,10 @@ class viewDescriptionModel extends model
     protected $ID;
     protected $typeID;
 
+    protected $furnished;
+    protected $floor;
+
+
 
     public function getArea()
     {
@@ -114,6 +118,26 @@ class viewDescriptionModel extends model
     }
 
 
+    public function getFurnished()
+    {
+        return $this->furnished;
+    }
+    public function setFurnished($furnished)
+    {
+        $this->furnished = $furnished;
+    }
+
+
+    public function getFloor()
+    {
+        return $this->floor;
+    }
+    public function setFloor($floor)
+    {
+        $this->floor = $floor;
+    }
+
+
     public function cardDetails() {
          
           $this->dbh->query("SELECT * FROM `allestate` WHERE `Code` = '$this->code'");
@@ -124,6 +148,7 @@ class viewDescriptionModel extends model
           $this->setID($record->ID);
           
           $this->setTypeID($record->TypeID);
+
 
           return $record;
 
@@ -143,6 +168,13 @@ class viewDescriptionModel extends model
                if ($item->AtrributeID == 3) {
                     $this->setRooms($item->Value);
                }
+
+               if ($item->AtrributeID == 9) {
+                $this->setFurnished($item->Value);
+                }
+               if ($item->AtrributeID == 1) {
+                    $this->setFloor($item->Value);
+                }
           }
     
     
@@ -161,6 +193,24 @@ class viewDescriptionModel extends model
 
     }
 
+    public function showPropertyImage() {
+
+        
+        $this->dbh->query("SELECT * FROM `allestateimages` WHERE `allestateID` = ".$this->getID());
+
+        $images = array();
+       
+        $records = $this->dbh->resultSet();
+        if(empty($records)){
+            return false;
+        }
+        foreach($records as $imgs) {
+            array_push($images, "$imgs->Image");
+        }
+
+        
+        return $images;
+    }
 
 }
 
