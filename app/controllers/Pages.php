@@ -148,14 +148,17 @@ public function viewRent()
         $viewDescription = $this->getModel();
         if ($_SERVER['REQUEST_METHOD'] == 'GET'){
 
-            if(isset($_GET['code'])){
-                $viewDescription->setCode($_GET['code']);
-                
+            if(isset($_GET['ID'])){
+                $viewDescription->setSalahID($_GET['ID']);
                 
             }
 
         }
-
+        if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+        if(isset($_POST['joex'])){
+            $viewDescription->Delete($_POST['joex']);
+        }
+    }
         $viewPath = VIEWS_PATH . 'pages/viewDescription.php';
         require_once $viewPath;
         $viewDescription = new viewDescription($this->getModel(), $this);
@@ -244,6 +247,10 @@ public function ViewADD()
             if($_POST['TypeID']!="Salah"){
                 $Add->setTypeID($_POST['TypeID']);
             }
+            if($_POST['EditID']!="Salah"){
+                $Add->setEditID($_POST['EditID']);
+            }
+            echo("Da5l Add");
             echo($Add->Add());
             }
             if(!empty($_FILES['files']['name'])){
@@ -285,10 +292,9 @@ public function ViewADD()
                       }
                    }
                 }
-                echo("da5l");
                 
             }
-            if($_POST['codeInput']){
+            if(isset($_POST['codeInput'])){
                 $Add->setcodeInput($_POST['codeInput']);
                 echo($Add->CheckCode()); 
             }
@@ -325,6 +331,25 @@ public function ViewADD()
         $viewRentDescription->output();
     }    
 
+    public function viewEdit()
+    {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $ViewEdit = $this->getModel();
+            if(isset($_POST['FireAJAX'])){
+                $ViewEdit->setID($_POST['FireAJAX']);
+                echo($ViewEdit->ShowEdit());
+            }else if($_POST['codeInput']){
+                echo($ViewEdit->CheckCodeEdit($_POST['OldCode'],$_POST['codeInput']));
+            }
+
+        }else{
+            $viewPath = VIEWS_PATH . 'pages/viewEdit.php';
+            require_once $viewPath;
+            $viewEdit = new viewEdit($this->getModel(), $this);
+            $viewEdit->output();
+        }
+       
+    }    
 
     public function WishList()
     {

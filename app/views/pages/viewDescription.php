@@ -15,26 +15,29 @@ class viewDescription extends View
     $type = $this->model->propertyType();
 
     $images = $this->model->showPropertyImage();
-
+    $finishing = $this->model->getFinishing();
     $furnished = $this->model->getFurnished();
     $floor = $this->model->getFloor();
-
+    $action = URLROOT . 'Pages/viewEdit';
+    $action2 = URLROOT . 'Pages/viewItem';
 
     
    
 ?>
 
 <html>
+
 <link rel="stylesheet" href="<?php echo URLROOT; ?>css/viewRentDescription.css">
+<link rel="stylesheet" href="<?php echo URLROOT; ?>css/Button.css">
+
   <!--Important link from https://bootsnipp.com/snippets/XqvZr-->
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <!------ Include the above in your HEAD tag ---------->
 
 <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800&display=swap" rel="stylesheet">
 
 	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+  <input type="hidden" id="Salah" value="<?php echo($_GET['ID']); ?>">
 <div class="pd-wrap">
 		<div class="container">
       
@@ -153,20 +156,41 @@ class viewDescription extends View
 
 
                   <div class="col-md-6 mt-4">
-                     <i class="fa fa-couch fa-lg" aria-hidden="true"style="font-weight: bold;"></i><label for="size"  > التشطيب :  </label>
+                     <i class="fa fa-couch fa-lg" aria-hidden="true"style="font-weight: bold;"></i><label for="size"  > الفرش :  </label>
                     <?php
                       if($furnished == 1) {
-                        echo "<span>Furnished</span>";
-                    
+                        echo "<span>مفروشة</span>";
+
                       }
 
                       else if($furnished == 2) {
-                        echo "<span> Not Furnished</span>";
+                        echo "<span> ليست مفروشة</span>";
                       }
-                   
+
                      ?>
-                     
-	        				</div>
+
+                            </div>
+
+
+                  <div class="col-md-6 mt-4">
+                     <i class="fa fa-paint-roller fa-lg" aria-hidden="true"style="font-weight: bold;"></i><label for="size"  > التشطيب :  </label>
+                    <?php
+                      if($finishing == 1) {
+                        echo "<span>متشطب</span>";
+
+                      }
+
+                      else if($finishing == 2) {
+                        echo "<span> نص تشطيب</span>";
+                      }
+
+                      else if($finishing == 3) {
+                        echo "<span> مش متشطب</span>";
+                      }
+
+                     ?>
+
+                  </div>
 
                   <div class="col-md-6 mt-3">
                     <i class="fa fa-bed fa-lg" aria-hidden="true"style="font-weight: bold;"></i><label for="color" > الغرف : </label>
@@ -224,9 +248,17 @@ class viewDescription extends View
 	        			</div>
 	        			<div class="product-count">
 	        				
-							    <a href="#" class="round-black-btn btn-lg" style= "float:right;">Add to wishlist<i class='fa fa-heart' aria-hidden='true'></i></a>
-                  <a href="#" class="btn btn-dark btn-lg" style= "float:left; color:white; text-decoration:none;">Delete</a>
-                  <a href="#" class="btn btn-success btn-lg" style= "float:left; color:white; text-decoration:none; margin-top:0.1rem; margin-left:25px;">Edit</a>
+							    <a href="#" class="round-black-btn btn-lg" style= "float:right;">Add to wishlist<i class='fa fa-heart' aria-hidden='true'></i></a>                 
+                   <div class="btnRent" id="btnRent" style= "float:left; margin-left:-1%;">
+                    <div class="btnRent-back" id="btnRent-back">
+                    <p style="font-size:30px">هل أنت متأكد ؟</p>
+                    <button class="yes" id="yes" style="font-size:20px" >نعم</button>
+                    <button class="no" id="no" style="font-size:20px">لا</button>
+                    </div>
+                    <div class="btnRent-front" ID="btnRent-front" onclick="button()">احذف</div>
+                   
+                    </div>
+                  <a href="<?php echo $action; ?>?IDE=<?php echo $cardDetails->ID; ?>" class="btn btn-success btn-lg" style= "float:left; color:white; text-decoration:none; margin-top:1rem; margin-left:25px;">Edit</a>
 	        			</div>
 	        		</div>
 	        	</div>
@@ -278,11 +310,77 @@ class viewDescription extends View
 			
 		</div>
 	</div>
-	<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
-    
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="	sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> -->
+  <script>
+    function button(){
 
+   
+    var btnRent = document.getElementById( 'btnRent' );
+var btnFront = document.getElementById( 'btnRent-front' );
+var btnYes = document.getElementById( 'yes' );
+var btnNo = document.getElementById( 'no');
+
+// btnFront.addEventListener( 'click', function( event ) {
+  var mx = event.clientX - btnRent.offsetLeft,
+      my = event.clientY - btnRent.offsetTop;
+
+  var w = btnRent.offsetWidth,
+      h = btnRent.offsetHeight;
+    
+  var directions = [
+    { id: 'top', x: w/2, y: 0 },
+    { id: 'right', x: w, y: h/2 },
+    { id: 'bottom', x: w/2, y: h },
+    { id: 'left', x: 0, y: h/2 }
+  ];
+  
+  directions.sort( function( a, b ) {
+    return distance( mx, my, a.x, a.y ) - distance( mx, my, b.x, b.y );
+  } );
+  
+  btnRent.setAttribute( 'data-direction', directions.shift().id );
+  btnRent.classList.add( 'is-open' );
+
+// } );
+
+// btnYes.addEventListener( 'click', function( event ) { 
+ 
+ 
+// } );
+
+// btnNo.addEventListener( 'click', function( event ) {
+//    console.log("No");
+  
+  
+// } );
+$('#yes').unbind().click(function() {
+  btnRent.classList.remove( 'is-open' );
+  var joex = document.getElementById("Salah").value;
+  $.ajax({
+          url:"viewDescription",
+          method:"POST",
+          data:{joex:joex},
+          
+          success:function(data)
+          {
+            console.log(data);
+            window.location.replace("<?php echo($action2); ?>")   
+          }
+        })
+       
+
+});
+$('#no').unbind().click(function() {
+  btnRent.classList.remove( 'is-open' );
+  console.log("No");
+});
+
+function distance( x1, y1, x2, y2 ) {
+  var dx = x1-x2;
+  var dy = y1-y2;
+  return Math.sqrt( dx*dx + dy*dy );
+}
+    }
+  </script>
   <footer> <?php
   require APPROOT . '/views/inc/footer2.php';
   ?> </footer>

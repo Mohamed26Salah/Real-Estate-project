@@ -230,7 +230,7 @@ class viewItemModel extends model
         $output2=<<<EOT
         
             <div class="containerFilter">
-            <a href="$approot?code=$CodeArray"><img src="$imgroot$Image" width="350px" height="238px"> </a>
+            <a href="$approot?ID=$IDArray"><img src="$imgroot$Image" width="350px" height="238px"> </a>
             <div class="title">
             <div class="switchAll" style = "margin-left:70%; margin-bottom:-5%; margin:top:-5%;">
             
@@ -558,9 +558,11 @@ class viewItemModel extends model
                         $FurnishedArrayString="ليست مفروشة";
                     }
                     if($FinishingArray==1){
-                        $FinishingArrayString="mtshtb";
-                    }else{
-                        $FinishingArrayString="Not mtshtb";
+                        $FinishingArrayString="متشطب";
+                    }else if($FinishingArray==2){
+                        $FinishingArrayString="نص نشطيب";
+                    }else if($FinishingArray==3){
+                        $FinishingArrayString="مش مشتطبة ";
                     }
                     if($VisibleArray==1){
                         $VisibleArray="on";
@@ -715,9 +717,11 @@ class viewItemModel extends model
                     $FurnishedArrayString="ليست مفروشة";
                 }
                 if($FinishingArray==1){
-                    $FinishingArrayString="mtshtb";
-                }else{
-                    $FinishingArrayString="Not mtshtb";
+                    $FinishingArrayString="متشطب";
+                }else if($FinishingArray==2){
+                    $FinishingArrayString="نص تشطيب";
+                }else if($FinishingArray==3){
+                    $FinishingArrayString="مش متشطبة ";
                 }
                 if($VisibleArray==1){
                     $VisibleArray="on";

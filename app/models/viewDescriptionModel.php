@@ -13,12 +13,19 @@ class viewDescriptionModel extends model
     protected $description;
     protected $ID;
     protected $typeID;
-
     protected $furnished;
     protected $floor;
-
-
-
+    protected $finishing;
+    protected $SalahID;
+    public function getSalahID()
+    {
+        return $this->SalahID;
+    }
+  
+    public function setSalahID($SalahID)
+    {
+        $this->SalahID = $SalahID;
+    }
     public function getArea()
     {
         return $this->area;
@@ -137,23 +144,37 @@ class viewDescriptionModel extends model
         $this->floor = $floor;
     }
 
-
+    public function getFinishing()
+    {
+        return $this->finishing;
+    }
+    public function setFinishing($finishing)
+    {
+        $this->finishing = $finishing;
+    }
+   
+    
     public function cardDetails() {
          
-          $this->dbh->query("SELECT * FROM `allestate` WHERE `Code` = '$this->code'");
+          $this->dbh->query("SELECT * FROM `allestate` WHERE `ID` = ".$this->SalahID);
           
 
           $record = $this->dbh->single();
 
           $this->setID($record->ID);
-          
           $this->setTypeID($record->TypeID);
 
 
           return $record;
 
     }
-
+    public function Delete($ID){
+       
+        echo("da5l fe speed");
+        $this->dbh->query("DELETE FROM `allestate` WHERE ID = ".$ID);
+        $this->dbh->execute();
+        echo($this->SalahID);
+    }
     public function bathroomAndRooms() {
          
           $this->dbh->query("SELECT * FROM `eav` WHERE `AllID` =".$this->getID());
@@ -175,10 +196,10 @@ class viewDescriptionModel extends model
                if ($item->AtrributeID == 1) {
                     $this->setFloor($item->Value);
                 }
+                if ($item->AtrributeID == 2) {
+                    $this->setFinishing($item->Value);
+                }
           }
-    
-    
-
 
      }
 

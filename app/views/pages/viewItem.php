@@ -496,7 +496,6 @@ function WishList(IDArray){
           
           success:function(data)
           {
-            console.log(data);
               container = document.getElementById('cards')
               container.innerHTML=data;
               

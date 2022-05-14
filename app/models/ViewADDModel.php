@@ -26,8 +26,17 @@ class ViewADDModel extends model
     protected $NUMOFAb;
     protected $TypeID;
     protected $codeInput;
-
-
+    protected $EditID;
+    public function getEditID()
+    {
+        return $this->EditID;
+    }
+  
+    public function setEditID($EditID)
+    {
+        $this->EditID = $EditID;
+    }
+//////////////////////////////////////////
     public function getcodeInput()
     {
         return $this->codeInput;
@@ -283,8 +292,18 @@ class ViewADDModel extends model
             $this->dbh->bind(':uValue', $Value);
             $this->dbh->execute();
         }
+        public function EditEav($AllID,$AtrributeID,$Value){
+            $this->dbh->query("UPDATE `eav` SET `Value`= :uValue WHERE `AllID`= '".$AllID."' AND `AtrributeID` = ".$AtrributeID); 
+            $this->dbh->bind(':uValue', $Value);
+            $this->dbh->execute();
+        }
         public function Add(){
-        $this->dbh->query("INSERT INTO allestate (`AddressUser`, `AddressAdmin`, `Area`,`Price`,`PaymentMethod`,`Owner`,`OwnerNumber`,`DescriptionUser`,`DescriptionAdmin`,`Name`,`Priroty`,`Visible`,`Code`,`TypeID`,`offered`) VALUES(:uAddressUser, :uAddressAdmin, :uArea, :uPrice, :uPayment, :uOwner, :uOwnerNum, :uDescriptionUser, :uDescriptionAdmin, :uName, :uImportance, :uShow, :uCode, :uTypeID, :ucontarctType)");
+            if(empty($this->EditID)){
+                $this->dbh->query("INSERT INTO allestate (`AddressUser`, `AddressAdmin`, `Area`,`Price`,`PaymentMethod`,`Owner`,`OwnerNumber`,`DescriptionUser`,`DescriptionAdmin`,`Name`,`Priroty`,`Visible`,`Code`,`TypeID`,`offered`) VALUES(:uAddressUser, :uAddressAdmin, :uArea, :uPrice, :uPayment, :uOwner, :uOwnerNum, :uDescriptionUser, :uDescriptionAdmin, :uName, :uImportance, :uShow, :uCode, :uTypeID, :ucontarctType)");
+            }else{
+                $this->dbh->query("UPDATE `allestate` SET `AddressUser`=:uAddressUser,`AddressAdmin`= :uAddressAdmin,`Area`= :uArea,`Price`= :uPrice,`PaymentMethod`= :uPayment,`Owner`= :uOwner,`OwnerNumber`= :uOwnerNum,`DescriptionUser`= :uDescriptionUser,`DescriptionAdmin`= :uDescriptionAdmin,`Name`= :uName,`Priroty`= :uImportance,`Visible`= :uShow,`Code`= :uCode,`TypeID`= :uTypeID,`offered`= :ucontarctType WHERE ID = ".$this->EditID);
+            }
+      
         $ValidatedAddressUser=filter_var($this->AddressUser, FILTER_SANITIZE_STRING);
         $this->dbh->bind(':uAddressUser', $ValidatedAddressUser);
         $ValidatedAddressAdmin=filter_var($this->AddressAdmin, FILTER_SANITIZE_STRING);
@@ -316,16 +335,25 @@ class ViewADDModel extends model
         $ValidatedcontarctType=filter_var($this->contarctType, FILTER_SANITIZE_STRING);
         $this->dbh->bind(':ucontarctType', $ValidatedcontarctType);
         $this->dbh->execute();
+        if(empty($this->EditID)){
+            $this->dbh->query("SELECT * FROM allestate ORDER BY ID DESC LIMIT 1");
+            $ALLRECORDS = $this->dbh->single();
+            if($this->TypeID==1){
+                $this->Eav($ALLRECORDS->ID,1,$this->Floor);
+                $this->Eav($ALLRECORDS->ID,2,$this->Finishing);
+                $this->Eav($ALLRECORDS->ID,3,$this->NUMOFRooms);
+                $this->Eav($ALLRECORDS->ID,4,$this->NUMOFBathrooms);
+                $this->Eav($ALLRECORDS->ID,9,$this->Furnished);
+            }
+        }else{
+            $this->EditEav($this->EditID,1,$this->Floor);
+            $this->EditEav($this->EditID,2,$this->Finishing);
+            $this->EditEav($this->EditID,3,$this->NUMOFRooms);
+            $this->EditEav($this->EditID,4,$this->NUMOFBathrooms);
+            $this->EditEav($this->EditID,9,$this->Furnished);
+        }
+       
+        }
 
-        $this->dbh->query("SELECT * FROM allestate ORDER BY ID DESC LIMIT 1");
-        $ALLRECORDS = $this->dbh->single();
-        if($this->TypeID==1){
-            $this->Eav($ALLRECORDS->ID,1,$this->Floor);
-            $this->Eav($ALLRECORDS->ID,2,$this->Finishing);
-            $this->Eav($ALLRECORDS->ID,3,$this->NUMOFRooms);
-            $this->Eav($ALLRECORDS->ID,4,$this->NUMOFBathrooms);
-            $this->Eav($ALLRECORDS->ID,9,$this->Furnished);
-        }
-        }
         
 }

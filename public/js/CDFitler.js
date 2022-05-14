@@ -1,4 +1,5 @@
 if( window.location.href.search("viewItem")!=-1||window.location.href.search("viewRent")!=-1){
+	if(window.location.href.search("viewRentDescription")==-1){
 
 jQuery(document).ready(function($){
 	//open/close lateral filter
@@ -208,4 +209,5 @@ var buttonFilter = {
 		}
   	}
 };
+}
 }

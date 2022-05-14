@@ -51,7 +51,6 @@
     <script src="<?php echo URLROOT; ?>js/DashBoard.js"></script>
     <script src="<?php echo URLROOT; ?>js/form-image.js"></script>
     <script src="<?php echo URLROOT; ?>js/button.js"></script>
-    <script src="<?php echo URLROOT; ?>js/viewItemDesc.js"></script>
     <script src="<?php echo URLROOT; ?>js/inputValidation.js"></script>
 
     <!-- <script src="<?php echo URLROOT; ?>js/DashBoard.js"></script> -->
