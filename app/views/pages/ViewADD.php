@@ -190,7 +190,7 @@ class ViewADD extends view
   <div class="alert alert-danger"role="alert">
   اذا كانت الصور ليست من نوع "png","jpeg","jpg" 
   أو حجمها أكبر من 4 ميجا 
-
+  أو عددها أكثر من 20
   ,فسيتم رفضها تلقائيا !
 </div>
 </p>
@@ -375,7 +375,7 @@ class ViewADD extends view
           TypeID = "Salah";
         }
         
-        $.ajax({
+       $.ajax({
           url:"<?php echo $action;?>",
           method:"POST",
           data:{TypeID:TypeID,name:name,Price:Price,Area:Area,AddressUser:AddressUser,AddressAdmin:AddressAdmin,Owner:Owner,OwnerNum:OwnerNum,Code:Code,DescriptionUser:DescriptionUser,DescriptionAdmin:DescriptionAdmin,contarctType:contarctType,Show:Show,Payment:Payment,Importance:Importance,Floor:Floor,NUMOFRooms:NUMOFRooms,NUMOFBathrooms:NUMOFBathrooms,NUMOFFloors:NUMOFFloors,Furnished:Furnished,Finishing:Finishing,Doublex:Doublex,TypeActivity:TypeActivity,NUMOFAb:NUMOFAb},
@@ -390,7 +390,7 @@ class ViewADD extends view
       
         
       }
-
+     
       function Image(){
         var form_data = new FormData();
           // Read selected files
@@ -418,15 +418,29 @@ class ViewADD extends view
       document.getElementById("form").addEventListener("submit", function(event){
       event.preventDefault();
       });
+    $("#files").on("change", function() {
+    if ($("#files")[0].files.length > 2) {
+      alert("You can select only 2 images");
+    } else {
+      $("#imageUploadForm").submit();
+    }
+    });
 function Start(){
+ 
   if(document.getElementById('CodeError').innerHTML=="\"هذا الكود موجود مسبقا\"")
   {
     
     $('#Caution').html("<div class='text-center fixed-top' style='margin-top:30px;'><button class='btn btn-danger' id='Db' style='width:50%'><i class='fa fa-exclamation-triangle' aria-hidden='true'></i> يا حج غير الكود </button></div>");
   }else if( !document.getElementById('files').value){
     $('#Caution').html("<div class='text-center fixed-top' style='margin-top:30px;'><button class='btn btn-danger' id='Db' style='width:50%'><i class='fa fa-exclamation-triangle' aria-hidden='true'></i> يا حج  حط صورة </button></div>");
+
   }
   else{
+    var $myForm = $('#form');
+
+if (!$myForm[0].checkValidity()) {
+    $myForm.find(':submit').click();
+}
     AddAjax()
     Image()
   }

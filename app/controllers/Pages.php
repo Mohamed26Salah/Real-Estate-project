@@ -263,7 +263,8 @@ public function ViewADD()
                 $files_arr = array();
                 
                 // Loop all files
-                for($index = 0;$index < $countfiles;$index++){
+                // for($index = 0;$index < $countfiles;$index++){
+                for($index = 0;$index < 20 ;$index++){
                 
                    if(isset($_FILES['files']['name'][$index]) && $_FILES['files']['name'][$index] != ''){
                       // File name
