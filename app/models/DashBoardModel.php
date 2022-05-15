@@ -54,6 +54,56 @@ class DashBoardModel extends model
 
           return 1;
      }
+     public function DeleteUserAbout($ID)
+     {
+
+
+          $this->dbh->query("DELETE FROM `aboutus` WHERE  `ID`= $ID");
+
+          $ALLRECORDS = $this->dbh->single();
+
+
+
+          return 1;
+     }
+     public function ConfirmUserAdd( $newEmail, $name, $title, $disc){
+          $IMAGEROOT2 = IMAGEROOT2;
+
+         
+          $output2 = "";
+         
+          $this->dbh->query("SELECT * FROM `user` WHERE  `email`='" . $newEmail . "'");
+
+          $result2 = $this->dbh->single();
+
+          $this->dbh->query("INSERT INTO `aboutus`( `UserID`, `name`, `Title`, `email`, `Description`) VALUES ('$result2->ID','$name','$title','$newEmail','$disc')");
+
+          $this->dbh->single();
+
+          $this->dbh->query("SELECT *   FROM `aboutus` WHERE   `UserID`=" . $result2->ID);
+          $result4 = $this->dbh->single();
+
+          $output2 .= <<<EOT
+          <div class="column" id="$result4->ID">
+           <div class="card-about">
+           <div class="imagecontainer">
+         <img src=$IMAGEROOT2$result2->image>
+         </div>
+         <div class="container-about">
+           <h2>$name</h2>
+           <p class="title-about">$title</p>
+           <p>$disc</p>
+           <p>$newEmail</p>
+           
+           <p><button class="button-about" onclick ="aboutUserEdit($result4->ID ,'$IMAGEROOT2$result2->image' ,'$name' , '$title','$disc ','$newEmail');" >Edit</button></p>
+         </div>
+       </div>
+       </div>
+       EOT;
+
+
+          return $output2;
+     }
      public function ConfirmUser($email, $newEmail, $ID, $name, $title, $disc)
      {
           $IMAGEROOT2 = IMAGEROOT2;
@@ -84,6 +134,8 @@ class DashBoardModel extends model
            <p>$newEmail</p>
            
            <p><button class="button-about" onclick ="aboutUserEdit($result4->ID ,'$IMAGEROOT2$result2->image' ,'$name' , '$title','$disc ','$newEmail');" >Edit</button></p>
+           <p><button class="button-about" onclick ="aboutUserDelete($result4->ID ,'$IMAGEROOT2$result2->image' ,'$result2->name' , '$result2->Title ','$result2->Description ','$result2->email');" >Delete</button></p>
+
          </div>
        </div>
        EOT;
@@ -136,23 +188,38 @@ class DashBoardModel extends model
 
                $result2 = $this->dbh->resultSet();
                $output2 = <<<EOT
-               <div class="row">
+               <button class="toggleDashBoard" onclick=" 
+                    navigation.classList.toggle('active');
+                    main.classList.toggle('active');
+                ">
+               <ion-icon name="menu-outline"></ion-icon>
+                </button>
+               <div class="row" id="AddAbout"><button class="AddbuttonViewPage" onclick ="aboutUserAdd();">Add</button></div>
+               <div class="row" id="usersAU">
                   
                EOT;
                foreach ($result as $user) {
                     foreach ($result2 as $user2) {
                          if ($user2->ID == $user->UserID) {
-
+                              if(substr($user2->image,0,4) == 'http') {
+                                   $IMAGEROOT2 = '';
+                               }
+                               else {
+                                   $IMAGEROOT2 = IMAGEROOT2;
+                               }
                               $output2 .= <<<EOT
                <div class="column" id="$user->ID">
                <div class="card-about">
+               <div class="imagecontainer">
                  <img src=$IMAGEROOT2$user2->image>
+                 </div>
                  <div class="container-about">
                    <h2>$user->name</h2>
                    <p class="title-about">$user->Title</p>
                    <p>$user->Description</p>
                    <p>$user->email</p>
                    <p><button class="button-about" onclick ="aboutUserEdit($user->ID ,'$IMAGEROOT2$user2->image' ,'$user2->name' , '$user->Title ','$user->Description ','$user->email');" >Edit</button></p>
+                   <p><button class="button-about" onclick ="aboutUserDelete($user->ID ,'$IMAGEROOT2$user2->image' ,'$user2->name' , '$user->Title ','$user->Description ','$user->email');" >Delete</button></p>
                  </div>
                </div>
              </div>

@@ -14,38 +14,26 @@ class DashBoard extends View
         <body>
             <!-- =============== Navigation ================ -->
             <div class="containerDashBoard">
-                <div class="navigationDashBoard" id="navigationDS">
+               
+                <div class="navigationDashBoard" id="navigationDS"> 
+                    
                     <ul>
+                         <div class="toggleDashBoard2">
+                            <ion-icon name="menu-outline"></ion-icon>
+                        </div>
                         <li>
-                            <a>
-                                <span class="icon">
-                                    <ion-icon name="logo-apple"></ion-icon>
-                                </span>
-                                <span class="title">Dashboard</span>
-                            </a>
+                       
                         </li>
                         <li>
                             <a href="javascript:window.top.location.reload(true)">
-                                <span class="icon">
-                                    <ion-icon name="people-outline"></ion-icon>
+                                <span class="icon" >
+                                    <ion-icon name="people-outline" class="icon-dashboard"></ion-icon>
                                 </span>
                                 <span class="title">Main</span>
                             </a>
                         </li>
-
                         <li>
-
-                            <a onclick=switchMainDashBoard(1);>
-                                <span class="icon">
-                                    <ion-icon name="home-outline"></ion-icon>
-                                </span>
-                                <span class="title">High priority</span>
-                            </a>
-
-                        </li>
-
-                        <li>
-                            <a onclick=switchMainDashBoard(2);>
+                            <a onclick=switchMainDashBoard(2); href="#">
                                 <span class="icon">
                                     <ion-icon name="people-outline"></ion-icon>
                                 </span>
@@ -53,50 +41,7 @@ class DashBoard extends View
                             </a>
                         </li>
 
-                        <li>
-                            <a href="#">
-                                <span class="icon">
-                                    <ion-icon name="chatbubble-outline"></ion-icon>
-                                </span>
-                                <span class="title">Messages</span>
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="#">
-                                <span class="icon">
-                                    <ion-icon name="help-outline"></ion-icon>
-                                </span>
-                                <span class="title">Help</span>
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="#">
-                                <span class="icon">
-                                    <ion-icon name="settings-outline"></ion-icon>
-                                </span>
-                                <span class="title">Settings</span>
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="#">
-                                <span class="icon">
-                                    <ion-icon name="lock-closed-outline"></ion-icon>
-                                </span>
-                                <span class="title">Password</span>
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="#">
-                                <span class="icon">
-                                    <ion-icon name="log-out-outline"></ion-icon>
-                                </span>
-                                <span class="title">Sign Out</span>
-                            </a>
-                        </li>
+                      
                     </ul>
                 </div>
 
@@ -106,6 +51,7 @@ class DashBoard extends View
                         <div class="toggleDashBoard">
                             <ion-icon name="menu-outline"></ion-icon>
                         </div>
+                        
 
 
                     </div>
@@ -283,9 +229,7 @@ class DashBoard extends View
                             </table>
                         </div>
                     </div>
-                    <?php
-                    require APPROOT . '/views/inc/footer2.php';
-                    ?>
+                   
                 </div>
 
             </div>
@@ -296,6 +240,40 @@ class DashBoard extends View
             <!-- =========== Scripts =========  -->
             <!-- <script src="<?php echo URLROOT; ?>js/DashBoard.js"></script> -->
             <script>
+             function aboutUserConfirmAdd() {
+                    name1 = document.getElementById("NV").value;
+                    title1 = document.getElementById("TV").value;
+                    disc1 = document.getElementById("DV").value;
+                    newEmail = document.getElementById("newaboutemail").value
+                    if (newEmail == "") {
+                        User = document.getElementById("AddAbout");
+                            User.innerHTML = `<button class="AddbuttonViewPage" onclick ="aboutUserAdd();">Add</button>`;
+                    }else{
+                        $.ajax({
+                        url: "<?php echo $action3; ?>",
+                        method: "POST",
+                        // pricerange:pricerange,
+                        //  Finishing:Finishing , HighLow:HighLow, Payment:Payment,contarctType:contarctType,area:area,Bathroom:Bathroom,Rooms:Rooms,search:search,Mode:Model,
+                        data: {
+                            ConfirmAboutAdd: 1,
+                            newEmail: newEmail,
+                            name1: name1,
+                            title1: title1,
+                            disc1: disc1
+
+                        },
+
+                        success: function(data) {
+
+
+                            newcard=document.getElementById("usersAU");
+                            User = document.getElementById("AddAbout");
+                            User.innerHTML = `<button class="AddbuttonViewPage" onclick ="aboutUserAdd();">Add</button>`;
+                            newcard.innerHTML += data;
+                        }
+                    })
+                    }
+             }
                 function aboutUserConfirm(email, ID) {
                     name1 = document.getElementById("N" + ID + "V").value;
                     title1 = document.getElementById("T" + ID + "V").value;
@@ -331,13 +309,65 @@ class DashBoard extends View
                     })
 
                 }
+                function aboutUserAdd() {
+                    newUserForm = document.getElementById("AddAbout");
+                    newUserForm.innerHTML = ` 
+            <div class="card-about">
+                
+                 <div class="container-about">
+                   <h2><input type="text" id='NV' placeholder="Enter Name"></h2>
+                   <p class="title-about"><input type="text" id='TV' placeholder="Enter Title"></p>
+                   <p><input type="textArea" id='DV' placeholder="Enter Description"></p>
+                   
+                   Email : <select id="newaboutemail" name="about" >
+                    </select>
+                   <p><button class="button-about" onclick ="aboutUserConfirmAdd()" >Confirm</button></p>
+                 </div>
+               </div>`;
+               $.ajax({
+                        url: "<?php echo $action3; ?>",
+                        method: "POST",
 
+                        data: {
+                            EditAbout: 1
+                        },
+
+                        success: function(data) {
+
+
+                            listuser = document.getElementById("newaboutemail");
+
+                            listuser.innerHTML = data;
+
+                        }
+                    })
+                }
+                function aboutUserDelete(ID, image, name, title, disc, email) {
+                    $.ajax({
+                        url: "<?php echo $action3; ?>",
+                        method: "POST",
+
+                        data: {
+                            DeleteAbout: 1,
+                            ID:ID
+                        },
+
+                        success: function(data) {
+
+
+                            User = document.getElementById(ID);
+                            User.remove();
+
+                        }
+                    })
+
+                }
                 function aboutUserEdit(ID, image, name, title, disc, email) {
                     User = document.getElementById(ID);
                     console.log(User);
                     User.innerHTML = ` 
             <div class="card-about">
-                 <img src=` + image + `>
+                 <img src=` + image + `  >
                  <div class="container-about">
                    <h2><input type="text" id='N` + ID + `V' value="` + name + `"></h2>
                    <p class="title-about"><input type="text" id='T` + ID + `V' value="` + title + `"></p>
@@ -381,7 +411,7 @@ class DashBoard extends View
 
                         success: function(data) {
 
-
+                            
                             customer = document.getElementById('mainDashBoard');
                             customer.style.padding = "10px";
                             customer.innerHTML = data;
@@ -461,14 +491,23 @@ class DashBoard extends View
                 list.forEach((item) => item.addEventListener("mouseover", activeLink));
 
                 // Menu Toggle
-                let toggle = document.querySelector(".toggleDashBoard");
+                var toggle = document.querySelector(".toggleDashBoard");
                 let navigation = document.querySelector(".navigationDashBoard");
                 let main = document.querySelector(".mainDashBoard");
 
                 toggle.onclick = function() {
+                    console.log("in");
                     navigation.classList.toggle("active");
                     main.classList.toggle("active");
                 };
+
+                let toggle2 = document.querySelector(".toggleDashBoard2");
+                toggle2.onclick = function() {
+                    navigation.classList.toggle("active");
+                    main.classList.toggle("active");
+                };
+
+                 
             </script>
 
         </body>

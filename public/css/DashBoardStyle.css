@@ -44,7 +44,7 @@ body {
 }
 
 .navigationDashBoard.active {
-  width: 80px;
+  width: 300px;
 }
 
 .navigationDashBoard ul {
@@ -158,7 +158,7 @@ body {
 }
 
 .mainDashBoard.active {
-  width: calc(100% - 80px);
+  width: calc(100% - 200px);
   left: 80px;
 }
 
@@ -518,3 +518,134 @@ body {
     left: initial;
   }
 }
+
+
+.card-about img{
+  height: 100%;
+  max-height:auto; 
+  max-width:100%;
+  }
+
+
+  .card-about {
+    background-color: #C9E0FF;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    margin: 8px;
+  }
+
+  .container-about {
+    
+    padding: 0 16px;
+    overflow-wrap: break-word;
+  }
+  
+  .container-about::after, .row::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+  
+  .title-about {
+    color: #00111C;
+  }
+  
+  .button-about {
+    border: none;
+    outline: 0;
+    display: inline-block;
+    padding: 8px;
+    color: white;
+    background-color: #002137;
+    text-align: center;
+    cursor: pointer;
+    width: 100%;
+  }
+  
+  .button-about:hover {
+    background-color: #001727;
+  }
+  
+ 
+
+
+  .column {
+    float: left;
+    
+    max-width: 33.3%;
+    margin-bottom: 16px;
+    padding: 0 8px;
+  }
+
+   @media screen and (max-width: 650px) {
+    .column {
+      width: 100%;
+      max-width: 100%;
+      
+    }
+  }
+
+
+  .AddbuttonViewPage{
+    width: 50%;
+    margin-left: 25%;
+    position: relative;
+    background-color: black;
+    border-radius: 4em;
+    font-size: 16px;
+    color: white;
+    padding: 0.8em 1.8em;
+    cursor:pointer;
+    user-select:none;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition-duration: 0.4s;
+    -webkit-transition-duration: 0.4s; /* Safari */
+  }
+  
+  .AddbuttonViewPage:hover {
+    transition-duration: 0.1s;
+    background-color: #3A3A3A;
+  }
+  
+  .AddbuttonViewPage:after {
+    content: "";
+    display: block;
+    position: absolute;
+    border-radius: 4em;
+    left: 0;
+    top:0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: all 0.5s;
+    box-shadow: 0 0 10px 40px white;
+  }
+  
+  .AddbuttonViewPage:active:after {
+    box-shadow: 0 0 0 0 white;
+    position: absolute;
+    border-radius: 4em;
+    left: 0;
+    top:0;
+    opacity: 1;
+    transition: 0s;
+  }
+  
+  .AddbuttonViewPage:active {
+    top: 1px;
+  }
+  .imagecontainer{
+    display: flex;
+    justify-content: center;
+    background-color: black;
+    height:100%; 
+    width:100%;
+    min-height: 510px;
+    align-items: center;
+  }
+
+  .toggleDashBoard2{
+    color: #fff;
+    font-size: 20;
+  }
