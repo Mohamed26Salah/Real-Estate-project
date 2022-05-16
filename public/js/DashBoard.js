@@ -17,11 +17,10 @@ if (window.location.href.search("DashBoard") != -1) {
                             <td>`+ name + `</td>
                             <td>0111000000</td>
                             <td> <select id="Rank`+ ID + `" name="Rank">
-                            <option value="Admin">Admin</option>
                             <option value="Moderator">Moderator</option>
                             <option value="User">User</option>
                           </select></td>
-                            <td><a  class="btn" onclick="Delete(`+ ID + `,` + value + `);" style="background-color: #800000; color: white; font-size:15px;">Delete</a>
+                            <td style="display:flex;"><a  class="btn" onclick="Delete(`+ ID + `,` + value + `);" style="background-color: #800000; color: white; font-size:15px;">Delete</a>
                             <a  class="btn" onclick="Cancel(`+ ID + `,` + value + `,'` + name + `','` + Rank + `');" style="background-color: #daa520; color: white; font-size:15px;">Cancel</a>
                             <a  class="btn confirmation" onclick="Confirm(`+ ID + `,` + value + `);" style="background-color: #006400; color: white; font-size:15px;">Confirm</a></td>
                             

@@ -16,9 +16,13 @@ class DashBoardModel extends model
 
           $ALLRECORDS[2] = $this->dbh->single();
 
-          $this->dbh->query("SELECT * FROM `user`  LIMIT 0, 6");
+          $this->dbh->query("SELECT * FROM `user`  WHERE NOT `Rank`  ='Admin'");
 
           $ALLRECORDS[3] = $this->dbh->resultSet();
+
+          $this->dbh->query("SELECT * FROM `user`  Order by ID desc");
+
+          $ALLRECORDS[4] = $this->dbh->resultSet();
 
           return $ALLRECORDS;
      }
@@ -126,7 +130,9 @@ class DashBoardModel extends model
           $output2 .= <<<EOT
          
            <div class="card-about">
+           <div class="imagecontainer">
          <img src=$IMAGEROOT2$result2->image>
+         </div>
          <div class="container-about">
            <h2>$name</h2>
            <p class="title-about">$title</p>
@@ -134,7 +140,7 @@ class DashBoardModel extends model
            <p>$newEmail</p>
            
            <p><button class="button-about" onclick ="aboutUserEdit($result4->ID ,'$IMAGEROOT2$result2->image' ,'$name' , '$title','$disc ','$newEmail');" >Edit</button></p>
-           <p><button class="button-about" onclick ="aboutUserDelete($result4->ID ,'$IMAGEROOT2$result2->image' ,'$result2->name' , '$result2->Title ','$result2->Description ','$result2->email');" >Delete</button></p>
+           <p><button class="button-about" onclick ="aboutUserDelete($result4->ID ,'$IMAGEROOT2$result2->image' ,'$result4->name' , '$result4->Title ','$result4->Description ','$result4->email');" >Delete</button></p>
 
          </div>
        </div>

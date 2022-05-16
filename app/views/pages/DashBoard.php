@@ -18,11 +18,14 @@ class DashBoard extends View
                 <div class="navigationDashBoard" id="navigationDS"> 
                     
                     <ul>
-                         <div class="toggleDashBoard2">
-                            <ion-icon name="menu-outline"></ion-icon>
-                        </div>
+                          <span class="icon" >
+                            <div class="toggleDashBoard2">
+                                <ion-icon name="menu-outline"></ion-icon>
+                            </div>
+                            </span>
                         <li>
                        
+                            
                         </li>
                         <li>
                             <a href="javascript:window.top.location.reload(true)">
@@ -155,77 +158,34 @@ class DashBoard extends View
                             </div>
 
                             <table>
-                                <tr>
+                                <?php 
+                               
+                                foreach($DataArray[4] as $user){
+                                    if(substr($user->image,0,4) == 'http') {
+                                        $imageRoot = '';
+                                    }
+                                    else {
+                                        $imageRoot = IMAGEROOT2;
+                                    }
+                                    $output50= <<<EOT
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    <tr>
                                     <td width="60px">
-                                        <div class="imgBx"><img src="<?php echo IMAGEROOT2 . 'salah.jpg'; ?>" alt=""></div>
+                                        <div class="imgBx"><img src=" $imageRoot$user->image" alt=""></div>
                                     </td>
                                     <td>
-                                        <h4>David <br> <span>Italy</span></h4>
+                                        <h4>$user->name <br> <span>$user->email</span></h4>
                                     </td>
-                                </tr>
-
-                                <tr>
-                                    <td width="60px">
-                                        <div class="imgBx"><img src="<?php echo IMAGEROOT2 . 'salah.jpg'; ?>" alt=""></div>
-                                    </td>
-                                    <td>
-                                        <h4>Amit <br> <span>India</span></h4>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td width="60px">
-                                        <div class="imgBx"><img src="<?php echo IMAGEROOT2 . 'salah.jpg'; ?>" alt=""></div>
-                                    </td>
-                                    <td>
-                                        <h4>David <br> <span>Italy</span></h4>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td width="60px">
-                                        <div class="imgBx"><img src="<?php echo IMAGEROOT2 . 'salah.jpg'; ?>" alt=""></div>
-                                    </td>
-                                    <td>
-                                        <h4>Amit <br> <span>India</span></h4>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td width="60px">
-                                        <div class="imgBx"><img src="<?php echo IMAGEROOT2 . 'salah.jpg'; ?>" alt=""></div>
-                                    </td>
-                                    <td>
-                                        <h4>David <br> <span>Italy</span></h4>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td width="60px">
-                                        <div class="imgBx"><img src="<?php echo IMAGEROOT2 . 'salah.jpg'; ?>" alt=""></div>
-                                    </td>
-                                    <td>
-                                        <h4>Amit <br> <span>India</span></h4>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td width="60px">
-                                        <div class="imgBx"><img src="<?php echo IMAGEROOT2 . 'salah.jpg'; ?>" alt=""></div>
-                                    </td>
-                                    <td>
-                                        <h4>David <br> <span>Italy</span></h4>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td width="60px">
-                                        <div class="imgBx"><img src="<?php echo IMAGEROOT2 . 'salah.jpg'; ?>" alt=""></div>
-                                    </td>
-                                    <td>
-                                        <h4>Amit <br> <span>India</span></h4>
-                                    </td>
-                                </tr>
+                                    </tr>
+                                    EOT;
+                                    echo  $output50;
+                                }
+                              ?>
                             </table>
                         </div>
                     </div>
@@ -367,7 +327,9 @@ class DashBoard extends View
                     console.log(User);
                     User.innerHTML = ` 
             <div class="card-about">
+            <div class="imagecontainer">
                  <img src=` + image + `  >
+                 </div>
                  <div class="container-about">
                    <h2><input type="text" id='N` + ID + `V' value="` + name + `"></h2>
                    <p class="title-about"><input type="text" id='T` + ID + `V' value="` + title + `"></p>
