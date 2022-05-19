@@ -181,7 +181,7 @@ class Index extends View
       })
     }
   </script>
-  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA6pjCjwq8C7LO1eiVkI7cPToeGE5s1NXs&callback=initMap"></script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAb9im7vtrs6ps57p8FXMMVrt6N5FJon8Y&callback=initMap"></script>
   <footer> <?php
   require APPROOT . '/views/inc/footer2.php';
   ?> </footer>

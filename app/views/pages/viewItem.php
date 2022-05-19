@@ -254,7 +254,7 @@ class viewItem extends View
        <?php 
        }
        
-      if($_GET['TypeID']==1||$_GET['TypeID']==2||$_GET['TypeID']==3) {
+      if($_GET['TypeID']==1||$_GET['TypeID']==3) {
 
       ?>
          <div class="cd-filter-block">
@@ -519,7 +519,7 @@ function WishList(IDArray){
           area = "Salah";
         }
       ///////////////////////////////////////////////////////////////////////////////////////////////////////
-      if( TypeID==1 || TypeID==2 || TypeID==3) {
+      if( TypeID==1 || TypeID==3) {
 
         if( document.getElementById('Bathroom').value ) {
           Bathroom = document.getElementById('Bathroom').value;

@@ -21,7 +21,6 @@ class viewItemModel extends model
     protected $Floor;
     protected $Furnished;
     protected $TypeID;
-    /////////////////////////////////
     protected $NUMOFFloors;
     protected $Doublex;
     protected $nUMOFAB;
@@ -279,11 +278,11 @@ class viewItemModel extends model
       return "denied";
     }
     }
-    function card($imgroot,$PriceArray,$AreaArray,$PaymentArray,$NameArray,$DescriptionArray,$offeredArray,$BathroomArray,$RoomsArray,$FinishingArrayString,$CodeArray,$AddressArray,$VisibleArray,$Checked,$IDArray,$WishList,$WishListString, $FurnishedArrayString,$FloorArray,$Image){
+    function card($imgroot,$PriceArray,$AreaArray,$PaymentArray,$NameArray,$DescriptionArray,$offeredArray,$BathroomArray,$RoomsArray,$FinishingArrayString,$CodeArray,$AddressArray,$VisibleArray,$Checked,$IDArray,$WishList,$WishListString, $FurnishedArrayString,$FloorArray,$Image,$NUMOFFloorsArray){
         $output2='';
         $approot = URLROOT . 'pages/viewDescription';
         $output2=<<<EOT
-        
+        $NUMOFFloorsArray
             <div class="containerFilter">
             <a href="$approot?ID=$IDArray"><img src="$imgroot$Image" width="350px" height="238px"> </a>
             <div class="title">
@@ -319,90 +318,83 @@ class viewItemModel extends model
         
         return $output2;
     }
-    function ifCondition($TypeID,$UltimateJoinRoom,$UltimateJoinBathroom,$UltimateJoinFinishing,$UltimateJoinFurnished,$UltimateJoinFloor,$UltimateJoinNUMOFFloors,$UltimateJoinDoublex,$UltimateJoinTypeOFActivity,$UltimateJoinnUMOFAB,$RoomsArray,$BathroomArray,$FinishingArray,$NUMOFFloorsArray,$FloorArray,$DoublexArray,$TypeOFActivityArray,$FurnishedArray,$nUMOFABArray,$UltimateIF,$ultimateIFCondition){
+    function ifCondition($UltimateJoinRoom,$UltimateJoinBathroom,$UltimateJoinFinishing,$UltimateJoinFurnished,$UltimateJoinFloor,$UltimateJoinNUMOFFloors,$UltimateJoinDoublex,$UltimateJoinTypeOFActivity,$UltimateJoinnUMOFAB,$RoomsArray,$BathroomArray,$FinishingArray,$NUMOFFloorsArray,$FloorArray,$DoublexArray,$TypeOFActivityArray,$FurnishedArray,$nUMOFABArray,$UltimateIF,$ultimateIFCondition){
         $UltimateIF=false;
     if($UltimateJoinRoom!="empty" || $UltimateJoinBathroom!="empty" || $UltimateJoinFurnished!="empty" || $UltimateJoinFinishing!="empty"|| $UltimateJoinFloor!="empty"|| $UltimateJoinNUMOFFloors!="empty"|| $UltimateJoinDoublex!="empty"|| $UltimateJoinTypeOFActivity!="empty"|| $UltimateJoinnUMOFAB!="empty"){
         $UltimateIF=true;
-    if(!empty($UltimateJoinBathroom))
-    {
+  
         if ($UltimateJoinBathroom=="empty") {
             $UltimateJoinBathroom=$BathroomArray;
             }
-    }
-    if(!empty($UltimateJoinRoom))
-    {
+   
+   
         if ($UltimateJoinRoom=="empty") {
             $UltimateJoinRoom=$RoomsArray;
         }
-    }
-    if(!empty($UltimateJoinFurnished))
-    {
+  
+  
         if ($UltimateJoinFurnished=="empty") {
             $UltimateJoinFurnished=$FurnishedArray;
         }
-    }
-    if(!empty($UltimateJoinFinishing))
-    {
+   
+ 
         if ($UltimateJoinFinishing=="empty") {
             $UltimateJoinFinishing=$FinishingArray;
         }
-    }
-    if(!empty($UltimateJoinFloor))
-    {
+ 
+ 
         if ($UltimateJoinFloor=="empty") {
             $UltimateJoinFloor=$FloorArray;
         }
-    }
-    if(!empty($UltimateJoinNUMOFFloors))
-    {
+    
+   
         if ($UltimateJoinNUMOFFloors=="empty") {
             $UltimateJoinNUMOFFloors=$NUMOFFloorsArray;
         }
-    }
-    if(!empty($UltimateJoinDoublex))
-    {
+    
+   
         if ($UltimateJoinDoublex=="empty") {
             $UltimateJoinDoublex=$DoublexArray;
         }
-    }
-    if(!empty($UltimateJoinTypeOFActivity))
-    {
+   
+  
         if ($UltimateJoinTypeOFActivity=="empty") {
             $UltimateJoinTypeOFActivity=$TypeOFActivityArray;
         }
-    }
-    if(!empty($UltimateJoinnUMOFAB))
-    {
+   
+   
         if ($UltimateJoinnUMOFAB=="empty") {
             $UltimateJoinnUMOFAB=$nUMOFABArray;
         }
-    }
-        if($TypeID==1){
-            if($UltimateJoinBathroom==$BathroomArray&&$UltimateJoinRoom==$RoomsArray&&$UltimateJoinFurnished==$FurnishedArray&&$UltimateJoinFinishing==$FinishingArray&&$UltimateJoinFloor==$FloorArray&&$UltimateJoinDoublex=$DoublexArray){
+       
+        if($this->TypeID==1){
+            if($UltimateJoinBathroom==$BathroomArray&&$UltimateJoinRoom==$RoomsArray&&$UltimateJoinFurnished==$FurnishedArray&&$UltimateJoinFinishing==$FinishingArray&&$UltimateJoinFloor==$FloorArray&&$UltimateJoinDoublex==$DoublexArray){
+                //  $UltimateIF=true;
+                 $ultimateIFCondition="NotEmpty";
+              
+                }
+        }
+        if($this->TypeID==2){
+            if($UltimateJoinBathroom==$BathroomArray&&$UltimateJoinRoom==$RoomsArray&&$UltimateJoinFinishing==$FinishingArray&&$UltimateJoinNUMOFFloors==$NUMOFFloorsArray){
+                //  $UltimateIF=true;
+                 $ultimateIFCondition="NotEmpty";
+                }
+             
+        }
+        if($this->TypeID==3){
+            if($UltimateJoinBathroom==$BathroomArray&&$UltimateJoinRoom==$RoomsArray&&$UltimateJoinFurnished==$FurnishedArray&&$UltimateJoinFinishing==$FinishingArray&&$UltimateJoinNUMOFFloors==$NUMOFFloorsArray){
                 //  $UltimateIF=true;
                  $ultimateIFCondition="NotEmpty";
                 }
         }
-        if($TypeID==2){
-            if($UltimateJoinBathroom==$BathroomArray&&$UltimateJoinRoom==$RoomsArray&&$UltimateJoinFurnished==$FurnishedArray&&$UltimateJoinFinishing==$FinishingArray&&$UltimateJoinNUMOFFloors=$NUMOFFloorsArray){
+        if($this->TypeID==4||$this->TypeID==5||$this->TypeID==7){
+            if($UltimateJoinTypeOFActivity==$TypeOFActivityArray){
                 //  $UltimateIF=true;
                  $ultimateIFCondition="NotEmpty";
                 }
         }
-        if($TypeID==3){
-            if($UltimateJoinBathroom==$BathroomArray&&$UltimateJoinRoom==$RoomsArray&&$UltimateJoinFurnished==$FurnishedArray&&$UltimateJoinFinishing==$FinishingArray&&$UltimateJoinNUMOFFloors=$NUMOFFloorsArray){
-                //  $UltimateIF=true;
-                 $ultimateIFCondition="NotEmpty";
-                }
-        }
-        if($TypeID==4||$TypeID==5||$TypeID==7){
-            if($UltimateJoinTypeOFActivity=$TypeOFActivityArray){
-                //  $UltimateIF=true;
-                 $ultimateIFCondition="NotEmpty";
-                }
-        }
-        if($TypeID==6){
-            if($UltimateJoinTypeOFActivity=$TypeOFActivityArray&&$UltimateJoinnUMOFAB=$nUMOFABArray){
+        if($this->TypeID==6){
+            if($UltimateJoinTypeOFActivity==$TypeOFActivityArray&&$UltimateJoinnUMOFAB==$nUMOFABArray){
                 //  $UltimateIF=true;
                  $ultimateIFCondition="NotEmpty";
                 }
@@ -429,7 +421,6 @@ class viewItemModel extends model
     {
         //SELECT * FROM `allestate` WHERE Area >= 300 AND Area < 400 
         
-        $AllSort="TypeID=1 AND ";
         $AllSort="TypeID=".$this->TypeID." AND ";
         $join=" AS allestate, eav AS eav ";
         $AllJoin="AND eav.AllID = allestate.ID";
@@ -685,17 +676,17 @@ class viewItemModel extends model
                         $WishList="red";
                         $WishListString="Add to WishList";
                     }
-            list($UltimateIF,$ultimateIFCondition)=$this->ifCondition($TypeID,$UltimateJoinRoom,$UltimateJoinBathroom,$UltimateJoinFinishing,$UltimateJoinFurnished,$UltimateJoinFloor,$UltimateJoinNUMOFFloors,$UltimateJoinDoublex,$UltimateJoinTypeOFActivity,$UltimateJoinnUMOFAB,$RoomsArray,$BathroomArray,$FinishingArray,$FurnishedArray,$FloorArray,$DoublexArray,$TypeOFActivityArray,$FurnishedArray,$nUMOFABArray,$UltimateIF,$ultimateIFCondition);
+            list($UltimateIF,$ultimateIFCondition)=$this->ifCondition($UltimateJoinRoom,$UltimateJoinBathroom,$UltimateJoinFinishing,$UltimateJoinFurnished,$UltimateJoinFloor,$UltimateJoinNUMOFFloors,$UltimateJoinDoublex,$UltimateJoinTypeOFActivity,$UltimateJoinnUMOFAB,$RoomsArray,$BathroomArray,$FinishingArray,$FurnishedArray,$FloorArray,$DoublexArray,$TypeOFActivityArray,$FurnishedArray,$nUMOFABArray,$UltimateIF,$ultimateIFCondition);
                  
                    //it was here
                 // echo($ultimateIFCondition);
                 
          if($UltimateIF!=true){  
-                        $output.= $this->card($imgroot,$PriceArray,$AreaArray,$PaymentArray,$NameArray,$DescriptionArray,$offeredArray,$BathroomArray,$RoomsArray,$FinishingArrayString,$CodeArray,$AddressArray,$VisibleArray,$Checked,$IDArray,$WishList,$WishListString, $FurnishedArrayString,$FloorArray,$Image);
+                        $output.= $this->card($imgroot,$PriceArray,$AreaArray,$PaymentArray,$NameArray,$DescriptionArray,$offeredArray,$BathroomArray,$RoomsArray,$FinishingArrayString,$CodeArray,$AddressArray,$VisibleArray,$Checked,$IDArray,$WishList,$WishListString, $FurnishedArrayString,$FloorArray,$Image,$NUMOFFloorsArray);
           }else{
             if($ultimateIFCondition=="NotEmpty"){
                 // if($UltimateIF){
-                $output.= $this->card($imgroot,$PriceArray,$AreaArray,$PaymentArray,$NameArray,$DescriptionArray,$offeredArray,$BathroomArray,$RoomsArray,$FinishingArrayString,$CodeArray,$AddressArray,$VisibleArray,$Checked,$IDArray,$WishList,$WishListString, $FurnishedArrayString,$FloorArray,$Image);
+                $output.= $this->card($imgroot,$PriceArray,$AreaArray,$PaymentArray,$NameArray,$DescriptionArray,$offeredArray,$BathroomArray,$RoomsArray,$FinishingArrayString,$CodeArray,$AddressArray,$VisibleArray,$Checked,$IDArray,$WishList,$WishListString, $FurnishedArrayString,$FloorArray,$Image,$NUMOFFloorsArray);
                 // }
                 
             }
@@ -794,16 +785,16 @@ class viewItemModel extends model
                 }
                
                 //Bl3b fe IF 
-                list($UltimateIF,$ultimateIFCondition)=$this->ifCondition($TypeID,$UltimateJoinRoom,$UltimateJoinBathroom,$UltimateJoinFinishing,$UltimateJoinFurnished,$UltimateJoinFloor,$UltimateJoinNUMOFFloors,$UltimateJoinDoublex,$UltimateJoinTypeOFActivity,$UltimateJoinnUMOFAB,$RoomsArray,$BathroomArray,$FinishingArray,$FurnishedArray,$FloorArray,$DoublexArray,$TypeOFActivityArray,$FurnishedArray,$nUMOFABArray,$UltimateIF,$ultimateIFCondition);
+                list($UltimateIF,$ultimateIFCondition)=$this->ifCondition($UltimateJoinRoom,$UltimateJoinBathroom,$UltimateJoinFinishing,$UltimateJoinFurnished,$UltimateJoinFloor,$UltimateJoinNUMOFFloors,$UltimateJoinDoublex,$UltimateJoinTypeOFActivity,$UltimateJoinnUMOFAB,$RoomsArray,$BathroomArray,$FinishingArray,$FurnishedArray,$FloorArray,$DoublexArray,$TypeOFActivityArray,$FurnishedArray,$nUMOFABArray,$UltimateIF,$ultimateIFCondition);
                 //it also was here
 
                
                 if($UltimateIF!=true){  
-                    $output.= $this->card($imgroot,$PriceArray,$AreaArray,$PaymentArray,$NameArray,$DescriptionArray,$offeredArray,$BathroomArray,$RoomsArray,$FinishingArrayString,$CodeArray,$AddressArray,$VisibleArray,$Checked,$IDArray,$WishList,$WishListString, $FurnishedArrayString,$FloorArray,$Image);
+                    $output.= $this->card($imgroot,$PriceArray,$AreaArray,$PaymentArray,$NameArray,$DescriptionArray,$offeredArray,$BathroomArray,$RoomsArray,$FinishingArrayString,$CodeArray,$AddressArray,$VisibleArray,$Checked,$IDArray,$WishList,$WishListString, $FurnishedArrayString,$FloorArray,$Image,$NUMOFFloorsArray);
                 }else{
                     if($ultimateIFCondition=="NotEmpty"){
                         // if($UltimateIF){
-                        $output.= $this->card($imgroot,$PriceArray,$AreaArray,$PaymentArray,$NameArray,$DescriptionArray,$offeredArray,$BathroomArray,$RoomsArray,$FinishingArrayString,$CodeArray,$AddressArray,$VisibleArray,$Checked,$IDArray,$WishList,$WishListString, $FurnishedArrayString,$FloorArray,$Image);
+                        $output.= $this->card($imgroot,$PriceArray,$AreaArray,$PaymentArray,$NameArray,$DescriptionArray,$offeredArray,$BathroomArray,$RoomsArray,$FinishingArrayString,$CodeArray,$AddressArray,$VisibleArray,$Checked,$IDArray,$WishList,$WishListString, $FurnishedArrayString,$FloorArray,$Image,$NUMOFFloorsArray);
                         // }
                         
                     }
