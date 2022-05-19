@@ -18,6 +18,8 @@ class ViewADD extends view
 <link rel="stylesheet" href="<?php echo URLROOT; ?>css/Add.css">
 <html>
     <body>
+    <!-- <div style="display:none; " id="loader"></div> -->
+
 
 <div class="All text-right" dir="rtl">
   <div class="Caution" id="Caution"></div>
@@ -188,12 +190,18 @@ class ViewADD extends view
   ?>
   <p class='field required'>
   <div class="alert alert-danger"role="alert">
+    ملحوظة:
+    <br>
+    1/
   اذا كانت الصور ليست من نوع "png","jpeg","jpg" 
   أو حجمها أكبر من 4 ميجا 
-  أو عددها أكثر من 20
   ,فسيتم رفضها تلقائيا !
+  <br>
+  2/
+  مسموح بعدد 20 صورة فقط !
 </div>
 </p>
+
   <p class='field required'>
    Select Image Files to Upload:
     <input type="file" id='files' name="files[]" multiple required><br>
@@ -212,6 +220,15 @@ class ViewADD extends view
     ?>
 
 <script>
+//    var myVar;
+
+// function myFunction() {
+//   myVar = setTimeout(showPage, 5000);
+// }
+
+// function showPage() {
+//   document.getElementById("loader").style.display = "block";
+// }
   function CheckCode(input){
     codeInput=input.value;
     $.ajax({
@@ -382,9 +399,8 @@ class ViewADD extends view
           
           success:function(data)
           {
-           
-            window.location.replace("<?php echo $action2;?>")
-
+            console.log(data);
+            window.location.replace("<?php echo $action2;?>");
           }
         })
       
@@ -418,24 +434,40 @@ class ViewADD extends view
       document.getElementById("form").addEventListener("submit", function(event){
       event.preventDefault();
       });
-    $("#files").on("change", function() {
-    if ($("#files")[0].files.length > 2) {
-      alert("You can select only 2 images");
-    } else {
-      $("#imageUploadForm").submit();
+    // $("#files").on("change", function() {
+    // if ($("#files")[0].files.length > 2) {
+      
+    // } else {
+    //   $("#imageUploadForm").submit();
+    // }
+    // });
+    function RemoveError(){
+      var myTimeout = setTimeout(timeout, 5000);
+  function timeout(){ $("#Db").fadeOut("slow");}; 
+  $(document).ready(function(){
+  $("button").click(function (){
+    // $("#Db").fadeOut();
+    $("#Db").fadeOut("slow");
+    // $("#Db").fadeOut(3000);
+  });
+ });
+ 
     }
-    });
 function Start(){
  
   if(document.getElementById('CodeError').innerHTML=="\"هذا الكود موجود مسبقا\"")
   {
-    
     $('#Caution').html("<div class='text-center fixed-top' style='margin-top:30px;'><button class='btn btn-danger' id='Db' style='width:50%'><i class='fa fa-exclamation-triangle' aria-hidden='true'></i> يا حج غير الكود </button></div>");
+    RemoveError();
   }else if( !document.getElementById('files').value){
     $('#Caution').html("<div class='text-center fixed-top' style='margin-top:30px;'><button class='btn btn-danger' id='Db' style='width:50%'><i class='fa fa-exclamation-triangle' aria-hidden='true'></i> يا حج  حط صورة </button></div>");
-
+    RemoveError();
+  }else if($("#files")[0].files.length > 21){
+    $('#Caution').html("<div class='text-center fixed-top' style='margin-top:30px;'><button class='btn btn-danger' id='Db' style='width:50%'><i class='fa fa-exclamation-triangle' aria-hidden='true'></i>لقد تخطيت الحد المسموح للصور, الذي يبلغ 20 صورة </button></div>");
+    RemoveError();
   }
   else{
+    // myFunction()
     var $myForm = $('#form');
 
 if (!$myForm[0].checkValidity()) {

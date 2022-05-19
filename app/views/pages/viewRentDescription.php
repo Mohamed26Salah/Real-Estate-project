@@ -21,6 +21,7 @@ class viewRentDescription extends View
 	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
 <div class="pd-wrap">
 		<div class="container">
+    <a href="<?php echo URLROOT . 'pages/viewRent';?>"><button type="button" class="btn btn-dark"> < Back</button></a>
 	        <div class="heading-section">
 	            <h2>Rent Details</h2>
 	        </div>

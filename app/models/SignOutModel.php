@@ -1,5 +1,4 @@
-<?php
-class SignOutModel extends model
-{
-    
+<?php 
+class SignOutModel extends model{
+
 }

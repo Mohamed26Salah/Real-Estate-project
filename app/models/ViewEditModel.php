@@ -9,7 +9,6 @@ class viewEditModel extends model
     protected $Finishing;
 
 
-
     
     public function getID()
     {
@@ -79,7 +78,18 @@ class viewEditModel extends model
         }
        
         }
-
+    public function UploadImagesEdit($Value,$ID){
+          $this->dbh->query("INSERT INTO `allestateimages`(`allestateID`, `Image`) VALUES (:uIID, :uImage)"); 
+          $this->dbh->bind(':uIID', $ID);
+          $this->dbh->bind(':uImage', $Value);
+          $this->dbh->execute();
+      }
+      public function OneImages($Value,$ID){
+        $this->dbh->query("UPDATE `allestate` SET `image`= :uImage WHERE `ID` = ".$ID); 
+        $this->dbh->bind(':uImage', $Value);
+        $this->dbh->execute();
+        // echo($ALLRECORDS->ID);
+    }
     public function ShowEdit(){
         $this->dbh->query("SELECT * FROM `allestate` WHERE `ID` = '$this->ID'");
         $record = $this->dbh->single();
@@ -337,8 +347,11 @@ if($this->Furnished == 1){
           </p>
     EOT;
           
-           }  
+           } 
+
         $output .=<<<EOT
+  
+        </div>
           <p class='field required'>
           <div class="alert alert-danger"role="alert">
           اذا كانت الصور ليست من نوع "png","jpeg","jpg" 
@@ -349,17 +362,16 @@ if($this->Furnished == 1){
         </p>
           <p class='field required'>
            Select Image Files to Upload:
-            <input type="file" id='files' name="files[]" multiple required><br>
+            <input type="file" id='files' name="files[]" multiple><br>
             </p>
             
           <p class='field half'>
-            <!-- <button class='button' id="submit" onclick="Start(this)">Submit</button> -->
-            <input class='button' id="submit" type='submit' onclick="Start()">
+            <!-- <button class='button' id="submit" onclick="Start(this)" style="background-color:green;">Edit</button> -->
+            <input class='button' id="submit" type='submit' onclick="Start()" style="background-color:green;" value="Edit">
            
           </p>
       
-        
-    EOT;
+      EOT;
     
         return $output;
 

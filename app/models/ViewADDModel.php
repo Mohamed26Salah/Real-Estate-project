@@ -267,6 +267,11 @@ class ViewADDModel extends model
              $this->TypeID = $TypeID;
          }
           //////////////////////////////////////////
+        public function DeleteImages($ID){
+            $this->dbh->query(" DELETE FROM `allestateimages` WHERE allestateID = '".$ID."'");
+            $this->dbh->execute();
+            echo("Da5l model");
+        }
         public function CheckCode(){
         $this->dbh->query("SELECT * FROM allestate WHERE Code = '".$this->codeInput."'");
         $ALLRECORDS = $this->dbh->single();
@@ -275,6 +280,15 @@ class ViewADDModel extends model
         }else{
             echo("\"هذا الكود موجود مسبقا\"");
         }
+        }
+        public function OneImages($Value){
+            $this->dbh->query("SELECT * FROM allestate ORDER BY ID DESC LIMIT 1");
+            $ALLRECORDS = $this->dbh->single();
+            $this->dbh->query("UPDATE `allestate` SET `image`= :uImage WHERE `ID` = ".$ALLRECORDS->ID); 
+            // $this->dbh->bind(':uIID', $ALLRECORDS->ID);
+            $this->dbh->bind(':uImage', $Value);
+            $this->dbh->execute();
+            // echo($ALLRECORDS->ID);
         }
         public function UploadImages($Value){
             $this->dbh->query("SELECT * FROM allestate ORDER BY ID DESC LIMIT 1");
@@ -299,11 +313,11 @@ class ViewADDModel extends model
         }
         public function Add(){
             if(empty($this->EditID)){
-                $this->dbh->query("INSERT INTO allestate (`AddressUser`, `AddressAdmin`, `Area`,`Price`,`PaymentMethod`,`Owner`,`OwnerNumber`,`DescriptionUser`,`DescriptionAdmin`,`Name`,`Priroty`,`Visible`,`Code`,`TypeID`,`offered`) VALUES(:uAddressUser, :uAddressAdmin, :uArea, :uPrice, :uPayment, :uOwner, :uOwnerNum, :uDescriptionUser, :uDescriptionAdmin, :uName, :uImportance, :uShow, :uCode, :uTypeID, :ucontarctType)");
+                $this->dbh->query("INSERT INTO allestate (`AMID`,`AddressUser`, `AddressAdmin`, `Area`,`Price`,`PaymentMethod`,`Owner`,`OwnerNumber`,`DescriptionUser`,`DescriptionAdmin`,`Name`,`Priroty`,`Visible`,`Code`,`TypeID`,`offered`) VALUES(:uAMID, :uAddressUser, :uAddressAdmin, :uArea, :uPrice, :uPayment, :uOwner, :uOwnerNum, :uDescriptionUser, :uDescriptionAdmin, :uName, :uImportance, :uShow, :uCode, :uTypeID, :ucontarctType)");
             }else{
-                $this->dbh->query("UPDATE `allestate` SET `AddressUser`=:uAddressUser,`AddressAdmin`= :uAddressAdmin,`Area`= :uArea,`Price`= :uPrice,`PaymentMethod`= :uPayment,`Owner`= :uOwner,`OwnerNumber`= :uOwnerNum,`DescriptionUser`= :uDescriptionUser,`DescriptionAdmin`= :uDescriptionAdmin,`Name`= :uName,`Priroty`= :uImportance,`Visible`= :uShow,`Code`= :uCode,`TypeID`= :uTypeID,`offered`= :ucontarctType WHERE ID = ".$this->EditID);
+                $this->dbh->query("UPDATE `allestate` SET `AMID`= :uAMID, `AddressUser`=:uAddressUser,`AddressAdmin`= :uAddressAdmin,`Area`= :uArea,`Price`= :uPrice,`PaymentMethod`= :uPayment,`Owner`= :uOwner,`OwnerNumber`= :uOwnerNum,`DescriptionUser`= :uDescriptionUser,`DescriptionAdmin`= :uDescriptionAdmin,`Name`= :uName,`Priroty`= :uImportance,`Visible`= :uShow,`Code`= :uCode,`TypeID`= :uTypeID,`offered`= :ucontarctType WHERE ID = ".$this->EditID);
             }
-      
+        $this->dbh->bind(':uAMID', $_SESSION['user_id']);
         $ValidatedAddressUser=filter_var($this->AddressUser, FILTER_SANITIZE_STRING);
         $this->dbh->bind(':uAddressUser', $ValidatedAddressUser);
         $ValidatedAddressAdmin=filter_var($this->AddressAdmin, FILTER_SANITIZE_STRING);

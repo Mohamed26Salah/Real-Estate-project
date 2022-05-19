@@ -6,15 +6,16 @@ class ViewEdit extends view
   {
     require APPROOT . '/views/inc/header.php';
     if(isset($_GET['IDE'])){
-      //  $_SESSION['UnitID']=$_GET['ID'];
+      $_SESSION['UnitID']=$_GET['IDE'];
       $IDE=$_GET['IDE'];
       ?>
-      <input type="hidden" name="IDE" id="IDE" value="<?php echo $IDE ?>">
+      <input type="hidden" name="EditID" id="EditID" value="<?php echo $IDE ?>">
       <?php
       }
       $action = 'ViewADD'; 
       $action2 = URLROOT . 'Pages/viewItem'; 
       $action3 = 'ViewEdit'; 
+      $action4 = URLROOT . 'Pages/viewDescription?ID='.$IDE; 
     ?>
     <link rel="stylesheet" href="<?php echo URLROOT; ?>css/Add.css">
     <html>
@@ -29,7 +30,7 @@ class ViewEdit extends view
         itemsAjax();
         function itemsAjax(){
 
-        var FireAJAX = document.getElementById('IDE').value;
+        var FireAJAX = document.getElementById('EditID').value;
         $.ajax({
           url:"<?php echo $action3;?>",
           method:"POST",
@@ -210,7 +211,6 @@ class ViewEdit extends view
           TypeID = "Salah";
         }
         EditID=document.getElementById('EditID').value;
-        console.log(EditID)
         $.ajax({
           url:"<?php echo $action;?>",
           method:"POST",
@@ -236,34 +236,77 @@ class ViewEdit extends view
             form_data.append("files[]", document.getElementById('files').files[index]);
           // console.log(form_data.array);
           }
+          form_data.append("YASSER", document.getElementById('EditID').value);
           // AJAX request
           $.ajax({
-          url: "<?php echo $action;?>", 
+          url: "<?php echo $action3;?>", 
           method:"POST",
           data: form_data,
           // dataType: 'json',
           contentType: false,
           processData: false,
           success: function (response) {
+            //  console.log(response);
             $('#Caution').html(response);
+            window.location.replace("<?php echo $action4;?>");
           }
           });
         
       }
+  
+      
       document.getElementById("form").addEventListener("submit", function(event){
       event.preventDefault();
       });
+    function RemoveError(){
+    var myTimeout = setTimeout(timeout, 5000);
+    function timeout(){ $("#Db").fadeOut("slow");}; 
+    $(document).ready(function(){
+    $("button").click(function (){
+    // $("#Db").fadeOut();
+    $("#Db").fadeOut("slow");
+    // $("#Db").fadeOut(3000);
+    });
+    });
+
+    }
+    function DeleteImages(){
+      var IDForImages
+      IDForImages=document.getElementById('EditID').value;
+      $.ajax({
+          url: "<?php echo $action;?>", 
+          method:"POST",
+          data: {IDForImages:IDForImages},
+          success: function (data) {
+            console.log("DeleteImages Done");
+          }
+          });
+    }
 function Start(){
   if(document.getElementById('CodeError').innerHTML=="\"هذا الكود موجود مسبقا\"")
   {
-    
     $('#Caution').html("<div class='text-center fixed-top' style='margin-top:30px;'><button class='btn btn-danger' id='Db' style='width:50%'><i class='fa fa-exclamation-triangle' aria-hidden='true'></i> يا حج غير الكود </button></div>");
-  }else if( !document.getElementById('files').value){
-    $('#Caution').html("<div class='text-center fixed-top' style='margin-top:30px;'><button class='btn btn-danger' id='Db' style='width:50%'><i class='fa fa-exclamation-triangle' aria-hidden='true'></i> يا حج  حط صورة </button></div>");
+    RemoveError();
+  }else if($("#files")[0].files.length > 21){
+    $('#Caution').html("<div class='text-center fixed-top' style='margin-top:30px;'><button class='btn btn-danger' id='Db' style='width:50%'><i class='fa fa-exclamation-triangle' aria-hidden='true'></i>لقد تخطيت الحد المسموح للصور, الذي يبلغ 20 صورة </button></div>");
+    RemoveError();
   }
   else{
-    AddAjaxEdit()
-    Image()
+    var $myForm = $('#form');
+
+    if (!$myForm[0].checkValidity()) {
+        $myForm.find(':submit').click();
+    }
+    if($("#files")[0].files.length >= 1){
+      DeleteImages()
+      AddAjaxEdit()
+      Image()
+
+    }else{
+      AddAjaxEdit()
+      window.location.replace("<?php echo $action4;?>");
+    }
+    
   }
 
 }

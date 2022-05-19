@@ -1,6 +1,9 @@
 <?php
+$AdminPath = models_PATH . 'AdminModel.php';
+require_once $AdminPath;
 class Pages extends Controller
 {
+    protected $ID;
 public function index()
     {
         $viewPath = VIEWS_PATH . 'pages/Index.php';
@@ -11,16 +14,20 @@ public function index()
 
 public function viewItem()
     {
+      
+        $viewItemAdmin = new AdminModel();
         $ViewItem = $this->getModel();
         if ($_SERVER['REQUEST_METHOD'] == 'POST'){
-
+ 
             if(isset($_POST['ShowButton'])){
                 $ViewItem->setButtonShow($_POST['ShowButton']);
                 $ViewItem->setID($_POST['CardID']);
                 echo($ViewItem->button());
             }else if(isset($_POST['WishListValue'])){
-                $ViewItem->setID($_POST['CardID']);
-                echo($ViewItem->AddToWishlist($_POST['WishListValue']));
+                // $ViewItem->setID($_POST['CardID']);
+                // echo($ViewItem->AddToWishlist($_POST['WishListValue']));
+               
+                echo($viewItemAdmin->viewItem());
             }
 
         }else{
@@ -42,7 +49,8 @@ public function viewItem()
         }else if(isset($_POST['DeleteAbout'])){
             echo($DashBoard->DeleteUserAbout($_POST['ID']));
         }else if(isset($_POST['EditAbout'])){
-            echo($DashBoard->Listusers());
+            $DashBoardAdmin = new AdminModel;
+            echo($DashBoardAdmin->DashBoard());
         }else if(isset($_POST['ConfirmAboutAdd'])){
             echo($DashBoard->ConfirmUserAdd($_POST['newEmail'],$_POST['name1'],$_POST['title1'],$_POST['disc1']));
         }else if(isset($_POST['ConfirmAbout'])){
@@ -109,6 +117,22 @@ public function viewItem()
             }
             if($_POST['Floor']!="Salah"){
                 $ViewItem->setFloor($_POST['Floor']);
+            }
+            if($_POST['TypeID']!="Salah"){
+                $ViewItem->setTypeID($_POST['TypeID']);
+            }
+            /////////////////////////////////////////////////////////
+            if($_POST['NUMOFFloors']!="Salah"){
+                $ViewItem->setNUMOFFloors($_POST['NUMOFFloors']);
+            }
+            if($_POST['Doublex']!="Salah"){
+                $ViewItem->setDoublex($_POST['Doublex']);
+            }
+            if($_POST['nUMOFAB']!="Salah"){
+                $ViewItem->setnUMOFAB($_POST['nUMOFAB']);
+            }
+            if($_POST['TypeOFActivity']!="Salah"){
+                $ViewItem->setTypeOFActivity($_POST['TypeOFActivity']);
             }
           
            
@@ -254,7 +278,7 @@ public function ViewADD()
             if($_POST['EditID']!="Salah"){
                 $Add->setEditID($_POST['EditID']);
             }
-            echo("Da5l Add");
+
             echo($Add->Add());
             }
             if(!empty($_FILES['files']['name'])){
@@ -268,6 +292,7 @@ public function ViewADD()
                 
                 // Loop all files
                 // for($index = 0;$index < $countfiles;$index++){
+                    $counter="0";
                 for($index = 0;$index < 20 ;$index++){
                 
                    if(isset($_FILES['files']['name'][$index]) && $_FILES['files']['name'][$index] != ''){
@@ -289,6 +314,10 @@ public function ViewADD()
                 
                          // Upload file
                          if(move_uploaded_file($_FILES['files']['tmp_name'][$index],$path)){
+                             if($counter=="0"){
+                                $Add->OneImages($filename);
+                                $counter="1";
+                             }
                             $Add->UploadImages($filename);
                          }
                         }
@@ -302,6 +331,10 @@ public function ViewADD()
             if(isset($_POST['codeInput'])){
                 $Add->setcodeInput($_POST['codeInput']);
                 echo($Add->CheckCode()); 
+            }
+            if(isset($_POST['IDForImages'])){
+                $Add->DeleteImages($_POST['IDForImages']);
+                echo "Da5l Controller";
             }
            
 
@@ -338,13 +371,62 @@ public function ViewADD()
 
     public function viewEdit()
     {
+       
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $ViewEdit = $this->getModel();
             if(isset($_POST['FireAJAX'])){
                 $ViewEdit->setID($_POST['FireAJAX']);
                 echo($ViewEdit->ShowEdit());
-            }else if($_POST['codeInput']){
+            }
+            if(isset($_POST['codeInput'])){
                 echo($ViewEdit->CheckCodeEdit($_POST['OldCode'],$_POST['codeInput']));
+            }
+            if(!empty($_FILES['files']['name'])){
+                $countfiles = count($_FILES['files']['name']);
+                $counter="0";
+                // Upload Location
+                $upload_location = IMAGEROOT;
+                
+                // To store uploaded files path
+                $files_arr = array();
+                
+                // Loop all files
+                // for($index = 0;$index < $countfiles;$index++){
+                for($index = 0;$index <= 20 ;$index++){
+                
+                   if(isset($_FILES['files']['name'][$index]) && $_FILES['files']['name'][$index] != ''){
+                      // File name
+                      $filename = $_FILES['files']['name'][$index];
+                      $file_size = $_FILES['files']['size'][$index];
+                      
+                      // Get extension
+                      $ext = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
+                
+                      // Valid image extension
+                      $valid_ext = array("png","jpeg","jpg");
+                
+                      // Check extension
+                      if(in_array($ext, $valid_ext)){
+                        if($file_size < 4194304){
+                         // File path
+                         $path = $upload_location.$filename;
+                
+                         // Upload file
+                         if(move_uploaded_file($_FILES['files']['tmp_name'][$index],$path)){
+
+                            if($counter=="0"){
+                                $ViewEdit->OneImages($filename, $_POST['YASSER']);
+                                $counter="1";
+                             }
+                             $ViewEdit->UploadImagesEdit($filename, $_POST['YASSER']);
+                         }
+                        }
+                      }else{
+                          echo "<div class='text-center fixed-top' style='margin-top:30px;'><button class='btn btn-danger' id='Db' style='width:50%'><i class='fa fa-exclamation-triangle' aria-hidden='true'></i> واحدة من الصور ليست بصورة لذا تم رفضها</button></div>";
+                      }
+                   }
+                }
+                
             }
 
         }else{
@@ -361,7 +443,7 @@ public function ViewADD()
         $WishListView = $this->getModel();
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if(isset($_POST['work'])){
-                echo($WishListView->sort());
+                echo($WishListView->WishListCard());
             }else if(isset($_POST['WishListValue'])){
                 $WishListView->setID($_POST['CardID']);
                 echo($WishListView->AddToWishlist($_POST['WishListValue']));

@@ -1,5 +1,5 @@
 <?php
-require_once 'UserModel.php';
+// require_once 'UserModel.php';
 class viewItemModel extends model
 {
     protected $area;
@@ -19,6 +19,59 @@ class viewItemModel extends model
     protected $visibleAll;
     protected $WishListValue;
     protected $Floor;
+    protected $Furnished;
+    protected $TypeID;
+    /////////////////////////////////
+    protected $NUMOFFloors;
+    protected $Doublex;
+    protected $nUMOFAB;
+    protected $TypeOFActivity;
+    
+    public function getNUMOFFloors()
+    {
+        return $this->NUMOFFloors;
+    }
+    public function setNUMOFFloors($NUMOFFloors)
+    {
+        $this->NUMOFFloors = $NUMOFFloors;
+    }
+
+    public function getDoublex()
+    {
+        return $this->Doublex;
+    }
+    public function setDoublex($Doublex)
+    {
+        $this->Doublex = $Doublex;
+    }
+
+    public function getnUMOFAB()
+    {
+        return $this->nUMOFAB;
+    }
+    public function setnUMOFAB($nUMOFAB)
+    {
+        $this->nUMOFAB = $nUMOFAB;
+    }
+
+    public function getTypeOFActivity()
+    {
+        return $this->TypeOFActivity;
+    }
+    public function setTypeOFActivity($TypeOFActivity)
+    {
+        $this->TypeOFActivity = $TypeOFActivity;
+    }
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public function getTypeID()
+    {
+        return $this->TypeID;
+    }
+    public function setTypeID($TypeID)
+    {
+        $this->TypeID = $TypeID;
+    }
+
 
     public function getFloor()
     {
@@ -177,6 +230,8 @@ class viewItemModel extends model
     {
         $this->WishListValue = $WishListValue;
     }
+
+
     public function button(){
         $Change=0;
        if($this->ButtonShow=="on"){
@@ -264,29 +319,95 @@ class viewItemModel extends model
         
         return $output2;
     }
-    function ifCondition($UltimateJoinRoom,$UltimateJoinBathroom,$UltimateJoinFinishing,$UltimateJoinFurnished,$UltimateJoinFloor,$RoomsArray,$BathroomArray,$FinishingArray,$FurnishedArray,$FloorArray,$UltimateIF,$ultimateIFCondition){
+    function ifCondition($TypeID,$UltimateJoinRoom,$UltimateJoinBathroom,$UltimateJoinFinishing,$UltimateJoinFurnished,$UltimateJoinFloor,$UltimateJoinNUMOFFloors,$UltimateJoinDoublex,$UltimateJoinTypeOFActivity,$UltimateJoinnUMOFAB,$RoomsArray,$BathroomArray,$FinishingArray,$NUMOFFloorsArray,$FloorArray,$DoublexArray,$TypeOFActivityArray,$FurnishedArray,$nUMOFABArray,$UltimateIF,$ultimateIFCondition){
         $UltimateIF=false;
-    if($UltimateJoinRoom!="empty" || $UltimateJoinBathroom!="empty" || $UltimateJoinFurnished!="empty" || $UltimateJoinFinishing!="empty"|| $UltimateJoinFloor!="empty"){
+    if($UltimateJoinRoom!="empty" || $UltimateJoinBathroom!="empty" || $UltimateJoinFurnished!="empty" || $UltimateJoinFinishing!="empty"|| $UltimateJoinFloor!="empty"|| $UltimateJoinNUMOFFloors!="empty"|| $UltimateJoinDoublex!="empty"|| $UltimateJoinTypeOFActivity!="empty"|| $UltimateJoinnUMOFAB!="empty"){
         $UltimateIF=true;
+    if(!empty($UltimateJoinBathroom))
+    {
         if ($UltimateJoinBathroom=="empty") {
             $UltimateJoinBathroom=$BathroomArray;
-        }
+            }
+    }
+    if(!empty($UltimateJoinRoom))
+    {
         if ($UltimateJoinRoom=="empty") {
             $UltimateJoinRoom=$RoomsArray;
         }
+    }
+    if(!empty($UltimateJoinFurnished))
+    {
         if ($UltimateJoinFurnished=="empty") {
             $UltimateJoinFurnished=$FurnishedArray;
         }
+    }
+    if(!empty($UltimateJoinFinishing))
+    {
         if ($UltimateJoinFinishing=="empty") {
             $UltimateJoinFinishing=$FinishingArray;
         }
+    }
+    if(!empty($UltimateJoinFloor))
+    {
         if ($UltimateJoinFloor=="empty") {
             $UltimateJoinFloor=$FloorArray;
         }
-        if($UltimateJoinBathroom==$BathroomArray&&$UltimateJoinRoom==$RoomsArray&&$UltimateJoinFurnished==$FurnishedArray&&$UltimateJoinFinishing==$FinishingArray&&$UltimateJoinFloor==$FloorArray){
-        //  $UltimateIF=true;
-         $ultimateIFCondition="NotEmpty";
+    }
+    if(!empty($UltimateJoinNUMOFFloors))
+    {
+        if ($UltimateJoinNUMOFFloors=="empty") {
+            $UltimateJoinNUMOFFloors=$NUMOFFloorsArray;
         }
+    }
+    if(!empty($UltimateJoinDoublex))
+    {
+        if ($UltimateJoinDoublex=="empty") {
+            $UltimateJoinDoublex=$DoublexArray;
+        }
+    }
+    if(!empty($UltimateJoinTypeOFActivity))
+    {
+        if ($UltimateJoinTypeOFActivity=="empty") {
+            $UltimateJoinTypeOFActivity=$TypeOFActivityArray;
+        }
+    }
+    if(!empty($UltimateJoinnUMOFAB))
+    {
+        if ($UltimateJoinnUMOFAB=="empty") {
+            $UltimateJoinnUMOFAB=$nUMOFABArray;
+        }
+    }
+        if($TypeID==1){
+            if($UltimateJoinBathroom==$BathroomArray&&$UltimateJoinRoom==$RoomsArray&&$UltimateJoinFurnished==$FurnishedArray&&$UltimateJoinFinishing==$FinishingArray&&$UltimateJoinFloor==$FloorArray&&$UltimateJoinDoublex=$DoublexArray){
+                //  $UltimateIF=true;
+                 $ultimateIFCondition="NotEmpty";
+                }
+        }
+        if($TypeID==2){
+            if($UltimateJoinBathroom==$BathroomArray&&$UltimateJoinRoom==$RoomsArray&&$UltimateJoinFurnished==$FurnishedArray&&$UltimateJoinFinishing==$FinishingArray&&$UltimateJoinNUMOFFloors=$NUMOFFloorsArray){
+                //  $UltimateIF=true;
+                 $ultimateIFCondition="NotEmpty";
+                }
+        }
+        if($TypeID==3){
+            if($UltimateJoinBathroom==$BathroomArray&&$UltimateJoinRoom==$RoomsArray&&$UltimateJoinFurnished==$FurnishedArray&&$UltimateJoinFinishing==$FinishingArray&&$UltimateJoinNUMOFFloors=$NUMOFFloorsArray){
+                //  $UltimateIF=true;
+                 $ultimateIFCondition="NotEmpty";
+                }
+        }
+        if($TypeID==4||$TypeID==5||$TypeID==7){
+            if($UltimateJoinTypeOFActivity=$TypeOFActivityArray){
+                //  $UltimateIF=true;
+                 $ultimateIFCondition="NotEmpty";
+                }
+        }
+        if($TypeID==6){
+            if($UltimateJoinTypeOFActivity=$TypeOFActivityArray&&$UltimateJoinnUMOFAB=$nUMOFABArray){
+                //  $UltimateIF=true;
+                 $ultimateIFCondition="NotEmpty";
+                }
+        }
+       
 
     }
   
@@ -309,19 +430,34 @@ class viewItemModel extends model
         //SELECT * FROM `allestate` WHERE Area >= 300 AND Area < 400 
         
         $AllSort="TypeID=1 AND ";
+        $AllSort="TypeID=".$this->TypeID." AND ";
         $join=" AS allestate, eav AS eav ";
         $AllJoin="AND eav.AllID = allestate.ID";
         $UltimateJoin="";
         $Search="";
         $SearchAll=" GROUP BY allestate.ID";
         $SuperUltimateJoin="";
-        $UltimateJoinBathroom="";
-        $UltimateJoinRoom="";
-        $UltimateJoinFinishing="";
-        $UltimateJoinFurnished="";
+        $UltimateJoinBathroom="empty";
+        $UltimateJoinRoom="empty";
+        $UltimateJoinFinishing="empty";
+        $UltimateJoinFurnished="empty";
+        $UltimateJoinFloor="empty";
+        $UltimateJoinNUMOFFloors="empty";
+        $UltimateJoinDoublexArray="empty";
+        $UltimateTypeOFActivityArray="empty";
+        $UltimateJoinTheNumberOFAB="empty";
         $UltimateIF="";
         $ultimateIFCondition="";
         $UltimateJoinFloor="";
+        $FloorArray="empty";
+        $FinishingArray="empty";
+        $RoomsArray="empty";
+        $BathroomArray="empty";
+        $NUMOFFloorsArray="empty";
+        $DoublexArray="empty";
+        $TypeOFActivityArray="empty";
+        $nUMOFABArray="empty";
+        $FurnishedArray="empty";
         if(!empty($this->area)){
             
           if($this->area==400){
@@ -350,39 +486,6 @@ class viewItemModel extends model
             $AllSort.="offered = ".$this->contarctType;
             $AllSort.=" AND ";
         }
-        if(!empty($this->Finishing)){
-            // $UltimateJoin.=" AND ";
-            // $UltimateJoin.="eav.AtrributeID = 2 AND eav.Value=".$this->Finishing;
-            $UltimateJoinFinishing=$this->Finishing;
-        }else{
-            $UltimateJoinFinishing="empty";
-        }
-        ////////////////////////////////////////////////////////
-        if(!empty($this->Furnished)){
-            $UltimateJoinFurnished=$this->Furnished;
-        }else{
-            $UltimateJoinFurnished="empty";
-        }
-        ////////////////////////////////////////////////////////
-        if(!empty($this->Rooms)){
-            // $UltimateJoin.=" AND ";
-            // $UltimateJoin.="eav.AtrributeID = 3 AND eav.Value=".$this->Rooms;
-            $UltimateJoinRoom=$this->Rooms;
-        }else{
-            $UltimateJoinRoom="empty";
-        }
-        if(!empty($this->Bathroom)){
-            // $UltimateJoin.=" AND ";
-            // $UltimateJoin.="eav.AtrributeID = 4 AND eav.Value=".$this->Bathroom;
-            $UltimateJoinBathroom=$this->Bathroom;
-        }else{
-            $UltimateJoinBathroom="empty";
-        }
-        if(!empty($this->Floor)){
-            $UltimateJoinFloor=$this->Floor;
-        }else{
-            $UltimateJoinFloor="empty";
-        }
         if(!empty($this->HighLow)){
             if($this->HighLow==1){
                 $SuperUltimateJoin=" ORDER BY Price DESC ";
@@ -394,10 +497,55 @@ class viewItemModel extends model
         if(!empty($this->Show)){
             $AllSort.="Visible = ".$this->Show;
             $AllSort.=" AND ";
-        }else{
-            
         }
-      
+        ////////////////////////////////////////////////////////
+        if(!empty($this->Finishing)){
+            $UltimateJoinFinishing=$this->Finishing;
+        }else{
+            $UltimateJoinFinishing="empty";
+        }
+        if(!empty($this->Furnished)){
+            $UltimateJoinFurnished=$this->Furnished;
+        }else{
+            $UltimateJoinFurnished="empty";
+        }
+        if(!empty($this->Rooms)){
+            $UltimateJoinRoom=$this->Rooms;
+        }else{
+            $UltimateJoinRoom="empty";
+        }
+        if(!empty($this->Bathroom)){
+            $UltimateJoinBathroom=$this->Bathroom;
+        }else{
+            $UltimateJoinBathroom="empty";
+        }
+        if(!empty($this->Floor)){
+            $UltimateJoinFloor=$this->Floor;
+        }else{
+            $UltimateJoinFloor="empty";
+        }
+        
+        if(!empty($this->NUMOFFloors)){
+            $UltimateJoinNUMOFFloors=$this->NUMOFFloors;
+        }else{
+            $UltimateJoinNUMOFFloors="empty";
+        }
+        if(!empty($this->Doublex)){
+            $UltimateJoinDoublex=$this->Doublex;
+        }else{
+            $UltimateJoinDoublex="empty";
+        }
+        if(!empty($this->TypeOFActivity)){
+            $UltimateJoinTypeOFActivity=$this->TypeOFActivity;
+        }else{
+            $UltimateJoinTypeOFActivity="empty";
+        }
+        if(!empty($this->nUMOFAB)){
+            $UltimateJoinnUMOFAB=$this->nUMOFAB;
+        }else{
+            $UltimateJoinnUMOFAB="empty";
+        }
+        
         if(!empty($this->Search)){
             $Search=" AND (allestate.AddressUser LIKE '%".$this->Search."%'
             OR allestate.Area LIKE '%".$this->Search."%'
@@ -430,11 +578,14 @@ class viewItemModel extends model
         $oneTime=0;
         $Counter2=0;
         $Checked="";
+        $myhashmap = array();
+    
         foreach ($ALLRECORDS as $Item) {
             
             $Counter2+=1;
             if($oneTime==0){
-                array_push($input,(array("$Item->ID","$Item->AddressUser","$Item->Area","$Item->Price","$Item->PaymentMethod","$Item->DescriptionUser","$Item->Name","$Item->Visible","$Item->Code","$Item->offered","$Item->AtrributeID","$Item->Value")));
+                array_push($input,(array("$Item->ID","$Item->AddressUser","$Item->Area","$Item->Price","$Item->PaymentMethod","$Item->DescriptionUser","$Item->Name","$Item->Visible","$Item->Code","$Item->offered","$Item->image","$Item->AtrributeID","$Item->Value")));
+                $myhashmap["$Item->AtrributeID"] = "$Item->Value";
                 $oneTime+=1;
                 continue;
             }
@@ -442,6 +593,7 @@ class viewItemModel extends model
             if($input[$counter][0]==$Item->ID){
                 // echo "ttabk ";
                 array_push($input[$counter], "$Item->AtrributeID", "$Item->Value");
+                $myhashmap["$Item->AtrributeID"] = "$Item->Value";
                 // echo("Number OF records".count($ALLRECORDS));
                 if($Counter2==count($ALLRECORDS)){
                     $imgroot = IMAGEROOT3;
@@ -456,114 +608,66 @@ class viewItemModel extends model
                     $CodeArray=$input[$counter][8];
                     $AreaArray=$input[$counter][2];
                     $PaymentArray=$input[$counter][4];
-                    $FinishingArray="";
-                    $FurnishedArray="";
-                    $Image=$this->getFirstImage($IDArray);
+                    $TypeID=$this->TypeID;
+                    $Image=$input[$counter][10];
+
+                
+
                     if($input[$counter][9]==1){
                         $offeredArray="Selling";
                     }else{
                         $offeredArray="Rent";
                     }
-                    if(!empty($input[$counter][10])){
-                        if($input[$counter][10]==4){
-                            $BathroomArray=$input[$counter][11];
-                        }
-                        else if($input[$counter][10]==3){
-                            $RoomsArray=$input[$counter][11];
-                        }
-                        else if($input[$counter][10]==2){
-                            $FinishingArray=$input[$counter][11];
-                        }
-                        else if($input[$counter][10]==9){
-                            $FurnishedArray=$input[$counter][11];
-                        }else if($input[$counter][10]==1){
-                            $FloorArray=$input[$counter][11];
+                  
+
+                    if(!empty($myhashmap["1"])){
+                        $FloorArray=$myhashmap["1"];
+                    }
+                    if(!empty($myhashmap["2"])){
+                        $FinishingArray=$myhashmap["2"];
+                        if($FinishingArray==1){
+                            $FinishingArrayString="متشطب";
+                        }else if($FinishingArray==2){
+                            $FinishingArrayString="نص نشطيب";
+                        }else if($FinishingArray==3){
+                            $FinishingArrayString="مش مشتطبة ";
                         }
                     }
-                    if(!empty($input[$counter][12])){
-                        if($input[$counter][12]==4){
-                            $BathroomArray=$input[$counter][13];
-                        }
-                        else if($input[$counter][12]==3){
-                            $RoomsArray=$input[$counter][13];
-                        }
-                        else if($input[$counter][12]==2){
-                            $FinishingArray=$input[$counter][13];
-                        }
-                        else if($input[$counter][12]==9){
-                            $FurnishedArray=$input[$counter][13];
-                        }
-                        else if($input[$counter][12]==1){
-                            $FloorArray=$input[$counter][13];
-                        }
-                 
+                    if(!empty($myhashmap["3"])){
+                        $RoomsArray=$myhashmap["3"];
                     }
-                    if(!empty($input[$counter][14])){
-                        if($input[$counter][14]==4){
-                            $BathroomArray=$input[$counter][15];
-                        }
-                        else if($input[$counter][14]==3){
-                            $RoomsArray=$input[$counter][15];
-                        }
-                        else if($input[$counter][14]==2){
-                            $FinishingArray=$input[$counter][15];
-                        }
-                        else if($input[$counter][14]==9){
-                            $FurnishedArray=$input[$counter][15];
-                        }
-                        else if($input[$counter][14]==1){
-                            $FloorArray=$input[$counter][15];
-                        }
-                      
+                    if(!empty($myhashmap["4"])){
+                        $BathroomArray=$myhashmap["4"];
                     }
-                    if(!empty($input[$counter][16])){
-                        if($input[$counter][16]==4){
-                            $BathroomArray=$input[$counter][17];
-                        }
-                        else if($input[$counter][16]==3){
-                            $RoomsArray=$input[$counter][17];
-                        }
-                        else if($input[$counter][16]==2){
-                            $FinishingArray=$input[$counter][17];
-                            // echo $FinishingArray;
-                        }
-                        else if($input[$counter][16]==9){
-                            $FurnishedArray=$input[$counter][17];
-                        }
-                        else if($input[$counter][16]==1){
-                            $FloorArray=$input[$counter][17];
+                    if(!empty($myhashmap["5"])){
+                        $NUMOFFloorsArray=$myhashmap["5"];
+                    }
+                    if(!empty($myhashmap["6"])){
+                        $DoublexArray=$myhashmap["6"];
+                        if($DoublexArray==1){
+                            $DoublexArrayString="دوبلكس";
+                        }else if($DoublexArray==2){
+                            $DoublexArrayString="مش دوبلكس";
                         }
                     }
-                    if(!empty($input[$counter][18])){
-                        if($input[$counter][18]==4){
-                            $BathroomArray=$input[$counter][19];
-                        }
-                        else if($input[$counter][18]==3){
-                            $RoomsArray=$input[$counter][19];
-                        }
-                        else if($input[$counter][18]==2){
-                            $FinishingArray=$input[$counter][19];
-                            // echo $FinishingArray;
-                        }
-                        else if($input[$counter][18]==9){
-                            $FurnishedArray=$input[$counter][19];
-                        }
-                        else if($input[$counter][18]==1){
-                            $FloorArray=$input[$counter][19];
+                    if(!empty($myhashmap["7"])){
+                        $TypeOFActivityArray=$myhashmap["7"];
+                    }
+                    if(!empty($myhashmap["8"])){
+                        $nUMOFABArray=$myhashmap["8"];
+                    }
+                    if(!empty($myhashmap["9"])){
+                        $FurnishedArray=$myhashmap["9"];
+                        if($FurnishedArray==1){
+                            $FurnishedArrayString="مفروشة";
+                        }else{
+                            $FurnishedArrayString="ليست مفروشة";
                         }
                     }
-                    if($FurnishedArray==1){
-                        $FurnishedArrayString="مفروشة";
-                    }else{
-                        $FurnishedArrayString="ليست مفروشة";
-                    }
-                    if($FinishingArray==1){
-                        $FinishingArrayString="متشطب";
-                    }else if($FinishingArray==2){
-                        $FinishingArrayString="نص نشطيب";
-                    }else if($FinishingArray==3){
-                        $FinishingArrayString="مش مشتطبة ";
-                    }
+                  
+                    
+                   
+                   
                     if($VisibleArray==1){
                         $VisibleArray="on";
                         $Checked="checked";
@@ -581,7 +685,8 @@ class viewItemModel extends model
                         $WishList="red";
                         $WishListString="Add to WishList";
                     }
-                    list($UltimateIF,$ultimateIFCondition)=$this->ifCondition($UltimateJoinRoom,$UltimateJoinBathroom,$UltimateJoinFinishing,$UltimateJoinFurnished,$UltimateJoinFloor,$RoomsArray,$BathroomArray,$FinishingArray,$FurnishedArray,$FloorArray,$UltimateIF,$ultimateIFCondition);
+            list($UltimateIF,$ultimateIFCondition)=$this->ifCondition($TypeID,$UltimateJoinRoom,$UltimateJoinBathroom,$UltimateJoinFinishing,$UltimateJoinFurnished,$UltimateJoinFloor,$UltimateJoinNUMOFFloors,$UltimateJoinDoublex,$UltimateJoinTypeOFActivity,$UltimateJoinnUMOFAB,$RoomsArray,$BathroomArray,$FinishingArray,$FurnishedArray,$FloorArray,$DoublexArray,$TypeOFActivityArray,$FurnishedArray,$nUMOFABArray,$UltimateIF,$ultimateIFCondition);
+                 
                    //it was here
                 // echo($ultimateIFCondition);
                 
@@ -617,112 +722,60 @@ class viewItemModel extends model
                 $FurnishedArray="";
                 $WishList="";
                 $WishListString="";
-                $Image=$this->getFirstImage($IDArray);
+                $TypeID=$this->TypeID;
+                $Image=$input[$counter][10];
                 if($input[$counter][9]==1){
                     $offeredArray="Selling";
                 }else{
                     $offeredArray="Rent";
                 }
-                if(!empty($input[$counter][10])){
-                    if($input[$counter][10]==4){
-                        $BathroomArray=$input[$counter][11];
-                    }
-                    else if($input[$counter][10]==3){
-                        $RoomsArray=$input[$counter][11];
-                    }
-                    else if($input[$counter][10]==2){
-                        $FinishingArray=$input[$counter][11];
-                    }
-                    else if($input[$counter][10]==9){
-                        $FurnishedArray=$input[$counter][11];
-                    }else if($input[$counter][10]==1){
-                        $FloorArray=$input[$counter][11];
-                    }
-                }
-                if(!empty($input[$counter][12])){
-                    if($input[$counter][12]==4){
-                        $BathroomArray=$input[$counter][13];
-                    }
-                    else if($input[$counter][12]==3){
-                        $RoomsArray=$input[$counter][13];
-                    }
-                    else if($input[$counter][12]==2){
-                        $FinishingArray=$input[$counter][13];
-                    }
-                    else if($input[$counter][12]==9){
-                        $FurnishedArray=$input[$counter][13];
-                    }
-                    else if($input[$counter][12]==1){
-                        $FloorArray=$input[$counter][13];
-                    }
-             
-                }
-                if(!empty($input[$counter][14])){
-                    if($input[$counter][14]==4){
-                        $BathroomArray=$input[$counter][15];
-                    }
-                    else if($input[$counter][14]==3){
-                        $RoomsArray=$input[$counter][15];
-                    }
-                    else if($input[$counter][14]==2){
-                        $FinishingArray=$input[$counter][15];
-                    }
-                    else if($input[$counter][14]==9){
-                        $FurnishedArray=$input[$counter][15];
-                    }
-                    else if($input[$counter][14]==1){
-                        $FloorArray=$input[$counter][15];
-                    }
+              
                   
+                if(!empty($myhashmap["1"])){
+                    $FloorArray=$myhashmap["1"];
                 }
-                if(!empty($input[$counter][16])){
-                    if($input[$counter][16]==4){
-                        $BathroomArray=$input[$counter][17];
-                    }
-                    else if($input[$counter][16]==3){
-                        $RoomsArray=$input[$counter][17];
-                    }
-                    else if($input[$counter][16]==2){
-                        $FinishingArray=$input[$counter][17];
-                        // echo $FinishingArray;
-                    }
-                    else if($input[$counter][16]==9){
-                        $FurnishedArray=$input[$counter][17];
-                    }
-                    else if($input[$counter][16]==1){
-                        $FloorArray=$input[$counter][17];
+                if(!empty($myhashmap["2"])){
+                    $FinishingArray=$myhashmap["2"];
+                    if($FinishingArray==1){
+                        $FinishingArrayString="متشطب";
+                    }else if($FinishingArray==2){
+                        $FinishingArrayString="نص نشطيب";
+                    }else if($FinishingArray==3){
+                        $FinishingArrayString="مش مشتطبة ";
                     }
                 }
-                if(!empty($input[$counter][18])){
-                    if($input[$counter][18]==4){
-                        $BathroomArray=$input[$counter][19];
-                    }
-                    else if($input[$counter][18]==3){
-                        $RoomsArray=$input[$counter][19];
-                    }
-                    else if($input[$counter][18]==2){
-                        $FinishingArray=$input[$counter][19];
-                        // echo $FinishingArray;
-                    }
-                    else if($input[$counter][18]==9){
-                        $FurnishedArray=$input[$counter][19];
-                    }
-                    else if($input[$counter][18]==1){
-                        $FloorArray=$input[$counter][19];
+                if(!empty($myhashmap["3"])){
+                    $RoomsArray=$myhashmap["3"];
+                }
+                if(!empty($myhashmap["4"])){
+                    $BathroomArray=$myhashmap["4"];
+                }
+                if(!empty($myhashmap["5"])){
+                    $NUMOFFloorsArray=$myhashmap["5"];
+                }
+                if(!empty($myhashmap["6"])){
+                    $DoublexArray=$myhashmap["6"];
+                    if($DoublexArray==1){
+                        $DoublexArrayString="دوبلكس";
+                    }else if($DoublexArray==2){
+                        $DoublexArrayString="مش دوبلكس";
                     }
                 }
-                if($FurnishedArray==1){
-                    $FurnishedArrayString="مفروشة";
-                }else{
-                    $FurnishedArrayString="ليست مفروشة";
+                if(!empty($myhashmap["7"])){
+                    $TypeOFActivityArray=$myhashmap["7"];
                 }
-                if($FinishingArray==1){
-                    $FinishingArrayString="متشطب";
-                }else if($FinishingArray==2){
-                    $FinishingArrayString="نص تشطيب";
-                }else if($FinishingArray==3){
-                    $FinishingArrayString="مش متشطبة ";
+                if(!empty($myhashmap["8"])){
+                    $nUMOFABArray=$myhashmap["8"];
                 }
+                if(!empty($myhashmap["9"])){
+                    $FurnishedArray=$myhashmap["9"];
+                    if($FurnishedArray==1){
+                        $FurnishedArrayString="مفروشة";
+                    }else{
+                        $FurnishedArrayString="ليست مفروشة";
+                    }
+                }
+               
                 if($VisibleArray==1){
                     $VisibleArray="on";
                     $Checked="checked";
@@ -741,7 +794,7 @@ class viewItemModel extends model
                 }
                
                 //Bl3b fe IF 
-                list($UltimateIF,$ultimateIFCondition)=$this->ifCondition($UltimateJoinRoom,$UltimateJoinBathroom,$UltimateJoinFinishing,$UltimateJoinFurnished,$UltimateJoinFloor,$RoomsArray,$BathroomArray,$FinishingArray,$FurnishedArray,$FloorArray,$UltimateIF,$ultimateIFCondition);
+                list($UltimateIF,$ultimateIFCondition)=$this->ifCondition($TypeID,$UltimateJoinRoom,$UltimateJoinBathroom,$UltimateJoinFinishing,$UltimateJoinFurnished,$UltimateJoinFloor,$UltimateJoinNUMOFFloors,$UltimateJoinDoublex,$UltimateJoinTypeOFActivity,$UltimateJoinnUMOFAB,$RoomsArray,$BathroomArray,$FinishingArray,$FurnishedArray,$FloorArray,$DoublexArray,$TypeOFActivityArray,$FurnishedArray,$nUMOFABArray,$UltimateIF,$ultimateIFCondition);
                 //it also was here
 
                
@@ -757,7 +810,8 @@ class viewItemModel extends model
                 }
             
                 
-                array_push($input,(array("$Item->ID","$Item->AddressUser","$Item->Area","$Item->Price","$Item->PaymentMethod","$Item->DescriptionUser","$Item->Name","$Item->Visible","$Item->Code","$Item->offered","$Item->AtrributeID","$Item->Value")));
+                array_push($input,(array("$Item->ID","$Item->AddressUser","$Item->Area","$Item->Price","$Item->PaymentMethod","$Item->DescriptionUser","$Item->Name","$Item->Visible","$Item->Code","$Item->offered","$Item->image","$Item->AtrributeID","$Item->Value")));
+                $myhashmap["$Item->AtrributeID"] = "$Item->Value";
                 unset($input[$counter]);
               
                 $counter+=1;

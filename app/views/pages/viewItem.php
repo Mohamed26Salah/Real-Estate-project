@@ -22,24 +22,37 @@ class viewItem extends View
            <a data-type="all" href="#0">All</a> <!-- selected option on mobile -->
          </li> 
          <?php 
-         $uri = $_SERVER['REQUEST_URI'];
-         if (str_contains($uri, 'viewItem')) { 
-          ?>
-          <li class="filter" style="background-color:purple; border-radius:4px;" data-filter=".color-1"><a href="viewItem" data-type="color-1" style="color:white;">Flats</a></li>
-          <?php
-           $actionAdd = URLROOT . 'Pages/ViewADD';
+         $actionAdd = URLROOT . 'Pages/ViewADD';
+         if ($_GET['TypeID']==1) { 
+          $StyleFlat="background-color:purple; border-radius:4px;";
+         }else if($_GET['TypeID']==2){
+          $StyleBuilding="background-color:purple; border-radius:4px;";
+         }else if($_GET['TypeID']==3){
+          $StyleVilla="background-color:purple; border-radius:4px;";
+         }else if($_GET['TypeID']==4){
+          $StyleStore="background-color:purple; border-radius:4px;";
+         }else if($_GET['TypeID']==5){
+          $StyleClinic="background-color:purple; border-radius:4px;";
+         }else if($_GET['TypeID']==6){
+          $StyleFarm="background-color:purple; border-radius:4px;";
+         }else if($_GET['TypeID']==7){
+          $StyleFactory="background-color:purple; border-radius:4px;";
+         }else if($_GET['TypeID']==8){
+          $StyleLand="background-color:purple; border-radius:4px;";
+         }else if($_GET['TypeID']==9){
+          $StyleOther="background-color:purple; border-radius:4px;";
          }
          ?>
-        
-         <li class="filter" data-filter=".color-2"><a href="#0" data-type="color-2">Building</a></li>
-         <li class="filter" data-filter=".color-1"><a href="#0" data-type="color-1">Villa</a></li>
-         <li class="filter" data-filter=".color-1"><a href="#0" data-type="color-1">Store</a></li>
-         <li class="filter" data-filter=".color-2"><a href="#0" data-type="color-2">clinic</a></li>
-         <li class="filter" data-filter=".color-1"><a href="#0" data-type="color-1">Schools</a></li>
-         <li class="filter" data-filter=".color-2"><a href="#0" data-type="color-2">Farm</a></li>
-         <li class="filter" data-filter=".color-1"><a href="#0" data-type="color-1">Factory</a></li>
-         <li class="filter" data-filter=".color-1"><a href="#0" data-type="color-1">Land</a></li>
-         <li><a href="<?php echo $actionAdd;?>?ID=1" class="AddbuttonViewPage" style="color:white; font-size:20px; ">أضافة شقة جديدة</a></li>
+          <li class="filter" style="<?php echo($StyleFlat);?>" data-filter=".color-1"><a href="viewItem?TypeID=1" data-type="color-1" style="font-size:20px;">شقق</a></li>
+          <li class="filter" style="<?php echo($StyleBuilding);?>" data-filter=".color-1"><a href="viewItem?TypeID=2" data-type="color-1" style="font-size:20px;" >عمارات</a></li>
+          <li class="filter" style="<?php echo($StyleVilla);?>" data-filter=".color-1"><a href="viewItem?TypeID=3" data-type="color-1" style="font-size:20px;">فيلا</a></li>
+          <li class="filter" style="<?php echo($StyleStore);?>" data-filter=".color-1"><a href="viewItem?TypeID=4" data-type="color-1" style="font-size:20px;">محلات</a></li>
+          <li class="filter" style="<?php echo($StyleClinic);?>" data-filter=".color-2"><a href="viewItem?TypeID=5" data-type="color-2" style="font-size:20px;">عيادات</a></li>
+          <li class="filter" style="<?php echo($StyleFarm);?>" data-filter=".color-2"><a href="viewItem?TypeID=6" data-type="color-2" style="font-size:20px;">مزارع</a></li>
+          <li class="filter" style="<?php echo($StyleFactory);?>" data-filter=".color-1"><a href="viewItem?TypeID=7" data-type="color-1" style="font-size:20px;">مصانع</a></li>
+          <li class="filter" style="<?php echo($StyleLand);?>" data-filter=".color-1"><a href="viewItem?TypeID=8" data-type="color-1" style="font-size:20px;">أراضي</a></li>
+          <li class="filter" style="<?php echo($StyleOther);?>" data-filter=".color-1"><a href="viewItem?TypeID=9" data-type="color-1" style="font-size:20px;">أخري</a></li>
+          <li><a href="<?php echo $actionAdd;?>?ID=1" class="AddbuttonViewPage" style="color:white; font-size:20px; ">أضافة شقة جديدة</a></li>
        </ul> 
      </div> 
    </div> 
@@ -63,17 +76,11 @@ class viewItem extends View
          $offset = ($pageno - 1) * $no_of_records_per_page;
 
          $total_rows = $this->model->GetCount()->TD;
-       
-         
-         
+ 
         ?>
         <div id="cards">
          </div>
         <?php
-          
-         
-        
-
 
          $total_pages = ceil($total_rows / $no_of_records_per_page);
 
@@ -120,7 +127,7 @@ class viewItem extends View
    <?php $action3 = 'viewItem'; ?>
    <?php $action4 = URLROOT . 'users/Login'; ?>
 
-   
+   <input type="hidden" name="TypeID" id="TypeID" value="<?php echo($_GET['TypeID']); ?>">
    <!-- <div class="form" id="sidebar" > -->
   <div class="cd-filter">
    <form class="form" method="post">
@@ -133,26 +140,6 @@ class viewItem extends View
          </div> <!-- cd-filter-content -->
        </div> <!-- cd-filter-block -->
 
-       <!-- <div class="cd-filter-block">
-         <h4>Check boxes</h4>
-
-         <ul class="cd-filter-content cd-filters list">
-           <li>
-             <input class="filter" data-filter=".check1" type="checkbox" id="checkbox1">
-               <label class="checkbox-label" for="checkbox1">Option 1</label>
-           </li>
-
-           <li>
-             <input class="filter" data-filter=".check2" type="checkbox" id="checkbox2">
-             <label class="checkbox-label" for="checkbox2">Option 2</label>
-           </li>
-
-           <li>
-             <input class="filter" data-filter=".check3" type="checkbox" id="checkbox3">
-             <label class="checkbox-label" for="checkbox3">Option 3</label>
-           </li>
-         </ul> 
-       </div>  -->
       <input type="hidden" name="viewItem" value="viewItem" id="viewItem">
        <div class="wrapper">
       <header>
@@ -197,7 +184,6 @@ class viewItem extends View
        </div> 
        <div class="cd-filter-block">
          <h4></h4>
-         
          <div class="cd-filter-content">
            <div class="cd-select cd-filters">
              <select class="filter" name="HighLow" id="HighLow">
@@ -224,51 +210,54 @@ class viewItem extends View
            </div> 
          </div> 
        </div> 
-        <!-- <div class="cd-filter-block">
-         <h4>عدد الفرف</h4>
-         
-         <div class="cd-filter-content">
-           <div class="cd-select cd-filters">
-             <select class="filter" name="Rooms" id="Rooms">
-               <option selected value="">أختر</option>
-               <option value="1">1</option>
-               <option value="2">2</option>
-               <option value="3">3</option>
-               <option value="4">4</option>
-               <option value="5">أكثر من 5</option>
-             </select>
-           </div> 
-         </div> 
-       </div>  -->
+      <?php
+      if($_GET['TypeID']==1||$_GET['TypeID']==2||$_GET['TypeID']==3) {
+
+      ?>
        <div class="cd-filter-block">
          <h4> عدد الفرف</h4>
          <div class="cd-filter-content">
              <input type="text" id="Rooms" name="Rooms" onkeyup="itemsAjax(),numbers(this)"> 
          </div> 
        </div> 
-       <!-- <div class="cd-filter-block">
-         <h4>عدد الحمامات</h4>
-         
-         <div class="cd-filter-content">
-           <div class="cd-select cd-filters">
-             <select class="filter" name="Bathroom" id="Bathroom">
-              <option selected value="">أختر</option>
-               <option value="1">1</option>
-               <option value="2">2</option>
-               <option value="3">3</option>
-               <option value="4">4</option>
-               <option value="5">أكثر من 5</option>
-             </select>
-           </div> 
-         </div> 
-       </div>   -->
+     
        <div class="cd-filter-block">
          <h4> عدد الحمامات</h4>
          <div class="cd-filter-content">
              <input type="text" id="Bathroom" name="Bathroom" onkeyup="itemsAjax(),numbers(this)"> 
          </div> 
        </div> 
+       <?php
+       } 
+    
+      if($_GET['TypeID']==1) {
+
+      ?>
        <div class="cd-filter-block">
+         <h4>الدور</h4>
+         <div class="cd-filter-content">
+             <input type="text" id="Floor" name="Floor" onkeyup="itemsAjax(),numbers(this)"> 
+         </div> 
+       </div> 
+       <?php
+       } 
+       if($_GET['TypeID']==2||$_GET['TypeID']==3) {
+
+        ?>
+       <!-- ////////////////////////////////////////////////////////////////////////////////////// -->
+       <div class="cd-filter-block">
+         <h4> عدد الأدوار</h4>
+         <div class="cd-filter-content">
+             <input type="text" id="NUMOFFloors" name="NUMOFFloors" onkeyup="itemsAjax(),numbers(this)"> 
+         </div> 
+       </div> 
+       <?php 
+       }
+       
+      if($_GET['TypeID']==1||$_GET['TypeID']==2||$_GET['TypeID']==3) {
+
+      ?>
+         <div class="cd-filter-block">
          <h4> التشطيب</h4>
          
          <div class="cd-filter-content">
@@ -281,26 +270,9 @@ class viewItem extends View
            </div> 
          </div> 
        </div>  
-       <div class="cd-filter-block">
-         <h4>الدور</h4>
-         <div class="cd-filter-content">
-             <input type="text" id="Floor" name="Floor" onkeyup="itemsAjax(),numbers(this)"> 
-         </div> 
-       </div> 
-       <div class="cd-filter-block">
-         <h4> طريقةالدفع</h4>
-         
-         <div class="cd-filter-content">
-           <div class="cd-select cd-filters">
-             <select class="filter" name="Payment" id="Payment">
-              <option selected value="">أختر</option>
-               <option value="Cash">Cash</option>
-               <option value="instalment">instalment</option>
-             </select>
-           </div> 
-         </div> 
-       </div>  
-       <div class="cd-filter-block">
+
+         <!-- ////////////////////////////////////////////////////////////////////////////////////// -->
+         <div class="cd-filter-block">
          <h4> مفروشة ؟</h4>
          <div class="cd-filter-content">
            <div class="cd-select cd-filters">
@@ -312,6 +284,63 @@ class viewItem extends View
            </div> 
          </div> 
        </div>  
+      <?php 
+      }
+      if($_GET['TypeID']==1) {
+
+        ?>
+       <div class="cd-filter-block">
+         <h4> دوبلكس</h4>
+         <div class="cd-filter-content">
+           <div class="cd-select cd-filters">
+             <select class="filter" name="Doublex" id="Doublex">
+              <option selected value="">أختر</option>
+               <option value="1">نعم</option>
+               <option value="2">لا</option>
+             </select>
+           </div> 
+         </div> 
+       </div> 
+       <?php
+        } 
+        if($_GET['TypeID']==6) {
+
+          ?> 
+       <div class="cd-filter-block">
+         <h4> عدد المباني الأدارية</h4>
+         <div class="cd-filter-content">
+             <input type="text" id="nUMOFAB" name="nUMOFAB" onkeyup="itemsAjax(),numbers(this)"> 
+         </div> 
+       </div> 
+       <?php
+        } 
+        if($_GET['TypeID']==6||$_GET['TypeID']==7||$_GET['TypeID']==4||$_GET['TypeID']==5) {
+          ?> 
+       <div class="cd-filter-block">
+         <h4> نوع النشاط </h4>
+         <div class="cd-filter-content">
+             <input type="text" id="TypeOFActivity" name="TypeOFActivity" onkeyup="itemsAjax(),lettersandnumbers(this)"> 
+         </div> 
+       </div> 
+       
+      <?php
+        } 
+      ?>
+    
+       <div class="cd-filter-block">
+         <h4> طريقة الدفع</h4>
+         
+         <div class="cd-filter-content">
+           <div class="cd-select cd-filters">
+             <select class="filter" name="Payment" id="Payment">
+              <option selected value="">أختر</option>
+               <option value="Cash">Cash</option>
+               <option value="instalment">instalment</option>
+             </select>
+           </div> 
+         </div> 
+       </div>  
+     
        <div class="cd-filter-block">
          <h4> العقارات الظاهرة</h4>
          
@@ -362,6 +391,7 @@ function WishList(IDArray){
           
           success:function(data)
           {
+            console.log(data);
             if(data=="denied"){
               // window.location.replace("http://localhost/mvc/public/users/Login");
               window.location.replace("<?php echo $action4; ?>");
@@ -411,6 +441,49 @@ function WishList(IDArray){
       
        
       function itemsAjax(){
+        var TypeID = document.getElementById('TypeID').value
+        var NUMOFFloors = "Salah";
+        var Doublex = "Salah";
+        var nUMOFAB = "Salah";
+        var Bathroom = "Salah";
+        var Rooms = "Salah";
+        var Furnished = "Salah";
+        var Finishing = "Salah";
+        var Floor = "Salah";
+        var TypeOFActivity = "Salah";
+      if(TypeID==2 || TypeID==3) {
+        if( document.getElementById('NUMOFFloors').value ) {
+          NUMOFFloors = document.getElementById('NUMOFFloors').value;
+        }
+        else{
+          NUMOFFloors = "Salah";
+        }
+      }
+      if(TypeID==1) {
+        if( document.getElementById('Doublex').value ) {
+          Doublex = document.getElementById('Doublex').value;
+        }
+        else{
+          Doublex = "Salah";
+        }
+      }
+        if(TypeID==6) {
+        if( document.getElementById('nUMOFAB').value ) {
+          nUMOFAB = document.getElementById('nUMOFAB').value;
+        }
+        else{
+          nUMOFAB = "Salah";
+        }
+      }
+        if(TypeID==4 || TypeID==5|| TypeID==6|| TypeID==7) {
+        if( document.getElementById('TypeOFActivity').value ) {
+          TypeOFActivity = document.getElementById('TypeOFActivity').value;
+        }
+        else{
+          TypeOFActivity = "Salah";
+        }
+      }
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////
         if( document.getElementById('pricerange1').value ) {
           pricerange1 = document.getElementById('pricerange1').value;
         }
@@ -422,13 +495,9 @@ function WishList(IDArray){
         else{
           pricerange2 = "Salah";
         }
+     
       
-        if( document.getElementById('Finishing').value ) {
-          Finishing = document.getElementById('Finishing').value;
-        }
-        else{
-          Finishing = "Salah";
-        }
+       ///////////////////////////////////////////////////////////////////////////////////////////////////////
         if( document.getElementById('HighLow').value ) {
           HighLow = document.getElementById('HighLow').value;
         }else{
@@ -449,6 +518,9 @@ function WishList(IDArray){
         }else{
           area = "Salah";
         }
+      ///////////////////////////////////////////////////////////////////////////////////////////////////////
+      if( TypeID==1 || TypeID==2 || TypeID==3) {
+
         if( document.getElementById('Bathroom').value ) {
           Bathroom = document.getElementById('Bathroom').value;
         }else{
@@ -459,6 +531,19 @@ function WishList(IDArray){
         }else{
           Rooms = "Salah";
         }
+        if( document.getElementById('Furnished').value ) {
+          Furnished = document.getElementById('Furnished').value;
+        }else{
+          Furnished = "Salah";
+        }  
+        if( document.getElementById('Finishing').value ) {
+          Finishing = document.getElementById('Finishing').value;
+        }
+        else{
+          Finishing = "Salah";
+        }
+      }
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////
         if( document.getElementById('search').value ) {
           search = document.getElementById('search').value;
         }else{
@@ -469,30 +554,29 @@ function WishList(IDArray){
          
         }else{
           Show = "Salah";
-        }  
-        if( document.getElementById('Furnished').value ) {
-          Furnished = document.getElementById('Furnished').value;
-        }else{
-          Furnished = "Salah";
-        }  
+        }
+          ///////////////////////////////////////////////////////////////////////////////////////////////////////
+      if(TypeID==1) {
         if( document.getElementById('Floor').value ) {
           Floor = document.getElementById('Floor').value;
         }else{
           Floor = "Salah";
         }  
-        
+      }
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////
         if( document.getElementById('viewItem').value ) {
           Model=document.getElementById('viewItem').value;
         }
+        
       
         offset =<?php echo $offset;?>;
         no_of_records_per_page = <?php echo $no_of_records_per_page ;?>;
 
-      
+        // TypeID=document.getElementById('TypeID').value;
         $.ajax({
           url:"<?php echo $action2;?>",
           method:"POST",
-          data:{Floor:Floor,Finishing:Finishing , HighLow:HighLow, Payment:Payment,contarctType:contarctType,area:area,Bathroom:Bathroom,Rooms:Rooms,search:search,Model:Model,offset:offset ,no_of_records_per_page:no_of_records_per_page,pricerange1:pricerange1,pricerange2:pricerange2,Show:Show,Furnished:Furnished},
+          data:{NUMOFFloors:NUMOFFloors,TypeOFActivity:TypeOFActivity,nUMOFAB:nUMOFAB,Doublex:Doublex,TypeID:TypeID,Floor:Floor,Finishing:Finishing , HighLow:HighLow, Payment:Payment,contarctType:contarctType,area:area,Bathroom:Bathroom,Rooms:Rooms,search:search,Model:Model,offset:offset ,no_of_records_per_page:no_of_records_per_page,pricerange1:pricerange1,pricerange2:pricerange2,Show:Show,Furnished:Furnished},
           
           success:function(data)
           {

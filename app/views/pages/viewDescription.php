@@ -40,7 +40,7 @@ class viewDescription extends View
   <input type="hidden" id="Salah" value="<?php echo($_GET['ID']); ?>">
 <div class="pd-wrap">
 		<div class="container">
-      
+    <a href="<?php echo URLROOT . 'pages/viewItem?TypeID='.$cardDetails->TypeID;?>"><button type="button" class="btn btn-dark"> < Back</button></a>
 	        <div class="heading-section">
 	            <h2>Unit Details</h2>
 	        </div>

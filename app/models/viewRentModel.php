@@ -109,15 +109,15 @@ class viewRentModel extends model
 
         return $ALLRECORDS;
     }
-    public function TimeLeftForRent($date11)
-    {
-        $date1 = new DateTime($date11);
-        $date2 = new DateTime(date("Y-m-d"));
-        $interval = $date1->diff($date2);
-        // echo "difference " . $interval->y . " years, " . $interval->m . " months, " . $interval->d . " days ";
-        // shows the total amount of days (not divided into years, months and days like above)
-        return $interval->days;
-    }
+    // public function TimeLeftForRent($date11)
+    // {
+    //     $date1 = new DateTime($date11);
+    //     $date2 = new DateTime(date("Y-m-d"));
+    //     $interval = $date1->diff($date2);
+    //     // echo "difference " . $interval->y . " years, " . $interval->m . " months, " . $interval->d . " days ";
+    //     // shows the total amount of days (not divided into years, months and days like above)
+    //     return $interval->days;
+    // }
     public function CheckIfRentIsStillValid($offset,$no_of_records_per_page){
         $Search="";
         $Status="`status` = 1";

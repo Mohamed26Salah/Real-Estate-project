@@ -16,6 +16,7 @@ define('SITENAME', 'MataNa');
 define('APP_VERSION', '1.2');
 //public pages path
 define('VIEWS_PATH', '../app/views/');
+define('models_PATH', '../app/models/');
 //Imagese
 define('IMAGEROOT','../app/views/images/');
 define('IMAGEROOT2','http://localhost/mvc/public/images/');
