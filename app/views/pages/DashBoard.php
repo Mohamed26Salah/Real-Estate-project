@@ -44,6 +44,15 @@ class DashBoard extends View
                             </a>
                         </li>
 
+                        <li>
+                            <a onclick=switchMainDashBoard(1); href="#">
+                                <span class="icon">
+                                    <ion-icon name="people-outline"></ion-icon>
+                                </span>
+                                <span class="title">latest change</span>
+                            </a>
+                        </li>
+
                       
                     </ul>
                 </div>

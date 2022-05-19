@@ -247,43 +247,71 @@ class DashBoardModel extends model
           }
           if ($page == 1) {
                $output = "";
+                $output .= <<<EOT
+                         <div class="details" style="display:inline;">
+                        <div class="recentOrders" style="box-shadow: 0 10px 29px rgba(0, 0, 0, 0.5);">
+                            <div class="cardHeader">
+                    <table>
+                    <thead>
+                        <tr>
+                            <td>Name</td>
+                            <td>Code</td>
+                            <td>Type</td>
+                            <td>Last editing User</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    EOT;
                $imgroot = IMAGEROOT2;
-               $this->dbh->query("SELECT *  FROM `allestate` WHERE  `Priroty`= 'HIGH'");
+               $this->dbh->query("SELECT *  FROM `rents` WHERE  1");
 
-               $ALLRECORDS = $this->dbh->resultSet();
-               foreach ($ALLRECORDS as $record) {
+               $ALLRECORDS[0] = $this->dbh->resultSet();
+
+               $this->dbh->query("SELECT *  FROM `allestate` WHERE  1");
+
+               $ALLRECORDS[1] = $this->dbh->resultSet();
+               
+               foreach ($ALLRECORDS[0] as $record) {
+                    $this->dbh->query("SELECT *  FROM `user` WHERE  ID=".$record->AMID);
+                    $user = $this->dbh->single();
+                   
+                         
+                       
                     $output .= <<<EOT
-               <div class="containerFilter">
-               <img src="$imgroot$record->image" width="280px" height="240px">
-               <div class="title">
-               <div class="switchAll" style = "margin-left:60%; margin-bottom:-5%; margin:top:-5%;">
-               <div class="switch-button">
-               <input class="switch-button-checkbox" type="checkbox"></input>
-               <label class="switch-button-label" for=""><span class="switch-button-label-span">اظهار</span></label>
-             </div>
-               </div>
-               <strong style="font-size:20px;">$record->Price</strong>
-               <hr style="border-top: 5px solid #8c8b8b;">
-               <strong style="font-size:20px;">$record->Area</strong>
-               <strong style="font-size:20px;">$record->PaymentMethod</strong>
-               <p>$record->Name</p>
-               <p>$record->DescriptionUser</p>
-               <p>$record->offered</p>
-               <div class="iconss" style="padding-top:2%;">
-               <i class="fa fa-bath fa-lg" aria-hidden="true"></i>1 <i class="fa fa-bed fa-lg" aria-hidden="true" style="margin-left:10px;">1</i>
-               </div>
-             <br>
-             <p>$record->Code</p>
-       <div class = "purchase-info">
-       <button type = "button" class = "btn">
-       Add to WishList <i class="fa fa-heart" aria-hidden="true"></i>
-       </button>
-       </div>
-       </div>
-       </div>
-       <br>
-     EOT;
-               }
+                <tr >
+                
+                <td>$record->typeName</td>
+                    <td>$record->code</td>
+                   <td>Rent</td>
+                    <td>$user->name</td>
+                </tr>
+                EOT;
+                            
+                            
+                        }
+
+                        foreach ($ALLRECORDS[1] as $record) {
+                         $this->dbh->query("SELECT *  FROM `user` WHERE  ID=".$record->AMID);
+                         $user = $this->dbh->single();
+                        
+                              
+                            
+                         $output .= <<<EOT
+                     <tr >
+                     
+                     <td>$record->Name</td>
+                         <td>$record->Code</td>
+                        <td>Item</td>
+                         <td>$user->name</td>
+                     </tr>
+                     EOT;
+                                 
+                                 
+                             }
+                        
+                    $output .= '</tbody></table></div></div></div>';
+     
+               
 
 
                return $output;
