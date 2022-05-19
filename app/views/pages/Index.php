@@ -10,6 +10,7 @@ class Index extends View
     require APPROOT . '/views/inc/header.php';
     ?>
   <link rel="stylesheet" href="<?php echo URLROOT; ?>css/style.css">
+  <link rel="stylesheet" href="<?php echo URLROOT; ?>css/searchstyle.css">
     <?php
     
       //  echo $_SESSION['user_id'];
@@ -29,22 +30,36 @@ class Index extends View
   </div>
 
   <div class="homepage-search" >
-    <form>
-        <input class="form-control" type = "text" placeholder="Search" id = "myInput">
-        <select name="property" id="property">
-          <option value="houses">Houses</option>
-          <option value="buildings">Buildings</option>
-          <option value="villas">Villas</option>
-          <option value="stores">Stores</option>
-          <option value="clinics">Clinics</option>
-          <option value="schools">Schools</option>
-          <option value="factories">Factories</option>
-          <option value="farms">Farms</option>
-          <option value="lands">Lands</option>
-        </select>
-        <input type="submit">
+    
+    <div class="centerbox">
+ 
+ <div class="main-form-container">
+            <form id="" class="" method="post">
+              <input type="text" class="main-input main-name" name="NAME" value="Looking for something?" onfocus="clearText(this);" onblur="replaceText(this);" />
+                <button type="button" class="main-btn" id="mainbtn">
+                  <p class="search-small">SEARCH BY</p>
+                  <p class="search-large">Houses</p>
+                </button>
+              <ul class="search-description">
+                
+                <li value="houses">in Houses</li>
+          <li value="buildings">in Buildings</li>
+          <li value="villas">in Villas</li>
+          <li value="stores">in Stores</li>
+          <li value="clinics">in Clinics</li>
+          <li value="schools">in Schools</li>
+          <li value="factories">in Factories</li>
+          <li value="farms">in Farms</li>
+          <li value="lands">in Lands</li>
+              </ul>
+              <input id="main-submit" class="" type="submit" value="Search" style="border: 0px; padding-top:0px;"/>
+            </form>
+          </div>
+          </div>
+          <!-- mobile submit -->
+          <button type="button" id="main-submit-mobile">Search</button>
 
-    </form>
+   
   </div>
 </div>
 
@@ -148,12 +163,34 @@ class Index extends View
         </div>
 
 
-      
+     
         
       <!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////// -->
 
    </main>
+   <div class="mapbox" style="width:100%; height:50%; display:flex; justify-content:center;">
+   <div class="center-map">
+    <div id="map" style="width:100%; height:100%; ">
+
+      </div>
+    </div>
+    </div>
   </body>
+  
+  <script>
+    function initMap(){
+      var Location={lat:30.0589695 , lng:31.4576108}
+      var map= new google.maps.Map(document.getElementById("map"),{
+        zoom:20,
+        center:Location
+      });
+      var marker= new google.maps.Marker({
+        position: Location,
+        map:map
+      })
+    }
+  </script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA6pjCjwq8C7LO1eiVkI7cPToeGE5s1NXs&callback=initMap"></script>
   <footer> <?php
   require APPROOT . '/views/inc/footer2.php';
   ?> </footer>

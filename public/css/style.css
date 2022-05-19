@@ -15,7 +15,9 @@
 .homepage { 
 
   
-  width: 100%;
+  background-repeat: no-repeat;
+  background-size:  cover;
+  width: auto;
   height: 70%;
 }
 
@@ -281,4 +283,21 @@ html, body {
   100% {
     transform: translateX(0px) scale(1);
   }
+}
+
+.mapbox{
+  padding-top: 10px;padding-bottom: 25px;
+}
+
+.center-map{
+
+  display:flex;
+  
+  
+  justify-content:center;
+  width:50%;
+  height:100%;
+  box-shadow: 0 10px 29px rgba(0, 0, 0, 0.2);
+
+
 }
