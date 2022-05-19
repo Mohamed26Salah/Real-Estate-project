@@ -663,3 +663,10 @@ margin: 5px;;
     color: #fff;
     font-size: 20;
   }
+
+   input{
+    width: 100%;
+  }
+  select{
+    width: 100%;
+  }
