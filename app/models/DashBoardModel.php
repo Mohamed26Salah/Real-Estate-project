@@ -24,6 +24,10 @@ class DashBoardModel extends model
 
           $ALLRECORDS[4] = $this->dbh->resultSet();
 
+          $this->dbh->query("SELECT COUNT(*) AS count4 FROM `rents`  where `status` = 2");
+
+          $ALLRECORDS[5] = $this->dbh->single();
+
           return $ALLRECORDS;
      }
      public function EditConfirm($ID, $Rank, $count)

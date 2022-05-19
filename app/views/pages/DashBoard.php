@@ -97,8 +97,8 @@ class DashBoard extends View
 
                         <div class="cardDashBoard">
                             <div>
-                                <div class="numbers">$7,842</div>
-                                <div class="cardName">Earning</div>
+                                <div class="numbers"><?php echo $DataArray[5]->count4; ?></div>
+                                <div class="cardName">Due Rents</div>
                             </div>
 
                             <div class="iconBx">
