@@ -17,6 +17,59 @@ class viewDescriptionModel extends model
     protected $floor;
     protected $finishing;
     protected $SalahID;
+    protected $typeOfActivity;
+
+    protected $TheNumberOFAB;
+    protected $numOfFlats;
+    protected $numOfFloors;
+
+
+
+    public function getNumOfFloors()
+    {
+        return $this->numOfFloors;
+    }
+  
+    public function setNumOfFloors($numOfFloors)
+    {
+        $this->numOfFloors = $numOfFloors;
+    }
+
+
+
+    public function getNumOfFlats()
+    {
+        return $this->numOfFlats;
+    }
+  
+    public function setNumOfFlats($numOfFlats)
+    {
+        $this->numOfFlats = $numOfFlats;
+    }
+
+
+
+    public function getTheNumberOFAB()
+    {
+        return $this->TheNumberOFAB;
+    }
+  
+    public function setTheNumberOFAB($TheNumberOFAB)
+    {
+        $this->TheNumberOFAB = $TheNumberOFAB;
+    }
+
+    public function getTypeOfActivity()
+    {
+        return $this->typeOfActivity;
+    }
+  
+    public function setTypeOfActivity($typeOfActivity)
+    {
+        $this->typeOfActivity = $typeOfActivity;
+    }
+
+
     public function getSalahID()
     {
         return $this->SalahID;
@@ -199,6 +252,24 @@ class viewDescriptionModel extends model
                 if ($item->AtrributeID == 2) {
                     $this->setFinishing($item->Value);
                 }
+                if ($item->AtrributeID == 7) {
+                    $this->setTypeOfActivity($item->Value);
+                }
+
+                if ($item->AtrributeID == 8) {
+                    $this->setTheNumberOFAB($item->Value);
+                }
+
+                if ($item->AtrributeID == 11) {
+                    $this->setNumOfFlats($item->Value);
+                }
+
+                if ($item->AtrributeID == 5) {
+                    $this->setNumOfFloors($item->Value);
+                }
+               
+
+
           }
 
      }

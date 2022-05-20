@@ -21,6 +21,15 @@ class viewDescription extends View
     $action = URLROOT . 'Pages/viewEdit';
     $action2 = URLROOT . 'Pages/viewItem';
 
+    $TypeID = $_GET['TypeID'];
+
+    $typeOfActivity = $this->model->getTypeOfActivity();
+
+    $TheNumberOFAB = $this->model->getTheNumberOFAB();
+
+    $NumOfFlats = $this->model->getNumOfFlats();
+
+    $NumOfFloors = $this->model->getNumOfFloors();
     
    
 ?>
@@ -143,62 +152,106 @@ class viewDescription extends View
                     <span><?php echo $type->TypeName; ?></span>
 	        				</div>
 
+                  <?php if($TypeID == 1 || $TypeID == 3) {  ?>
 
-	        				<div class="col-md-6 mt-4">
-                      <i class="fa fa-bath fa-lg" aria-hidden="true"style="font-weight: bold;"></i><label for="size"  > الحمامات :  </label>
-                      <span><?php echo $bathrooms; ?></span>
-	        				</div>
+                          <div class="col-md-6 mt-4">
+                              <i class="fa fa-bath fa-lg" aria-hidden="true"style="font-weight: bold;"></i><label for="size"  > الحمامات :  </label>
+                              <span><?php echo $bathrooms; ?></span>
+                          </div>
 
+                        <div class="col-md-6 mt-4">
+                          <i class="fa fa-paint-roller fa-lg" aria-hidden="true"style="font-weight: bold;"></i><label for="size"  > التشطيب :  </label>
+                          <?php
+                            if($finishing == 1) {
+                              echo "<span>متشطب</span>";
+
+                            }
+
+                            else if($finishing == 2) {
+                              echo "<span> نص تشطيب</span>";
+                            }
+
+                            else if($finishing == 3) {
+                              echo "<span> مش متشطب</span>";
+                            }
+                    ?>
+                    </div>
+
+
+                    <div class="col-md-6 mt-3">
+                        <i class="fa fa-bed fa-lg" aria-hidden="true"style="font-weight: bold;"></i><label for="color" > الغرف : </label>
+                        <span><?php echo $rooms; ?> </span>
+	        				  </div>
+                  <?php } ?>
+
+            
+                
+                <?php if($TypeID == 1) {  ?>
                   <div class="col-md-6 mt-4">
                       <i class="fa fa-arrow-right-to-city fa-lg" aria-hidden="true"style="font-weight: bold;"></i><label for="size"  > الدور : </label>
                       <span><?php echo $floor; ?></span>
 	        				</div>
 
-
                   <div class="col-md-6 mt-4">
-                     <i class="fa fa-couch fa-lg" aria-hidden="true"style="font-weight: bold;"></i><label for="size"  > الفرش :  </label>
-                    <?php
-                      if($furnished == 1) {
-                        echo "<span>مفروشة</span>";
+                            <i class="fa fa-couch fa-lg" aria-hidden="true"style="font-weight: bold;"></i><label for="size"  > الفرش :  </label>
+                            <?php
+                              if($furnished == 1) {
+                                echo "<span>مفروشة</span>";
 
-                      }
+                              }
 
-                      else if($furnished == 2) {
-                        echo "<span> ليست مفروشة</span>";
-                      }
+                              else if($furnished == 2) {
+                                echo "<span> ليست مفروشة</span>";
+                              }
+                          ?>
+                        </div>
+                  
+                  <?php 
+                }
+                ?>
 
-                     ?>
-
-                            </div>
-
-
-                  <div class="col-md-6 mt-4">
-                     <i class="fa fa-paint-roller fa-lg" aria-hidden="true"style="font-weight: bold;"></i><label for="size"  > التشطيب :  </label>
-                    <?php
-                      if($finishing == 1) {
-                        echo "<span>متشطب</span>";
-
-                      }
-
-                      else if($finishing == 2) {
-                        echo "<span> نص تشطيب</span>";
-                      }
-
-                      else if($finishing == 3) {
-                        echo "<span> مش متشطب</span>";
-                      }
-
-                     ?>
-
-                  </div>
-
-                  <div class="col-md-6 mt-3">
-                    <i class="fa fa-bed fa-lg" aria-hidden="true"style="font-weight: bold;"></i><label for="color" > الغرف : </label>
-								<span><?php echo $rooms; ?> </span>
-	        				</div>
+            
 
                   
 
+                        <?php if($TypeID == 4 || $TypeID == 5 ||$TypeID == 6 || $TypeID == 7 ) { ?>  
+
+                          <div class="col-md-6 mt-3">
+                              <i class="fa fa-store fa-lg" aria-hidden="true"style="font-weight: bold;"></i><label for="color" >نوع النشاط : </label>
+                              <span><?php echo $typeOfActivity; ?> </span>
+	        			        	</div>
+
+                    <?php } ?>
+
+
+                    <?php if($TypeID == 6) { ?>  
+
+                      <div class="col-md-6 mt-3">
+                          <i class="fa fa-city fa-lg" aria-hidden="true"style="font-weight: bold;"></i><label for="color" >عدد المباني الادارية : </label>
+                          <span><?php echo $TheNumberOFAB; ?> </span>
+	        			  	</div>
+
+                    <?php } ?>
+
+
+                    <?php if($TypeID == 2) { ?>  
+
+                      <div class="col-md-6 mt-3">
+                          <i class="fa fa-building fa-lg" aria-hidden="true"style="font-weight: bold;"></i><label for="color" >عدد الشقق : </label>
+                          <span><?php echo $NumOfFlats; ?> </span>
+	        			  	</div>
+
+                      <?php } ?>
+
+
+                      <?php if($TypeID == 2 || $TypeID == 3) { ?>  
+
+                        <div class="col-md-6 mt-3">
+                          <i class="fa fa-arrow-right-to-city fa-lg" aria-hidden="true"style="font-weight: bold;"></i><label for="color" >عدد الادوار : </label>
+                          <span><?php echo $NumOfFloors; ?> </span>
+	        			      	</div>
+
+                        <?php } ?>
 
                   <div class="col-md-6 mt-3">
                   <i class="fa fa-table-cells-large fa-lg" aria-hidden="true"style="font-weight: bold;"></i><label for="color" >المساحة : </label>
@@ -210,6 +263,12 @@ class viewDescription extends View
                   <i class="fa fa-sack-dollar fa-lg" aria-hidden="true"style="font-weight: bold; "></i><label for="color">طريقة الدفع : </label>
 								<span><?php echo $cardDetails->PaymentMethod; ?></span>
 	        				</div>
+
+
+                  <div class="col-md-6 mt-3">
+                        <i class="fa fa-location-dot fa-lg" aria-hidden="true"style="font-weight: bold; "></i><label for="color" > العنوان :   </label>
+                            <span><?php echo $cardDetails->AddressUser; ?> </span>
+                        </div>
 
                   <?php
                   if(!empty($_SESSION['Rank'])) {

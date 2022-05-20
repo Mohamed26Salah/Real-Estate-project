@@ -296,7 +296,7 @@ class viewItemModel extends model
         $NUMOFFloorsArray
         $TypeOFActivityArray
             <div class="containerFilter">
-            <a href="$approot?ID=$IDArray"><img src="$imgroot$Image" width="350px" height="238px"> </a>
+            <a href="$approot?ID=$IDArray&TypeID=$this->TypeID+"><img src="$imgroot$Image" width="350px" height="238px"> </a>
             <div class="title">
             <div class="switchAll" style = "margin-left:70%; margin-bottom:-5%; margin:top:-5%;">
             
