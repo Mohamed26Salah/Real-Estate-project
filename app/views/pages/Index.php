@@ -203,9 +203,9 @@ class Index extends View
           }),
           style: new ol.style.Style({
   image: new ol.style.Icon({
-    anchor: [1, 9],
-    anchorXUnits: 'fraction',
-    anchorYUnits: 'pixels',
+    anchor: [0.5, 1],
+          anchorXUnits: 'fraction',
+          anchorYUnits: 'fraction',
     src: '<?php echo IMAGEROOT3?>marker.png',
   }),
 })
