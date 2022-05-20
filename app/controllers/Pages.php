@@ -134,6 +134,9 @@ public function viewItem()
             if($_POST['TypeOFActivity']!="Salah"){
                 $ViewItem->setTypeOFActivity($_POST['TypeOFActivity']);
             }
+            if($_POST['NUMOFFlats']!="Salah"){
+                $ViewItem->setNUMOFFlats($_POST['NUMOFFlats']);
+            }
           
            
              echo($ViewItem->Sort($_POST['offset'],$_POST['no_of_records_per_page']));

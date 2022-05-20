@@ -211,7 +211,7 @@ class viewItem extends View
          </div> 
        </div> 
       <?php
-      if($_GET['TypeID']==1||$_GET['TypeID']==2||$_GET['TypeID']==3) {
+      if($_GET['TypeID']==1||$_GET['TypeID']==3) {
 
       ?>
        <div class="cd-filter-block">
@@ -253,7 +253,18 @@ class viewItem extends View
        </div> 
        <?php 
        }
-       
+       if($_GET['TypeID']==2) {
+
+        ?>
+       <!-- ////////////////////////////////////////////////////////////////////////////////////// -->
+       <div class="cd-filter-block">
+         <h4> عدد الشقق</h4>
+         <div class="cd-filter-content">
+             <input type="text" id="NUMOFFlats" name="NUMOFFlats" onkeyup="itemsAjax(),numbers(this)"> 
+         </div> 
+       </div> 
+       <?php 
+       }
       if($_GET['TypeID']==1||$_GET['TypeID']==3) {
 
       ?>
@@ -272,19 +283,24 @@ class viewItem extends View
        </div>  
 
          <!-- ////////////////////////////////////////////////////////////////////////////////////// -->
-         <div class="cd-filter-block">
-         <h4> مفروشة ؟</h4>
-         <div class="cd-filter-content">
-           <div class="cd-select cd-filters">
-             <select class="filter" name="Furnished" id="Furnished">
-              <option selected value="">أختر</option>
-               <option value="1">نعم</option>
-               <option value="2">لا</option>
-             </select>
-           </div> 
-         </div> 
-       </div>  
+       
       <?php 
+      }
+      if($_GET['TypeID']==1||$_GET['TypeID']==3){
+        ?>
+        <div class="cd-filter-block">
+        <h4> مفروشة ؟</h4>
+        <div class="cd-filter-content">
+          <div class="cd-select cd-filters">
+            <select class="filter" name="Furnished" id="Furnished">
+             <option selected value="">أختر</option>
+              <option value="1">نعم</option>
+              <option value="2">لا</option>
+            </select>
+          </div> 
+        </div> 
+      </div>  
+      <?php
       }
       if($_GET['TypeID']==1) {
 
@@ -451,6 +467,8 @@ function WishList(IDArray){
         var Finishing = "Salah";
         var Floor = "Salah";
         var TypeOFActivity = "Salah";
+        var NUMOFFlats="Salah";
+        var NUMOFFloors="Salah";
       if(TypeID==2 || TypeID==3) {
         if( document.getElementById('NUMOFFloors').value ) {
           NUMOFFloors = document.getElementById('NUMOFFloors').value;
@@ -519,6 +537,13 @@ function WishList(IDArray){
           area = "Salah";
         }
       ///////////////////////////////////////////////////////////////////////////////////////////////////////
+      if( TypeID==2){
+        if( document.getElementById('NUMOFFlats').value ) {
+          NUMOFFlats = document.getElementById('NUMOFFlats').value;
+        }else{
+          NUMOFFlats = "Salah";
+        }
+      }
       if( TypeID==1 || TypeID==3) {
 
         if( document.getElementById('Bathroom').value ) {
@@ -531,17 +556,20 @@ function WishList(IDArray){
         }else{
           Rooms = "Salah";
         }
-        if( document.getElementById('Furnished').value ) {
-          Furnished = document.getElementById('Furnished').value;
-        }else{
-          Furnished = "Salah";
-        }  
+       
         if( document.getElementById('Finishing').value ) {
           Finishing = document.getElementById('Finishing').value;
         }
         else{
           Finishing = "Salah";
         }
+      }
+      if(TypeID==1 || TypeID==3){
+        if( document.getElementById('Furnished').value ) {
+          Furnished = document.getElementById('Furnished').value;
+        }else{
+          Furnished = "Salah";
+        }  
       }
         ///////////////////////////////////////////////////////////////////////////////////////////////////////
         if( document.getElementById('search').value ) {
@@ -576,7 +604,7 @@ function WishList(IDArray){
         $.ajax({
           url:"<?php echo $action2;?>",
           method:"POST",
-          data:{NUMOFFloors:NUMOFFloors,TypeOFActivity:TypeOFActivity,nUMOFAB:nUMOFAB,Doublex:Doublex,TypeID:TypeID,Floor:Floor,Finishing:Finishing , HighLow:HighLow, Payment:Payment,contarctType:contarctType,area:area,Bathroom:Bathroom,Rooms:Rooms,search:search,Model:Model,offset:offset ,no_of_records_per_page:no_of_records_per_page,pricerange1:pricerange1,pricerange2:pricerange2,Show:Show,Furnished:Furnished},
+          data:{NUMOFFlats:NUMOFFlats,NUMOFFloors:NUMOFFloors,TypeOFActivity:TypeOFActivity,nUMOFAB:nUMOFAB,Doublex:Doublex,TypeID:TypeID,Floor:Floor,Finishing:Finishing , HighLow:HighLow, Payment:Payment,contarctType:contarctType,area:area,Bathroom:Bathroom,Rooms:Rooms,search:search,Model:Model,offset:offset ,no_of_records_per_page:no_of_records_per_page,pricerange1:pricerange1,pricerange2:pricerange2,Show:Show,Furnished:Furnished},
           
           success:function(data)
           {
