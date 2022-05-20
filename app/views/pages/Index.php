@@ -11,6 +11,10 @@ class Index extends View
     ?>
   <link rel="stylesheet" href="<?php echo URLROOT; ?>css/style.css">
   <link rel="stylesheet" href="<?php echo URLROOT; ?>css/searchstyle.css">
+  
+  <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.14.1/build/ol.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.14.1/css/ol.css">
+
     <?php
     
       //  echo $_SESSION['user_id'];
@@ -34,23 +38,23 @@ class Index extends View
     <div class="centerbox">
  
  <div class="main-form-container">
-            <form id="" class="" method="post">
-              <input type="text" class="main-input main-name" name="NAME" value="Looking for something?" onfocus="clearText(this);" onblur="replaceText(this);" />
+            <form id="MainSearchForm" class="" method="post" action="<?php echo URLROOT."pages/viewItem?TypeID=1";?>">
+              <input type="text" class="main-input main-name" id="SearchBar" name="SearchBar" value="Looking for something?" onfocus="clearText(this);" onblur="replaceText(this);" />
                 <button type="button" class="main-btn" id="mainbtn">
                   <p class="search-small">SEARCH BY</p>
                   <p class="search-large">Houses</p>
                 </button>
               <ul class="search-description">
                 
-                <li value="houses">in Houses</li>
-          <li value="buildings">in Buildings</li>
-          <li value="villas">in Villas</li>
-          <li value="stores">in Stores</li>
-          <li value="clinics">in Clinics</li>
-          <li value="schools">in Schools</li>
-          <li value="factories">in Factories</li>
-          <li value="farms">in Farms</li>
-          <li value="lands">in Lands</li>
+                <li id="1">in Houses</li>
+          <li id="2">in Buildings</li>
+          <li id="3">in Villas</li>
+          <li id="4">in Stores</li>
+          <li id="5">in Clinics</li>
+          <li id="6">in Schools</li>
+          <li id="7">in Factories</li>
+          <li id="8">in Farms</li>
+          <li id="9">in Lands</li>
               </ul>
               <input id="main-submit" class="" type="submit" value="Search" style="border: 0px; padding-top:0px;"/>
             </form>
@@ -159,29 +163,60 @@ class Index extends View
       <!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////// -->
 
    </main>
-   <div class="mapbox" style="width:100%; height:50%; display:flex; justify-content:center;">
+   <h1 style="margin-left:47%;">الموقع</h1>
+   <div class="mapbox " style="width:100%; height:50%; display:flex; justify-content:center;">
+   
+   
    <div class="center-map">
     <div id="map" style="width:100%; height:100%; ">
+    
 
       </div>
     </div>
     </div>
   </body>
   
-  <script>
-    function initMap(){
-      var Location={lat:30.0589695 , lng:31.4576108}
-      var map= new google.maps.Map(document.getElementById("map"),{
-        zoom:20,
-        center:Location
+  <script type="module" >
+    ol.proj.useGeographic();
+    function init(){
+      
+      const map = new ol.Map({
+        view: new ol.View({
+          center: [	31.4577232,30.0590846],
+          zoom:19
+        }),
+        layers:[
+          new ol.layer.Tile({
+            source: new ol.source.OSM()
+          })
+        ],
+        target: 'map'
       });
-      var marker= new google.maps.Marker({
-        position: Location,
-        map:map
-      })
+
+        var layer = new ol.layer.Vector({
+          source: new ol.source.Vector({
+            features: [
+                new ol.Feature({
+                    geometry: new ol.geom.Point([31.4577232,30.0590846])
+                })
+            ]
+          }),
+          style: new ol.style.Style({
+  image: new ol.style.Icon({
+    anchor: [1, 9],
+    anchorXUnits: 'fraction',
+    anchorYUnits: 'pixels',
+    src: '<?php echo IMAGEROOT3?>marker.png',
+  }),
+})
+        });
+        map.addLayer(layer);
     }
+    
+    $(document).ready(function(){init();});
+
   </script>
-  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAb9im7vtrs6ps57p8FXMMVrt6N5FJon8Y&callback=initMap"></script>
+  
   <footer> <?php
   require APPROOT . '/views/inc/footer2.php';
   ?> </footer>

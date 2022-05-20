@@ -8,17 +8,21 @@ public function index()
     {
         $viewPath = VIEWS_PATH . 'pages/Index.php';
         require_once $viewPath;
+        
         $indexView = new Index($this->getModel(), $this);
+        
         $indexView->output();
+        
     }
+    
 
 public function viewItem()
     {
       
         $viewItemAdmin = new AdminModel();
         $ViewItem = $this->getModel();
-        if ($_SERVER['REQUEST_METHOD'] == 'POST'){
- 
+       
+            
             if(isset($_POST['ShowButton'])){
                 $ViewItem->setButtonShow($_POST['ShowButton']);
                 $ViewItem->setID($_POST['CardID']);
@@ -28,14 +32,16 @@ public function viewItem()
                 // echo($ViewItem->AddToWishlist($_POST['WishListValue']));
                
                 echo($viewItemAdmin->viewItem());
+            }else if(isset($_POST['SearchBar'])){
+                echo'<script>console.log("'.$_POST['SearchBar'] .'"); </script>';
             }
 
-        }else{
+        
             $viewPath = VIEWS_PATH . 'pages/viewItem.php';
             require_once $viewPath;
             $indexView = new viewItem($this->getModel(), $this);
             $indexView->output();
-        }
+        
        
 
        
@@ -63,6 +69,8 @@ public function viewItem()
             echo($DashBoard->EditConfirm($_POST['ConfirmID'],$_POST['Rank'],$_POST['valuee']));
 
         }
+
+       
        
 
     }

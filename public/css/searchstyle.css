@@ -42,7 +42,7 @@ z-index:2}
   padding: 0px 0px 0px 57px;
   font-size: 16px;
   border-right: 0px;
-  background: #ffffff url("http://seodesigns.com/projects/TD/images/search.png") 18px 15px no-repeat;
+  background: #ffffff url("https://purepng.com/public/uploads/large/search-icon-lob.png") 18px 15px no-repeat;
   background-size: 18px 18px;
   float: left;
 }
@@ -52,7 +52,7 @@ z-index:2}
 }
 
 #main-submit {
-  background: #3cb13c;
+  background: #1169ed;
   color: #fff;
   display: inline-block;
   font-size: 19px;
@@ -66,12 +66,12 @@ z-index:2}
   -webkit-border-radius: 0px 4px 4px 0px;
   width: 141px;
   height: 50px;
-  border: 0pxpadding-top:0px;
+  border: 0px ;padding-top:0px;
   float: left;
 }
 
 #main-submit:hover {
-  background: #00a221;
+  background: #0d87ec;
   color: #fff !important;
   -webkit-appearance: none;
 }
@@ -210,7 +210,7 @@ ul.search-description {
 
   #main-submit-mobile {
 
-    background: #3cb13c;
+    background: #0479d9;
     color: #fff;
     display: block;
     font-size: 19px;
@@ -237,7 +237,7 @@ ul.search-description {
   }
 
   #main-submit-mobile:hover {
-    background: #00a221;
+    background: #0a68eb;
     color: #fff !important;
     -webkit-appearance: none;
   }
@@ -276,7 +276,7 @@ ul.search-description {
   .main-input {
     width: 185px;
     padding-left: 42px;
-    background: #ffffff url("http://seodesigns.com/projects/TD/images/search.png") 12px 15px no-repeat;
+    background: #ffffff url("https://purepng.com/public/uploads/large/search-icon-lob.png") 12px 15px no-repeat;
     background-size: 18px 18px;
   }
 
