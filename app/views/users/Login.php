@@ -37,10 +37,10 @@ class Login extends view
 
     $url = $client->createAuthUrl();
 
-    
+   
     $text = <<<EOT
     <link rel="stylesheet" href="<?php echo URLROOT; ?>css/LoginRegister.css">
-    <body style="background-color:#003356;">
+    <body style="background-color:#EDEDED;">
     <div class="registration-form">
     <form action="$action" method="post">
     <h2 style="text-align: center; margin-bottom: 5%; font-size: 40px; color:#00111C;" >Login</h2>

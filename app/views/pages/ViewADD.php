@@ -5,10 +5,10 @@ class ViewADD extends view
   public function output()
   {
     require APPROOT . '/views/inc/header.php';
-    
-    if(isset($_GET['ID'])){
+    $TypeID="";
+    if(isset($_GET['TypeID'])){
       //  $ID=$_GET['ID'];
-       $_SESSION['UnitID']=$_GET['ID'];
+       $TypeID=$_GET['TypeID'];
       }
     $action = 'ViewADD'; 
     $action2 = URLROOT . 'Pages/viewItem'; 
@@ -118,14 +118,26 @@ class ViewADD extends view
     </select>
   </p> -->
   <?php
-  if($_SESSION['UnitID']==1){
-?>
-  
-  <p class='field required half'>
+  if($TypeID==1){
+    ?>
+    <p class='field required half'>
     <label class='label' for='Floor'> الدور</label>
     <input class='text-input' id='Floor' name='Floor' onkeyup="numbers(this)" required type='text'>
   </p>
-
+  <p class='field half'>
+    <label class='label' for='Doublex'> دوبلكس</label>
+    <select class='select' id='Doublex' required>
+      <option selected value=''>أختر</option>
+      <option value='1'> نعم</option>
+      <option value='2'>  لا </option>
+    </select>
+  </p>
+<?php
+  }
+  if($TypeID==1|| $TypeID==3){
+?>
+  
+ 
   <p class='field required half'>
     <label class='label' for='NUMOFRooms'>عددالغرف</label>
     <input class='text-input' id='NUMOFRooms' name='NUMOFRooms' onkeyup="numbers(this)" required type='text'>
@@ -159,35 +171,50 @@ class ViewADD extends view
   <input id='NUMOFAb' name='NUMOFAb' type='hidden'>
 
   <?php
-  }else {
-
-  ?>
-  <p class='field required half'>
+  }
+  if($TypeID==2|| $TypeID==3){
+    ?>
+    <p class='field required half'>
     <label class='label' for='NUMOFFloors'>عدد الأدوار</label>
-    <input class='text-input' id='NUMOFFloors' name='NUMOFFloors' onkeyup="lettersandnumbers(this)" required type='text'>
-  </p>
+    <input class='text-input' id='NUMOFFloors' name='NUMOFFloors' onkeyup="numbers(this)" required type='text'>
+   </p>
   
+   <?php
+  }
+  if($TypeID==2){
+    ?>
+    <p class='field required half'>
+    <label class='label' for='NUMOFFlats'>عدد الشقق</label>
+    <input class='text-input' id='NUMOFFlats' name='NUMOFFlats' onkeyup="numbers(this)" required type='text'>
+   </p>
+   <?php
+  }
+  
+  if($TypeID==4||$TypeID==5||$TypeID==6||$TypeID==7){
+    ?>
+   <p class='field required half'>
+    <label class='label' for='TypeOFActivity'>نوع النشاط</label>
+    <input class='text-input' id='TypeOFActivity' name='TypeOFActivity' onkeyup="lettersandnumbers(this)" required type='text'>
+  </p>
+   <?php
+  }
+  if($TypeID==6){
+    ?>
+   <p class='field required half'>
+    <label class='label' for='nUMOFAB'>عدد المباني الأدارية</label>
+    <input class='text-input' id='nUMOFAB' name='nUMOFAB' onkeyup="lettersandnumbers(this)" required type='text'>
+  </p>
+   <?php
+  }
  
-  <p class='field half'>
-    <label class='label' for='Doublex'> دوبلكس</label>
-    <select class='select' id='Doublex' required>
-      <option selected value=''>أختر</option>
-      <option value='1'> نعم</option>
-      <option value='2'>  لا </option>
-    </select>
-  </p>
-  <p class='field half'>
-    <label class='label' for='TypeActivity'>نوع النشاط</label>
-    <input class='text-input' id='TypeActivity' name='TypeActivity' onkeyup="lettersandnumbers(this)" required type='text'>
-  </p>
-  <p class='field required half'>
-    <label class='label' for='NUMOFAB'>عدد المباني الأدارية</label>
-    <input class='text-input' id='NUMOFAB' name='NUMOFAb' onkeyup="lettersandnumbers(this)" required type='text'>
-  </p>
+ if($TypeID==8|| $TypeID==9){
+    ?>
   
-  <?php
-   }  
-  ?>
+    <input class='text-input' id='Fix' name='Fix' type='hidden' value="0">
+
+   <?php
+  }
+ ?>
   <p class='field required'>
   <div class="alert alert-danger"role="alert">
     ملحوظة:
@@ -245,41 +272,74 @@ class ViewADD extends view
       
   }
     function AddAjax(){
+      var Add_Data = new FormData();
+        var Doublex = "Salah";
+        var nUMOFAB = "Salah";
+        var Bathroom = "Salah";
+        var Rooms = "Salah";
+        var Furnished = "Salah";
+        var Finishing = "Salah";
+        var Floor = "Salah";
+        var TypeOFActivity = "Salah";
+        var NUMOFFlats="Salah";
+        var NUMOFFloors="Salah";
+        var Fix = "Salah";
+        //
+      if( document.getElementById('Fix').value ) {
+        Fix = document.getElementById('Fix').value;
+        Add_Data.append(Fix);
+      }
+      else{
+        Fix = "Salah";
+        Add_Data.append(Fix);
+      }
       if( document.getElementById('name').value ) {
         name = document.getElementById('name').value;
+        Add_Data.append(name);
         }
         else{
           name = "Salah";
+          Add_Data.append(name);
         }
         if( document.getElementById('Price').value ) {
           Price = document.getElementById('Price').value;
+          Add_Data.append(Price);
         }
         else{
           Price = "Salah";
+          Add_Data.append(Price);
         }
         if( document.getElementById('Area').value ) {
           Area = document.getElementById('Area').value;
+          Add_Data.append(Area);
         }
         else{
           Area = "Salah";
+          Add_Data.append(Area);
         }
         if( document.getElementById('AddressUser').value ) {
           AddressUser = document.getElementById('AddressUser').value;
+          Add_Data.append(AddressUser);
         }
         else{
           AddressUser = "Salah";
+          Add_Data.append(AddressUser);
         }
         if( document.getElementById('AddressAdmin').value ) {
           AddressAdmin = document.getElementById('AddressAdmin').value;
+          Add_Data.append(AddressAdmin);
         }
         else{
           AddressAdmin = "Salah";
+          Add_Data.append(AddressAdmin);
         }
         if( document.getElementById('Owner').value ) {
           Owner = document.getElementById('Owner').value;
+          Add_Data.append(Owner);
         }
         else{
           Owner = "Salah";
+          Add_Data.append(Owner);
         }
         if( document.getElementById('OwnerNum').value ) {
           OwnerNum = document.getElementById('OwnerNum').value;
@@ -348,11 +408,19 @@ class ViewADD extends view
         else{
           NUMOFBathrooms = "Salah";
         }
+        //
         if( document.getElementById('NUMOFFloors').value ) {
           NUMOFFloors = document.getElementById('NUMOFFloors').value;
         }
         else{
           NUMOFFloors = "Salah";
+        }
+        //
+        if( document.getElementById('NUMOFFlats').value ) {
+          NUMOFFlats = document.getElementById('NUMOFFlats').value;
+        }
+        else{
+          NUMOFFlats = "Salah";
         }
         if( document.getElementById('Furnished').value ) {
           Furnished = document.getElementById('Furnished').value;
@@ -366,23 +434,25 @@ class ViewADD extends view
         else{
           Finishing = "Salah";
         }
+        //
         if( document.getElementById('Doublex').value ) {
           Doublex = document.getElementById('Doublex').value;
         }
         else{
           Doublex = "Salah";
         }
-        if( document.getElementById('TypeActivity').value ) {
-          TypeActivity = document.getElementById('TypeActivity').value;
+        //
+        if( document.getElementById('TypeOFActivity').value ) {
+          TypeOFActivity = document.getElementById('TypeOFActivity').value;
         }
         else{
-          TypeActivity = "Salah";
+          TypeOFActivity = "Salah";
         }
-        if( document.getElementById('NUMOFAb').value ) {
-          NUMOFAb = document.getElementById('NUMOFAb').value;
+        if( document.getElementById('nUMOFAB').value ) {
+          nUMOFAB = document.getElementById('nUMOFAB').value;
         }
         else{
-          NUMOFAb = "Salah";
+          nUMOFAB = "Salah";
         }
         //////////////////////////////////////////////////////////
         if( document.getElementById('TypeID').value ) {
@@ -395,7 +465,7 @@ class ViewADD extends view
        $.ajax({
           url:"<?php echo $action;?>",
           method:"POST",
-          data:{TypeID:TypeID,name:name,Price:Price,Area:Area,AddressUser:AddressUser,AddressAdmin:AddressAdmin,Owner:Owner,OwnerNum:OwnerNum,Code:Code,DescriptionUser:DescriptionUser,DescriptionAdmin:DescriptionAdmin,contarctType:contarctType,Show:Show,Payment:Payment,Importance:Importance,Floor:Floor,NUMOFRooms:NUMOFRooms,NUMOFBathrooms:NUMOFBathrooms,NUMOFFloors:NUMOFFloors,Furnished:Furnished,Finishing:Finishing,Doublex:Doublex,TypeActivity:TypeActivity,NUMOFAb:NUMOFAb},
+          data:{Fix:Fix,TypeID:TypeID,name:name,Price:Price,Area:Area,AddressUser:AddressUser,AddressAdmin:AddressAdmin,Owner:Owner,OwnerNum:OwnerNum,Code:Code,DescriptionUser:DescriptionUser,DescriptionAdmin:DescriptionAdmin,contarctType:contarctType,Show:Show,Payment:Payment,Importance:Importance,Floor:Floor,NUMOFRooms:NUMOFRooms,NUMOFBathrooms:NUMOFBathrooms,NUMOFFloors:NUMOFFloors,Furnished:Furnished,Finishing:Finishing,Doublex:Doublex,TypeOFActivity:TypeOFActivity,nUMOFAB:nUMOFAB},
           
           success:function(data)
           {

@@ -239,7 +239,7 @@ class Users extends Controller
         $_SESSION['user_name'] = $user->name;
         $_SESSION['email'] = $user->email;
         $_SESSION['Rank'] = $user->Rank;
-        $_SESSION['UnitID'] = 0;
+       
 
         //header('location: ' . URLROOT . 'pages');
         redirect('index');
@@ -253,7 +253,6 @@ class Users extends Controller
         // unset($_SESSION['user_name']);
         unset($_SESSION['email']);
         unset($_SESSION['Rank']);
-        unset($_SESSION['UnitID']);
         session_destroy();
         redirect('index');
     }

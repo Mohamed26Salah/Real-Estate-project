@@ -15,7 +15,8 @@ class ViewEdit extends view
       $action = 'ViewADD'; 
       $action2 = URLROOT . 'Pages/viewItem'; 
       $action3 = 'ViewEdit'; 
-      $action4 = URLROOT . 'Pages/viewDescription?ID='.$IDE. '&TypeID='.$_GET['TypeID']; 
+      $action4 = URLROOT . 'Pages/viewDescription?ID='.$IDE.'&TypeID='.$_GET['TypeID'];
+
     ?>
     <link rel="stylesheet" href="<?php echo URLROOT; ?>css/Add.css">
     <html>

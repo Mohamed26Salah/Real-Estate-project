@@ -345,7 +345,10 @@ class viewDescription extends View
                     <div class="btnRent-front" ID="btnRent-front" onclick="button()">احذف</div>
                    
                     </div>
+
                   <a href="<?php echo $action; ?>?IDE=<?php echo $cardDetails->ID; ?> &TypeID=<?php echo $TypeID; ?>" class="btn btn-success btn-lg" style= "float:left; color:white; text-decoration:none; margin-top:1rem; margin-left:25px;">Edit</a>
+
+               
 	        			</div>
 	        		</div>
 	        	</div>

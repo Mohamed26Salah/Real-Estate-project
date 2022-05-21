@@ -52,7 +52,7 @@ class viewItem extends View
           <li class="filter" style="<?php echo($StyleFactory);?>" data-filter=".color-1"><a href="viewItem?TypeID=7" data-type="color-1" style="font-size:20px;">مصانع</a></li>
           <li class="filter" style="<?php echo($StyleLand);?>" data-filter=".color-1"><a href="viewItem?TypeID=8" data-type="color-1" style="font-size:20px;">أراضي</a></li>
           <li class="filter" style="<?php echo($StyleOther);?>" data-filter=".color-1"><a href="viewItem?TypeID=9" data-type="color-1" style="font-size:20px;">أخري</a></li>
-          <li><a href="<?php echo $actionAdd;?>?ID=1" class="AddbuttonViewPage" style="color:white; font-size:20px; ">أضافة شقة جديدة</a></li>
+          <li><a href="<?php echo $actionAdd;?>?TypeID=<?PHP echo($_GET['TypeID'])?>" class="AddbuttonViewPage" style="color:white; font-size:20px; ">أضافة شقة جديدة</a></li>
        </ul> 
      </div> 
    </div> 
@@ -64,7 +64,7 @@ class viewItem extends View
 
    <?php
          //  pagination start
-    
+         $pageno="";
          if (isset($_GET['pageno'])) {
            $pageno = $_GET['pageno'];
          } else {
@@ -72,17 +72,16 @@ class viewItem extends View
          }
 
 
-         $no_of_records_per_page = 40;
+         $no_of_records_per_page = 1;
          $offset = ($pageno - 1) * $no_of_records_per_page;
 
-         $total_rows = $this->model->GetCount()->TD;
- 
+       
         ?>
         <div id="cards">
          </div>
         <?php
 
-         $total_pages = ceil($total_rows / $no_of_records_per_page);
+        
 
 
          // pagination end
@@ -96,30 +95,10 @@ class viewItem extends View
    </section>
      <!-- cards end here -->
      <!-- pagination  start-->
-     <ul class="pagination">
-       <li><a href="?pageno=1">First</a></li>
-       <li class="<?php if ($pageno <= 1) {
-                     echo 'disabled';
-                   } ?>">
-         <a href="<?php if ($pageno <= 1) {
-                     echo '#';
-                   } else {
-                     echo "?pageno=" . ($pageno - 1);
-                   } ?>">Prev</a>
-       </li>
-       <li class="<?php if ($pageno >= $total_pages) {
-                     echo 'disabled';
-                   } ?>">
-         <a href="<?php if ($pageno >= $total_pages) {
-                     echo '#';
-                   } else {
-                     echo "?pageno=" . ($pageno + 1);
-                   } ?>">Next</a>
-       </li>
-       <li><a href="?pageno=<?php echo $total_pages; ?>">Last</a></li>
-     </ul>
+     <ul class="row pagination">
 
-
+<li id="LoadMore" style="width:100%;"><a  onclick=itemsAjax2(); href="#" >Load More</a></li>
+</ul>
 
    
    <?php $action = URLROOT . 'Pages/viewItem'; ?>
@@ -392,7 +371,8 @@ class viewItem extends View
     <script src="<?php echo URLROOT; ?>js/Slider.js"></script>
 
     <script>
-
+offset =<?php echo $offset;?>;
+no_of_records_per_page = <?php echo $no_of_records_per_page ;?>;
 function WishList(IDArray){
         // console.log(IDArray); 
         // console.log(document.getElementById('button'+IDArray).value);
@@ -455,10 +435,9 @@ function WishList(IDArray){
         }
       
       
-       
+      var oldData='';
       function itemsAjax(){
         var TypeID = document.getElementById('TypeID').value
-        var NUMOFFloors = "Salah";
         var Doublex = "Salah";
         var nUMOFAB = "Salah";
         var Bathroom = "Salah";
@@ -597,8 +576,7 @@ function WishList(IDArray){
         }
         
       
-        offset =<?php echo $offset;?>;
-        no_of_records_per_page = <?php echo $no_of_records_per_page ;?>;
+     
 
         // TypeID=document.getElementById('TypeID').value;
         $.ajax({
@@ -608,9 +586,17 @@ function WishList(IDArray){
           
           success:function(data)
           {
+              // container = document.getElementById('cards')
+              // container.innerHTML=data;
+              if(oldData==data){
+              loadMore = document.getElementById('LoadMore').innerHTML='No more items to Load';
+              // console.log(data);
+              }else{
               container = document.getElementById('cards')
-              container.innerHTML=data;
-              
+              container.innerHTML+=data;
+              oldData=data;
+              // console.log(data);
+            }
                
           }
         })
@@ -619,11 +605,22 @@ function WishList(IDArray){
       $( ".form" ).change(function() {
         //schow item on change
         itemsAjax();
+        container = document.getElementById('cards').innerHTML='';
+        offset=0;
+        no_of_records_per_page=<?php echo $no_of_records_per_page ;?>;
 
       });
       //Show item first time 
       itemsAjax();
 
+      function itemsAjax2(){
+        offset+=no_of_records_per_page;
+        console.log(offset+'  '+no_of_records_per_page);
+        itemsAjax();
+
+
+      }
+      
     </script>
 
 <?php

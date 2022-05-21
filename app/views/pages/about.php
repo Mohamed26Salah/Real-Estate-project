@@ -3,7 +3,7 @@ class About extends view
 {
   public function output()
   {
-    $title = $this->model->title;
+    // $title = $this->model->title;
     $data = $this->model->load();
     $data2 = $this->model->load2($data);
 
