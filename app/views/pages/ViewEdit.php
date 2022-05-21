@@ -9,13 +9,13 @@ class ViewEdit extends view
       $_SESSION['UnitID']=$_GET['IDE'];
       $IDE=$_GET['IDE'];
       ?>
-      <input type="hidden" name="EditID" id="EditID" value="<?php echo $IDE ?>">
+      <input type="hidden" name="EditID" id="EditID" value="<?php echo $IDE; ?>">
       <?php
       }
       $action = 'ViewADD'; 
       $action2 = URLROOT . 'Pages/viewItem'; 
       $action3 = 'ViewEdit'; 
-      $action4 = URLROOT . 'Pages/viewDescription?ID='.$IDE; 
+      $action4 = URLROOT . 'Pages/viewDescription?ID='.$IDE. '&TypeID='.$_GET['TypeID']; 
     ?>
     <link rel="stylesheet" href="<?php echo URLROOT; ?>css/Add.css">
     <html>

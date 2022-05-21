@@ -30,6 +30,8 @@ class viewDescription extends View
     $NumOfFlats = $this->model->getNumOfFlats();
 
     $NumOfFloors = $this->model->getNumOfFloors();
+
+    $doublex = $this->model->getDoublex();
     
    
 ?>
@@ -203,6 +205,32 @@ class viewDescription extends View
                               else if($furnished == 2) {
                                 echo "<span> ليست مفروشة</span>";
                               }
+
+
+                              if($doublex == 1) {
+                                echo "<span>دوبلكس</span>";
+
+                              }
+
+                              else if($doublex == 2) {
+                                echo "<span> مش دوبلكس</span>";
+                              }
+                          ?>
+                        </div>
+
+                        <div class="col-md-6 mt-4">
+                            <i class="fa fa-stairs fa-lg" aria-hidden="true"style="font-weight: bold;"></i><label for="size"  > دوبلكس :  </label>
+                            <?php
+                        
+
+                              if($doublex == 1) {
+                                echo "<span>دوبلكس</span>";
+
+                              }
+
+                              else if($doublex == 2) {
+                                echo "<span> مش دوبلكس</span>";
+                              }
                           ?>
                         </div>
                   
@@ -317,7 +345,7 @@ class viewDescription extends View
                     <div class="btnRent-front" ID="btnRent-front" onclick="button()">احذف</div>
                    
                     </div>
-                  <a href="<?php echo $action; ?>?IDE=<?php echo $cardDetails->ID; ?>" class="btn btn-success btn-lg" style= "float:left; color:white; text-decoration:none; margin-top:1rem; margin-left:25px;">Edit</a>
+                  <a href="<?php echo $action; ?>?IDE=<?php echo $cardDetails->ID; ?> &TypeID=<?php echo $TypeID; ?>" class="btn btn-success btn-lg" style= "float:left; color:white; text-decoration:none; margin-top:1rem; margin-left:25px;">Edit</a>
 	        			</div>
 	        		</div>
 	        	</div>

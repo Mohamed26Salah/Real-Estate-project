@@ -22,6 +22,19 @@ class viewDescriptionModel extends model
     protected $TheNumberOFAB;
     protected $numOfFlats;
     protected $numOfFloors;
+    protected $doublex;
+
+
+
+    public function getDoublex()
+    {
+        return $this->doublex;
+    }
+  
+    public function setDoublex($doublex)
+    {
+        $this->doublex = $doublex;
+    }
 
 
 
@@ -266,6 +279,10 @@ class viewDescriptionModel extends model
 
                 if ($item->AtrributeID == 5) {
                     $this->setNumOfFloors($item->Value);
+                }
+
+                if ($item->AtrributeID == 6) {
+                    $this->setDoublex($item->Value);
                 }
                
 

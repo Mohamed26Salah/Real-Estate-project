@@ -289,45 +289,146 @@ class viewItemModel extends model
       return "denied";
     }
     }
-    function card($imgroot,$PriceArray,$AreaArray,$PaymentArray,$NameArray,$DescriptionArray,$offeredArray,$BathroomArray,$RoomsArray,$FinishingArrayString,$CodeArray,$AddressArray,$VisibleArray,$Checked,$IDArray,$WishList,$WishListString, $FurnishedArrayString,$FloorArray,$Image,$NUMOFFloorsArray,$TypeOFActivityArray){
+    function card($imgroot,$PriceArray,$AreaArray,$PaymentArray,$NameArray,$DescriptionArray,$offeredArray,$BathroomArray,$RoomsArray,$FinishingArrayString,$CodeArray,$AddressArray,$VisibleArray,$Checked,$IDArray,$WishList,$WishListString, $FurnishedArrayString,$FloorArray,$Image,$NUMOFFloorsArray,$TypeOFActivityArray ,  $DoublexArrayString , $nUMOFABArray,$NUMOFFlatsArray){
         $output2='';
         $approot = URLROOT . 'pages/viewDescription';
+        if(strlen($AddressArray) > 75) {
+            $shortAddressArray = substr("$AddressArray",0 , 75) . "...";
+           
+        }
+        else {
+            $shortAddressArray = $AddressArray;
+        }
+        
         $output2=<<<EOT
-        $NUMOFFloorsArray
-        $TypeOFActivityArray
+       
             <div class="containerFilter">
-            <a href="$approot?ID=$IDArray&TypeID=$this->TypeID+"><img src="$imgroot$Image" width="350px" height="238px"> </a>
+            <a href="$approot?ID=$IDArray&TypeID=$this->TypeID"><img src="$imgroot$Image" width="350px" height="238px"> </a>
             <div class="title">
             <div class="switchAll" style = "margin-left:70%; margin-bottom:-5%; margin:top:-5%;">
             
             <input onclick="salah($IDArray)" id="buttonClick$IDArray" class="toggle" $Checked type="checkbox" value=$VisibleArray />
             
+            
             </div>
             <strong style="font-size:20px;font-weight: bold; ">$PriceArray EGP</strong>
             <a href="$approot?code=$CodeArray"> <h2 style="font-family: Open Sans, sans-serif; color: #403b45; font-weight: bold;font-size:16px; margin-top: 1.5%; ">$NameArray</h2></a>
-            <div style="font-family: Open Sans, sans-serif; color: #403b45;font-weight: bold; font-size:16px;margin-top: 1%;">FLATS <i class="fa fa-bed fa-lg" aria-hidden="true"style="margin-left:10px;font-weight: bold;"> $RoomsArray </i><i class="fa fa-bath fa-lg" aria-hidden="true" style="margin-left:10px;margin-right:10px;font-weight: bold;"> $BathroomArray </i> 
-            $AreaArray sqm
+            <div style = "margin-top:10px;">
+           
+                <i class="fa-solid fa-sack-dollar" style="color:green;"></i> $PaymentArray 
+                <i class="fa fa-table-cells-large" aria-hidden="true"style="font-weight: bold; margin-left: 10px;"></i><strong style = "font-weight: 700; margin-left: 5px;">$AreaArray sqm</strong>
             </div>
-            <div style="font-family: Open Sans, sans-serif; color: #403b45; font-size:16px;margin-top: 1%;"><i class="fa-solid fa-paint-roller" style="color:green;"></i> $FinishingArrayString 
-            <i class="fa-solid fa-sack-dollar" style="margin-left:10px; color:green;"></i> $PaymentArray </div>
-            <div style="font-family: Open Sans, sans-serif; color: #403b45; font-size:16px;margin-top: 1%;"><i class="fa-solid fa-couch" style = "color:blue;"> $FurnishedArrayString </i>  <i class="fa-solid fa-arrow-right-to-city" style="margin-left:10px; color:purple;"> $FloorArray</i> </div>
-            <div style="font-family: Open Sans, sans-serif; color: #403b45; font-size:18px;margin-top: 1%;">$offeredArray</div>
-            <div class="solo" style="font-family: Open Sans, sans-serif; color: #403b45; font-size:18px;margin-top: 1%;margin-bottom: 1.5%; font-weight: 600;"><i class="fa fa-map-marker" aria-hidden="true" style="color:green;"></i> $AddressArray </div>
-            <div class="switchAll" >
-            <button onclick="WishList($IDArray)" class="buttonWishList" value = $WishList id="button$IDArray" style="background-color:$WishList" ><span id="Span$IDArray"> $WishListString </span></button>
+        EOT;
 
-            </div>
+        if($this->TypeID == 8 || $this->TypeID == 9) {
+            $output2 .= <<<EOT
+        
+            
+            
+            <div>
+            <div>
+           
+           
+        EOT;
 
+        }
+            if($this->TypeID == 1 || $this->TypeID == 3) {
+            $output2 .=<<<EOT
+            <div style="font-family: Open Sans, sans-serif; color: #403b45;font-weight: bold; font-size:16px;margin-top: 1%;">FLATS <i class="fa fa-bed" aria-hidden="true"style="margin-left:10px;font-weight: bold;"> $RoomsArray </i><i class="fa fa-bath" aria-hidden="true" style="margin-left:10px;margin-right:10px;font-weight: bold;"> $BathroomArray </i><i class="fa-solid fa-paint-roller" style="color:green;"></i> $FinishingArrayString 
             
-            <div style="font-size:25px;margin-left: 70%; margin-top:-7.2%;"> Code: <span style="color:red;">$CodeArray</span></div>
+            <div>
+                
+           
             
             
-        </div>
-        </div>
-        <br>
+            
        
         EOT;
+            }
+
+            if($this->TypeID == 1) {
+            $output2 .=<<<EOT
+            
+            <div style="font-family: Open Sans, sans-serif; color: #403b45; font-size:16px;margin-top: 1%;"><i class="fa-solid fa-couch" style = "color:blue;"> $FurnishedArrayString </i>  <i class="fa-solid fa-arrow-right-to-city" style="margin-left:10px; color:purple;"> $FloorArray</i> <i class="fa-solid fa-stairs fa-lg"></i>$DoublexArrayString </i> 
+           
+            </div>
+           
+        EOT;
+            }
+
+
+            if($this->TypeID == 4 || $this->TypeID == 5 ||$this->TypeID == 6 || $this->TypeID == 7 ) {
+            $output2 .=<<<EOT
+            <div>
+            <div style="font-family: Open Sans, sans-serif; color: #403b45; font-size:16px;margin-top: 1%;"><i class="fa fa-store" style = "color:blue;"> $TypeOFActivityArray </i> 
+            
+            
+        EOT;
+            }
+
+
+            if($this->TypeID == 6 ) {
+            $output2 .=<<<EOT
+           
+            <div style="font-family: Open Sans, sans-serif; color: #403b45; font-size:16px;margin-top: 1%;"><i class="fa fa-city" style = "color:blue;"> $nUMOFABArray </i> 
+            </div>
+                
+        EOT;
+            }
+
+
+            if($this->TypeID == 2 ) {
+            $output2 .=<<<EOT
+            
+           
+            <div style="font-family: Open Sans, sans-serif; color: #403b45; font-size:16px;margin-top: 1%;"><i class="fa fa-building" style = "color:blue;"> $NUMOFFlatsArray </i> 
+            <div style="font-family: Open Sans, sans-serif; color: #403b45; font-size:16px;margin-top: 1%;"><i class="fa fa-arrow-right-to-city" style = "color:blue;"> $NUMOFFloorsArray </i> 
+           
+            
+        EOT;
+            }
+
+
+
+            if($this->TypeID == 3) {
+            $output2 .=<<<EOT
+            
+            <div style="font-family: Open Sans, sans-serif; color: #403b45; font-size:16px;margin-top: 1%;"><i class="fa fa-arrow-right-to-city" style = "color:blue;"> $NUMOFFloorsArray </i> 
+            
+            </div>
+            
+                        
+        EOT;
+            }
+
+            
+
+            
+            
+            $output2 .= <<<EOT
+            
+           
+            
+            </div>
+            </div>
+            <div style="font-family: Open Sans, sans-serif; color: #403b45; font-size:18px;margin-top: 1%;">$offeredArray</div>
+            <div class="solo" style="font-family: Open Sans, sans-serif; color: #403b45; font-size:18px;margin-top: 1%;margin-bottom: 1.5%; font-weight: 600;"><i class="fa fa-map-marker" aria-hidden="true" style="color:green;"></i> $shortAddressArray</div>
+            <div class="switchAll" >
+            <button onclick="WishList($IDArray)" class="buttonWishList" value = $WishList id="button$IDArray" style="background-color:$WishList; margin-bottom:50px;" ><span id="Span$IDArray"> $WishListString </span></button>
+
+            </div>
+
+            
+            <div style="font-size:25px;margin-left: 70%; margin-top:-11%;"> Code: <span style="color:red;">$CodeArray</span></div>
+            
+            
+            </div>
+            </div>
+            <br>
+        EOT;
+
         
+
         return $output2;
     }
     function ifCondition($UltimateJoinRoom,$UltimateJoinBathroom,$UltimateJoinFinishing,$UltimateJoinFurnished,$UltimateJoinFloor,$UltimateJoinNUMOFFloors,$UltimateJoinDoublex,$UltimateJoinTypeOFActivity,$UltimateJoinnUMOFAB,$UltimateJoinNUMOFFlats,$RoomsArray,$BathroomArray,$FinishingArray,$NUMOFFloorsArray,$FloorArray,$DoublexArray,$TypeOFActivityArray,$FurnishedArray,$nUMOFABArray,$NUMOFFlatsArray,$UltimateIF,$ultimateIFCondition){
@@ -464,6 +565,7 @@ class viewItemModel extends model
         $FurnishedArrayString="empty";
         $FinishingArrayString="empty";
         $NUMOFFlatsArray="empty";
+        $DoublexArrayString = "empty";
         if(!empty($this->area)){
             
           if($this->area==400){
@@ -625,9 +727,9 @@ class viewItemModel extends model
                 
 
                     if($input[$counter][9]==1){
-                        $offeredArray="Selling";
+                        $offeredArray="بيع";
                     }else{
-                        $offeredArray="Rent";
+                        $offeredArray="ايجار";
                     }
                   
 
@@ -704,11 +806,11 @@ class viewItemModel extends model
                 // echo($ultimateIFCondition);
                 
          if($UltimateIF!=true){  
-                        $output.= $this->card($imgroot,$PriceArray,$AreaArray,$PaymentArray,$NameArray,$DescriptionArray,$offeredArray,$BathroomArray,$RoomsArray,$FinishingArrayString,$CodeArray,$AddressArray,$VisibleArray,$Checked,$IDArray,$WishList,$WishListString, $FurnishedArrayString,$FloorArray,$Image,$NUMOFFloorsArray,$TypeOFActivityArray);
+                        $output.= $this->card($imgroot,$PriceArray,$AreaArray,$PaymentArray,$NameArray,$DescriptionArray,$offeredArray,$BathroomArray,$RoomsArray,$FinishingArrayString,$CodeArray,$AddressArray,$VisibleArray,$Checked,$IDArray,$WishList,$WishListString, $FurnishedArrayString,$FloorArray,$Image,$NUMOFFloorsArray,$TypeOFActivityArray ,  $DoublexArrayString , $nUMOFABArray,$NUMOFFlatsArray );
           }else{
             if($ultimateIFCondition=="NotEmpty"){
                 // if($UltimateIF){
-                $output.= $this->card($imgroot,$PriceArray,$AreaArray,$PaymentArray,$NameArray,$DescriptionArray,$offeredArray,$BathroomArray,$RoomsArray,$FinishingArrayString,$CodeArray,$AddressArray,$VisibleArray,$Checked,$IDArray,$WishList,$WishListString, $FurnishedArrayString,$FloorArray,$Image,$NUMOFFloorsArray,$TypeOFActivityArray);
+                $output.= $this->card($imgroot,$PriceArray,$AreaArray,$PaymentArray,$NameArray,$DescriptionArray,$offeredArray,$BathroomArray,$RoomsArray,$FinishingArrayString,$CodeArray,$AddressArray,$VisibleArray,$Checked,$IDArray,$WishList,$WishListString, $FurnishedArrayString,$FloorArray,$Image,$NUMOFFloorsArray,$TypeOFActivityArray ,  $DoublexArrayString , $nUMOFABArray,$NUMOFFlatsArray);
                 // }
                 
             }
@@ -738,9 +840,9 @@ class viewItemModel extends model
                 $TypeID=$this->TypeID;
                 $Image=$input[$counter][10];
                 if($input[$counter][9]==1){
-                    $offeredArray="Selling";
+                    $offeredArray="بيع";
                 }else{
-                    $offeredArray="Rent";
+                    $offeredArray="ايجار";
                 }
               
                 
@@ -815,11 +917,11 @@ class viewItemModel extends model
 
                
                 if($UltimateIF!=true){  
-                    $output.= $this->card($imgroot,$PriceArray,$AreaArray,$PaymentArray,$NameArray,$DescriptionArray,$offeredArray,$BathroomArray,$RoomsArray,$FinishingArrayString,$CodeArray,$AddressArray,$VisibleArray,$Checked,$IDArray,$WishList,$WishListString, $FurnishedArrayString,$FloorArray,$Image,$NUMOFFloorsArray,$TypeOFActivityArray);
+                    $output.= $this->card($imgroot,$PriceArray,$AreaArray,$PaymentArray,$NameArray,$DescriptionArray,$offeredArray,$BathroomArray,$RoomsArray,$FinishingArrayString,$CodeArray,$AddressArray,$VisibleArray,$Checked,$IDArray,$WishList,$WishListString, $FurnishedArrayString,$FloorArray,$Image,$NUMOFFloorsArray,$TypeOFActivityArray ,  $DoublexArrayString , $nUMOFABArray,$NUMOFFlatsArray);
                 }else{
                     if($ultimateIFCondition=="NotEmpty"){
                         // if($UltimateIF){
-                        $output.= $this->card($imgroot,$PriceArray,$AreaArray,$PaymentArray,$NameArray,$DescriptionArray,$offeredArray,$BathroomArray,$RoomsArray,$FinishingArrayString,$CodeArray,$AddressArray,$VisibleArray,$Checked,$IDArray,$WishList,$WishListString, $FurnishedArrayString,$FloorArray,$Image,$NUMOFFloorsArray,$TypeOFActivityArray);
+                        $output.= $this->card($imgroot,$PriceArray,$AreaArray,$PaymentArray,$NameArray,$DescriptionArray,$offeredArray,$BathroomArray,$RoomsArray,$FinishingArrayString,$CodeArray,$AddressArray,$VisibleArray,$Checked,$IDArray,$WishList,$WishListString, $FurnishedArrayString,$FloorArray,$Image,$NUMOFFloorsArray,$TypeOFActivityArray ,  $DoublexArrayString , $nUMOFABArray,$NUMOFFlatsArray);
                         // }
                         
                     }
