@@ -72,7 +72,7 @@ class viewItem extends View
          }
 
 
-         $no_of_records_per_page = 1;
+         $no_of_records_per_page = 2;
          $offset = ($pageno - 1) * $no_of_records_per_page;
 
        
@@ -97,7 +97,7 @@ class viewItem extends View
      <!-- pagination  start-->
      <ul class="row pagination">
 
-<li id="LoadMore" style="width:100%;"><a  onclick=itemsAjax2(); href="#" >Load More</a></li>
+<li id="LoadMore" style="width:100%;"><a  onclick=itemsAjax2(); >Load More</a></li>
 </ul>
 
    
@@ -577,7 +577,7 @@ function WishList(IDArray){
         
       
      
-
+        console.log(offset+'  '+no_of_records_per_page);
         // TypeID=document.getElementById('TypeID').value;
         $.ajax({
           url:"<?php echo $action2;?>",
@@ -588,14 +588,14 @@ function WishList(IDArray){
           {
               // container = document.getElementById('cards')
               // container.innerHTML=data;
-              if(oldData==data){
+              if(!data){
               loadMore = document.getElementById('LoadMore').innerHTML='No more items to Load';
-              // console.log(data);
+               console.log(data);
               }else{
               container = document.getElementById('cards')
               container.innerHTML+=data;
               oldData=data;
-              // console.log(data);
+               console.log(data);
             }
                
           }
@@ -604,10 +604,11 @@ function WishList(IDArray){
       }
       $( ".form" ).change(function() {
         //schow item on change
-        itemsAjax();
-        container = document.getElementById('cards').innerHTML='';
+        document.getElementById('cards').innerHTML='';
         offset=0;
         no_of_records_per_page=<?php echo $no_of_records_per_page ;?>;
+        itemsAjax();
+        document.getElementById('LoadMore').innerHTML='<a  onclick=itemsAjax2(); >Load More</a>';
 
       });
       //Show item first time 
@@ -615,7 +616,7 @@ function WishList(IDArray){
 
       function itemsAjax2(){
         offset+=no_of_records_per_page;
-        console.log(offset+'  '+no_of_records_per_page);
+        
         itemsAjax();
 
 

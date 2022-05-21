@@ -680,8 +680,8 @@ class viewItemModel extends model
         }
         // $QUERY= "SELECT * FROM `allestate`".$join."WHERE ".$AllSort.$AllJoin.$UltimateJoin.$Search.$SearchAll.$SuperUltimateJoin." LIMIT $offset, $no_of_records_per_page";
 
-        $QUERY= "SELECT * FROM `allestate`".$join."WHERE ".$AllSort.$AllJoin.$Search.$SuperUltimateJoin." LIMIT $offset, $no_of_records_per_page";
-        // echo $QUERY;
+        $QUERY= "SELECT * FROM `allestate`".$join."WHERE ".$AllSort.$AllJoin.$Search.$SuperUltimateJoin." ";
+         //echo $QUERY;
         $this->dbh->query($QUERY);
         $ALLRECORDS = $this->dbh->resultSet();
         array_push($ALLRECORDS, (object)[
@@ -712,7 +712,9 @@ class viewItemModel extends model
         $myhashmap = array();
         $norpp=0;
         $skipped=0;
+        $foreachcount=0;
         foreach ($ALLRECORDS as $Item) {
+            
             if($norpp < $no_of_records_per_page){
             $Counter2+=1;
             if($oneTime==0){
@@ -938,11 +940,12 @@ class viewItemModel extends model
                 if($UltimateIF!=true){  
                     if($skipped < $offset){
                         $skipped++;
+                        
                     }else{
                     $norpp++;
                     // if($UltimateIF){
                         $output.= $this->card($imgroot,$PriceArray,$AreaArray,$PaymentArray,$NameArray,$DescriptionArray,$offeredArray,$BathroomArray,$RoomsArray,$FinishingArrayString,$CodeArray,$AddressArray,$VisibleArray,$Checked,$IDArray,$WishList,$WishListString, $FurnishedArrayString,$FloorArray,$Image,$NUMOFFloorsArray,$TypeOFActivityArray ,  $DoublexArrayString , $nUMOFABArray,$NUMOFFlatsArray);
-                      
+                        
                     // }
                     }
                    
@@ -950,11 +953,14 @@ class viewItemModel extends model
                     if($ultimateIFCondition=="NotEmpty"){
                         if($skipped < $offset){
                             $skipped++;
+                            
+
                         }else{
                         $norpp++;
                         // if($UltimateIF){
                             $output.= $this->card($imgroot,$PriceArray,$AreaArray,$PaymentArray,$NameArray,$DescriptionArray,$offeredArray,$BathroomArray,$RoomsArray,$FinishingArrayString,$CodeArray,$AddressArray,$VisibleArray,$Checked,$IDArray,$WishList,$WishListString, $FurnishedArrayString,$FloorArray,$Image,$NUMOFFloorsArray,$TypeOFActivityArray ,  $DoublexArrayString , $nUMOFABArray,$NUMOFFlatsArray);
-                           
+                            
+
                         // }
                         }
                         
@@ -973,6 +979,7 @@ class viewItemModel extends model
           
             $ultimateIFCondition="Speed";
           }
+          $foreachcount++;
         }
          return $output;
         
