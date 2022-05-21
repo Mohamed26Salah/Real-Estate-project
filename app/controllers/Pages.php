@@ -256,39 +256,72 @@ public function ViewADD()
             if($_POST['Importance']!="Salah"){
                 $Add->setImportance($_POST['Importance']);
             }
-            if($_POST['Floor']!="Salah"){
-                $Add->setFloor($_POST['Floor']);
-            }
-            if($_POST['NUMOFRooms']!="Salah"){
-                $Add->setNUMOFRooms($_POST['NUMOFRooms']);
-            }
-            if($_POST['NUMOFBathrooms']!="Salah"){
-                $Add->setNUMOFBathrooms($_POST['NUMOFBathrooms']);
-            }
-            if($_POST['NUMOFFloors']!="Salah"){
-                $Add->setNUMOFFloors($_POST['NUMOFFloors']);
-            }
-            if($_POST['Furnished']!="Salah"){
-                $Add->setFurnished($_POST['Furnished']);
-            }
-            if($_POST['Finishing']!="Salah"){
-                $Add->setFinishing($_POST['Finishing']);
-            }
-            if($_POST['Doublex']!="Salah"){
-                $Add->setDoublex($_POST['Doublex']);
-            }
-            if($_POST['TypeActivity']!="Salah"){
-                $Add->setTypeActivity($_POST['TypeActivity']);
-            }
-            if($_POST['NUMOFAb']!="Salah"){
-                $Add->setNUMOFAb($_POST['NUMOFAb']);
-            }
             if($_POST['TypeID']!="Salah"){
                 $Add->setTypeID($_POST['TypeID']);
             }
-            if($_POST['EditID']!="Salah"){
-                $Add->setEditID($_POST['EditID']);
+            if(isset($_POST['Floor'])){
+                if($_POST['Floor']!="Salah"){
+                    $Add->setFloor($_POST['Floor']);
+                }
             }
+            if(isset($_POST['NUMOFRooms'])){
+                if($_POST['NUMOFRooms']!="Salah"){
+                    $Add->setNUMOFRooms($_POST['NUMOFRooms']);
+                }
+            }
+            if(isset($_POST['NUMOFBathrooms'])){
+                if($_POST['NUMOFBathrooms']!="Salah"){
+                    $Add->setNUMOFBathrooms($_POST['NUMOFBathrooms']);
+                }
+            }
+            if(isset($_POST['NUMOFFloors'])){
+                if($_POST['NUMOFFloors']!="Salah"){
+                    $Add->setNUMOFFloors($_POST['NUMOFFloors']);
+                }
+            }
+            if(isset($_POST['Furnished'])){
+                if($_POST['Furnished']!="Salah"){
+                    $Add->setFurnished($_POST['Furnished']);
+                }
+            }
+            if(isset($_POST['Finishing'])){
+                if($_POST['Finishing']!="Salah"){
+                    $Add->setFinishing($_POST['Finishing']);
+                }
+            }
+            if(isset($_POST['Doublex'])){
+                if($_POST['Doublex']!="Salah"){
+                    $Add->setDoublex($_POST['Doublex']);
+                }
+            }
+            if(isset($_POST['TypeActivity'])){
+                if($_POST['TypeActivity']!="Salah"){
+                    $Add->setTypeActivity($_POST['TypeActivity']);
+                }
+            }
+            if(isset($_POST['NUMOFAb'])){
+                if($_POST['NUMOFAb']!="Salah"){
+                    $Add->setNUMOFAb($_POST['NUMOFAb']);
+                }
+            }
+            //////////////////////////////////////////////////
+            if(isset($_POST['NUMOFFlats'])){
+                if($_POST['NUMOFFlats']!="Salah"){
+                    $Add->setNUMOFFlats($_POST['NUMOFFlats']);
+                }
+            }
+            if(isset($_POST['Fix'])){
+                if($_POST['Fix']!="Salah"){
+                    $Add->setFix($_POST['Fix']);
+                }
+            }
+            ////////////////////////////////////////////////
+            if(isset($_POST['EditID'])){
+                if($_POST['EditID']!="Salah"){
+                    $Add->setEditID($_POST['EditID']);
+                }
+            }
+            
 
             echo($Add->Add());
             }

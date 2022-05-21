@@ -27,6 +27,26 @@ class ViewADDModel extends model
     protected $TypeID;
     protected $codeInput;
     protected $EditID;
+    protected $NUMOFFlats;
+    protected $Fix;
+
+    public function getFix()
+    {
+        return $this->Fix;
+    }
+    public function setFix($Fix)
+    {
+        $this->Fix = $Fix;
+    }
+
+    public function getNUMOFFlats()
+    {
+        return $this->NUMOFFlats;
+    }
+    public function setNUMOFFlats($NUMOFFlats)
+    {
+        $this->NUMOFFlats = $NUMOFFlats;
+    }
     public function getEditID()
     {
         return $this->EditID;
@@ -357,14 +377,25 @@ class ViewADDModel extends model
                 $this->Eav($ALLRECORDS->ID,2,$this->Finishing);
                 $this->Eav($ALLRECORDS->ID,3,$this->NUMOFRooms);
                 $this->Eav($ALLRECORDS->ID,4,$this->NUMOFBathrooms);
+                $this->Eav($ALLRECORDS->ID,6,$this->Doublex);
                 $this->Eav($ALLRECORDS->ID,9,$this->Furnished);
             }
-        }else{
-            $this->EditEav($this->EditID,1,$this->Floor);
-            $this->EditEav($this->EditID,2,$this->Finishing);
-            $this->EditEav($this->EditID,3,$this->NUMOFRooms);
-            $this->EditEav($this->EditID,4,$this->NUMOFBathrooms);
-            $this->EditEav($this->EditID,9,$this->Furnished);
+        }else if($this->TypeID==2){
+            $this->Eav($ALLRECORDS->ID,5,$this->NUMOFFloors);
+            $this->Eav($ALLRECORDS->ID,11,$this->NUMOFFlats);
+        } else if($this->TypeID==3){
+            $this->Eav($ALLRECORDS->ID,5,$this->NUMOFFloors);
+            $this->Eav($ALLRECORDS->ID,2,$this->Finishing);
+            $this->Eav($ALLRECORDS->ID,3,$this->NUMOFRooms);
+            $this->Eav($ALLRECORDS->ID,4,$this->NUMOFBathrooms);
+            $this->Eav($ALLRECORDS->ID,9,$this->Furnished);
+           
+        } else if($this->TypeID==4||$this->TypeID==5||$this->TypeID==7){
+            $this->Eav($ALLRECORDS->ID,7,$this->TypeActivity); 
+        }
+        else if($this->TypeID==6){
+            $this->Eav($ALLRECORDS->ID,7,$this->TypeActivity); 
+            $this->Eav($ALLRECORDS->ID,8,$this->NUMOFAb);
         }
        
         }

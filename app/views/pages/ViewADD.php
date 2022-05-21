@@ -20,6 +20,7 @@ class ViewADD extends view
     <body>
     <!-- <div style="display:none; " id="loader"></div> -->
 
+<input type="hidden" name="TypeID" id="TypeID" value="<?php echo($_GET['TypeID']); ?>">
 
 <div class="All text-right" dir="rtl">
   <div class="Caution" id="Caution"></div>
@@ -165,10 +166,10 @@ class ViewADD extends view
       <option value='2'>  لا </option>
     </select>
   </p>
-  <input id='NUMOFFloors' name='NUMOFFloors' type='hidden'>
+  <!-- <input id='NUMOFFloors' name='NUMOFFloors' type='hidden'>
   <input id='Doublex' name='Doublex' type='hidden'>
   <input id='TypeActivity' name='TypeActivity' type='hidden'>
-  <input id='NUMOFAb' name='NUMOFAb' type='hidden'>
+  <input id='NUMOFAb' name='NUMOFAb' type='hidden'> -->
 
   <?php
   }
@@ -272,6 +273,7 @@ class ViewADD extends view
       
   }
     function AddAjax(){
+      var TypeID = document.getElementById('TypeID').value
       var Add_Data = new FormData();
         var Doublex = "Salah";
         var nUMOFAB = "Salah";
@@ -285,192 +287,246 @@ class ViewADD extends view
         var NUMOFFloors="Salah";
         var Fix = "Salah";
         //
+   if(TypeID==8 || TypeID==9) {
       if( document.getElementById('Fix').value ) {
         Fix = document.getElementById('Fix').value;
-        Add_Data.append(Fix);
+        Add_Data.append("Fix",Fix);
       }
       else{
         Fix = "Salah";
-        Add_Data.append(Fix);
+        Add_Data.append("Fix",Fix);
       }
-      if( document.getElementById('name').value ) {
-        name = document.getElementById('name').value;
-        Add_Data.append(name);
-        }
-        else{
-          name = "Salah";
-          Add_Data.append(name);
-        }
-        if( document.getElementById('Price').value ) {
-          Price = document.getElementById('Price').value;
-          Add_Data.append(Price);
-        }
-        else{
-          Price = "Salah";
-          Add_Data.append(Price);
-        }
-        if( document.getElementById('Area').value ) {
-          Area = document.getElementById('Area').value;
-          Add_Data.append(Area);
-        }
-        else{
-          Area = "Salah";
-          Add_Data.append(Area);
-        }
-        if( document.getElementById('AddressUser').value ) {
-          AddressUser = document.getElementById('AddressUser').value;
-          Add_Data.append(AddressUser);
-        }
-        else{
-          AddressUser = "Salah";
-          Add_Data.append(AddressUser);
-        }
-        if( document.getElementById('AddressAdmin').value ) {
-          AddressAdmin = document.getElementById('AddressAdmin').value;
-          Add_Data.append(AddressAdmin);
-        }
-        else{
-          AddressAdmin = "Salah";
-          Add_Data.append(AddressAdmin);
-        }
-        if( document.getElementById('Owner').value ) {
-          Owner = document.getElementById('Owner').value;
-          Add_Data.append(Owner);
-        }
-        else{
-          Owner = "Salah";
-          Add_Data.append(Owner);
-        }
-        if( document.getElementById('OwnerNum').value ) {
-          OwnerNum = document.getElementById('OwnerNum').value;
-        }
-        else{
-          OwnerNum = "Salah";
-        }
-        if( document.getElementById('Code').value ) {
-          Code = document.getElementById('Code').value;
-        }
-        else{
-          Code = "Salah";
-        }
-        if( document.getElementById('DescriptionUser').value ) {
-          DescriptionUser = document.getElementById('DescriptionUser').value;
-        }
-        else{
-          DescriptionUser = "Salah";
-        }
-        if( document.getElementById('DescriptionAdmin').value ) {
-          DescriptionAdmin = document.getElementById('DescriptionAdmin').value;
-        }
-        else{
-          DescriptionAdmin = "Salah";
-        }
-        if( document.getElementById('contarctType').value ) {
-          contarctType = document.getElementById('contarctType').value;
-        }
-        else{
-          contarctType = "Salah";
-        }
-        if( document.getElementById('Show').value ) {
-          Show = document.getElementById('Show').value;
-        }
-        else{
-          Show = "Salah";
-        }
-        if( document.getElementById('Payment').value ) {
-          Payment = document.getElementById('Payment').value;
-        }
-        else{
-          Payment = "Salah";
-        }
-        if( document.getElementById('Importance').value ) {
-          Importance = document.getElementById('Importance').value;
-        }
-        else{
-          Importance = "Salah";
-        }
-        /////////////////////////////////////////////////////////////////
-        if( document.getElementById('Floor').value ) {
+      
+    }
+    if(TypeID==1) {
+      if( document.getElementById('Floor').value ) {
           Floor = document.getElementById('Floor').value;
+          Add_Data.append("Floor",Floor);
         }
         else{
           Floor = "Salah";
+          Add_Data.append("Floor",Floor);
         }
-        if( document.getElementById('NUMOFRooms').value ) {
-          NUMOFRooms = document.getElementById('NUMOFRooms').value;
-        }
-        else{
-          NUMOFRooms = "Salah";
-        }
-        if( document.getElementById('NUMOFBathrooms').value ) {
-          NUMOFBathrooms = document.getElementById('NUMOFBathrooms').value;
-        }
-        else{
-          NUMOFBathrooms = "Salah";
-        }
-        //
-        if( document.getElementById('NUMOFFloors').value ) {
-          NUMOFFloors = document.getElementById('NUMOFFloors').value;
-        }
-        else{
-          NUMOFFloors = "Salah";
-        }
-        //
-        if( document.getElementById('NUMOFFlats').value ) {
-          NUMOFFlats = document.getElementById('NUMOFFlats').value;
-        }
-        else{
-          NUMOFFlats = "Salah";
-        }
-        if( document.getElementById('Furnished').value ) {
-          Furnished = document.getElementById('Furnished').value;
-        }
-        else{
-          Furnished = "Salah";
-        }
-        if( document.getElementById('Finishing').value ) {
-          Finishing = document.getElementById('Finishing').value;
-        }
-        else{
-          Finishing = "Salah";
-        }
-        //
         if( document.getElementById('Doublex').value ) {
           Doublex = document.getElementById('Doublex').value;
+          Add_Data.append("Doublex",Doublex);
         }
         else{
           Doublex = "Salah";
+          Add_Data.append("Doublex",Doublex);
         }
-        //
-        if( document.getElementById('TypeOFActivity').value ) {
+    }
+    if(TypeID==1 || TypeID==3) {
+      if( document.getElementById('NUMOFRooms').value ) {
+          NUMOFRooms = document.getElementById('NUMOFRooms').value;
+          Add_Data.append("NUMOFRooms",NUMOFRooms);
+        }
+        else{
+          NUMOFRooms = "Salah";
+          Add_Data.append("NUMOFRooms",NUMOFRooms);
+        }
+        if( document.getElementById('NUMOFBathrooms').value ) {
+          NUMOFBathrooms = document.getElementById('NUMOFBathrooms').value;
+          Add_Data.append("NUMOFBathrooms",NUMOFBathrooms);
+        }
+        else{
+          NUMOFBathrooms = "Salah";
+          Add_Data.append("NUMOFBathrooms",NUMOFBathrooms);
+        }
+        if( document.getElementById('Furnished').value ) {
+          Furnished = document.getElementById('Furnished').value;
+          Add_Data.append("Furnished",Furnished);
+        }
+        else{
+          Furnished = "Salah";
+          Add_Data.append("Furnished",Furnished);
+        }
+        if( document.getElementById('Finishing').value ) {
+          Finishing = document.getElementById('Finishing').value;
+          Add_Data.append("Finishing",Finishing);
+        }
+        else{
+          Finishing = "Salah";
+          Add_Data.append("Finishing",Finishing);
+        }
+  
+    }
+    if(TypeID==2||TypeID==3) {
+      if( document.getElementById('NUMOFFloors').value ) {
+          NUMOFFloors = document.getElementById('NUMOFFloors').value;
+          Add_Data.append("NUMOFFloors",NUMOFFloors);
+        }
+        else{
+          NUMOFFloors = "Salah";
+          Add_Data.append("NUMOFFloors",NUMOFFloors);
+        }
+    }
+    if(TypeID==2) {
+      if( document.getElementById('NUMOFFlats').value ) {
+          NUMOFFlats = document.getElementById('NUMOFFlats').value;
+          Add_Data.append("NUMOFFlats",NUMOFFlats);
+        }
+        else{
+          NUMOFFlats = "Salah";
+          Add_Data.append("NUMOFFlats",NUMOFFlats);
+        }
+    }
+    if(TypeID==4||TypeID==5||TypeID==6||TypeID==7) {
+      if( document.getElementById('TypeOFActivity').value ) {
           TypeOFActivity = document.getElementById('TypeOFActivity').value;
+          Add_Data.append("TypeOFActivity",TypeOFActivity);
         }
         else{
           TypeOFActivity = "Salah";
+          Add_Data.append("TypeOFActivity",TypeOFActivity);
         }
-        if( document.getElementById('nUMOFAB').value ) {
+    }
+    if(TypeID==6) {
+      if( document.getElementById('nUMOFAB').value ) {
           nUMOFAB = document.getElementById('nUMOFAB').value;
+          Add_Data.append("nUMOFAB",nUMOFAB);
         }
         else{
           nUMOFAB = "Salah";
+          Add_Data.append("nUMOFAB",nUMOFAB);
         }
+    }
+      if( document.getElementById('name').value ) {
+        name = document.getElementById('name').value;
+        Add_Data.append("name",name);
+        }
+        else{
+          name = "Salah";
+          Add_Data.append("name",name);
+        }
+        if( document.getElementById('Price').value ) {
+          Price = document.getElementById('Price').value;
+          Add_Data.append("Price",Price);
+        }
+        else{
+          Price = "Salah";
+          Add_Data.append("Price",Price);
+        }
+        if( document.getElementById('Area').value ) {
+          Area = document.getElementById('Area').value;
+          Add_Data.append("Area",Area);
+        }
+        else{
+          Area = "Salah";
+          Add_Data.append("Area",Area);
+        }
+        if( document.getElementById('AddressUser').value ) {
+          AddressUser = document.getElementById('AddressUser').value;
+          Add_Data.append("AddressUser",AddressUser);
+        }
+        else{
+          AddressUser = "Salah";
+          Add_Data.append("AddressUser",AddressUser);
+        }
+        if( document.getElementById('AddressAdmin').value ) {
+          AddressAdmin = document.getElementById('AddressAdmin').value;
+          Add_Data.append("AddressAdmin",AddressAdmin);
+        }
+        else{
+          AddressAdmin = "Salah";
+          Add_Data.append("AddressAdmin",AddressAdmin);
+        }
+        if( document.getElementById('Owner').value ) {
+          Owner = document.getElementById('Owner').value;
+          Add_Data.append("Owner",Owner);
+        }
+        else{
+          Owner = "Salah";
+          Add_Data.append("Owner",Owner);
+        }
+        if( document.getElementById('OwnerNum').value ) {
+          OwnerNum = document.getElementById('OwnerNum').value;
+          Add_Data.append("OwnerNum",OwnerNum);
+        }
+        else{
+          OwnerNum = "Salah";
+          Add_Data.append("OwnerNum",OwnerNum);
+        }
+        if( document.getElementById('Code').value ) {
+          Code = document.getElementById('Code').value;
+          Add_Data.append("Code",Code);
+        }
+        else{
+          Code = "Salah";
+          Add_Data.append("Code",Code);
+        }
+        if( document.getElementById('DescriptionUser').value ) {
+          DescriptionUser = document.getElementById('DescriptionUser').value;
+          Add_Data.append("DescriptionUser",DescriptionUser);
+        }
+        else{
+          DescriptionUser = "Salah";
+          Add_Data.append("DescriptionUser",DescriptionUser);
+        }
+        if( document.getElementById('DescriptionAdmin').value ) {
+          DescriptionAdmin = document.getElementById('DescriptionAdmin').value;
+          Add_Data.append("DescriptionAdmin",DescriptionAdmin);
+        }
+        else{
+          DescriptionAdmin = "Salah";
+          Add_Data.append("DescriptionAdmin",DescriptionAdmin);
+        }
+        if( document.getElementById('contarctType').value ) {
+          contarctType = document.getElementById('contarctType').value;
+          Add_Data.append("contarctType",contarctType);
+        }
+        else{
+          contarctType = "Salah";
+          Add_Data.append("contarctType",contarctType);
+        }
+        if( document.getElementById('Show').value ) {
+          Show = document.getElementById('Show').value;
+          Add_Data.append("Show",Show);
+        }
+        else{
+          Show = "Salah";
+          Add_Data.append("Show",Show);
+        }
+        if( document.getElementById('Payment').value ) {
+          Payment = document.getElementById('Payment').value;
+          Add_Data.append("Payment",Payment);
+        }
+        else{
+          Payment = "Salah";
+          Add_Data.append("Payment",Payment);
+        }
+        if( document.getElementById('Importance').value ) {
+          Importance = document.getElementById('Importance').value;
+          Add_Data.append("Importance",Importance);
+        }
+        else{
+          Importance = "Salah";
+          Add_Data.append("Importance",Importance);
+        }
+    
+     
+      
         //////////////////////////////////////////////////////////
         if( document.getElementById('TypeID').value ) {
           TypeID = document.getElementById('TypeID').value;
+          Add_Data.append("TypeID",TypeID);
         }
         else{
           TypeID = "Salah";
+          Add_Data.append("TypeID",TypeID);
         }
         
        $.ajax({
           url:"<?php echo $action;?>",
           method:"POST",
-          data:{Fix:Fix,TypeID:TypeID,name:name,Price:Price,Area:Area,AddressUser:AddressUser,AddressAdmin:AddressAdmin,Owner:Owner,OwnerNum:OwnerNum,Code:Code,DescriptionUser:DescriptionUser,DescriptionAdmin:DescriptionAdmin,contarctType:contarctType,Show:Show,Payment:Payment,Importance:Importance,Floor:Floor,NUMOFRooms:NUMOFRooms,NUMOFBathrooms:NUMOFBathrooms,NUMOFFloors:NUMOFFloors,Furnished:Furnished,Finishing:Finishing,Doublex:Doublex,TypeOFActivity:TypeOFActivity,nUMOFAB:nUMOFAB},
-          
+          // data:{Fix:Fix,TypeID:TypeID,name:name,Price:Price,Area:Area,AddressUser:AddressUser,AddressAdmin:AddressAdmin,Owner:Owner,OwnerNum:OwnerNum,Code:Code,DescriptionUser:DescriptionUser,DescriptionAdmin:DescriptionAdmin,contarctType:contarctType,Show:Show,Payment:Payment,Importance:Importance,Floor:Floor,NUMOFRooms:NUMOFRooms,NUMOFBathrooms:NUMOFBathrooms,NUMOFFloors:NUMOFFloors,Furnished:Furnished,Finishing:Finishing,Doublex:Doublex,TypeOFActivity:TypeOFActivity,nUMOFAB:nUMOFAB},
+          data: Add_Data,
+          contentType: false,
+          processData: false,
           success:function(data)
           {
             console.log(data);
-            window.location.replace("<?php echo $action2;?>");
+            // window.location.replace("<?php echo $action2;?>");
           }
         })
       
