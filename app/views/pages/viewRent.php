@@ -5,9 +5,17 @@ class viewRent extends View
   {
 
 
+
     require APPROOT . '/views/inc/header.php';
     $no_of_records_per_page = 2;
   $offset =0;
+
+ $action = URLROOT . 'Pages/viewRent';   
+ $action2 = 'viewRent';  
+ $action3 = URLROOT . 'Pages/viewADDRent'; 
+ require APPROOT . '/views/inc/header.php';
+
+
 ?>
 <link rel="stylesheet" href="<?php echo URLROOT; ?>css/ViewPage.css">
 <link rel="stylesheet" href="<?php echo URLROOT; ?>css/resetFilter.css">
@@ -17,11 +25,27 @@ class viewRent extends View
 
 <body>
    
-
-  <main class="cd-main-content">
   
 
+<style>
+  .fcc-btn {
+  background-color: #199319;
+  color: white;
+  padding: 15px 25px;
+  text-decoration: none;
+  border-radius:7px;
+}
+
+.fcc-btn:hover {
+  background-color: #309319;
+}
+
+</style>
+  <main class="cd-main-content">
    <section class="cd-gallery">
+    <div style="text-align: right; margin-right:40px ; margin-top:20px;">
+  <a href="<?php echo $action3;?>" class="fcc-btn">ADD</a>
+</div>
      <ul>
        
    <div class="Car-ALL">
@@ -64,6 +88,7 @@ class viewRent extends View
    
 
    
+
    <?php $action = URLROOT . 'Pages/viewRent'; ?>
    <?php $action2 = 'viewRent'; ?>
   <?php $action3 = URLROOT . 'Pages/viewADDRent';
@@ -71,7 +96,8 @@ class viewRent extends View
   
   ?>
 
-   <a href="<?php echo $action3;?>">ADD</a>
+
+
    <!-- <div class="form" id="sidebar" > -->
   <div class="cd-filter">
    <form class="form">

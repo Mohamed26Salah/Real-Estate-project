@@ -70,20 +70,26 @@ class viewRentModel extends model
                     <div class="card-big-shadow">
                         <div class="card card-just-text" id="Background$ID" style="background-color:$Background_Color; color:$Font_Color;" data-radius="none">
                             <div class="content">
-                                <h6 class="category">$code</h6>
-                                <h4 class="title"><a href="#" style="color:#091BD3;">$rentPrice</a></h4>
+                                <h2 class="category" style="font-size:30px;">Code: $code</h2>
+                                <h5 class="title" style="font-size:20px;">Price: $rentPrice</h5>
                                 <hr style="height:5px;">
                                 
-                                <div id="TOR$ID">$TOR / $TOREND</div>
+                                <div id="TOR$ID">بداية الأيجار الحالي  <br>$TOR</div>
                                 <hr style="height:5px;">
-                                <div>$Start_OF_Rent / $END_OF_Rent</div>
+                                <div id="TOR$ID">نهاية الأيجار الحالي<br>$TOREND</div>
                                 <hr style="height:5px;">
-                                <div>المؤجر:$LessorName / $LessorNum</div>
+                                <div>بداية العقد<br>$Start_OF_Rent</div>
                                 <hr style="height:5px;">
-                                <div>المستأجر:$TenantName / $TenantNum</div>
+                                <div>نهاية العقد<br>$END_OF_Rent</div>
+                                <hr style="height:5px;">
+                             
+                             
+                                <div>أسم المؤجر<br>$LessorName</div>
+                                <hr style="height:5px;">
+                                <div>أسم المستأجر<br>$TenantName</div>
                                 $YesNo
-                                <a href="$approot?code=$code&color=$colorWithOutHash">Read More</a>
-
+                               <br>
+                                <a href="$approot?code=$code&color=$colorWithOutHash" class="btn btn-success btn-lg" >Read More</a>
                             </div>
                         </div> <!-- end card -->
                     </div>
