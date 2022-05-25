@@ -24,25 +24,24 @@ class AdminModel
   public function DashBoard() {
       $this->DashBoard = new DashboardModel;
       if (isset($_POST['DEL'])) {
-        return($this->DashBoard->DeleteUser($_POST['ID']));
+        return ($this->DashBoard->DeleteUser($_POST['ID']));
     }else if(isset($_POST['DeleteAbout'])){
-        return($this->DashBoard->DeleteUserAbout($_POST['ID']));
+        return ($this->DashBoard->DeleteUserAbout($_POST['ID']));
     }else if(isset($_POST['EditAbout'])){
-        
-        return($this->DashBoard->DashBoard());
+       
+        return ($this->DashBoard->DashBoard());
     }else if(isset($_POST['state'])){
-        return($this->DashBoard->SearchMain($_POST['state'],$_POST['search'],$_POST['offsettt'],$_POST['norpptt']));
+        return ($this->DashBoard->SearchMain($_POST['state'],$_POST['search'],$_POST['offsettt'],$_POST['norpptt']));
     }else if(isset($_POST['ConfirmAboutAdd'])){
-        return($this->DashBoard->ConfirmUserAdd($_POST['newEmail'],$_POST['name1'],$_POST['title1'],$_POST['disc1']));
+        return ($this->DashBoard->ConfirmUserAdd($_POST['newEmail'],$_POST['name1'],$_POST['title1'],$_POST['disc1']));
     }else if(isset($_POST['ConfirmAbout'])){
-        return($this->DashBoard->ConfirmUser($_POST['email'],$_POST['newEmail'],$_POST['ID'],$_POST['name1'],$_POST['title1'],$_POST['disc1']));
+        return ($this->DashBoard->ConfirmUser($_POST['email'],$_POST['newEmail'],$_POST['ID'],$_POST['name1'],$_POST['title1'],$_POST['disc1']));
     }
     else if(isset($_POST['page'])){
-        return($this->DashBoard->switchMainDashBoard($_POST['page']));
+        return ($this->DashBoard->switchMainDashBoard($_POST['page'] ,$_POST['offset'],$_POST['norpp']));
     }
-    else{
-        return($this->DashBoard->EditConfirm($_POST['ConfirmID'],$_POST['Rank'],$_POST['valuee']));
-
+    else if(isset($_POST['ConfirmID'])){
+        return ($this->DashBoard->EditConfirm($_POST['ConfirmID'],$_POST['Rank'],$_POST['valuee']));
     }
 
       
@@ -93,6 +92,7 @@ public function viewRent() {
             if($_POST['Rent']!="Salah"){
                 $this->ViewRent->setRent($_POST['Rent']);
             }
+            $this->ViewRent->UpdateRents();
             return ($this->ViewRent->CheckIfRentIsStillValid($_POST['offset'],$_POST['no_of_records_per_page']));
          }
     
@@ -105,7 +105,7 @@ public function ViewAdd() {
     $this->ViewAdd = new viewAddModel;
     
 
-        if(isset($_POST['name'])){
+    if(isset($_POST['name'])){
         if($_POST['name']!="Salah"){
             $this->ViewAdd->setname($_POST['name']);
         }
@@ -213,6 +213,7 @@ public function ViewAdd() {
                 $this->ViewAdd->setEditID($_POST['EditID']);
             }
         }
+    
         
         return ($this->ViewAdd->Add());
         }

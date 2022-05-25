@@ -527,8 +527,8 @@ class ViewADD extends view
           processData: false,
           success:function(data)
           {
-            console.log(data);
-            // window.location.replace("<?php echo $action2;?>");
+            // console.log(data);
+            window.location.replace("<?php echo $action2;?>");
           }
         })
       

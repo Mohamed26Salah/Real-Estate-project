@@ -90,7 +90,7 @@
                 <?php } ?>
           
                 <li class="has-children">
-                  <a><span class = "text-right" dir="rtl"  style = "font-weight:bold;" >اهلا ,<?php echo strtok($_SESSION['user_name'] , ' '); ?></span></a>
+                  <a><span  style = "font-weight:1000;" >انضم الينا</span></a>
                   <ul class="dropdown arrow-top">
                     <?php if(empty($_SESSION['user_id'])){
                       ?>
