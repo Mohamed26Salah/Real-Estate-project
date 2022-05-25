@@ -19,7 +19,7 @@ class viewDescription extends View
     $furnished = $this->model->getFurnished();
     $floor = $this->model->getFloor();
     $action = URLROOT . 'Pages/viewEdit';
-    $action2 = URLROOT . 'Pages/viewItem';
+    
 
     $TypeID = $_GET['TypeID'];
 
@@ -32,6 +32,8 @@ class viewDescription extends View
     $NumOfFloors = $this->model->getNumOfFloors();
 
     $doublex = $this->model->getDoublex();
+
+    $action2 = URLROOT . 'Pages/viewItem?TypeID='. $TypeID;
     
    
 ?>
@@ -192,8 +194,12 @@ class viewDescription extends View
                               }
 
 
+                             
                           ?>
                         </div>
+
+
+                         
                     <div class="col-md-6 mt-3">
                         <i class="fa fa-bed fa-lg" aria-hidden="true"style="font-weight: bold;"></i><label for="color" > الغرف : </label>
                         <span><?php echo $rooms; ?> </span>
@@ -208,6 +214,7 @@ class viewDescription extends View
                       <span><?php echo $floor; ?></span>
 	        				</div>
 
+                  
 
                         <div class="col-md-6 mt-4">
                             <i class="fa fa-stairs fa-lg" aria-hidden="true"style="font-weight: bold;"></i><label for="size"  > دوبلكس :  </label>
@@ -290,8 +297,8 @@ class viewDescription extends View
                         </div>
 
                   <?php
-                  if(!empty($_SESSION['Rank'])) {
-                  if($_SESSION['Rank'] == "Admin") {
+                  if(!empty($_SESSION['user_id'])) {
+                    if($_SESSION['Rank'] == "Admin") {
                   ?>
                         <div class="col-md-6 mt-3">
                         <i class="fa fa-user fa-lg" aria-hidden="true"style="font-weight: bold; "></i><label for="color" > اسم صاحب العقار: </label>
@@ -325,20 +332,28 @@ class viewDescription extends View
 	        				
 	        			</div>
 	        			<div class="product-count">
-	        				
-							    <a href="#" class="round-black-btn btn-lg" style= "float:right;">Add to wishlist<i class='fa fa-heart' aria-hidden='true'></i></a>                 
+                <a href="#" class="round-black-btn btn-lg" style= "float:right;">Add to wishlist<i class='fa fa-heart' aria-hidden='true'></i></a>
+                <?php
+                  if(!empty($_SESSION['user_id'])) {
+                    if($_SESSION['Rank'] == "Admin") {
+                  ?>
+							                     
                    <div class="btnRent" id="btnRent" style= "float:left; margin-left:-1%;">
                     <div class="btnRent-back" id="btnRent-back">
                     <p style="font-size:30px">هل أنت متأكد ؟</p>
                     <button class="yes" id="yes" style="font-size:20px" >نعم</button>
                     <button class="no" id="no" style="font-size:20px">لا</button>
                     </div>
+                    
                     <div class="btnRent-front" ID="btnRent-front" onclick="button()">احذف</div>
                    
                     </div>
 
                   <a href="<?php echo $action; ?>?IDE=<?php echo $cardDetails->ID; ?> &TypeID=<?php echo $TypeID; ?>" class="btn btn-success btn-lg" style= "float:left; color:white; text-decoration:none; margin-top:1rem; margin-left:25px;">Edit</a>
-
+                  <?php
+                    }
+                  }
+                  ?>
                
 	        			</div>
 	        		</div>

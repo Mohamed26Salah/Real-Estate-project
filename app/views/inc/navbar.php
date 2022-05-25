@@ -64,14 +64,18 @@
             <nav class="site-navigation position-relative text-right" role="navigation">
 
               <ul class="site-menu js-clone-nav mr-auto d-none d-lg-block">
-                <li class="<?php echo $activeIndex; ?>"><a href="<?php echo URLROOT . 'index'; ?>"><span>Home</span></a></li>
+                <li style = "font-weight:1000;" class="<?php echo $activeIndex; ?>"><a href="<?php echo URLROOT . 'index'; ?>"><span>الصفحة الرئيسية</span></a></li>
                 <!-- <li class="<?php echo $activeItem; ?>"><a href="<?php echo URLROOT . 'pages/viewItem'; ?>"><span>view Item</span></a></li> -->
-                <li class="<?php echo $activeRent; ?>"><a href="<?php echo URLROOT . 'pages/viewRent'; ?>"><span>view Rent</span></a></li>
-                <li class="<?php echo $activeAbout; ?>"><a href="<?php echo URLROOT . 'pages/about'; ?>"><span>About</span></a></li>
-                <?php if($_SESSION['role']="Admin"){
+                
+                <li style = "font-weight:1000;" class="<?php echo $activeAbout; ?>"><a href="<?php echo URLROOT . 'pages/about'; ?>"><span>عن أمان</span></a></li>
+
+                <?php if(!empty($_SESSION['user_id'])) {
+                  if($_SESSION['Rank']=="Admin"){
                 ?>
+                <li style = "font-weight:1000;"  class="<?php echo $activeRent; ?>"><a href="<?php echo URLROOT . 'pages/viewRent'; ?>"><span>الايجارات</span></a></li>
                 <li class="<?php echo $activeDashboard; ?>"><a href="<?php echo URLROOT . "pages/DashBoard"; ?>"><span>DashBoard</span></a></li>
-                <?php } ?>
+                <?php }
+                 }?>
                  <?php
                  if(!empty($_SESSION['user_id'])){
                    ?>
@@ -86,19 +90,19 @@
                 <?php } ?>
           
                 <li class="has-children">
-                  <a><span>Join Us!</span></a>
+                  <a><span class = "text-right" dir="rtl"  style = "font-weight:bold;" >اهلا ,<?php echo strtok($_SESSION['user_name'] , ' '); ?></span></a>
                   <ul class="dropdown arrow-top">
                     <?php if(empty($_SESSION['user_id'])){
                       ?>
-                       <li><a href="<?php echo URLROOT . 'users/Login'; ?>">Login</a></li>
-                       <li><a href="<?php echo URLROOT . 'users/Register'; ?> ">Sign Up</a></li>
+                       <li><a href="<?php echo URLROOT . 'users/Login'; ?>"  style = "font-weight:1000;" >تسجيل الدخول</a></li>
+                       <li><a href="<?php echo URLROOT . 'users/Register'; ?> "  style = "font-weight:1000;" >انشاء حساب</a></li>
                       <?php
                     }
                    ?>
                    
                     <?php if(!empty($_SESSION['user_id'])){
                     ?>
-                <li><a href="<?php echo URLROOT . 'users/SignOut'; ?> ">Log Out !</a></li>
+                <li><a href="<?php echo URLROOT . 'users/SignOut'; ?> "  style = "font-weight:1000;" >تسجيل الخروج </a></li>
                 <?php } ?>
                   </ul>
                 </li>

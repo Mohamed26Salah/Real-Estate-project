@@ -4,6 +4,7 @@ class WishListModel extends model
     protected $ID;
     protected $visibleAll;
     protected $WishListValue;
+    protected $TypeID;
     
     public function getID()
     {
@@ -29,6 +30,15 @@ class WishListModel extends model
     {
         $this->WishListValue = $WishListValue;
     }
+
+    public function setTypeID($WishListValue)
+    {
+        $this->TypeID = $TypeID;
+    }
+
+
+    
+    
  
  //Check wishlist for each card
  function wishlist($IDArray){
@@ -62,22 +72,33 @@ class WishListModel extends model
  }
  }
 
- function card($imgroot,$Price,$Area,$PaymentMethod,$Name,$DescriptionUser,$offered,$Code,$AdressUser,$ID,$WishList,$WishListString,$image){
+ function card($imgroot,$Price,$Area,$PaymentMethod,$Name,$DescriptionUser,$offered,$Code,$AdressUser,$ID,$WishList,$WishListString,$image , $TypeID){
      $output2='';
+     $approot = URLROOT . 'pages/viewDescription';
+
+     if(strlen($AdressUser) > 75) {
+        $shortAddressArray = substr("$AdressUser",0 , 75) . "...";
+       
+    }
+    else {
+        $shortAddressArray = $AdressUser;
+    }
+     
      $output2=<<<EOT
+     
          <div class="containerFilter" style="margin-left:25%;margin-right:25%;margin-top:1%;">
-         <img src="$imgroot$image" width="350px" height="240px">
+         <a href="$approot?ID=$ID&TypeID=$TypeID"><img src="$imgroot$image" width="350px" height="240px"> </a>
          <div class="title" style="margin-top:2%;">
          
          <strong style="font-size:20px;font-weight: bold; ">$Price EGP</strong>
-         <h2 style="font-family: Open Sans, sans-serif; color: #403b45;font-weight: bold; font-size:16px; margin-top: 1.5%; ">$Name</h2>
-         <div style="font-family: Open Sans, sans-serif; color: #403b45;font-weight: bold; font-size:16px;margin-top: 1%;">FLATS <i class="fa fa-bed fa-lg" aria-hidden="true"style="margin-left:10px;font-weight: bold;"> </i><i class="fa fa-bath fa-lg" aria-hidden="true" style="margin-left:10px;margin-right:10px;font-weight: bold;"></i> 
+         <h2 style="font-family: Open Sans, sans-serif; color: #403b45;font-weight: 900; font-size:16px; margin-top: 1.5%; ">$Name</h2>
+         <div style="font-family: Open Sans, sans-serif; color: #403b45;font-weight: bold; font-size:16px;margin-top: 2%;">
             $Area sqm
             </div>
-         <div style="font-family: Open Sans, sans-serif; color: #403b45; font-size:16px;margin-top: 1%;"><i class="fa-solid fa-paint-roller" style="color:green;"></i>
-         <i class="fa-solid fa-sack-dollar" style="margin-left:10px; color:green;"></i> $PaymentMethod </div><br>
-         <div style="font-family: Open Sans, sans-serif; color: #403b45; font-size:18px;margin-top: 1%;">$offered</div>
-         <div class="solo" style="font-family: Open Sans, sans-serif; color: #403b45; font-size:18px;margin-top: 1%;margin-bottom: 1.5%; font-weight: 600;"><i class="fa fa-map-marker" aria-hidden="true" style="color:green;">$AdressUser</i></div>
+         
+         <div><i class="fa-solid fa-sack-dollar" style=" margin-top : 10px;color:green;"></i> $PaymentMethod </div><br>
+         
+         <div class="solo" style="font-family: Open Sans, sans-serif; color: #403b45; font-size:18px;margin-top: 1%;margin-bottom: 1.5%; font-weight: 600;"><i class="fa fa-map-marker" aria-hidden="true" style="color:green;">$shortAddressArray</i></div>
          <div class="switchAll" >
          
          <button onclick="WishList($ID)" class="buttonWishList" value = $WishList id="button$ID" style="background-color:$WishList" ><span id="Span$ID"> $WishListString </span></button>
@@ -106,7 +127,7 @@ class WishListModel extends model
         $imgroot = IMAGEROOT3;
             $WishList="green";
             $WishListString="Saved";
-        $output.= $this->card($imgroot,$Card->Price,$Card->Area,$Card->PaymentMethod,$Card->Name,$Card->DescriptionUser,$Card->offered,$Card->Code,$Card->AddressUser,$Card->ID,$WishList,$WishListString,$Card->image);
+        $output.= $this->card($imgroot,$Card->Price,$Card->Area,$Card->PaymentMethod,$Card->Name,$Card->DescriptionUser,$Card->offered,$Card->Code,$Card->AddressUser,$Card->ID,$WishList,$WishListString,$Card->image, $Card->TypeID);
       }
     }
   

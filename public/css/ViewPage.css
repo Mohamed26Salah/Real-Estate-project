@@ -655,12 +655,12 @@ background-color: black;
   padding: 10px;
   border-radius: 10px;
   border: 1px solid transparent;
-  background-color: blue;
+  background-color: red;
   transition: .3s;
 }
 #LoadMore:hover {
-  color: blue;
+  color: black;
   background-color: #fff;
-  border: 1px solid blue;
+  border: 1px solid white;
   text-decoration: none;
 }

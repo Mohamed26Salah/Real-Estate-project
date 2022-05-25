@@ -314,7 +314,7 @@ class viewItemModel extends model
             
             </div>
             <strong style="font-size:20px;font-weight: bold; ">$PriceArray EGP</strong>
-            <a href="$approot?code=$CodeArray"> <h2 style="font-family: Open Sans, sans-serif; color: #403b45; font-weight: bold;font-size:16px; margin-top: 1.5%; ">$NameArray</h2></a>
+            <a href="$approot?ID=$IDArray&TypeID=$this->TypeID"> <h2 style="font-family: Open Sans, sans-serif; color: #403b45; font-weight: bold;font-size:16px; margin-top: 1.5%; ">$NameArray</h2></a>
             <div style = "margin-top:10px;">
            
                 <i class="fa-solid fa-sack-dollar" style="color:green;"></i> $PaymentArray 

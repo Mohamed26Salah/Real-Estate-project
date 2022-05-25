@@ -24,39 +24,54 @@ class viewItem extends View
          <?php 
          $actionAdd = URLROOT . 'Pages/ViewADD';
          if ($_GET['TypeID']==1) { 
-          $StyleFlat="background-color:purple; border-radius:4px;";
+          $StyleFlat="background-color:purple; border-radius:4px; color:white; ";
+          $prop = "شقة";
          }else if($_GET['TypeID']==2){
-          $StyleBuilding="background-color:purple; border-radius:4px;";
+          $StyleBuilding="background-color:purple; border-radius:4px; color:white; ";
+          $prop = "عمارة";
          }else if($_GET['TypeID']==3){
-          $StyleVilla="background-color:purple; border-radius:4px;";
+          $StyleVilla="background-color:purple; border-radius:4px; color:white;";
+          $prop = "فيلا";
          }else if($_GET['TypeID']==4){
-          $StyleStore="background-color:purple; border-radius:4px;";
+          $StyleStore="background-color:purple; border-radius:4px; color:white; ";
+          $prop = "محل";
          }else if($_GET['TypeID']==5){
-          $StyleClinic="background-color:purple; border-radius:4px;";
+          $StyleClinic="background-color:purple; border-radius:4px; color:white; ";
+          $prop = "عيادة";
          }else if($_GET['TypeID']==6){
-          $StyleFarm="background-color:purple; border-radius:4px;";
+          $StyleFarm="background-color:purple; border-radius:4px; color:white;  ";
+          $prop = "مزرعة";
          }else if($_GET['TypeID']==7){
-          $StyleFactory="background-color:purple; border-radius:4px;";
+          $StyleFactory="background-color:purple; border-radius:4px; color:white; ";
+          $prop = "مصنع";
          }else if($_GET['TypeID']==8){
-          $StyleLand="background-color:purple; border-radius:4px;";
+          $StyleLand="background-color:purple; border-radius:4px; color:white;";
+          $prop = "ارض";
          }else if($_GET['TypeID']==9){
-          $StyleOther="background-color:purple; border-radius:4px;";
+          $StyleOther="background-color:purple; border-radius:4px; color:white; ";
+          $prop = "";
          }
          ?>
-          <li class="filter" style="<?php echo($StyleFlat);?>" data-filter=".color-1"><a href="viewItem?TypeID=1" data-type="color-1" style="font-size:20px;">شقق</a></li>
-          <li class="filter" style="<?php echo($StyleBuilding);?>" data-filter=".color-1"><a href="viewItem?TypeID=2" data-type="color-1" style="font-size:20px;" >عمارات</a></li>
-          <li class="filter" style="<?php echo($StyleVilla);?>" data-filter=".color-1"><a href="viewItem?TypeID=3" data-type="color-1" style="font-size:20px;">فيلا</a></li>
-          <li class="filter" style="<?php echo($StyleStore);?>" data-filter=".color-1"><a href="viewItem?TypeID=4" data-type="color-1" style="font-size:20px;">محلات</a></li>
-          <li class="filter" style="<?php echo($StyleClinic);?>" data-filter=".color-2"><a href="viewItem?TypeID=5" data-type="color-2" style="font-size:20px;">عيادات</a></li>
-          <li class="filter" style="<?php echo($StyleFarm);?>" data-filter=".color-2"><a href="viewItem?TypeID=6" data-type="color-2" style="font-size:20px;">مزارع</a></li>
-          <li class="filter" style="<?php echo($StyleFactory);?>" data-filter=".color-1"><a href="viewItem?TypeID=7" data-type="color-1" style="font-size:20px;">مصانع</a></li>
-          <li class="filter" style="<?php echo($StyleLand);?>" data-filter=".color-1"><a href="viewItem?TypeID=8" data-type="color-1" style="font-size:20px;">أراضي</a></li>
-          <li class="filter" style="<?php echo($StyleOther);?>" data-filter=".color-1"><a href="viewItem?TypeID=9" data-type="color-1" style="font-size:20px;">أخري</a></li>
-          <li><a href="<?php echo $actionAdd;?>?TypeID=<?PHP echo($_GET['TypeID'])?>" class="AddbuttonViewPage" style="color:white; font-size:20px; ">أضافة شقة جديدة</a></li>
+          <li class="filter" style="<?php echo($StyleFlat);?> " data-filter=".color-1"><a href="viewItem?TypeID=1" data-type="color-1" style = "font-size:20px; " >شقق</a></li>
+          <li class="filter" style="<?php echo($StyleBuilding);?>  " data-filter=".color-1"><a href="viewItem?TypeID=2" data-type="color-1" style = "font-size:20px; " >عمارات</a></li>
+          <li class="filter" style="<?php echo($StyleVilla);?> " data-filter=".color-1"><a href="viewItem?TypeID=3" data-type="color-1" style = "font-size:20px; ">فيلا</a></li>
+          <li class="filter" style="<?php echo($StyleStore);?> " data-filter=".color-1"><a href="viewItem?TypeID=4" data-type="color-1" style = "font-size:20px; ">محلات</a></li>
+          <li class="filter" style="<?php echo($StyleClinic);?> " data-filter=".color-2"><a href="viewItem?TypeID=5" data-type="color-2" style = "font-size:20px; ">عيادات</a></li>
+          <li class="filter" style="<?php echo($StyleFarm);?> " data-filter=".color-2"><a href="viewItem?TypeID=6" data-type="color-2" style = "font-size:20px; ">مزارع</a></li>
+          <li class="filter" style="<?php echo($StyleFactory);?>  " data-filter=".color-1"><a href="viewItem?TypeID=7" data-type="color-1" style = "font-size:20px; ">مصانع</a></li>
+          <li class="filter" style="<?php echo($StyleLand);?> " data-filter=".color-1"><a href="viewItem?TypeID=8" data-type="color-1" style = "font-size:20px; ">أراضي</a></li>
+          <li class="filter" style="<?php echo($StyleOther);?> " data-filter=".color-1"><a href="viewItem?TypeID=9" data-type="color-1" style = "font-size:20px; ">أخري</a></li>
+         
        </ul> 
      </div> 
    </div> 
-
+   <?php if(!empty($_SESSION['user_id'])) { 
+     if($_SESSION['Rank'] == "Admin") {
+       ?>
+       <a href="<?php echo $actionAdd;?>?TypeID=<?PHP echo($_GET['TypeID'])?>" class="AddbuttonViewPage" style="color:white; font-size:20px; float:right; list-style-type: none; ">أضافة <?php  echo $prop; ?></a>
+<?php
+     }
+   } ?>
    <section class="cd-gallery">
      <ul>
        
@@ -79,6 +94,11 @@ class viewItem extends View
         ?>
         <div id="cards">
          </div>
+
+         <ul class="row" onclick=itemsAjax2();>
+
+            <li id="LoadMore" style="width:25%; cursor: pointer; font-size:20px;">تحميل المزيد</li>
+        </ul>
         <?php
 
         
@@ -95,10 +115,7 @@ class viewItem extends View
    </section>
      <!-- cards end here -->
      <!-- pagination  start-->
-     <ul class="row" onclick=itemsAjax2();>
-
-<li id="LoadMore" style="width:50%; cursor: pointer;">Load More</li>
-</ul>
+     
 
    
    <?php $action = URLROOT . 'Pages/viewItem'; ?>
@@ -590,7 +607,7 @@ function WishList(IDArray){
               // container = document.getElementById('cards')
               // container.innerHTML=data;
               if(!data){
-              loadMore = document.getElementById('LoadMore').innerHTML='No more items to Load';
+              loadMore = document.getElementById('LoadMore').innerHTML='لا يوجد المزيد';
                console.log(data);
               }else{
               container = document.getElementById('cards')
