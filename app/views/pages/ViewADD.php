@@ -11,7 +11,7 @@ class ViewADD extends view
        $TypeID=$_GET['TypeID'];
       }
     $action = 'ViewADD'; 
-    $action2 = URLROOT . 'Pages/viewItem'; 
+    $action2 = URLROOT . 'Pages/viewItem?TypeID='.$_GET['TypeID']; 
 
       ?>
 
@@ -374,6 +374,8 @@ class ViewADD extends view
     if(TypeID==4||TypeID==5||TypeID==6||TypeID==7) {
       if( document.getElementById('TypeOFActivity').value ) {
           TypeOFActivity = document.getElementById('TypeOFActivity').value;
+          // console.log(document.getElementById('TypeOFActivity').value);
+          // console.log("View Part")
           Add_Data.append("TypeOFActivity",TypeOFActivity);
         }
         else{

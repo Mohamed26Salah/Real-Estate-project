@@ -72,7 +72,7 @@ class viewItem extends View
          }
 
 
-         $no_of_records_per_page = 2;
+         $no_of_records_per_page = 5;
          $offset = ($pageno - 1) * $no_of_records_per_page;
 
        
@@ -255,7 +255,8 @@ class viewItem extends View
              <select class="filter" name="Finishing" id="Finishing">
               <option selected value="">أختر</option>
                <option value="1">Mtshstb</option>
-               <option value="2">Not Mtshstb</option>
+               <option value="2">half Mtshstb</option>
+               <option value="3">Not Mtshstb</option>
              </select>
            </div> 
          </div> 

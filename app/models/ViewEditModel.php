@@ -7,7 +7,11 @@ class viewEditModel extends model
     protected $Floor;
     protected $Furnished;
     protected $Finishing;
-
+    protected $NumOfFloors;
+    protected $NUMOFFlats;
+    protected $Doublex;
+    protected $TypeOFActivity;
+    protected $nUMOFAB;
 
     
     public function getID()
@@ -62,6 +66,51 @@ class viewEditModel extends model
     public function setFinishing($Finishing)
     {
         $this->Finishing = $Finishing;
+    }
+
+
+    public function getNumOfFloors()
+    {
+        return $this->NumOfFloors;
+    }
+    public function setNumOfFloors($NumOfFloors)
+    {
+        $this->NumOfFloors = $NumOfFloors;
+    }
+
+
+    public function getNUMOFFlats()
+    {
+        return $this->NUMOFFlats;
+    }
+    public function setNUMOFFlats($NUMOFFlats)
+    {
+        $this->NUMOFFlats = $NUMOFFlats;
+    }
+    public function getDoublex()
+    {
+        return $this->Doublex;
+    }
+    public function setDoublex($Doublex)
+    {
+        $this->Doublex = $Doublex;
+    }
+
+    public function getTypeOFActivity()
+    {
+        return $this->TypeOFActivity;
+    }
+    public function setTypeOFActivity($TypeOFActivity)
+    {
+        $this->TypeOFActivity = $TypeOFActivity;
+    }
+    public function getnUMOFAB()
+    {
+        return $this->nUMOFAB;
+    }
+    public function setnUMOFAB($nUMOFAB)
+    {
+        $this->nUMOFAB = $nUMOFAB;
     }
 
     public function CheckCodeEdit($OldCode,$NewCode){
@@ -235,21 +284,12 @@ foreach ($recordEav as $item) {
         }
         if ($item->AtrributeID == 2) {
         $this->setFinishing($item->Value);
-    }
+        }
+        if ($item->AtrributeID == 6) {
+        $this->setDoublex($item->Value);
+        }
 
-//     if ($item->AtrributeID == 5) {
-//         $this->setNumOFFloors($item->Value);
-//    }
 
-//    if ($item->AtrributeID == 9) {
-//     $this->setFurnished($item->Value);
-//     }
-//    if ($item->AtrributeID == 1) {
-//         $this->setFloor($item->Value);
-//     }
-//     if ($item->AtrributeID == 2) {
-//       $this->setFinishing($item->Value);
-//   }
 }
 $FinishingArray="";
 if($this->Finishing == 1){
@@ -276,6 +316,16 @@ if($this->Furnished == 1){
     <option value='2'>  لا </option>";
 }else if($this->Furnished == 2){
     $FurnishedArray="  <option selected value=''>أختر</option>
+    <option value='1'> نعم</option>
+    <option selected value='2'>  لا </option>";
+}
+$DoublexArray="";
+if($this->Doublex == 1){
+    $DoublexArray="  <option value=''>أختر</option>
+    <option selected value='1'> نعم</option>
+    <option value='2'>  لا </option>";
+}else if($this->Doublex == 2){
+    $DoublexArray="  <option selected value=''>أختر</option>
     <option value='1'> نعم</option>
     <option selected value='2'>  لا </option>";
 }
@@ -310,47 +360,189 @@ if($this->Furnished == 1){
             $FurnishedArray
             </select>
           </p>
-          <input id='NUMOFFloors' name='NUMOFFloors' type='hidden'>
-          <input id='Doublex' name='Doublex' type='hidden'>
-          <input id='TypeActivity' name='TypeActivity' type='hidden'>
-          <input id='NUMOFAb' name='NUMOFAb' type='hidden'>
-          <input id='ChechCode' name='ChechCode' type='hidden' value="$record->Code">
-          <input id='EditID' name='EditID' type='hidden' value="$record->ID">
+
+          <p class='field half'>
+          <label class='label' for='Doublex'> دوبلكس</label>
+          <select class='select' id='Doublex' required>
+          $DoublexArray
+          </select>
+          </p>
+       
+         
 
     EOT;
           
-        }else {
-        
+        }else if($record->TypeID==2){
+          $this->dbh->query("SELECT * FROM `eav` WHERE `AllID` =".$this->ID);
+          $recordEav = $this->dbh->resultSet();
 
-       $output .=<<<EOT
+          foreach ($recordEav as $item) {
+            if ($item->AtrributeID == 11) {
+              $this->setNUMOFFlats($item->Value);
+            }
+              if ($item->AtrributeID == 5) {
+                  $this->setNumOfFloors($item->Value);
+              }
+             
+          }
+          $output .=<<<EOT
           <p class='field required half'>
-            <label class='label' for='NUMOFFloors'>عدد الأدوار</label>
-            <input class='text-input' id='NUMOFFloors' name='NUMOFFloors' onkeyup="lettersandnumbers(this)" required type='text'>
+          <label class='label' for='NUMOFFlats'>عدد الشقق</label>
+          <input class='text-input' id='NUMOFFlats' name='NUMOFFlats' onkeyup="numbers(this)" required type='text' value="$this->NUMOFFlats">
           </p>
-          
-         
+
+          <p class='field required half'>
+          <label class='label' for='NUMOFFloors'>عدد الأدوار</label>
+          <input class='text-input' id='NUMOFFloors' name='NUMOFFloors' onkeyup="numbers(this)" required type='text' value="$this->NumOfFloors">
+          </p>
+          EOT;
+
+       }
+      
+        else if($record->TypeID==3){
+           
+$this->dbh->query("SELECT * FROM `eav` WHERE `AllID` =".$this->ID);
+$recordEav = $this->dbh->resultSet();
+
+foreach ($recordEav as $item) {
+        if ($item->AtrributeID == 4) {
+            $this->setBathroom($item->Value);
+        }
+        if ($item->AtrributeID == 3) {
+            $this->setRoom($item->Value);
+        }
+
+        if ($item->AtrributeID == 9) {
+        $this->setFurnished($item->Value);
+        }
+        if ($item->AtrributeID == 5) {
+            $this->setNUMOFFloors($item->Value);
+        }
+        if ($item->AtrributeID == 2) {
+        $this->setFinishing($item->Value);
+    }
+
+
+}
+$FinishingArray="";
+if($this->Finishing == 1){
+    $FinishingArray=" <option value=''>أختر</option>
+    <option selected value='1'> متشطب</option>
+    <option value='2'> نص تشطيب </option>
+    <option value='3'> مش متشطب </option>";
+}else if($this->Finishing == 2){
+    $FinishingArray=" <option selected value=''>أختر</option>
+    <option value='1'> متشطب</option>
+    <option selected value='2'> نص تشطيب </option>
+    <option value='3'> مش متشطب </option>";
+}
+else if($this->Finishing == 3){
+    $FinishingArray=" <option selected value=''>أختر</option>
+    <option value='1'> متشطب</option>
+    <option value='2'> نص تشطيب </option>
+    <option selected value='3'> مش متشطب </option>";
+}
+$FurnishedArray="";
+if($this->Furnished == 1){
+    $FurnishedArray="  <option value=''>أختر</option>
+    <option selected value='1'> نعم</option>
+    <option value='2'>  لا </option>";
+}else if($this->Furnished == 2){
+    $FurnishedArray="  <option selected value=''>أختر</option>
+    <option value='1'> نعم</option>
+    <option selected value='2'>  لا </option>";
+}
+
+
+        $output .=<<<EOT
+
+          <p class='field required half'>
+          <label class='label' for='NUMOFFloors'>عدد الأدوار</label>
+          <input class='text-input' id='NUMOFFloors' name='NUMOFFloors' onkeyup="numbers(this)" required type='text' value="$this->NumOfFloors">
+          </p>
+          <p class='field required half'>
+            <label class='label' for='NUMOFRooms'>عددالغرف</label>
+            <input class='text-input' id='NUMOFRooms' name='NUMOFRooms' onkeyup="numbers(this)" required type='text' value="$this->Room" >
+          </p>
+          <p class='field required half'>
+            <label class='label' for='NUMOFBathrooms'> عدد الحمامات </label>
+            <input class='text-input' id='NUMOFBathrooms' name='NUMOFBathrooms' onkeyup="numbers(this)"required type='text' value="$this->Bathroom" >
+          </p>
+            <input id='TypeID' name='TypeID' type='hidden' value="1">
+          </p>
           <p class='field half'>
-            <label class='label' for='Doublex'> دوبلكس</label>
-            <select class='select' id='Doublex' required>
-              <option selected value=''>أختر</option>
-              <option value='1'> نعم</option>
-              <option value='2'>  لا </option>
+            <label class='label' for='Finishing'> التشطيب</label>
+            <select class='select' id='Finishing' required>
+            $FinishingArray
             </select>
           </p>
           <p class='field half'>
-            <label class='label' for='TypeActivity'>نوع النشاط</label>
-            <input class='text-input' id='TypeActivity' name='TypeActivity' onkeyup="lettersandnumbers(this)" required type='text'>
+            <label class='label' for='Furnished'> مفروشة</label>
+            <select class='select' id='Furnished' required>
+            $FurnishedArray
+            </select>
           </p>
-          <p class='field required half'>
-            <label class='label' for='NUMOFAB'>عدد المباني الأدارية</label>
-            <input class='text-input' id='NUMOFAB' name='NUMOFAb' onkeyup="lettersandnumbers(this)" required type='text'>
-          </p>
+       
+         
+
     EOT;
+
+      
           
-           } 
+          } else if($record->TypeID==4||$record->TypeID==5||$record->TypeID==7){
+              $this->dbh->query("SELECT * FROM `eav` WHERE `AllID` =".$this->ID);
+              $recordEav = $this->dbh->resultSet();
+
+              foreach ($recordEav as $item) {
+              if ($item->AtrributeID == 7) {
+              $this->setTypeOFActivity($item->Value);
+              }
+
+              }
+              $output .=<<<EOT
+              <p class='field required half'>
+              <label class='label' for='TypeOFActivity'>نوع النشاط</label>
+              <input class='text-input' id='TypeOFActivity' name='TypeOFActivity' onkeyup="lettersandnumbers(this)" required type='text' value="$this->TypeOFActivity">
+              </p>
+              EOT;
+
+       }
+       else if($record->TypeID==6){
+        $this->dbh->query("SELECT * FROM `eav` WHERE `AllID` =".$this->ID);
+        $recordEav = $this->dbh->resultSet();
+
+        foreach ($recordEav as $item) {
+        if ($item->AtrributeID == 7) {
+        $this->setTypeOFActivity($item->Value);
+        }
+        if ($item->AtrributeID == 8) {
+          $this->setnUMOFAB($item->Value);
+          }
+
+        }
+        $output .=<<<EOT
+        <p class='field required half'>
+        <label class='label' for='TypeOFActivity'>نوع النشاط</label>
+        <input class='text-input' id='TypeOFActivity' name='TypeOFActivity' onkeyup="lettersandnumbers(this)" required type='text' value="$this->TypeOFActivity">
+        </p>
+        <p class='field required half'>
+        <label class='label' for='nUMOFAB'>عدد المباني الأدارية</label>
+        <input class='text-input' id='nUMOFAB' name='nUMOFAB' onkeyup="lettersandnumbers(this)" required type='text' value="$this->nUMOFAB">
+        </p>
+        EOT;
+
+ }
+ else if($record->TypeID==8||$record->TypeID==9){
+  $output .=<<<EOT
+  <input class='text-input' id='Fix' name='Fix' type='hidden' value="0">
+  EOT;
+
+}
+   
 
         $output .=<<<EOT
-  
+        <input id='ChechCode' name='ChechCode' type='hidden' value="$record->Code">
+        <input id='EditID' name='EditID' type='hidden' value="$record->ID">
         </div>
           <p class='field required'>
           <div class="alert alert-danger"role="alert">

@@ -179,7 +179,21 @@ class viewDescription extends View
                     ?>
                     </div>
 
+                    <div class="col-md-6 mt-4">
+                            <i class="fa fa-couch fa-lg" aria-hidden="true"style="font-weight: bold;"></i><label for="size"  > الفرش :  </label>
+                            <?php
+                              if($furnished == 1) {
+                                echo "<span>مفروشة</span>";
 
+                              }
+
+                              else if($furnished == 2) {
+                                echo "<span> ليست مفروشة</span>";
+                              }
+
+
+                          ?>
+                        </div>
                     <div class="col-md-6 mt-3">
                         <i class="fa fa-bed fa-lg" aria-hidden="true"style="font-weight: bold;"></i><label for="color" > الغرف : </label>
                         <span><?php echo $rooms; ?> </span>
@@ -194,29 +208,6 @@ class viewDescription extends View
                       <span><?php echo $floor; ?></span>
 	        				</div>
 
-                  <div class="col-md-6 mt-4">
-                            <i class="fa fa-couch fa-lg" aria-hidden="true"style="font-weight: bold;"></i><label for="size"  > الفرش :  </label>
-                            <?php
-                              if($furnished == 1) {
-                                echo "<span>مفروشة</span>";
-
-                              }
-
-                              else if($furnished == 2) {
-                                echo "<span> ليست مفروشة</span>";
-                              }
-
-
-                              if($doublex == 1) {
-                                echo "<span>دوبلكس</span>";
-
-                              }
-
-                              else if($doublex == 2) {
-                                echo "<span> مش دوبلكس</span>";
-                              }
-                          ?>
-                        </div>
 
                         <div class="col-md-6 mt-4">
                             <i class="fa fa-stairs fa-lg" aria-hidden="true"style="font-weight: bold;"></i><label for="size"  > دوبلكس :  </label>
