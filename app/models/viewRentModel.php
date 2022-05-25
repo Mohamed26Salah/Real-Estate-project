@@ -93,14 +93,7 @@ class viewRentModel extends model
         
         return $output2;
     }
-    // $TOR
-    // $TOREND
-    // $Start_OF_Rent
-    // $END_OF_Rent
-    // $LessorName
-    // $TenantName
-    // $LessorNum
-    // $TenantNum
+  
     public function ViewRentOn($offset, $no_of_records_per_page)
     {
         $this->dbh->query("SELECT * FROM `rents`  LIMIT $offset, $no_of_records_per_page");
@@ -118,6 +111,45 @@ class viewRentModel extends model
     //     // shows the total amount of days (not divided into years, months and days like above)
     //     return $interval->days;
     // }
+    public function UpdateRents(){
+        $this->dbh->query("SELECT * FROM `rents`");
+        $ALLRECORDS = $this->dbh->resultSet();
+        foreach ($ALLRECORDS as $Item) {
+            $date3 = date('Y-m-d');
+            $date3 = date('Y-m-d', strtotime($date3));
+            $date1 = date('Y-m-d', strtotime($Item->TOR));
+            $date2 = date('Y-m-d', strtotime($Item->TOREND));
+            $date4 = date('Y-m-d', strtotime($Item->Start_OF_Rent));
+            $date5 = date('Y-m-d', strtotime($Item->END_OF_Rent));
+            $CardID=$Item->ID;
+            $TOR=$Item->TOR;
+            $TOREND=$Item->TOREND;
+            $Start_OF_Rent=$Item->Start_OF_Rent;
+            $END_OF_Rent=$Item->END_OF_Rent;
+           
+
+            if(($date4>$date3)){
+                $QUERY= "UPDATE `rents` SET `status`= 4 WHERE ID=$Item->ID";
+                $this->dbh->query($QUERY);
+                $this->dbh->execute();
+            }
+            else if(($date3 > $date5)){
+                $QUERY= "UPDATE `rents` SET `status`= 3 WHERE ID=$Item->ID";
+                $this->dbh->query($QUERY);
+                $this->dbh->execute();
+             
+            }else if (($date3 >= $date1) && ($date3 <= $date2)){
+                $QUERY= "UPDATE `rents` SET `status`= 1 WHERE ID=$Item->ID";
+                $this->dbh->query($QUERY);
+                $this->dbh->execute();
+            }
+            else if((($date3 < $date1)&&($date3 > $date4)) || (($date3 > $date2)&&($date3 < $date5))){
+                $QUERY= "UPDATE `rents` SET `status`= 2 WHERE ID=$Item->ID";
+                $this->dbh->query($QUERY);
+                $this->dbh->execute();
+            }
+        }
+    }
     public function CheckIfRentIsStillValid($offset,$no_of_records_per_page){
         $Search="";
         $Status="`status` = 1";
@@ -174,27 +206,27 @@ class viewRentModel extends model
 
             if(($date4>$date3)){
                 // echo"Msh ha3ml haaga";
-                $QUERY= "UPDATE `rents` SET `status`= 4 WHERE ID=$Item->ID";
-                $this->dbh->query($QUERY);
-                $this->dbh->execute();
+                // $QUERY= "UPDATE `rents` SET `status`= 4 WHERE ID=$Item->ID";
+                // $this->dbh->query($QUERY);
+                // $this->dbh->execute();
                 $Background_Color="#D3D337";
                 $Font_Color="white";
                 $YesNo="";
                 $output.= $this->card($YesNo,$CardID,$Background_Color,$Font_Color,$typeName,$rentPrice,$TOR,$TOREND,$Start_OF_Rent,$END_OF_Rent,$LessorName,$TenantName,$LessorNum,$TenantNum,$code);
             }
             else if(($date3 > $date5)){
-                $QUERY= "UPDATE `rents` SET `status`= 3 WHERE ID=$Item->ID";
-                $this->dbh->query($QUERY);
-                $this->dbh->execute();
+                // $QUERY= "UPDATE `rents` SET `status`= 3 WHERE ID=$Item->ID";
+                // $this->dbh->query($QUERY);
+                // $this->dbh->execute();
                 $Background_Color="#4A4A45";
                 $Font_Color="white";
                 $YesNo="";
                 $output.= $this->card($YesNo,$CardID,$Background_Color,$Font_Color,$typeName,$rentPrice,$TOR,$TOREND,$Start_OF_Rent,$END_OF_Rent,$LessorName,$TenantName,$LessorNum,$TenantNum,$code);
             }else if (($date3 >= $date1) && ($date3 <= $date2)){
                 // echo "is between";
-                $QUERY= "UPDATE `rents` SET `status`= 1 WHERE ID=$Item->ID";
-                $this->dbh->query($QUERY);
-                $this->dbh->execute();
+                // $QUERY= "UPDATE `rents` SET `status`= 1 WHERE ID=$Item->ID";
+                // $this->dbh->query($QUERY);
+                // $this->dbh->execute();
                 $Background_Color="#20AF1C";
                 $Font_Color="white";
                 $YesNo="";
@@ -202,9 +234,9 @@ class viewRentModel extends model
             }
             else if((($date3 < $date1)&&($date3 > $date4)) || (($date3 > $date2)&&($date3 < $date5))){
                 // echo "NO GO!";  
-                $QUERY= "UPDATE `rents` SET `status`= 2 WHERE ID=$Item->ID";
-                $this->dbh->query($QUERY);
-                $this->dbh->execute();
+                // $QUERY= "UPDATE `rents` SET `status`= 2 WHERE ID=$Item->ID";
+                // $this->dbh->query($QUERY);
+                // $this->dbh->execute();
                 $Background_Color="#F74343";
                 $Font_Color="white";
                 $YesNo=<<<EOT

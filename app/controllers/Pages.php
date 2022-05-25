@@ -175,6 +175,7 @@ public function viewRent()
                 if($_POST['Rent']!="Salah"){
                     $ViewRent->setRent($_POST['Rent']);
                 }
+                $ViewRent->UpdateRents();
                 echo($ViewRent->CheckIfRentIsStillValid($_POST['offset'],$_POST['no_of_records_per_page']));
             }
           
@@ -301,10 +302,6 @@ public function viewRent()
                 
                          // Upload file
                          if(move_uploaded_file($_FILES['files']['tmp_name'][$index],$path)){
-                             if($counter=="0"){
-                                $AddRent->OneImages($filename);
-                                $counter="1";
-                             }
                             $AddRent->UploadImages($filename);
                          }
                         }

@@ -19,7 +19,7 @@ class viewRentDescriptionModel extends model
     protected $TenantNum;
     protected $floor;
     protected $dotColor;
-
+    protected $ID;
 
 
     public function getArea()
@@ -50,17 +50,6 @@ class viewRentDescriptionModel extends model
     {
         $this->rentPrice = $rentPrice;
     }
-
-
-    public function getID()
-    {
-        return $this->ID;
-    }
-    public function setID($ID)
-    {
-        $this->ID = $ID;
-    }
-
 
     public function getTypeID()
     {
@@ -103,6 +92,14 @@ class viewRentDescriptionModel extends model
         $this->type = $type;
     }
 
+    public function getID()
+    {
+        return $this->ID;
+    }
+    public function setID($ID)
+    {
+        $this->ID = $ID;
+    }
 
     public function rentDetails() {
          
@@ -110,11 +107,28 @@ class viewRentDescriptionModel extends model
           
 
           $record = $this->dbh->single();
-
+          $this->setID($record->ID);
           return $record;
 
     }
+    public function showPropertyImage() {
 
+        
+        $this->dbh->query("SELECT * FROM `rentsimages` WHERE `RentsID` = ".$this->getID());
+
+        $images = array();
+       
+        $records = $this->dbh->resultSet();
+        if(empty($records)){
+            return false;
+        }
+        foreach($records as $imgs) {
+            array_push($images, "$imgs->Image");
+        }
+
+        
+        return $images;
+    }
     
 
     

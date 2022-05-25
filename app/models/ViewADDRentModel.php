@@ -181,26 +181,17 @@ class ViewADDRentModel extends model
             echo("\"هذا الكود موجود مسبقا\"");
         }
         }
-        public function OneImages($Value){
-            $this->dbh->query("SELECT * FROM allestate ORDER BY ID DESC LIMIT 1");
-            $ALLRECORDS = $this->dbh->single();
-            $this->dbh->query("UPDATE `allestate` SET `image`= :uImage WHERE `ID` = ".$ALLRECORDS->ID); 
-            // $this->dbh->bind(':uIID', $ALLRECORDS->ID);
-            $this->dbh->bind(':uImage', $Value);
-            $this->dbh->execute();
-            // echo($ALLRECORDS->ID);
-        }
         public function UploadImages($Value){
-            $this->dbh->query("SELECT * FROM allestate ORDER BY ID DESC LIMIT 1");
+            $this->dbh->query("SELECT * FROM rents ORDER BY ID DESC LIMIT 1");
             $ALLRECORDS = $this->dbh->single();
-            $this->dbh->query("INSERT INTO `allestateimages`(`allestateID`, `Image`) VALUES (:uIID, :uImage)"); 
+            $this->dbh->query("INSERT INTO `rentsimages`(`RentsID`, `Image`) VALUES (:uIID, :uImage)"); 
             $this->dbh->bind(':uIID', $ALLRECORDS->ID);
             $this->dbh->bind(':uImage', $Value);
             $this->dbh->execute();
             // echo($ALLRECORDS->ID);
         }
         public function AddRent(){
-                $this->dbh->query("INSERT INTO rents (`AMID`,`typeName`, `area`, `description`,`rentPrice`,`furnished`,`floor`,`FD`,`TOR`,`TOREND`,`Start_OF_Rent`,`END_OF_Rent`,`LessorName`,`TenantName`,`LessorNum`,`TenantNum`,`code`) VALUES(:uAMID, :utypeName, :uarea, :udescription, :urentPrice, :ufurnished, :ufloor, :uFD, :uTOR, :uTOREND, :uStart_OF_Rent, :uEND_OF_Rent, :uLessorName, :uTenantName, :uLessorNum, :uTenantNum, :ucode)");
+                $this->dbh->query("INSERT INTO rents (`AMID`,`typeName`, `area`, `description`,`rentPrice`,`furnished`,`floor`,`FD`,`TOR`,`TOREND`,`Start_OF_Rent`,`END_OF_Rent`,`status`,`LessorName`,`TenantName`,`LessorNum`,`TenantNum`,`code`) VALUES(:uAMID, :utypeName, :uarea, :udescription, :urentPrice, :ufurnished, :ufloor, :uFD, :uTOR, :uTOREND, :uStart_OF_Rent, :uEND_OF_Rent,:ustatus, :uLessorName, :uTenantName, :uLessorNum, :uTenantNum, :ucode)");
             
         $this->dbh->bind(':uAMID', $_SESSION['user_id']);
 
@@ -233,7 +224,7 @@ class ViewADDRentModel extends model
         $this->dbh->bind(':uStart_OF_Rent',$this->StartOFRent);
 
         $this->dbh->bind(':uEND_OF_Rent',$this->ENDOFRent);
-
+        $this->dbh->bind(':ustatus',10);
         $ValidatedLessorName=filter_var($this->LessorName, FILTER_SANITIZE_STRING);
         $this->dbh->bind(':uLessorName', $ValidatedLessorName);
 

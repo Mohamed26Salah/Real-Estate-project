@@ -18,7 +18,6 @@ class viewDescriptionModel extends model
     protected $finishing;
     protected $SalahID;
     protected $typeOfActivity;
-
     protected $TheNumberOFAB;
     protected $numOfFlats;
     protected $numOfFloors;

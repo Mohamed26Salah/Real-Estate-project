@@ -45,7 +45,7 @@ class ViewADDRent extends view
     <input class='text-input' id='Area' name='Area'required onkeyup="numbers(this)" type='text'>
   </p>
   <p class='field required half'>
-    <label class='label' for='NUMOFFloors'>عدد الأدوار</label>
+    <label class='label' for='NUMOFFloors'> الدور</label>
     <input class='text-input' id='NUMOFFloors' name='NUMOFFloors' onkeyup="numbers(this)" required type='text'>
    </p>
   <p class='field half required'>
@@ -244,7 +244,7 @@ class ViewADDRent extends view
           Add_Data.append("furnished",furnished);
         }
         
-if( document.getElementById('Finishing').value ) {
+        if( document.getElementById('Finishing').value ) {
           Finishing = document.getElementById('Finishing').value;
           Add_Data.append("Finishing",Finishing);
         }
@@ -327,13 +327,7 @@ if( document.getElementById('Finishing').value ) {
       document.getElementById("form").addEventListener("submit", function(event){
       event.preventDefault();
       });
-    // $("#files").on("change", function() {
-    // if ($("#files")[0].files.length > 2) {
-      
-    // } else {
-    //   $("#imageUploadForm").submit();
-    // }
-    // });
+ 
     function RemoveError(){
       var myTimeout = setTimeout(timeout, 5000);
   function timeout(){ $("#Db").fadeOut("slow");}; 
