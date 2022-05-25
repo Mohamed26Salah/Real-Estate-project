@@ -6,8 +6,7 @@ class viewRent extends View
 
 
 
-    require APPROOT . '/views/inc/header.php';
-    $no_of_records_per_page = 2;
+    $no_of_records_per_page = 10;
   $offset =0;
 
  $action = URLROOT . 'Pages/viewRent';   
@@ -160,7 +159,7 @@ class viewRent extends View
  </main> 
  <ul class="row" onclick=itemsAjax2();>
 
-<li id="LoadMore" style="width:50%; cursor: pointer;">Load More</li>
+<li id="LoadMore" style="width:20%; cursor: pointer;">Load More</li>
 </ul>
 
     

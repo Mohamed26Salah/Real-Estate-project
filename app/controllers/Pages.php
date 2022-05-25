@@ -238,6 +238,11 @@ public function viewRent()
             if($_POST['TOREND']!="Salah"){
                 $AddRent->setTOREND($_POST['TOREND']);
             }
+            if(isset($_POST['EditIDRent'])){
+                if($_POST['EditIDRent']!="Salah"){
+                    $AddRent->setEditIDRent($_POST['EditIDRent']);
+                }
+            }
             echo($AddRent->AddRent());
 }
             if(!empty($_FILES['files']['name'])){
@@ -302,6 +307,66 @@ public function viewRent()
         }
       
     
+}
+public function viewEditRent(){
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        $ViewEditRent = $this->getModel();
+        if(isset($_POST['FireAJAXRent'])){
+            $ViewEditRent->setID($_POST['FireAJAXRent']);
+            echo($ViewEditRent->ShowEditRent());
+        }
+        if(isset($_POST['codeInput'])){
+            echo($ViewEditRent->CheckCodeEdit($_POST['OldCode'],$_POST['codeInput']));
+        }
+        if(!empty($_FILES['files']['name'])){
+            $countfiles = count($_FILES['files']['name']);
+            $counter="0";
+            // Upload Location
+            $upload_location = IMAGEROOT;
+            
+            // To store uploaded files path
+            $files_arr = array();
+            
+            // Loop all files
+            // for($index = 0;$index < $countfiles;$index++){
+            for($index = 0;$index <= 20 ;$index++){
+            
+               if(isset($_FILES['files']['name'][$index]) && $_FILES['files']['name'][$index] != ''){
+                  // File name
+                  $filename = $_FILES['files']['name'][$index];
+                  $file_size = $_FILES['files']['size'][$index];
+                  
+                  // Get extension
+                  $ext = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
+            
+                  // Valid image extension
+                  $valid_ext = array("png","jpeg","jpg");
+            
+                  // Check extension
+                  if(in_array($ext, $valid_ext)){
+                    if($file_size < 4194304){
+                     // File path
+                     $path = $upload_location.$filename;
+            
+                     // Upload file
+                     if(move_uploaded_file($_FILES['files']['tmp_name'][$index],$path)){
+                         $ViewEditRent->UploadImagesEdit($filename, $_POST['YASSER']);
+                     }
+                    }
+                  }else{
+                      echo "<div class='text-center fixed-top' style='margin-top:30px;'><button class='btn btn-danger' id='Db' style='width:50%'><i class='fa fa-exclamation-triangle' aria-hidden='true'></i> واحدة من الصور ليست بصورة لذا تم رفضها</button></div>";
+                  }
+               }
+            }
+            
+        }
+
+    }else{
+    $viewPath = VIEWS_PATH . 'pages/viewEditRent.php';
+    require_once $viewPath;
+    $viewEditRent = new viewEditRent($this->getModel(), $this);
+    $viewEditRent->output();
+    }
 }
  /////////////////////////////////////
 public function ViewADD()
@@ -418,7 +483,7 @@ public function ViewADD()
                     $Add->setEditID($_POST['EditID']);
                 }
             }
-            
+        
 
             echo($Add->Add());
             }
@@ -495,8 +560,8 @@ public function ViewADD()
         $viewRentDescription = $this->getModel();
         if ($_SERVER['REQUEST_METHOD'] == 'GET'){
 
-            if(isset($_GET['code']) && isset($_GET['color'])){
-                $viewRentDescription->setCode($_GET['code']);
+            if(isset($_GET['ID']) && isset($_GET['color'])){
+                $viewRentDescription->setID($_GET['ID']);
                 $viewRentDescription->setDotColor($_GET['color']);
                 
                 

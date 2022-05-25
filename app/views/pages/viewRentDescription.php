@@ -7,7 +7,8 @@ class viewRentDescription extends View
 
     $rentDetails = $this->model->rentDetails();
     $images = $this->model->showPropertyImage();
-    
+    $EditID = $_GET['ID'];
+    $action = URLROOT . 'Pages/viewEditRent';
 ?>
 
 <html>
@@ -101,7 +102,7 @@ class viewRentDescription extends View
 
 
              <!-- ################################################################################################ -->
-
+             <a href="<?php echo $action; ?>?IDE=<?php echo $EditID;?>&color=<?php echo $_GET['color']; ?>" class="btn btn-success btn-lg" style= "float:left; color:white; text-decoration:none; margin-top:1rem; margin-left:25px;">Edit</a>
             <div class="col-md-12 mt-5 text-right" dir="rtl">
 	        		<div class="product-dtl">
         				<div class="product-info">

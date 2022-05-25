@@ -97,7 +97,7 @@ class viewItem extends View
      <!-- pagination  start-->
      <ul class="row" onclick=itemsAjax2();>
 
-<li id="LoadMore" style="width:50%; cursor: pointer;">Load More</li>
+<li id="LoadMore" style="width:20%; cursor: pointer;">Load More</li>
 </ul>
 
    

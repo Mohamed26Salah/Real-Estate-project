@@ -103,7 +103,7 @@ class viewRentDescriptionModel extends model
 
     public function rentDetails() {
          
-          $this->dbh->query("SELECT * FROM `rents` WHERE `code` = '$this->code'");
+          $this->dbh->query("SELECT * FROM `rents` WHERE `ID` = '$this->ID'");
           
 
           $record = $this->dbh->single();
