@@ -5,11 +5,6 @@ class ViewADDRent extends view
   public function output()
   {
     require APPROOT . '/views/inc/header.php';
-    $TypeID="";
-    if(isset($_GET['TypeID'])){
-      //  $ID=$_GET['ID'];
-       $TypeID=$_GET['TypeID'];
-      }
     $action = 'ViewADDRent'; 
     $action2 = URLROOT . 'Pages/viewRent'; 
 
@@ -35,14 +30,14 @@ class ViewADDRent extends view
     <label class='label' for='Show'>نوع العقار</label>
     <select class='select' id='Show' required>
       <option selected value=''>نوع العقار</option>
-      <option value='1'>شقه</option>
-      <option value='2'>عمارة</option>
-      <option value='3'>فيلا</option>
-      <option value='4'>محل</option>
-      <option value='5'>عيادة</option>
-      <option value='6'>مزرعة</option>
-      <option value='7'>مصنع</option>
-      <option value='8'>ارض</option>
+      <option value='Flats'>شقه</option>
+      <option value='Residential Building'>عمارة</option>
+      <option value='Villa'>فيلا</option>
+      <option value='Store'>محل</option>
+      <option value='Clinic'>عيادة</option>
+      <option value='Farm'>مزرعة</option>
+      <option value='Factory'>مصنع</option>
+      <option value='Land'>ارض</option>
     </select>
   </p>
   <p class='field half required half'>

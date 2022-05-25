@@ -91,9 +91,9 @@ class viewRent extends View
    
    <?php $action = URLROOT . 'Pages/viewRent'; ?>
    <?php $action2 = 'viewRent'; ?>
+  <?php $action3 = URLROOT . 'Pages/viewADDRent'; ?>
 
-
-   
+   <a href="<?php echo $action3;?>">ADD</a>
    <!-- <div class="form" id="sidebar" > -->
   <div class="cd-filter">
    <form class="form">

@@ -173,7 +173,7 @@ class ViewADDRentModel extends model
             echo("Da5l model");
         }
         public function CheckCode(){
-        $this->dbh->query("SELECT * FROM rents WHERE code = '".$this->codeInput."'");
+        $this->dbh->query("SELECT * FROM rents WHERE code = '".$this->Code."'");
         $ALLRECORDS = $this->dbh->single();
         if(empty($ALLRECORDS)){
             
@@ -200,42 +200,55 @@ class ViewADDRentModel extends model
             // echo($ALLRECORDS->ID);
         }
         public function AddRent(){
-            if(empty($this->EditID)){
-                $this->dbh->query("INSERT INTO rents (`AMID`,`typeName`, `area`, `description`,`rentPrice`,`furnished`,`floor`,`FD`,`TOR`,`TOREND`,`Start_OF_Rent`,`END_OF_Rent`,`Visible`,`Code`,`TypeID`,`offered`) VALUES(:uAMID, :uAddressUser, :uAddressAdmin, :uArea, :uPrice, :uPayment, :uOwner, :uOwnerNum, :uDescriptionUser, :uDescriptionAdmin, :uName, :uImportance, :uShow, :uCode, :uTypeID, :ucontarctType)");
-            }else{
-                $this->dbh->query("UPDATE `allestate` SET `AMID`= :uAMID, `AddressUser`=:uAddressUser,`AddressAdmin`= :uAddressAdmin,`Area`= :uArea,`Price`= :uPrice,`PaymentMethod`= :uPayment,`Owner`= :uOwner,`OwnerNumber`= :uOwnerNum,`DescriptionUser`= :uDescriptionUser,`DescriptionAdmin`= :uDescriptionAdmin,`Name`= :uName,`Priroty`= :uImportance,`Visible`= :uShow,`Code`= :uCode,`TypeID`= :uTypeID,`offered`= :ucontarctType WHERE ID = ".$this->EditID);
-            }
+                $this->dbh->query("INSERT INTO rents (`AMID`,`typeName`, `area`, `description`,`rentPrice`,`furnished`,`floor`,`FD`,`TOR`,`TOREND`,`Start_OF_Rent`,`END_OF_Rent`,`LessorName`,`TenantName`,`LessorNum`,`TenantNum`,`code`) VALUES(:uAMID, :utypeName, :uarea, :udescription, :urentPrice, :ufurnished, :ufloor, :uFD, :uTOR, :uTOREND, :uStart_OF_Rent, :uEND_OF_Rent, :uLessorName, :uTenantName, :uLessorNum, :uTenantNum, :ucode)");
+            
         $this->dbh->bind(':uAMID', $_SESSION['user_id']);
-        $ValidatedAddressUser=filter_var($this->AddressUser, FILTER_SANITIZE_STRING);
-        $this->dbh->bind(':uAddressUser', $ValidatedAddressUser);
-        $ValidatedAddressAdmin=filter_var($this->AddressAdmin, FILTER_SANITIZE_STRING);
-        $this->dbh->bind(':uAddressAdmin', $ValidatedAddressAdmin);
-        $ValidatedArea=filter_var($this->Area, FILTER_SANITIZE_STRING);
-        $this->dbh->bind(':uArea', $ValidatedArea);
-        $ValidatedPrice=filter_var($this->Price, FILTER_SANITIZE_STRING);
-        $this->dbh->bind(':uPrice', $ValidatedPrice);
-        $ValidatedPayment=filter_var($this->Payment, FILTER_SANITIZE_STRING);
-        $this->dbh->bind(':uPayment', $ValidatedPayment);
-        $ValidatedOwner=filter_var($this->Owner, FILTER_SANITIZE_STRING);
-        $this->dbh->bind(':uOwner', $ValidatedOwner);
-        $ValidatedOwnerNum=filter_var($this->OwnerNum, FILTER_SANITIZE_STRING);
-        $this->dbh->bind(':uOwnerNum', $ValidatedOwnerNum);
-        $ValidatedDescriptionUser=filter_var($this->DescriptionUser, FILTER_SANITIZE_STRING);
-        $this->dbh->bind(':uDescriptionUser', $ValidatedDescriptionUser);
-        $ValidatedDescriptionAdmin=filter_var($this->DescriptionAdmin, FILTER_SANITIZE_STRING);
-        $this->dbh->bind(':uDescriptionAdmin', $ValidatedDescriptionAdmin);
-        $ValidatedName=filter_var($this->Name, FILTER_SANITIZE_STRING);
-        $this->dbh->bind(':uName', $ValidatedName);
-        $ValidatedImportance=filter_var($this->Importance, FILTER_SANITIZE_STRING);
-        $this->dbh->bind(':uImportance', $ValidatedImportance);
-        $ValidatedShow=filter_var($this->Show, FILTER_SANITIZE_STRING);
-        $this->dbh->bind(':uShow', $ValidatedShow);
-        $ValidatedCode=filter_var($this->Code, FILTER_SANITIZE_STRING);
-        $this->dbh->bind(':uCode', $ValidatedCode);
-        $ValidatedTypeID=filter_var($this->TypeID, FILTER_SANITIZE_STRING);
-        $this->dbh->bind(':uTypeID', $ValidatedTypeID);
-        $ValidatedcontarctType=filter_var($this->contarctType, FILTER_SANITIZE_STRING);
-        $this->dbh->bind(':ucontarctType', $ValidatedcontarctType);
+
+        $this->dbh->bind(':utypeName',$this->Show);
+
+        $Validatedarea=filter_var($this->Area, FILTER_SANITIZE_STRING);
+        $this->dbh->bind(':uarea', $Validatedarea);
+
+        $Validateddescription=filter_var($this->Description, FILTER_SANITIZE_STRING);
+        $this->dbh->bind(':udescription', $Validateddescription);
+
+        $ValidatedrentPrice=filter_var($this->Price, FILTER_SANITIZE_STRING);
+        $this->dbh->bind(':urentPrice', $ValidatedrentPrice);
+
+        $Validatedfurnished=filter_var($this->furnished, FILTER_SANITIZE_STRING);
+        $this->dbh->bind(':ufurnished', $Validatedfurnished);
+
+        $Validatedfloor=filter_var($this->NUMOFFloors, FILTER_SANITIZE_STRING);
+        $this->dbh->bind(':ufloor', $Validatedfloor);
+
+        $ValidatedFD=filter_var($this->Finishing, FILTER_SANITIZE_STRING);
+        $this->dbh->bind(':uFD', $ValidatedFD);
+
+        
+        $this->dbh->bind(':uTOR',$this->TOR);
+
+      
+        $this->dbh->bind(':uTOREND',$this->TOREND);
+
+        $this->dbh->bind(':uStart_OF_Rent',$this->StartOFRent);
+
+        $this->dbh->bind(':uEND_OF_Rent',$this->ENDOFRent);
+
+        $ValidatedLessorName=filter_var($this->LessorName, FILTER_SANITIZE_STRING);
+        $this->dbh->bind(':uLessorName', $ValidatedLessorName);
+
+        $ValidatedTenantName=filter_var($this->TenantName, FILTER_SANITIZE_STRING);
+        $this->dbh->bind(':uTenantName', $ValidatedTenantName);
+
+        $ValidatedLessorNum=filter_var($this->LessorNum, FILTER_SANITIZE_STRING);
+        $this->dbh->bind(':uLessorNum', $ValidatedLessorNum);
+
+        $ValidatedTenantNum=filter_var($this->TenantNum, FILTER_SANITIZE_STRING);
+        $this->dbh->bind(':uTenantNum', $ValidatedTenantNum);
+
+        $Validatedcode=filter_var($this->Code, FILTER_SANITIZE_STRING);
+        $this->dbh->bind(':ucode', $Validatedcode);
+
         $this->dbh->execute();
         
        

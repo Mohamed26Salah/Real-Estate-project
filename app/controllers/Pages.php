@@ -215,6 +215,7 @@ public function viewRent()
         if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 
             if(isset($_POST['Code'])){
+
             if($_POST['Code']!="Salah"){
                 $AddRent->setCode($_POST['Code']);
             }
@@ -263,8 +264,8 @@ public function viewRent()
             if($_POST['TOREND']!="Salah"){
                 $AddRent->setTOREND($_POST['TOREND']);
             }
-
-          echo($AddRent->AddRent());
+            echo($AddRent->AddRent());
+}
             if(!empty($_FILES['files']['name'])){
                 $countfiles = count($_FILES['files']['name']);
 
@@ -313,7 +314,7 @@ public function viewRent()
                 
             }
             if(isset($_POST['codeInput'])){
-                $AddRent->setcodeInput($_POST['codeInput']);
+                $AddRent->setCode($_POST['codeInput']);
                 echo($AddRent->CheckCode()); 
             }
             if(isset($_POST['IDForImages'])){
@@ -330,7 +331,7 @@ public function viewRent()
         $ViewADDRent->output();
         }
       
-    }
+    
 }
  /////////////////////////////////////
 public function ViewADD()
