@@ -207,8 +207,132 @@ public function viewRent()
     }    
 
 
-       
- 
+//////////////////////////////////////////
+    public function ViewADDRent()
+    {
+
+        $AddRent = $this->getModel();
+        if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+
+            if(isset($_POST['Code'])){
+            if($_POST['Code']!="Salah"){
+                $AddRent->setCode($_POST['Code']);
+            }
+            if($_POST['Price']!="Salah"){
+                $AddRent->setPrice($_POST['Price']);
+            }
+            if($_POST['Show']!="Salah"){
+                $AddRent->setShow($_POST['Show']);
+            }
+            if($_POST['Area']!="Salah"){
+                $AddRent->setArea($_POST['Area']);
+            }
+             if($_POST['NUMOFFloors']!="Salah"){
+                    $AddRent->setNUMOFFloors($_POST['NUMOFFloors']);
+                }
+            if($_POST['LessorName']!="Salah"){
+                $AddRent->setLessorName($_POST['LessorName']);
+            }
+            if($_POST['LessorNum']!="Salah"){
+                $AddRent->setLessorNum($_POST['LessorNum']);
+            }
+            if($_POST['TenantName']!="Salah"){
+                $AddRent->setTenantName($_POST['TenantName']);
+            }
+            if($_POST['TenantNum']!="Salah"){
+                $AddRent->setTenantNum($_POST['TenantNum']);
+            }
+            if($_POST['Description']!="Salah"){
+                $AddRent->setDescription($_POST['Description']);
+            }
+            if($_POST['furnished']!="Salah"){
+                $AddRent->setfurnished($_POST['furnished']);
+            }
+            if($_POST['Finishing']!="Salah"){
+                $AddRent->setFinishing($_POST['Finishing']);
+            }
+            if($_POST['StartOFRent']!="Salah"){
+                $AddRent->setStartOFRent($_POST['StartOFRent']);
+            }
+            if($_POST['ENDOFRent']!="Salah"){
+                $AddRent->setENDOFRent($_POST['ENDOFRent']);
+            }
+            if($_POST['TOR']!="Salah"){
+                $AddRent->setTOR($_POST['TOR']);
+            }
+            if($_POST['TOREND']!="Salah"){
+                $AddRent->setTOREND($_POST['TOREND']);
+            }
+
+          echo($AddRent->AddRent());
+            if(!empty($_FILES['files']['name'])){
+                $countfiles = count($_FILES['files']['name']);
+
+                // Upload Location
+                $upload_location = IMAGEROOT;
+                
+                // To store uploaded files path
+                $files_arr = array();
+                
+                // Loop all files
+                // for($index = 0;$index < $countfiles;$index++){
+                    $counter="0";
+                for($index = 0;$index < 20 ;$index++){
+                
+                   if(isset($_FILES['files']['name'][$index]) && $_FILES['files']['name'][$index] != ''){
+                      // File name
+                      $filename = $_FILES['files']['name'][$index];
+                      $file_size = $_FILES['files']['size'][$index];
+                      
+                      // Get extension
+                      $ext = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
+                
+                      // Valid image extension
+                      $valid_ext = array("png","jpeg","jpg");
+                
+                      // Check extension
+                      if(in_array($ext, $valid_ext)){
+                        if($file_size < 4194304){
+                         // File path
+                         $path = $upload_location.$filename;
+                
+                         // Upload file
+                         if(move_uploaded_file($_FILES['files']['tmp_name'][$index],$path)){
+                             if($counter=="0"){
+                                $AddRent->OneImages($filename);
+                                $counter="1";
+                             }
+                            $AddRent->UploadImages($filename);
+                         }
+                        }
+                      }else{
+                          echo "<div class='text-center fixed-top' style='margin-top:30px;'><button class='btn btn-danger' id='Db' style='width:50%'><i class='fa fa-exclamation-triangle' aria-hidden='true'></i> واحدة من الصور ليست بصورة لذا تم رفضها</button></div>";
+                      }
+                   }
+                }
+                
+            }
+            if(isset($_POST['codeInput'])){
+                $AddRent->setcodeInput($_POST['codeInput']);
+                echo($AddRent->CheckCode()); 
+            }
+            if(isset($_POST['IDForImages'])){
+                $AddRent->DeleteImages($_POST['IDForImages']);
+                echo "Da5l Controller";
+            }
+           
+
+
+        }else{
+            $viewPath = VIEWS_PATH . 'pages/ViewADDRent.php';
+        require_once $viewPath;
+        $ViewADDRent = new ViewADDRent($this->getModel(), $this);
+        $ViewADDRent->output();
+        }
+      
+    }
+}
+ /////////////////////////////////////
 public function ViewADD()
     {
 
