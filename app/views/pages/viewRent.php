@@ -6,7 +6,8 @@ class viewRent extends View
 
 
     require APPROOT . '/views/inc/header.php';
-
+    $no_of_records_per_page = 2;
+  $offset =0;
 ?>
 <link rel="stylesheet" href="<?php echo URLROOT; ?>css/ViewPage.css">
 <link rel="stylesheet" href="<?php echo URLROOT; ?>css/resetFilter.css">
@@ -35,10 +36,8 @@ class viewRent extends View
          }
 
 
-         $no_of_records_per_page = 20;
-         $offset = ($pageno - 1) * $no_of_records_per_page;
+       
 
-         $total_rows = $this->model->GetCount()->TD;
        
         ?>
          <div class="container bootstrap snippets bootdeys">
@@ -50,7 +49,7 @@ class viewRent extends View
         <?php
           
          
-         $total_pages = ceil($total_rows / $no_of_records_per_page);
+        
 
 
          // pagination end
@@ -63,35 +62,14 @@ class viewRent extends View
      </ul>
    </section>
    
-     <ul class="pagination">
-       <li><a href="?pageno=1">First</a></li>
-       <li class="<?php if ($pageno <= 1) {
-                     echo 'disabled';
-                   } ?>">
-         <a href="<?php if ($pageno <= 1) {
-                     echo '#';
-                   } else {
-                     echo "?pageno=" . ($pageno - 1);
-                   } ?>">Prev</a>
-       </li>
-       <li class="<?php if ($pageno >= $total_pages) {
-                     echo 'disabled';
-                   } ?>">
-         <a href="<?php if ($pageno >= $total_pages) {
-                     echo '#';
-                   } else {
-                     echo "?pageno=" . ($pageno + 1);
-                   } ?>">Next</a>
-       </li>
-       <li><a href="?pageno=<?php echo $total_pages; ?>">Last</a></li>
-     </ul>
-
-
 
    
    <?php $action = URLROOT . 'Pages/viewRent'; ?>
    <?php $action2 = 'viewRent'; ?>
-  <?php $action3 = URLROOT . 'Pages/viewADDRent'; ?>
+  <?php $action3 = URLROOT . 'Pages/viewADDRent';
+  
+  
+  ?>
 
    <a href="<?php echo $action3;?>">ADD</a>
    <!-- <div class="form" id="sidebar" > -->
@@ -102,7 +80,7 @@ class viewRent extends View
          <h4>Search</h4>
          
          <div class="cd-filter-content">
-           <input type="search" name="search" id="search" placeholder="أبحث" onkeyup="RentAjax()" >
+           <input type="search" name="search" id="search" placeholder="أبحث" onkeyup="OnKeyUpSearch()" >
          </div> <!-- cd-filter-content -->
        </div> <!-- cd-filter-block -->
 
@@ -154,7 +132,10 @@ class viewRent extends View
 
    <a href="#0" class="cd-filter-trigger">Filters</a>
  </main> 
+ <ul class="row" onclick=itemsAjax2();>
 
+<li id="LoadMore" style="width:50%; cursor: pointer;">Load More</li>
+</ul>
 
     
       <footer> <?php
@@ -163,7 +144,8 @@ class viewRent extends View
     </body>
 
     <script>
-
+      offset =<?php echo $offset;?>;
+no_of_records_per_page = <?php echo $no_of_records_per_page ;?>;
 function button(CardID){
 var CardID=CardID;
 // console.log(CardID);
@@ -249,8 +231,8 @@ function distance( x1, y1, x2, y2 ) {
 }
 
       function RentAjax(){
-      var offset
-      var no_of_records_per_page
+        console.log(offset);
+        console.log(no_of_records_per_page);
         if( document.getElementById('Rent').value ) {
           Rent = document.getElementById('Rent').value;
         }else{
@@ -262,16 +244,7 @@ function distance( x1, y1, x2, y2 ) {
         }else{
           search = "Salah";
         }  
-        if( document.getElementById('offset').value ) {
-          offset = document.getElementById('offset').value;
-        }else{
-          offset = "Salah";
-        } 
-        if( document.getElementById('no_of_records_per_page').value ) {
-          no_of_records_per_page = document.getElementById('no_of_records_per_page').value;
-        }else{
-          no_of_records_per_page = "Salah";
-        } 
+       
         
       
        
@@ -283,8 +256,13 @@ function distance( x1, y1, x2, y2 ) {
           
           success:function(data)
           {
+            if(!data){
+              loadMore = document.getElementById('LoadMore').innerHTML='No more items to Load';
+              
+              }else{
               container = document.getElementById('cards')
-              container.innerHTML=data;
+              container.innerHTML+=data;
+              }
             
           }
         })
@@ -292,11 +270,36 @@ function distance( x1, y1, x2, y2 ) {
       }
       $( ".form" ).change(function() {
         //schow item on change
+       
+        document.getElementById('cards').innerHTML='';
+        offset=0;
+        no_of_records_per_page=<?php echo $no_of_records_per_page ;?>;
         RentAjax();
+        document.getElementById('LoadMore').innerHTML='<a  onclick=itemsAjax2(); >Load More</a>';
 
       });
       //Show item first time 
       RentAjax();
+      function OnKeyUpSearch() {
+        
+        //schow item on change
+        console.log("here1");
+        document.getElementById('cards').innerHTML='';
+        
+        offset=0;
+        no_of_records_per_page=<?php echo $no_of_records_per_page ;?>;
+        RentAjax();
+        document.getElementById('LoadMore').innerHTML='<a  onclick=itemsAjax2(); >Load More</a>';
+
+      }
+      function itemsAjax2(){
+        
+        offset+=no_of_records_per_page;
+        
+        RentAjax();
+
+
+      }
 
     </script>
 
