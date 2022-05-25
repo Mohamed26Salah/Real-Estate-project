@@ -79,7 +79,7 @@ public function viewItem()
         // $ViewItem = $this->getModel();
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST'){
-           
+         
             $Model=$_POST['Model']."Model";
             // echo($Model);
             require_once APPROOT . "/models/viewItemModel.php";
@@ -141,6 +141,8 @@ public function viewItem()
             }
             if($_POST['TypeOFActivity']!="Salah"){
                 $ViewItem->setTypeOFActivity($_POST['TypeOFActivity']);
+                echo $_POST['TypeOFActivity'];
+               
             }
             if($_POST['NUMOFFlats']!="Salah"){
                 $ViewItem->setNUMOFFlats($_POST['NUMOFFlats']);
@@ -294,14 +296,14 @@ public function ViewADD()
                     $Add->setDoublex($_POST['Doublex']);
                 }
             }
-            if(isset($_POST['TypeActivity'])){
-                if($_POST['TypeActivity']!="Salah"){
-                    $Add->setTypeActivity($_POST['TypeActivity']);
+            if(isset($_POST['TypeOFActivity'])){
+                if($_POST['TypeOFActivity']!="Salah"){
+                    $Add->setTypeOFActivity($_POST['TypeOFActivity']);
                 }
             }
-            if(isset($_POST['NUMOFAb'])){
-                if($_POST['NUMOFAb']!="Salah"){
-                    $Add->setNUMOFAb($_POST['NUMOFAb']);
+            if(isset($_POST['nUMOFAB'])){
+                if($_POST['nUMOFAB']!="Salah"){
+                    $Add->setnUMOFAB($_POST['nUMOFAB']);
                 }
             }
             //////////////////////////////////////////////////

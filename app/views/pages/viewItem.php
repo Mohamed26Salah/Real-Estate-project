@@ -72,7 +72,9 @@ class viewItem extends View
          }
 
 
-         $no_of_records_per_page = 2;
+
+         $no_of_records_per_page = 6;
+
          $offset = ($pageno - 1) * $no_of_records_per_page;
 
        

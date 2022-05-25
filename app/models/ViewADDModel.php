@@ -22,8 +22,8 @@ class ViewADDModel extends model
     protected $Furnished;
     protected $Finishing;
     protected $Doublex;
-    protected $TypeActivity;
-    protected $NUMOFAb;
+    protected $TypeOFActivity;
+    protected $nUMOFAB;
     protected $TypeID;
     protected $codeInput;
     protected $EditID;
@@ -260,22 +260,22 @@ class ViewADDModel extends model
            $this->Doublex = $Doublex;
        }
         //////////////////////////////////////////
-        public function getTypeActivity()
+        public function getTypeOFActivity()
         {
-            return $this->TypeActivity;
+            return $this->TypeOFActivity;
         }
-        public function setTypeActivity($TypeActivity)
+        public function setTypeOFActivity($TypeOFActivity)
         {
-            $this->TypeActivity = $TypeActivity;
+            $this->TypeOFActivity = $TypeOFActivity;
         }
          //////////////////////////////////////////
-         public function getNUMOFAb()
+         public function getnUMOFAB()
         {
-            return $this->NUMOFAb;
+            return $this->nUMOFAB;
         }
-        public function setNUMOFAb($NUMOFAb)
+        public function setnUMOFAB($nUMOFAB)
         {
-            $this->NUMOFAb = $NUMOFAb;
+            $this->nUMOFAB = $nUMOFAB;
         }
          //////////////////////////////////////////
          public function getTypeID()
@@ -380,22 +380,32 @@ class ViewADDModel extends model
                 $this->Eav($ALLRECORDS->ID,6,$this->Doublex);
                 $this->Eav($ALLRECORDS->ID,9,$this->Furnished);
             }
-        }else if($this->TypeID==2){
-            $this->Eav($ALLRECORDS->ID,5,$this->NUMOFFloors);
-            $this->Eav($ALLRECORDS->ID,11,$this->NUMOFFlats);
-        } else if($this->TypeID==3){
-            $this->Eav($ALLRECORDS->ID,5,$this->NUMOFFloors);
-            $this->Eav($ALLRECORDS->ID,2,$this->Finishing);
-            $this->Eav($ALLRECORDS->ID,3,$this->NUMOFRooms);
-            $this->Eav($ALLRECORDS->ID,4,$this->NUMOFBathrooms);
-            $this->Eav($ALLRECORDS->ID,9,$this->Furnished);
+            if($this->TypeID==2){
+                $this->Eav($ALLRECORDS->ID,5,$this->NUMOFFloors);
+                $this->Eav($ALLRECORDS->ID,11,$this->NUMOFFlats);
+            }
+            if($this->TypeID==3){
+                $this->Eav($ALLRECORDS->ID,5,$this->NUMOFFloors);
+                $this->Eav($ALLRECORDS->ID,2,$this->Finishing);
+                $this->Eav($ALLRECORDS->ID,3,$this->NUMOFRooms);
+                $this->Eav($ALLRECORDS->ID,4,$this->NUMOFBathrooms);
+                $this->Eav($ALLRECORDS->ID,9,$this->Furnished);
+               
+            } 
+            if($this->TypeID==4||$this->TypeID==5||$this->TypeID==7){
+              echo($this->TypeOFActivity);
+
+                echo("Da5l fe model");
+                $this->Eav($ALLRECORDS->ID,7,$this->TypeOFActivity); 
+            }
+            if($this->TypeID==6){
+                $this->Eav($ALLRECORDS->ID,7,$this->TypeOFActivity); 
+                $this->Eav($ALLRECORDS->ID,8,$this->nUMOFAB);
+            }
+            if($this->TypeID==8||$this->TypeID==9){
+                $this->Eav($ALLRECORDS->ID,7,$this->Fix); 
+            }
            
-        } else if($this->TypeID==4||$this->TypeID==5||$this->TypeID==7){
-            $this->Eav($ALLRECORDS->ID,7,$this->TypeActivity); 
-        }
-        else if($this->TypeID==6){
-            $this->Eav($ALLRECORDS->ID,7,$this->TypeActivity); 
-            $this->Eav($ALLRECORDS->ID,8,$this->NUMOFAb);
         }
        
         }
