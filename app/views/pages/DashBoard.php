@@ -10,33 +10,38 @@ class DashBoard extends View
         <html>
         <!-- <link rel="stylesheet" href="<?php echo URLROOT; ?>css/DashBoardStyle.css"> -->
         <?php $action3 = 'ajax2'; ?>
+        <?php
+        $no_of_records_per_page = 2;
+        $offset = 0;
+        ?>
         <link rel="stylesheet" href="<?php echo URLROOT; ?>css/DashBoardStyle.css">
+
         <body>
             <!-- =============== Navigation ================ -->
             <div class="containerDashBoard">
-               
-                <div class="navigationDashBoard" id="navigationDS"> 
-                    
+
+                <div class="navigationDashBoard" id="navigationDS">
+
                     <ul>
-                          <span class="icon" >
+                        <span class="icon">
                             <div class="toggleDashBoard2">
                                 <ion-icon name="menu-outline"></ion-icon>
                             </div>
-                            </span>
+                        </span>
                         <li>
-                       
-                            
+
+
                         </li>
                         <li>
                             <a href="javascript:window.top.location.reload(true)">
-                                <span class="icon" >
+                                <span class="icon">
                                     <ion-icon name="people-outline" class="icon-dashboard"></ion-icon>
                                 </span>
                                 <span class="title">Main</span>
                             </a>
                         </li>
                         <li>
-                            <a onclick=switchMainDashBoard(2); href="#">
+                            <a onclick='switchMainDashBoard(2 ,<?php echo $offset; ?> ,<?php echo $no_of_records_per_page; ?>);' href="#">
                                 <span class="icon">
                                     <ion-icon name="people-outline"></ion-icon>
                                 </span>
@@ -45,15 +50,26 @@ class DashBoard extends View
                         </li>
 
                         <li>
-                            <a onclick=switchMainDashBoard(1); href="#">
+                            <a onclick='switchMainDashBoard(1 , <?php echo $offset; ?> ,<?php echo $no_of_records_per_page; ?>);' href="#">
                                 <span class="icon">
                                     <ion-icon name="people-outline"></ion-icon>
                                 </span>
-                                <span class="title">latest change</span>
+                                <span class="title">latest Rent change</span>
                             </a>
                         </li>
 
-                      
+
+
+                        <li>
+                            <a onclick='switchMainDashBoard(3,<?php echo $offset; ?> ,<?php echo $no_of_records_per_page; ?>);' href="#">
+                                <span class="icon">
+                                    <ion-icon name="people-outline"></ion-icon>
+                                </span>
+                                <span class="title">latest Property change</span>
+                            </a>
+                        </li>
+
+
                     </ul>
                 </div>
 
@@ -63,7 +79,7 @@ class DashBoard extends View
                         <div class="toggleDashBoard">
                             <ion-icon name="menu-outline"></ion-icon>
                         </div>
-                        
+
 
 
                     </div>
@@ -125,7 +141,7 @@ class DashBoard extends View
  -->
                                 <div class="search">
                                     <label>
-                                        <input type="text" placeholder="Search here">
+                                        <input type="text" id='Search here' placeholder="Search here" onkeyup='searching(1 ,<?php echo $offset; ?> ,<?php echo $no_of_records_per_page; ?>);'>
                                         <ion-icon name="search-outline"></ion-icon>
                                     </label>
                                 </div>
@@ -141,7 +157,7 @@ class DashBoard extends View
                                         <td>Edit</td>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody id="mainSearchContainer">
                                     <?php $count = 0;
                                     foreach ($DataArray[3] as $user) {
                                         $userDisplay = <<<EOT
@@ -167,16 +183,15 @@ class DashBoard extends View
                             </div>
 
                             <table>
-                                <?php 
-                               
-                                foreach($DataArray[4] as $user){
-                                    if(substr($user->image,0,4) == 'http') {
+                                <?php
+
+                                foreach ($DataArray[4] as $user) {
+                                    if (substr($user->image, 0, 4) == 'http') {
                                         $imageRoot = '';
-                                    }
-                                    else {
+                                    } else {
                                         $imageRoot = IMAGEROOT2;
                                     }
-                                    $output50= <<<EOT
+                                    $output50 = <<<EOT
                                     
                                     
                                     
@@ -194,11 +209,11 @@ class DashBoard extends View
                                     EOT;
                                     echo  $output50;
                                 }
-                              ?>
+                                ?>
                             </table>
                         </div>
                     </div>
-                   
+
                 </div>
 
             </div>
@@ -206,43 +221,49 @@ class DashBoard extends View
 
             </div>
 
+
+
             <!-- =========== Scripts =========  -->
             <!-- <script src="<?php echo URLROOT; ?>js/DashBoard.js"></script> -->
             <script>
-             function aboutUserConfirmAdd() {
+                offset = <?php echo $offset; ?>;
+                no_of_records_per_page = <?php echo $no_of_records_per_page; ?>;
+
+                function aboutUserConfirmAdd() {
                     name1 = document.getElementById("NV").value;
                     title1 = document.getElementById("TV").value;
                     disc1 = document.getElementById("DV").value;
                     newEmail = document.getElementById("newaboutemail").value
                     if (newEmail == "") {
                         User = document.getElementById("AddAbout");
-                            User.innerHTML = `<button class="AddbuttonViewPage" onclick ="aboutUserAdd();">Add</button>`;
-                    }else{
+                        User.innerHTML = `<button class="AddbuttonViewPage" onclick ="aboutUserAdd();">Add</button>`;
+                    } else {
                         $.ajax({
-                        url: "<?php echo $action3; ?>",
-                        method: "POST",
-                        // pricerange:pricerange,
-                        //  Finishing:Finishing , HighLow:HighLow, Payment:Payment,contarctType:contarctType,area:area,Bathroom:Bathroom,Rooms:Rooms,search:search,Mode:Model,
-                        data: {
-                            ConfirmAboutAdd: 1,
-                            newEmail: newEmail,
-                            name1: name1,
-                            title1: title1,
-                            disc1: disc1
+                            url: "<?php echo $action3; ?>",
+                            method: "POST",
+                            // pricerange:pricerange,
+                            //  Finishing:Finishing , HighLow:HighLow, Payment:Payment,contarctType:contarctType,area:area,Bathroom:Bathroom,Rooms:Rooms,search:search,Mode:Model,
+                            data: {
+                                ConfirmAboutAdd: 1,
+                                newEmail: newEmail,
+                                name1: name1,
+                                title1: title1,
+                                disc1: disc1
 
-                        },
+                            },
 
-                        success: function(data) {
+                            success: function(data) {
 
 
-                            newcard=document.getElementById("usersAU");
-                            User = document.getElementById("AddAbout");
-                            User.innerHTML = `<button class="AddbuttonViewPage" onclick ="aboutUserAdd();">Add</button>`;
-                            newcard.innerHTML += data;
-                        }
-                    })
+                                newcard = document.getElementById("usersAU");
+                                User = document.getElementById("AddAbout");
+                                User.innerHTML = `<button class="AddbuttonViewPage" onclick ="aboutUserAdd();">Add</button>`;
+                                newcard.innerHTML += data;
+                            }
+                        })
                     }
-             }
+                }
+
                 function aboutUserConfirm(email, ID) {
                     name1 = document.getElementById("N" + ID + "V").value;
                     title1 = document.getElementById("T" + ID + "V").value;
@@ -278,6 +299,7 @@ class DashBoard extends View
                     })
 
                 }
+
                 function aboutUserAdd() {
                     newUserForm = document.getElementById("AddAbout");
                     newUserForm.innerHTML = ` 
@@ -293,7 +315,7 @@ class DashBoard extends View
                    <p><button class="button-about" onclick ="aboutUserConfirmAdd()" >Confirm</button></p>
                  </div>
                </div>`;
-               $.ajax({
+                    $.ajax({
                         url: "<?php echo $action3; ?>",
                         method: "POST",
 
@@ -311,6 +333,7 @@ class DashBoard extends View
                         }
                     })
                 }
+
                 function aboutUserDelete(ID, image, name, title, disc, email) {
                     $.ajax({
                         url: "<?php echo $action3; ?>",
@@ -318,7 +341,7 @@ class DashBoard extends View
 
                         data: {
                             DeleteAbout: 1,
-                            ID:ID
+                            ID: ID
                         },
 
                         success: function(data) {
@@ -331,6 +354,7 @@ class DashBoard extends View
                     })
 
                 }
+
                 function aboutUserEdit(ID, image, name, title, disc, email) {
                     User = document.getElementById(ID);
                     console.log(User);
@@ -369,23 +393,29 @@ class DashBoard extends View
 
                 }
 
+                oldpage = '';
 
-                function switchMainDashBoard(page) {
+                function switchMainDashBoard(page, offsett, norppt) {
+
                     $.ajax({
                         url: "<?php echo $action3; ?>",
                         method: "POST",
-                        // pricerange:pricerange,
-                        //  Finishing:Finishing , HighLow:HighLow, Payment:Payment,contarctType:contarctType,area:area,Bathroom:Bathroom,Rooms:Rooms,search:search,Mode:Model,
                         data: {
-                            page: page
+                            page: page,
+                            offset: offsett,
+                            norpp: norppt
                         },
 
                         success: function(data) {
 
-                            
+                            if (oldpage != page) {
+                                no_of_records_per_page = <?php echo $no_of_records_per_page; ?>;
+
+                            }
                             customer = document.getElementById('mainDashBoard');
                             customer.style.padding = "10px";
                             customer.innerHTML = data;
+                            oldpage = page;
 
                         }
                     })
@@ -420,6 +450,7 @@ class DashBoard extends View
                 function Confirm(ConfirmID, valuee) {
 
                     Rank = document.getElementById('Rank' + ConfirmID).value;
+                    
 
                     $.ajax({
                         url: "<?php echo $action3; ?>",
@@ -478,7 +509,64 @@ class DashBoard extends View
                     main.classList.toggle("active");
                 };
 
-                 
+
+                function itemsAjax2() {
+                    no_of_records_per_page += <?php echo $no_of_records_per_page; ?>;
+
+                    switchMainDashBoard(oldpage, offset, no_of_records_per_page);
+
+
+                }
+
+                function searching(state, offsett, norppt) {
+                    search = document.getElementById('Search here').value;
+                    $.ajax({
+                        url: "<?php echo $action3; ?>",
+                        method: "POST",
+                        // pricerange:pricerange,
+                        //  Finishing:Finishing , HighLow:HighLow, Payment:Payment,contarctType:contarctType,area:area,Bathroom:Bathroom,Rooms:Rooms,search:search,Mode:Model,
+                        data: {
+                            state: state,
+                            search: search,
+                            offsettt: offsett,
+                            norpptt: norppt
+
+                        },
+
+                        success: function(data) {
+
+                            if (state == 1) {
+                                customer = document.getElementById('mainSearchContainer');
+                                customer.innerHTML = data;
+                            } else if(state==3){
+                                if (search) {
+                                    customer = document.getElementById('SearchThirdContainer');
+
+                                    customer.innerHTML = data;
+                                  
+                                }else{
+                                     switchMainDashBoard(oldpage, offset, no_of_records_per_page);
+                                }
+
+                            }
+                            else if(state==2){
+                                console.log("right state")
+                                if (search) {
+                                    console.log("Searched")
+                                    customer = document.getElementById('SearchSecondContainer');
+
+                                    customer.innerHTML = data;
+                                  
+                                }else{
+                                     switchMainDashBoard(oldpage, offset, no_of_records_per_page);
+                                }
+                            }
+
+
+
+                        }
+                    })
+                }
             </script>
 
         </body>

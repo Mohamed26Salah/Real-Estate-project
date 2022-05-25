@@ -1,8 +1,10 @@
 <?php
 class DashBoardModel extends model
 {
+
      public function getDashBoardData()
      {
+
           $ALLRECORDS = [];
           $this->dbh->query("SELECT COUNT(*) AS count1 FROM `allestate` ");
 
@@ -17,6 +19,7 @@ class DashBoardModel extends model
           $ALLRECORDS[2] = $this->dbh->single();
 
           $this->dbh->query("SELECT * FROM `user`  WHERE NOT `Rank`  ='Admin'");
+
 
           $ALLRECORDS[3] = $this->dbh->resultSet();
 
@@ -45,7 +48,7 @@ class DashBoardModel extends model
               <td>$ALLRECORDS2->name</td>
               <td>0111454768</td>
               <td>$ALLRECORDS2->Rank</td>
-              <td><a  class="btn" onclick="Editing($count , '$ALLRECORDS2->name'  , '$ALLRECORDS2->ID' );" style="background-color: #4b99ec; color: white; font-size:15px;">Edit</a></td>
+              <td><a  class="btn" onclick="Editing($count , '$ALLRECORDS2->name'  , '$ALLRECORDS2->ID' ,  '$Rank');" style="background-color: #4b99ec; color: white; font-size:15px;">Edit</a></td>
               EOT;
 
           return $customer;
@@ -74,12 +77,13 @@ class DashBoardModel extends model
 
           return 1;
      }
-     public function ConfirmUserAdd( $newEmail, $name, $title, $disc){
+     public function ConfirmUserAdd($newEmail, $name, $title, $disc)
+     {
           $IMAGEROOT2 = IMAGEROOT2;
 
-         
+
           $output2 = "";
-         
+
           $this->dbh->query("SELECT * FROM `user` WHERE  `email`='" . $newEmail . "'");
 
           $result2 = $this->dbh->single();
@@ -179,7 +183,7 @@ class DashBoardModel extends model
           }
           return $output2;
      }
-     public function switchMainDashBoard($page)
+     public function switchMainDashBoard($page, $offset, $no_of_records_per_page)
      {
           if ($page == 2) {
                $IMAGEROOT2 = IMAGEROOT2;
@@ -212,12 +216,11 @@ class DashBoardModel extends model
                foreach ($result as $user) {
                     foreach ($result2 as $user2) {
                          if ($user2->ID == $user->UserID) {
-                              if(substr($user2->image,0,4) == 'http') {
+                              if (substr($user2->image, 0, 4) == 'http') {
                                    $IMAGEROOT2 = '';
-                               }
-                               else {
+                              } else {
                                    $IMAGEROOT2 = IMAGEROOT2;
-                               }
+                              }
                               $output2 .= <<<EOT
                <div class="column" id="$user->ID">
                <div class="card-about">
@@ -248,74 +251,331 @@ class DashBoardModel extends model
           }
           if ($page == 1) {
                $output = "";
-                $output .= <<<EOT
+               $output .= <<<EOT
+                                   <div class="search">
+                                   <label>
+                                   <input type="text" id='Search here' placeholder="Search here" onkeyup='searching(2 , $offset ,$no_of_records_per_page);';>
+                                   <ion-icon name="search-outline"></ion-icon>
+                                   </label>
+                              </div >
+                              <div id="SearchSecondContainer">
                          <div class="details" style="display:inline;">
                         <div class="recentOrders" style="box-shadow: 0 10px 29px rgba(0, 0, 0, 0.5);">
                             <div class="cardHeader">
                     <table>
                     <thead>
                         <tr>
-                            <td>Name</td>
-                            <td>Code</td>
                             <td>Type</td>
+                            
+                            <td>Code</td>
+                            
                             <td>Last editing User</td>
                         </tr>
                     </thead>
                     <tbody>
                     EOT;
                $imgroot = IMAGEROOT2;
-               $this->dbh->query("SELECT *  FROM `rents` WHERE  1");
+               $this->dbh->query("SELECT *  FROM `rents` WHERE  1 LIMIT $offset, $no_of_records_per_page");
 
                $ALLRECORDS[0] = $this->dbh->resultSet();
 
-               $this->dbh->query("SELECT *  FROM `allestate` WHERE  1");
+               $this->dbh->query("SELECT Count(*) as c3  FROM `rents` WHERE  1 ");
 
-               $ALLRECORDS[1] = $this->dbh->resultSet();
-               
+               $Reach = $this->dbh->single();
+
+               if ($Reach->c3 < $no_of_records_per_page) {
+                    $LoadMoreStr = '<div class="row" >
+
+                    <div id="LoadMore" style="width:50%; cursor: pointer;">No More Items to Load</div>
+                    </div>';
+               } else {
+                    $LoadMoreStr = '<div class="row" onclick=itemsAjax2();>
+
+                    <div id="LoadMore" style="width:50%; cursor: pointer;">Load More</div>
+                    </div>';
+               }
+
                foreach ($ALLRECORDS[0] as $record) {
-                    $this->dbh->query("SELECT *  FROM `user` WHERE  ID=".$record->AMID);
+                    $this->dbh->query("SELECT *  FROM `user` WHERE  ID=" . $record->AMID);
                     $user = $this->dbh->single();
-                   
-                         
-                       
+
+
+
                     $output .= <<<EOT
                 <tr >
                 
                 <td>$record->typeName</td>
                     <td>$record->code</td>
-                   <td>Rent</td>
+                   
                     <td>$user->name</td>
                 </tr>
                 EOT;
-                            
-                            
-                        }
+               }
 
-                        foreach ($ALLRECORDS[1] as $record) {
-                         $this->dbh->query("SELECT *  FROM `user` WHERE  ID=".$record->AMID);
-                         $user = $this->dbh->single();
-                        
-                              
+
+
+               $output .= '</tbody></table></div></div></div>';
+               $output .= $LoadMoreStr . '</div>';
+
+
+
+
+               return $output;
+          }
+
+          if ($page == 3) {
+               $output = "";
+               $output .= <<<EOT
+                              <div class="search">
+                              <label>
+                              <input type="text" id='Search here' placeholder="Search here" onkeyup='searching(3 , $offset ,$no_of_records_per_page);';>
+                              <ion-icon name="search-outline"></ion-icon>
+                              </label>
+                         </div >
+                         <div id="SearchThirdContainer">
+                         <div class="details" style="display:inline;">
+                        <div class="recentOrders" style="box-shadow: 0 10px 29px rgba(0, 0, 0, 0.5);">
+                      
+                            <div class="cardHeader">
+                    <table >
+                    <thead>
+                        <tr>
+                            <td>Name</td>
+                            <td>Code</td>
                             
-                         $output .= <<<EOT
+                            <td>Last editing User</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    EOT;
+               $imgroot = IMAGEROOT2;
+
+               $this->dbh->query("SELECT *  FROM `allestate` WHERE  1 LIMIT $offset, $no_of_records_per_page");
+
+
+
+               $ALLRECORDS[1] = $this->dbh->resultSet();
+               $this->dbh->query("SELECT Count(*) as c3  FROM `allestate` WHERE  1 ");
+
+               $Reach = $this->dbh->single();
+
+               if ($Reach->c3 < $no_of_records_per_page) {
+                    $LoadMoreStr = '<div class="row" >
+
+                    <div id="LoadMore" style="width:50%; cursor: pointer;">No More Items to Load</div>
+                    </div>';
+               } else {
+                    $LoadMoreStr = '<div class="row" onclick=itemsAjax2();>
+
+                    <div id="LoadMore" style="width:50%; cursor: pointer;">Load More</div>
+                    </div>';
+               }
+
+
+
+               foreach ($ALLRECORDS[1] as $record) {
+                    $this->dbh->query("SELECT *  FROM `user` WHERE  ID=" . $record->AMID);
+                    $user = $this->dbh->single();
+
+
+
+                    $output .= <<<EOT
                      <tr >
                      
                      <td>$record->Name</td>
                          <td>$record->Code</td>
-                        <td>Item</td>
+                        
                          <td>$user->name</td>
                      </tr>
                      EOT;
-                                 
-                                 
-                             }
-                        
-                    $output .= '</tbody></table></div></div></div>';
-     
-               
+               }
+
+               $output .= '</tbody></table></div></div></div> ';
+               $output .= $LoadMoreStr . '</div>';
+
+
 
 
                return $output;
+          }
+     }
+     public function SearchMain($state, $search = '!',  $offset, $no_of_records_per_page)
+     {
+          switch ($state) {
+               case 1:
+                    if ($search == '!') {
+                         $this->dbh->query("SELECT * FROM `user`  WHERE NOT `Rank`  ='Admin'");
+                    } else {
+                         $this->dbh->query("SELECT * FROM `user`  WHERE NOT `Rank`  ='Admin'  AND (user.name LIKE '%" . $search . "%'
+                      OR user.email LIKE '%" . $search . "%'
+                      OR user.Rank LIKE '%" . $search . "%')");
+                    }
+
+
+                    $ALLRECORDS2 = $this->dbh->resultSet();
+                    $output = '';
+                    $count = 0;
+                    foreach ($ALLRECORDS2 as $user) {
+
+                         $output .= <<<EOT
+                              <tr id="$count">
+                              <td>$user->name</td>
+                              <td>0111454768</td>
+                              <td>$user->Rank</td>
+                              <td><a  class="btn" onclick="Editing($count , '$user->name'  , '$user->ID' ,'$user->Rank');" style="background-color: #4b99ec; color: white; font-size:15px;">Edit</a></td>
+                              </tr>
+                         EOT;
+                         $count++;
+                    }
+                    return $output;
+                    break;
+               case 2:
+                    $output = "";
+                    $output .= <<<EOT
+                                       
+                              <div class="details" style="display:inline;">
+                             <div class="recentOrders" style="box-shadow: 0 10px 29px rgba(0, 0, 0, 0.5);">
+                                 <div class="cardHeader">
+                         <table >
+                         <thead>
+                             <tr>
+                                 <td>Type</td>
+                                 
+                                 <td>Code</td>
+                                 
+                                 <td>Last editing User</td>
+                             </tr>
+                         </thead>
+                         <tbody>
+                         EOT;
+                    $imgroot = IMAGEROOT2;
+                    $this->dbh->query("SELECT *  FROM `rents` WHERE  rents.typeName LIKE '%" . $search . "%'
+                    OR rents.code LIKE '%" . $search . "%'
+                    OR rents.LessorName LIKE '%" . $search . "%'
+                    OR rents.TenantName LIKE '%" . $search . "%'");
+
+                    $ALLRECORDS[0] = $this->dbh->resultSet();
+
+                    $this->dbh->query("SELECT Count(*) as c3  FROM `rents` WHERE  1 ");
+
+                    $Reach = $this->dbh->single();
+
+                    if ($Reach->c3 < $no_of_records_per_page) {
+                         $LoadMoreStr = '<div class="row" >
+     
+                         <div id="LoadMore" style="width:50%; cursor: pointer;">No More Items to Load</div>
+                         </div>';
+                    } else {
+                         $LoadMoreStr = '<div class="row" onclick=itemsAjax2();>
+     
+                         <div id="LoadMore" style="width:50%; cursor: pointer;">Load More</div>
+                         </div>';
+                    }
+
+                    foreach ($ALLRECORDS[0] as $record) {
+                         $this->dbh->query("SELECT *  FROM `user` WHERE  ID=" . $record->AMID);
+                         $user = $this->dbh->single();
+
+
+
+                         $output .= <<<EOT
+                     <tr >
+                     
+                     <td>$record->typeName</td>
+                         <td>$record->code</td>
+                        
+                         <td>$user->name</td>
+                     </tr>
+                     EOT;
+                    }
+
+
+
+                    $output .= '</tbody></table></div></div></div>';
+                    
+
+
+
+
+                    return $output;
+
+                    break;
+               case 3:
+                    $output = "";
+                    $output .= <<<EOT
+                                 
+                              <div class="details" style="display:inline;">
+                             <div class="recentOrders" style="box-shadow: 0 10px 29px rgba(0, 0, 0, 0.5);">
+                           
+                                 <div class="cardHeader">
+                         <table >
+                         <thead>
+                             <tr>
+                                 <td>Name</td>
+                                 <td>Code</td>
+                                 
+                                 <td>Last editing User</td>
+                             </tr>
+                         </thead>
+                         <tbody>
+                         EOT;
+                    $imgroot = IMAGEROOT2;
+
+                    $this->dbh->query("SELECT *  FROM `allestate` WHERE  allestate.AddressUser LIKE '%" . $search . "%'
+                    OR allestate.Area LIKE '%" . $search . "%'
+                    OR allestate.Price LIKE '%" . $search . "%'
+                    OR allestate.PaymentMethod LIKE '%" . $search . "%'
+                    OR allestate.DescriptionUser LIKE '%" . $search . "%'
+                    OR allestate.Name LIKE '%" . $search . "%'
+                    OR allestate.Code LIKE '%" . $search . "%' ");
+
+
+
+                    $ALLRECORDS[1] = $this->dbh->resultSet();
+                    $this->dbh->query("SELECT Count(*) as c3  FROM `allestate` WHERE  1 ");
+
+                    $Reach = $this->dbh->single();
+
+                    if ($Reach->c3 < $no_of_records_per_page) {
+                         $LoadMoreStr = '<div class="row" >
+     
+                         <div id="LoadMore" style="width:50%; cursor: pointer;">No More Items to Load</div>
+                         </div>';
+                    } else {
+                         $LoadMoreStr = '<div class="row" onclick=itemsAjax2();>
+     
+                         <div id="LoadMore" style="width:50%; cursor: pointer;">Load More</div>
+                         </div>';
+                    }
+
+
+
+                    foreach ($ALLRECORDS[1] as $record) {
+                         $this->dbh->query("SELECT *  FROM `user` WHERE  ID=" . $record->AMID);
+                         $user = $this->dbh->single();
+
+
+
+                         $output .= <<<EOT
+                          <tr >
+                          
+                          <td>$record->Name</td>
+                              <td>$record->Code</td>
+                             
+                              <td>$user->name</td>
+                          </tr>
+                          EOT;
+                    }
+
+                    $output .= '</tbody></table></div></div></div> ';
+
+
+
+
+                    return $output;
+
+
+                    break;
           }
      }
 }

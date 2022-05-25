@@ -95,9 +95,9 @@ class viewItem extends View
    </section>
      <!-- cards end here -->
      <!-- pagination  start-->
-     <ul class="row pagination">
+     <ul class="row" onclick=itemsAjax2();>
 
-<li id="LoadMore" style="width:100%;"><a  onclick=itemsAjax2(); >Load More</a></li>
+<li id="LoadMore" style="width:50%; cursor: pointer;">Load More</li>
 </ul>
 
    
@@ -115,7 +115,7 @@ class viewItem extends View
          <h4>Search</h4>
          
          <div class="cd-filter-content">
-           <input type="search" name="search" id="search" placeholder="أبحث" onkeyup="itemsAjax()">
+           <input type="search" name="search" id="search" placeholder="أبحث" onkeyup="OnKeyUpSearch()">
          </div> <!-- cd-filter-content -->
        </div> <!-- cd-filter-block -->
 
@@ -605,13 +605,29 @@ function WishList(IDArray){
       }
       $( ".form" ).change(function() {
         //schow item on change
+        console.log("here2");
         document.getElementById('cards').innerHTML='';
         offset=0;
         no_of_records_per_page=<?php echo $no_of_records_per_page ;?>;
         itemsAjax();
         document.getElementById('LoadMore').innerHTML='<a  onclick=itemsAjax2(); >Load More</a>';
+        
 
       });
+
+      function OnKeyUpSearch() {
+        
+        //schow item on change
+        console.log("here1");
+        document.getElementById('cards').innerHTML='';
+        
+        offset=0;
+        no_of_records_per_page=<?php echo $no_of_records_per_page ;?>;
+        itemsAjax();
+        document.getElementById('LoadMore').innerHTML='<a  onclick=itemsAjax2(); >Load More</a>';
+
+      }
+
       //Show item first time 
       itemsAjax();
 

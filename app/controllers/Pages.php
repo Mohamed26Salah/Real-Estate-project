@@ -57,13 +57,15 @@ public function viewItem()
         }else if(isset($_POST['EditAbout'])){
             $DashBoardAdmin = new AdminModel;
             echo($DashBoardAdmin->DashBoard());
+        }else if(isset($_POST['state'])){
+            echo($DashBoard->SearchMain($_POST['state'],$_POST['search'],$_POST['offsettt'],$_POST['norpptt']));
         }else if(isset($_POST['ConfirmAboutAdd'])){
             echo($DashBoard->ConfirmUserAdd($_POST['newEmail'],$_POST['name1'],$_POST['title1'],$_POST['disc1']));
         }else if(isset($_POST['ConfirmAbout'])){
             echo($DashBoard->ConfirmUser($_POST['email'],$_POST['newEmail'],$_POST['ID'],$_POST['name1'],$_POST['title1'],$_POST['disc1']));
         }
         else if(isset($_POST['page'])){
-            echo($DashBoard->switchMainDashBoard($_POST['page']));
+            echo($DashBoard->switchMainDashBoard($_POST['page'] ,$_POST['offset'],$_POST['norpp']));
         }
         else{
             echo($DashBoard->EditConfirm($_POST['ConfirmID'],$_POST['Rank'],$_POST['valuee']));
