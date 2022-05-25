@@ -9,7 +9,7 @@ class DashBoard extends View
 ?>
         <html>
         <!-- <link rel="stylesheet" href="<?php echo URLROOT; ?>css/DashBoardStyle.css"> -->
-        <?php $action3 = 'ajax2'; ?>
+        <?php $action3 = 'DashBoard'; ?>
         <?php
         $no_of_records_per_page = 2;
         $offset = 0;

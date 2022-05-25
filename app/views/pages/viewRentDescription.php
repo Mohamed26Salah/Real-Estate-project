@@ -6,8 +6,9 @@ class viewRentDescription extends View
     require APPROOT . '/views/inc/header.php';
 
     $rentDetails = $this->model->rentDetails();
-
-    
+    $images = $this->model->showPropertyImage();
+    $EditID = $_GET['ID'];
+    $action = URLROOT . 'Pages/viewEditRent';
 ?>
 
 <html>
@@ -30,72 +31,64 @@ class viewRentDescription extends View
             <!-- ################################################################################################ -->
             <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                 <ol class="carousel-indicators">
-                  <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                  <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                  <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-                  <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
-                  <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
-                  <li data-target="#carouselExampleIndicators" data-slide-to="5"></li>
-                  <li data-target="#carouselExampleIndicators" data-slide-to="6"></li>
-                  <li data-target="#carouselExampleIndicators" data-slide-to="7"></li>
-                  <li data-target="#carouselExampleIndicators" data-slide-to="8"></li>
-                  <li data-target="#carouselExampleIndicators" data-slide-to="9"></li>
-                  <li data-target="#carouselExampleIndicators" data-slide-to="10"></li>
-                  <li data-target="#carouselExampleIndicators" data-slide-to="11"></li>
-                  <li data-target="#carouselExampleIndicators" data-slide-to="12"></li>
-                  <li data-target="#carouselExampleIndicators" data-slide-to="13"></li>
-                  <li data-target="#carouselExampleIndicators" data-slide-to="14"></li>
-                  <li data-target="#carouselExampleIndicators" data-slide-to="15"></li>
-                  <li data-target="#carouselExampleIndicators" data-slide-to="16"></li>
-                  
+                <?php
+                if(!$images) {
+                  ?>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class = "active"></li>
+                <?php
+                }
+                else {
+
+               
+                      for ($i = 0 ; $i <count($images) ; $i++ ) { 
+                       
+                          if($i == 0) {
+                            ?>
+                              <li data-target="#carouselExampleIndicators" data-slide-to="0" class = "active"></li>
+                            <?php
+                          }
+                          else {
+                            ?>
+                              <li data-target="#carouselExampleIndicators" data-slide-to="<?php echo $i; ?>"></li>
+                            <?php
+                          }
+                          
+                      }
+                    }
+                      ?>
                 </ol>
                 <div class="carousel-inner">
-                  <div class="carousel-item active">
-                    <img class="d-block w-100" src="<?php echo IMAGEROOT2 . 'image-slider-3.jpg' ;?>" alt="First slide">
-                  </div>
-                  <div class="carousel-item">
-                    <img class="d-block w-100" src="<?php echo IMAGEROOT2 . 'image-slider-2.jpg' ;?>" alt="Second slide">
-                  </div>
-                  <div class="carousel-item">
-                    <img class="d-block w-100" src="<?php echo IMAGEROOT2 . 'image-slider-4.jpg' ;?>" alt="Third slide">
-                  </div>
-                  <div class="carousel-item">
-                    <img class="d-block w-100" src="<?php echo IMAGEROOT2 . 'image-slider-2.jpg' ;?>" alt="Second slide">
-                  </div>
-                  <div class="carousel-item">
-                    <img class="d-block w-100" src="<?php echo IMAGEROOT2 . 'image-slider-4.jpg' ;?>" alt="Third slide">
-                  </div>
-                  <div class="carousel-item">
-                    <img class="d-block w-100" src="<?php echo IMAGEROOT2 . 'image-slider-2.jpg' ;?>" alt="Second slide">
-                  </div>
-                  <div class="carousel-item">
-                    <img class="d-block w-100" src="<?php echo IMAGEROOT2 . 'image-slider-4.jpg' ;?>" alt="Third slide">
-                  </div>
-                  <div class="carousel-item">
-                    <img class="d-block w-100" src="<?php echo IMAGEROOT2 . 'image-slider-4.jpg' ;?>" alt="Third slide">
-                  </div>
+                  
+                    <?php
+                    if(!$images) {
+                      ?>
+                      <div class="carousel-item active">
+                              <img class="d-block w-100" src="<?php echo IMAGEROOT3 . 'no-image.png' ;?>" alt="First slide" height="500">
+                          </div>
+                    <?php
+                    }
+                    else {
 
-                  <div class="carousel-item">
-                    <img class="d-block w-100" src="<?php echo IMAGEROOT2 . 'image-slider-2.jpg' ;?>" alt="Second slide">
-                  </div>
-                  <div class="carousel-item">
-                    <img class="d-block w-100" src="<?php echo IMAGEROOT2 . 'image-slider-4.jpg' ;?>" alt="Third slide">
-                  </div>
-                  <div class="carousel-item">
-                    <img class="d-block w-100" src="<?php echo IMAGEROOT2 . 'image-slider-2.jpg' ;?>" alt="Second slide">
-                  </div>
-                  <div class="carousel-item">
-                    <img class="d-block w-100" src="<?php echo IMAGEROOT2 . 'image-slider-4.jpg' ;?>" alt="Third slide">
-                  </div>
-                  <div class="carousel-item">
-                    <img class="d-block w-100" src="<?php echo IMAGEROOT2 . 'image-slider-2.jpg' ;?>" alt="Second slide">
-                  </div>
-                  <div class="carousel-item">
-                    <img class="d-block w-100" src="<?php echo IMAGEROOT2 . 'image-slider-4.jpg' ;?>" alt="Third slide">
-                  </div>
-                  <div class="carousel-item">
-                    <img class="d-block w-100" src="<?php echo IMAGEROOT2 . 'image-slider-4.jpg' ;?>" alt="Third slide">
-                  </div>
+                  
+                      for ($i = 0 ; $i <count($images) ; $i++ ) { 
+                        if($i == 0) {
+                          ?>
+                            <div class="carousel-item active">
+                              <img class="d-block w-100" src="<?php echo IMAGEROOT3 . $images[0] ;?>" alt="First slide" height="500">
+                            </div>
+                          <?php
+                           }
+                          else {
+                            ?>
+                                <div class="carousel-item">
+                                  <img class="d-block w-100" src="<?php echo IMAGEROOT3 . $images[$i] ;?>" alt="First slide" height="500">
+                                </div>
+                          <?php
+                          }
+                      }
+                    }
+                      ?>
+              
                 </div>
                 <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
                   <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -109,7 +102,7 @@ class viewRentDescription extends View
 
 
              <!-- ################################################################################################ -->
-
+             <a href="<?php echo $action; ?>?IDE=<?php echo $EditID;?>&color=<?php echo $_GET['color']; ?>" class="btn btn-success btn-lg" style= "float:left; color:white; text-decoration:none; margin-top:1rem; margin-left:25px;">Edit</a>
             <div class="col-md-12 mt-5 text-right" dir="rtl">
 	        		<div class="product-dtl">
         				<div class="product-info">

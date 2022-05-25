@@ -115,7 +115,7 @@ class viewItem extends View
    </section>
      <!-- cards end here -->
      <!-- pagination  start-->
-     
+ 
 
    
    <?php $action = URLROOT . 'Pages/viewItem'; ?>

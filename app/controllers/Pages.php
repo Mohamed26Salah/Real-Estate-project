@@ -53,60 +53,7 @@ public function viewItem()
 
        
     }
-    public function ajax2()
-    { 
-        require_once APPROOT . "/models/DashBoardModel.php";
-      
-        // if (isset($_POST['DEL'])) {
-        //     echo($DashBoard->DeleteUser($_POST['ID']));
-        // }else if(isset($_POST['DeleteAbout'])){
-        //     echo($DashBoard->DeleteUserAbout($_POST['ID']));
-        // }else if(isset($_POST['EditAbout'])){
-        //     $DashBoardAdmin = new AdminModel;
-        //     echo($DashBoardAdmin->DashBoard());
-        // }else if(isset($_POST['state'])){
-        //     echo($DashBoard->SearchMain($_POST['state'],$_POST['search'],$_POST['offsettt'],$_POST['norpptt']));
-        // }else if(isset($_POST['ConfirmAboutAdd'])){
-        //     echo($DashBoard->ConfirmUserAdd($_POST['newEmail'],$_POST['name1'],$_POST['title1'],$_POST['disc1']));
-        // }else if(isset($_POST['ConfirmAbout'])){
-        //     echo($DashBoard->ConfirmUser($_POST['email'],$_POST['newEmail'],$_POST['ID'],$_POST['name1'],$_POST['title1'],$_POST['disc1']));
-        // }
-        // else if(isset($_POST['page'])){
-        //     echo($DashBoard->switchMainDashBoard($_POST['page'] ,$_POST['offset'],$_POST['norpp']));
-        // }
-        // else{
-        //     echo($DashBoard->EditConfirm($_POST['ConfirmID'],$_POST['Rank'],$_POST['valuee']));
 
-        // }
-        // $DashBoard = new DashBoardModel();
-        $AdminDashBoard = new AdminModel();
-        // if (isset($_POST['DEL'])) {
-        //     echo($DashBoard->DeleteUser($_POST['ID']));
-        // }else if(isset($_POST['DeleteAbout'])){
-        //     echo($DashBoard->DeleteUserAbout($_POST['ID']));
-        // }else if(isset($_POST['EditAbout'])){
-        //     $DashBoardAdmin = new AdminModel;
-        //     echo($DashBoardAdmin->DashBoard());
-        // }else if(isset($_POST['ConfirmAboutAdd'])){
-        //     echo($DashBoard->ConfirmUserAdd($_POST['newEmail'],$_POST['name1'],$_POST['title1'],$_POST['disc1']));
-        // }else if(isset($_POST['ConfirmAbout'])){
-        //     echo($DashBoard->ConfirmUser($_POST['email'],$_POST['newEmail'],$_POST['ID'],$_POST['name1'],$_POST['title1'],$_POST['disc1']));
-        // }
-        // else if(isset($_POST['page'])){
-        //     echo($DashBoard->switchMainDashBoard($_POST['page']));
-        // }
-        // else{
-        //     echo($DashBoard->EditConfirm($_POST['ConfirmID'],$_POST['Rank'],$_POST['valuee']));
-
-        // }
-        
-        echo $AdminDashBoard->DashBoard();
-        
-
-       
-       
-
-    }
     public function ajax()
     {
         // $ViewItem = $this->getModel();
@@ -214,8 +161,7 @@ public function viewRent()
 
             echo($viewRentAdmin->ViewRent());
 
-           
-          
+                  
         }else{
         $viewPath = VIEWS_PATH . 'pages/viewRent.php';
         require_once $viewPath;
@@ -304,6 +250,11 @@ public function viewRent()
             if($_POST['TOREND']!="Salah"){
                 $AddRent->setTOREND($_POST['TOREND']);
             }
+            if(isset($_POST['EditIDRent'])){
+                if($_POST['EditIDRent']!="Salah"){
+                    $AddRent->setEditIDRent($_POST['EditIDRent']);
+                }
+            }
             echo($AddRent->AddRent());
 }
             if(!empty($_FILES['files']['name'])){
@@ -339,10 +290,6 @@ public function viewRent()
                 
                          // Upload file
                          if(move_uploaded_file($_FILES['files']['tmp_name'][$index],$path)){
-                             if($counter=="0"){
-                                $AddRent->OneImages($filename);
-                                $counter="1";
-                             }
                             $AddRent->UploadImages($filename);
                          }
                         }
@@ -372,6 +319,66 @@ public function viewRent()
         }
       
     
+}
+public function viewEditRent(){
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        $ViewEditRent = $this->getModel();
+        if(isset($_POST['FireAJAXRent'])){
+            $ViewEditRent->setID($_POST['FireAJAXRent']);
+            echo($ViewEditRent->ShowEditRent());
+        }
+        if(isset($_POST['codeInput'])){
+            echo($ViewEditRent->CheckCodeEdit($_POST['OldCode'],$_POST['codeInput']));
+        }
+        if(!empty($_FILES['files']['name'])){
+            $countfiles = count($_FILES['files']['name']);
+            $counter="0";
+            // Upload Location
+            $upload_location = IMAGEROOT;
+            
+            // To store uploaded files path
+            $files_arr = array();
+            
+            // Loop all files
+            // for($index = 0;$index < $countfiles;$index++){
+            for($index = 0;$index <= 20 ;$index++){
+            
+               if(isset($_FILES['files']['name'][$index]) && $_FILES['files']['name'][$index] != ''){
+                  // File name
+                  $filename = $_FILES['files']['name'][$index];
+                  $file_size = $_FILES['files']['size'][$index];
+                  
+                  // Get extension
+                  $ext = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
+            
+                  // Valid image extension
+                  $valid_ext = array("png","jpeg","jpg");
+            
+                  // Check extension
+                  if(in_array($ext, $valid_ext)){
+                    if($file_size < 4194304){
+                     // File path
+                     $path = $upload_location.$filename;
+            
+                     // Upload file
+                     if(move_uploaded_file($_FILES['files']['tmp_name'][$index],$path)){
+                         $ViewEditRent->UploadImagesEdit($filename, $_POST['YASSER']);
+                     }
+                    }
+                  }else{
+                      echo "<div class='text-center fixed-top' style='margin-top:30px;'><button class='btn btn-danger' id='Db' style='width:50%'><i class='fa fa-exclamation-triangle' aria-hidden='true'></i> واحدة من الصور ليست بصورة لذا تم رفضها</button></div>";
+                  }
+               }
+            }
+            
+        }
+
+    }else{
+    $viewPath = VIEWS_PATH . 'pages/viewEditRent.php';
+    require_once $viewPath;
+    $viewEditRent = new viewEditRent($this->getModel(), $this);
+    $viewEditRent->output();
+    }
 }
  /////////////////////////////////////
 public function ViewADD()
@@ -568,8 +575,8 @@ public function ViewADD()
        
         if ($_SERVER['REQUEST_METHOD'] == 'GET'){
 
-            if(isset($_GET['code']) && isset($_GET['color'])){
-                $viewRentDescription->setCode($_GET['code']);
+            if(isset($_GET['ID']) && isset($_GET['color'])){
+                $viewRentDescription->setID($_GET['ID']);
                 $viewRentDescription->setDotColor($_GET['color']);
                 
            
@@ -691,10 +698,36 @@ public function ViewADD()
     }    
     public function DashBoard()
     {
-        $viewPath = VIEWS_PATH . 'pages/DashBoard.php';
-        require_once $viewPath;
-        $WishListView = new DashBoard($this->getModel(), $this);
-        $WishListView->output();
+        
+        if (isset($_POST['DEL'])) {
+            echo($DashBoard->DeleteUser($_POST['ID']));
+        }else if(isset($_POST['DeleteAbout'])){
+            echo($DashBoard->DeleteUserAbout($_POST['ID']));
+        }else if(isset($_POST['EditAbout'])){
+            $DashBoardAdmin = new AdminModel;
+            echo($DashBoardAdmin->DashBoard());
+        }else if(isset($_POST['state'])){
+            echo($DashBoard->SearchMain($_POST['state'],$_POST['search'],$_POST['offsettt'],$_POST['norpptt']));
+        }else if(isset($_POST['ConfirmAboutAdd'])){
+            echo($DashBoard->ConfirmUserAdd($_POST['newEmail'],$_POST['name1'],$_POST['title1'],$_POST['disc1']));
+        }else if(isset($_POST['ConfirmAbout'])){
+            echo($DashBoard->ConfirmUser($_POST['email'],$_POST['newEmail'],$_POST['ID'],$_POST['name1'],$_POST['title1'],$_POST['disc1']));
+        }
+        else if(isset($_POST['page'])){
+            echo($DashBoard->switchMainDashBoard($_POST['page'] ,$_POST['offset'],$_POST['norpp']));
+        }
+        else if(isset($_POST['ConfirmID'])){
+            echo($DashBoard->EditConfirm($_POST['ConfirmID'],$_POST['Rank'],$_POST['valuee']));
+        }
+        else {
+           //
+           $viewPath = VIEWS_PATH . 'pages/DashBoard.php';
+            require_once $viewPath;
+            $DashBoardView = new DashBoard($this->getModel(), $this);
+            $DashBoard = new DashBoardModel();
+            $DashBoardView->output();
+        }
+        
     } 
    
     public function Profile()
