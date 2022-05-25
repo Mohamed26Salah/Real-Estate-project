@@ -46,36 +46,7 @@ public function viewItem()
 
        
     }
-    public function ajax2()
-    { 
-        require_once APPROOT . "/models/DashBoardModel.php";
-        $DashBoard = new DashBoardModel();
-        if (isset($_POST['DEL'])) {
-            echo($DashBoard->DeleteUser($_POST['ID']));
-        }else if(isset($_POST['DeleteAbout'])){
-            echo($DashBoard->DeleteUserAbout($_POST['ID']));
-        }else if(isset($_POST['EditAbout'])){
-            $DashBoardAdmin = new AdminModel;
-            echo($DashBoardAdmin->DashBoard());
-        }else if(isset($_POST['state'])){
-            echo($DashBoard->SearchMain($_POST['state'],$_POST['search'],$_POST['offsettt'],$_POST['norpptt']));
-        }else if(isset($_POST['ConfirmAboutAdd'])){
-            echo($DashBoard->ConfirmUserAdd($_POST['newEmail'],$_POST['name1'],$_POST['title1'],$_POST['disc1']));
-        }else if(isset($_POST['ConfirmAbout'])){
-            echo($DashBoard->ConfirmUser($_POST['email'],$_POST['newEmail'],$_POST['ID'],$_POST['name1'],$_POST['title1'],$_POST['disc1']));
-        }
-        else if(isset($_POST['page'])){
-            echo($DashBoard->switchMainDashBoard($_POST['page'] ,$_POST['offset'],$_POST['norpp']));
-        }
-        else{
-            echo($DashBoard->EditConfirm($_POST['ConfirmID'],$_POST['Rank'],$_POST['valuee']));
-
-        }
-
-       
-       
-
-    }
+   
     public function ajax()
     {
         // $ViewItem = $this->getModel();
@@ -638,8 +609,33 @@ public function ViewADD()
     {
         $viewPath = VIEWS_PATH . 'pages/DashBoard.php';
         require_once $viewPath;
-        $WishListView = new DashBoard($this->getModel(), $this);
-        $WishListView->output();
+        $DashBoardView = new DashBoard($this->getModel(), $this);
+        $DashBoard = new DashBoardModel();
+        if (isset($_POST['DEL'])) {
+            echo($DashBoard->DeleteUser($_POST['ID']));
+        }else if(isset($_POST['DeleteAbout'])){
+            echo($DashBoard->DeleteUserAbout($_POST['ID']));
+        }else if(isset($_POST['EditAbout'])){
+            $DashBoardAdmin = new AdminModel;
+            echo($DashBoardAdmin->DashBoard());
+        }else if(isset($_POST['state'])){
+            echo($DashBoard->SearchMain($_POST['state'],$_POST['search'],$_POST['offsettt'],$_POST['norpptt']));
+        }else if(isset($_POST['ConfirmAboutAdd'])){
+            echo($DashBoard->ConfirmUserAdd($_POST['newEmail'],$_POST['name1'],$_POST['title1'],$_POST['disc1']));
+        }else if(isset($_POST['ConfirmAbout'])){
+            echo($DashBoard->ConfirmUser($_POST['email'],$_POST['newEmail'],$_POST['ID'],$_POST['name1'],$_POST['title1'],$_POST['disc1']));
+        }
+        else if(isset($_POST['page'])){
+            echo($DashBoard->switchMainDashBoard($_POST['page'] ,$_POST['offset'],$_POST['norpp']));
+        }
+        else if(isset($_POST['ConfirmID'])){
+            echo($DashBoard->EditConfirm($_POST['ConfirmID'],$_POST['Rank'],$_POST['valuee']));
+        }
+        else {
+           //
+            $DashBoardView->output();
+        }
+        
     } 
    
     public function Profile()
