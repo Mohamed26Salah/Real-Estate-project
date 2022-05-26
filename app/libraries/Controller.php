@@ -23,4 +23,12 @@ abstract class Controller
     {
         return $this->model;
     }
+    public function __call($name, $arguments) {
+        if (!method_exists($this, $name)) {
+            throw new myCustomException(' Something Went Wrong Please Try Again');
+        }
+        if (!property_exists($name, false)) {
+            throw new myCustomException(' Something Went Wrong Please Try Again');
+        }
+    }
 }

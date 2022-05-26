@@ -40,10 +40,10 @@ class Login extends view
    
     $text = <<<EOT
     <link rel="stylesheet" href="<?php echo URLROOT; ?>css/LoginRegister.css">
-    <body style="background-color:#EDEDED;">
+    <body style="background-color:#ffff;">
     <div class="registration-form">
     <form action="$action" method="post">
-    <h2 style="text-align: center; margin-bottom: 5%; font-size: 40px; color:#00111C;" >Login</h2>
+    <h2 style="text-align: center; margin-bottom: 5%; font-size: 40px; color:#4b99ec;" >Login</h2>
     <div class="form-icon">
     
     <span><i class="icon icon-user"></i></span>
@@ -58,18 +58,19 @@ EOT;
     $text = <<<EOT
     <div class="container">
     <div class="checkbox mb-3 mt-3">
-        <label>
-          <input type="checkbox" value="remember-me"> Remember me
-        </label>
       </div>
       <div class="row mt-4">
         <div class="col">
-          <input type="submit" value="Login" class="btn btn-block create-account">
-          
+          <input type="submit" value="Login" class="btn btn-block create-account" style=" border-radius: 10px;  background-color:#4b99ec;">
         </div>
         <div class="col">
-          <a href="$registerUrl" class="btn btn-block create-account">New User, Sign up</a>
-          <a href="$url" class="btn btn-block create-account">Login with google</a>
+        <a href="$registerUrl" class="btn btn-block create-account" style="
+   border-radius: 10px;  background-color:#4b99ec;"> New User </a>
+         </div>
+        <div class="col">
+          
+          <a href="$url" class="btn btn-block create-account" style="
+   border-radius: 10px; background-color:#4b99ec; color:white;"><i class="fa-brands fa-google"> Login with google</i></a>
           
         </div>
       </div>

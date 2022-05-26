@@ -4,9 +4,17 @@ require_once $AdminPath;
 
 $ClienPath = models_PATH . 'Client.php';
 require_once $ClienPath;
+function myCustomErrorHandler(int $errNo, string $errMsg, string $file, int $line) {
+    echo "Wow my custom error handler got #[$errNo] occurred in [$file] at line [$line]: [$errMsg]";
+    redirect('index?ERROR=1');
+    }
 class Pages extends Controller
 {
     protected $ID;
+
+   
+        
+        
 
     public function index()
     {
@@ -26,6 +34,7 @@ class Pages extends Controller
 
     public function viewItem()
     {
+        set_error_handler('myCustomErrorHandler');
         try {
             $viewItemAdmin = new AdminModel();
             $ViewItem = $this->getModel();
@@ -59,6 +68,7 @@ class Pages extends Controller
 
     public function ajax()
     {
+        set_error_handler('myCustomErrorHandler');
         try {
         $ViewItem = $this->getModel();
 
@@ -153,6 +163,7 @@ class Pages extends Controller
 
     public function viewRent()
     {
+        set_error_handler('myCustomErrorHandler');
         try {
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 // require_once APPROOT . "/models/viewRentModel.php";
@@ -186,9 +197,9 @@ class Pages extends Controller
     }
     public function viewDescription()
     {
-
+        set_error_handler('myCustomErrorHandler');
         try {
-            $viewDescription = $this->getModel();
+             $viewDescription = $this->getModel();
             if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
                 if (isset($_GET['ID'])) {
@@ -218,6 +229,7 @@ class Pages extends Controller
     //////////////////////////////////////////
     public function ViewADDRent()
     {
+        set_error_handler('myCustomErrorHandler');
         try {
             $AddRent = $this->getModel();
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -341,6 +353,7 @@ class Pages extends Controller
     }
     public function viewEditRent()
     {
+        set_error_handler('myCustomErrorHandler');
         try {
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $ViewEditRent = $this->getModel();
@@ -405,6 +418,7 @@ class Pages extends Controller
     /////////////////////////////////////
     public function ViewADD()
     {
+        set_error_handler('myCustomErrorHandler');
         try {
             $Add = new AdminModel();
 
@@ -591,6 +605,7 @@ class Pages extends Controller
 
     public function viewRentDescription()
     {
+        set_error_handler('myCustomErrorHandler');
         try {
             $viewRentDescription = $this->getModel();
 
@@ -693,6 +708,7 @@ class Pages extends Controller
 
     public function WishList()
     {
+        set_error_handler('myCustomErrorHandler');
         try {
             $WishListView = $this->getModel();
             $WishListClient = new Client();
@@ -718,6 +734,7 @@ class Pages extends Controller
 
     public function about()
     {
+        set_error_handler('myCustomErrorHandler');
         try {
             $viewPath = VIEWS_PATH . 'pages/about.php';
             require_once $viewPath;
@@ -729,6 +746,7 @@ class Pages extends Controller
     }
     public function DashBoard()
     {
+        set_error_handler('myCustomErrorHandler');
         try {
 
             // if (isset($_POST['DEL'])) {
@@ -773,6 +791,7 @@ class Pages extends Controller
 
     public function Profile()
     {
+        set_error_handler('myCustomErrorHandler');
         try {
             $ProfileModel = $this->getModel();
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -868,6 +887,7 @@ class Pages extends Controller
     }
     public function updateUserSession($user)
     {
+        set_error_handler('myCustomErrorHandler');
         try {
 
             $_SESSION['user_name'] = $user->getName();
@@ -882,6 +902,7 @@ class Pages extends Controller
 
     public function ImageAjax()
     {
+        set_error_handler('myCustomErrorHandler');
         try {
             if (!empty($_FILES['fileToUpload']['name'])) {
                 $errors = array();
@@ -895,8 +916,8 @@ class Pages extends Controller
 
                 if (in_array($file_ext, $expensions) === false) {
 ?>
-                    <div class="text-center fixed-top" style="margin-top:30px;">
-                        <button class="btn btn-danger" id="Db" style="width:50%"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> extension not allowed,please choose a JPEG or PNG file </button>
+                    <div class="text-center fixed-top" style="margin-top:30px;" onclick="RemoveError()">
+                        <button class="btn btn-danger" id="Db" style="width:50%" onclick="RemoveError()"><i class="fa fa-exclamation-triangle" aria-hidden="true" onclick="RemoveError()"></i> extension not allowed,please choose a JPEG or PNG file </button>
                     </div>
                 <?php
                     $errors[] = "extension not allowed, please choose a JPEG or PNG file.";
@@ -904,8 +925,8 @@ class Pages extends Controller
 
                 if ($file_size > 4194304) {
                 ?>
-                    <div class="text-center fixed-top" style="margin-top:30px;">
-                        <button class="btn btn-info" id="Db" style="width:50%"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> File size must be excately 4 MB or less</button>
+                    <div class="text-center fixed-top" style="margin-top:30px;" onclick="RemoveError()">
+                        <button class="btn btn-info" id="Db" style="width:50%" onclick="RemoveError()"><i class="fa fa-exclamation-triangle" aria-hidden="true" onclick="RemoveError()"></i> File size must be excately 4 MB or less</button>
                     </div>
 <?php
                     $errors[] = 'File size must be excately 4 MB';
@@ -943,9 +964,11 @@ class Pages extends Controller
             echo "<h1 style='display:flex; justify-content:center; margin-top:20%;'>" . $e->getMessage() . '</h1>';
         }
     }
+
 }
 
 
 class myCustomException extends Exception
 {
 }
+

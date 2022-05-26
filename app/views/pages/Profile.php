@@ -44,11 +44,11 @@ class Profile extends View
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet">
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
 </head>
-    <body  style="background-color:#003356;">
+    <body  style="background-color:#fffff;">
 <div class="container-xl px-4 mt-5">
     <hr class="mt-0 mb-4">
     <div class="row">
-        <div class="col-xl-4" >
+        <div class="col-xl-4" style="box-shadow: 10px 10px 80px 13px  rgba(0, 0, 0,0.1); background-color:#C9E0FF;">
             <!-- Profile picture card-->
             <div class="card mb-4 mb-xl-0">
                 <div class="card-header" style="background-color:#C9E0FF ;">Profile Picture</div>
@@ -76,7 +76,7 @@ class Profile extends View
                 </div>
             </div>
         </div>
-        <div class="col-xl-8">
+        <div class="col-xl-8" box-shadow: 10px 10px 80px 13px  rgba(0, 0, 0,0.1); background-color:#C9E0FF;>
             <!-- Account details card-->
             <div class="card mb-4">
                 <div class="card-header" style="background-color:#C9E0FF ;">Account Details</div>
@@ -146,7 +146,7 @@ EOT;
     <div class="container-xl px-4 mt-4">
         <hr class="mt-0 mb-4">
         <div class="row">
-            <div class="col-xs-6">
+            <div class="col-xs-6" box-shadow: 10px 10px 80px 13px  rgba(0, 0, 0,0.1); background-color:#C9E0FF;>
                 <!-- Change password card-->
                 <div class="card mb-4">
                     <div class="card-header" style="background-color:#C9E0FF ;">Change Password</div>
@@ -213,4 +213,19 @@ EOT;
     echo $text;
   }
 }
+?>
+<script>
+       function RemoveError(){
+        var myTimeout = setTimeout(timeout, 0);
+    function timeout(){ $("#Db").fadeOut("slow");}; 
+    $(document).ready(function(){
+    $("button").click(function (){
+      // $("#Db").fadeOut();
+      $("#Db").fadeOut("slow");
+      // $("#Db").fadeOut(3000);
+    });
+   });
+   
+      }
+</script>
 
