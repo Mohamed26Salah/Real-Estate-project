@@ -100,7 +100,12 @@ class viewRentDescriptionModel extends model
     {
         $this->ID = $ID;
     }
-
+    public function Delete($ID){
+       
+        $this->dbh->query("DELETE FROM `rents` WHERE ID = ".$ID);
+        $this->dbh->execute();
+        
+    }
     public function rentDetails() {
          
           $this->dbh->query("SELECT * FROM `rents` WHERE `ID` = '$this->ID'");

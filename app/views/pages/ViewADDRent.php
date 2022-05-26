@@ -50,11 +50,11 @@ class ViewADDRent extends view
   </p>
   <p class='field half required half'>
     <label class='label' for='Area'>المساحة</label>
-    <input class='text-input' id='Area' name='Area'required onkeyup="numbers(this)" type='text'>
+    <input class='text-input' id='Area' name='Area'required onkeyup="numbers(this)" type='text' maxlength="50">
   </p>
   <p class='field required half'>
     <label class='label' for='NUMOFFloors'> الدور</label>
-    <input class='text-input' id='NUMOFFloors' name='NUMOFFloors' onkeyup="numbers(this)" required type='text'>
+    <input class='text-input' id='NUMOFFloors' name='NUMOFFloors' onkeyup="numbers(this)" required maxlength="50" type='text'>
    </p>
   <p class='field half required'>
     <label class='label' for='LessorName'>اسم المؤجر</label>
@@ -63,7 +63,7 @@ class ViewADDRent extends view
   
   <p class='field half required'>
     <label class='label' for='LessorNum'>رقم المؤجر</label>
-    <input class='text-input' id='LessorNum' name='LessorNum' onkeyup="numbers(this)" required type='text'>
+    <input class='text-input' id='LessorNum' name='LessorNum' onkeyup="numbers(this)" maxlength="50" required type='text'>
   </p>
   <p class='field half required'>
     <label class='label' for='TenantName'>اسم المستأجر</label>
@@ -71,11 +71,11 @@ class ViewADDRent extends view
   </p>
   <p class='field half required'>
     <label class='label' for='TenantNum'>رقم المستأجر</label>
-    <input class='text-input' id='TenantNum' name='TenantNum' onkeyup="numbers(this)" required type='text'>
+    <input class='text-input' id='TenantNum' name='TenantNum' onkeyup="numbers(this)" maxlength="50" required type='text'>
   </p>
  <p class='field required'>
     <label class='label' for='Description'>الوصف</label>
-    <textarea class='textarea' cols='50' id='Description' name='Description' onkeyup="lettersandnumbers(this)" required rows='4'></textarea>
+    <textarea class='textarea' cols='50' id='Description' name='Description' onkeyup="lettersandnumbers(this)" maxlength="1000" required rows='4'></textarea>
   </p>
   <p class='field half required'>
     <label class='label' for='furnished'>مفروشة</label>

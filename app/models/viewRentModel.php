@@ -58,7 +58,11 @@ class viewRentModel extends model
     function card($YesNo,$ID,$Background_Color,$Font_Color,$typeName,$rentPrice,$TOR,$TOREND,$Start_OF_Rent,$END_OF_Rent,$LessorName,$TenantName,$LessorNum,$TenantNum,$code){
         $output2='';
         $className="btnRent-front".$ID;
+        $Msg="";
         
+        if($Background_Color=="#434385"){
+            $Msg="!في حاجة غلط هنا";
+        }
         $colorWithOutHash = substr($Background_Color , 1 , 6);
         $approot = URLROOT . 'pages/viewRentDescription';
         $output2=<<<EOT
@@ -70,6 +74,7 @@ class viewRentModel extends model
                     <div class="card-big-shadow">
                         <div class="card card-just-text" id="Background$ID" style="background-color:$Background_Color; color:$Font_Color;" data-radius="none">
                             <div class="content">
+                            <span style="font-size:20px;">$Msg</span>
                                 <h2 class="category" style="font-size:30px;">Code: $code</h2>
                                 <h5 class="title" style="font-size:20px;">Price: $rentPrice</h5>
                                 <hr style="height:5px;">
@@ -135,7 +140,7 @@ class viewRentModel extends model
             $END_OF_Rent=$Item->END_OF_Rent;
            
 
-            if(($date4>$date3)){
+            if(($date3<$date4)  || (($date3 < $date1)&&($date3 > $date4))){
                 $QUERY= "UPDATE `rents` SET `status`= 4 WHERE ID=$Item->ID";
                 $this->dbh->query($QUERY);
                 $this->dbh->execute();
@@ -150,11 +155,16 @@ class viewRentModel extends model
                 $this->dbh->query($QUERY);
                 $this->dbh->execute();
             }
-            else if((($date3 < $date1)&&($date3 > $date4)) || (($date3 > $date2)&&($date3 < $date5))){
+            else if(($date3 > $date2)&&($date3 < $date5)){
                 $QUERY= "UPDATE `rents` SET `status`= 2 WHERE ID=$Item->ID";
                 $this->dbh->query($QUERY);
                 $this->dbh->execute();
+            }else{
+                $QUERY= "UPDATE `rents` SET `status`= 5 WHERE ID=$Item->ID";
+                $this->dbh->query($QUERY);
+                $this->dbh->execute();
             }
+            
         }
     }
     public function CheckIfRentIsStillValid($offset,$no_of_records_per_page){
@@ -211,11 +221,12 @@ class viewRentModel extends model
             $TenantNum=$Item->TenantNum;
             $code=$Item->code;
 
-            if(($date4>$date3)){
+            if(($date3<$date4)  || (($date3 < $date1)&&($date3 > $date4))){
                 // echo"Msh ha3ml haaga";
                 // $QUERY= "UPDATE `rents` SET `status`= 4 WHERE ID=$Item->ID";
                 // $this->dbh->query($QUERY);
                 // $this->dbh->execute();
+                //Yellow
                 $Background_Color="#D3D337";
                 $Font_Color="white";
                 $YesNo="";
@@ -225,6 +236,7 @@ class viewRentModel extends model
                 // $QUERY= "UPDATE `rents` SET `status`= 3 WHERE ID=$Item->ID";
                 // $this->dbh->query($QUERY);
                 // $this->dbh->execute();
+                //black
                 $Background_Color="#4A4A45";
                 $Font_Color="white";
                 $YesNo="";
@@ -234,16 +246,18 @@ class viewRentModel extends model
                 // $QUERY= "UPDATE `rents` SET `status`= 1 WHERE ID=$Item->ID";
                 // $this->dbh->query($QUERY);
                 // $this->dbh->execute();
+                //green
                 $Background_Color="#20AF1C";
                 $Font_Color="white";
                 $YesNo="";
                 $output.= $this->card($YesNo,$CardID,$Background_Color,$Font_Color,$typeName,$rentPrice,$TOR,$TOREND,$Start_OF_Rent,$END_OF_Rent,$LessorName,$TenantName,$LessorNum,$TenantNum,$code);
             }
-            else if((($date3 < $date1)&&($date3 > $date4)) || (($date3 > $date2)&&($date3 < $date5))){
+            else if(($date3 > $date2)&&($date3 < $date5)){
                 // echo "NO GO!";  
                 // $QUERY= "UPDATE `rents` SET `status`= 2 WHERE ID=$Item->ID";
                 // $this->dbh->query($QUERY);
                 // $this->dbh->execute();
+                //red
                 $Background_Color="#F74343";
                 $Font_Color="white";
                 $YesNo=<<<EOT
@@ -257,6 +271,11 @@ class viewRentModel extends model
                    
                     </div>
                 EOT;
+                $output.= $this->card($YesNo,$CardID,$Background_Color,$Font_Color,$typeName,$rentPrice,$TOR,$TOREND,$Start_OF_Rent,$END_OF_Rent,$LessorName,$TenantName,$LessorNum,$TenantNum,$code);
+            }else{
+                $Background_Color="#434385";
+                $Font_Color="white";
+                $YesNo="";
                 $output.= $this->card($YesNo,$CardID,$Background_Color,$Font_Color,$typeName,$rentPrice,$TOR,$TOREND,$Start_OF_Rent,$END_OF_Rent,$LessorName,$TenantName,$LessorNum,$TenantNum,$code);
             }
         }

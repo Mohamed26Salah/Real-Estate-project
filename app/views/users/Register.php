@@ -38,10 +38,10 @@ class Register extends view
 
     $text = <<<EOT
     
-    <body style="background-color:#003356;">
+    <body style="background-color:#ffff;">
     <div class="registration-form">
     <form action="$action" method="post">
-    <h2 style="text-align: center; margin-bottom: 5%; font-size: 40px; color:#00111C;" >Sign Up</h2>
+    <h2 style="text-align: center; margin-bottom: 5%; font-size: 40px; color:#4b99ec;" >Sign Up</h2>
     <div class="form-icon">
     <span><i class="icon icon-user"></i></span>
     </div>
@@ -55,11 +55,15 @@ EOT;
     <div class="container">
       <div class="row mt-4">
         <div class="col">
-          <input type="submit" value="Register" class="btn btn-block create-account">
+          <input type="submit" value="Register" class="btn btn-block create-account" style=" border-radius: 10px;  background-color:#4b99ec;">
         </div>
         <div class="col">
-          <a href="$loginUrl" class="btn btn-block create-account">Current user, login here</a>
-          <a href="$url" class="btn btn-block create-account">Sign Up with google</a>
+        <a href="$loginUrl" class="btn btn-block create-account" style="
+   border-radius: 10px;  background-color:#4b99ec;">Already have account</a>
+        </div>
+        <div class="col">
+          <a href="$url" class="btn btn-block create-account"style="
+   border-radius: 10px; background-color:#4b99ec; color:white;"><i class="fa-brands fa-google"> Sign Up with google</i></a>
         </div>
       </div>
       </div>
@@ -77,7 +81,8 @@ EOT;
     $err = $this->model->getNameErr();
     $valid = (!empty($err) ? 'is-invalid' : '');
     $validation="lettersandnumbers(this)";
-    $this->printInput('text', 'name', $val, $err, $valid,$validation);
+    $CopyOFF="autocomplete='off' onpaste='return false;' onCopy='return false' onCut='return false' onDrag='return false'";
+    $this->printInput('text', 'name', $val, $err, $valid,$validation,$CopyOFF);
   }
   private function printEmail()
   {
@@ -85,7 +90,8 @@ EOT;
     $err = $this->model->getEmailErr();
     $valid = (!empty($err) ? 'is-invalid' : '');
     $validation="";
-    $this->printInput('email', 'email', $val, $err, $valid,$validation);
+    $CopyOFF="autocomplete='off' onpaste='return false;' onCopy='return false' onCut='return false' onDrag='return false'";
+    $this->printInput('email', 'email', $val, $err, $valid,$validation,$CopyOFF);
   }
 
   private function printPassword()
@@ -94,7 +100,8 @@ EOT;
     $err = $this->model->getPasswordErr();
     $valid = (!empty($err) ? 'is-invalid' : '');
     $validation="";
-    $this->printInput('password', 'password', $val, $err, $valid,$validation);
+    $CopyOFF="autocomplete='off' onpaste='return false;' onCopy='return false' onCut='return false' onDrag='return false'";
+    $this->printInput('password', 'password', $val, $err, $valid,$validation,$CopyOFF);
   }
   private function printConfirmPassword()
   {
@@ -102,17 +109,18 @@ EOT;
     $err = $this->model->getConfirmPasswordErr();
     $valid = (!empty($err) ? 'is-invalid' : '');
     $validation="";
-    $this->printInput('password', 'confirm_password', $val, $err, $valid,$validation);
+    $CopyOFF="autocomplete='off' onpaste='return false;' onCopy='return false' onCut='return false' onDrag='return false'";
+    $this->printInput('password', 'confirm_password', $val, $err, $valid,$validation,$CopyOFF);
   }
 
-  private function printInput($type, $fieldName, $val, $err, $valid,$Validation)
+  private function printInput($type, $fieldName, $val, $err, $valid,$Validation,$CopyOFF)
   {
     $label = str_replace("_", " ", $fieldName);
     $label = ucwords($label);
     $text = <<<EOT
     <div class="form-group">
       <label for="$fieldName"> $label: <sup>*</sup></label>
-      <input type="$type" name="$fieldName" class="form-control form-control-lg $valid" id="$fieldName" value="$val" onkeyup=$Validation>
+      <input type="$type" name="$fieldName" class="form-control form-control-lg $valid" id="$fieldName" value="$val" onkeyup=$Validation $CopyOFF>
       <span class="invalid-feedback">$err</span>
     </div>
 EOT;

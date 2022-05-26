@@ -112,30 +112,11 @@ class viewRent extends View
          <h4>Search</h4>
          
          <div class="cd-filter-content">
-           <input type="search" name="search" id="search" placeholder="أبحث" >
+           <input type="search" name="search" id="search" placeholder="أبحث" onkeyup="lettersandnumbers(this)" maxlength="50" >
          </div> <!-- cd-filter-content -->
        </div> <!-- cd-filter-block -->
 
-       <!-- <div class="cd-filter-block">
-         <h4>Check boxes</h4>
-
-         <ul class="cd-filter-content cd-filters list">
-           <li>
-             <input class="filter" data-filter=".check1" type="checkbox" id="checkbox1">
-               <label class="checkbox-label" for="checkbox1">Option 1</label>
-           </li>
-
-           <li>
-             <input class="filter" data-filter=".check2" type="checkbox" id="checkbox2">
-             <label class="checkbox-label" for="checkbox2">Option 2</label>
-           </li>
-
-           <li>
-             <input class="filter" data-filter=".check3" type="checkbox" id="checkbox3">
-             <label class="checkbox-label" for="checkbox3">Option 3</label>
-           </li>
-         </ul> 
-       </div>  -->
+     
        <input id="offset" name="offset" type="text" hidden value="<?php echo $offset;?>">
        <input id="no_of_records_per_page" name="no_of_records_per_page" type="text" hidden value="<?php echo $no_of_records_per_page;?>">
 
@@ -150,6 +131,7 @@ class viewRent extends View
                <option value="2">يجب الدفع</option>
                <option value="3">انتهي</option>
                <option value="4">لم يبدأ</option>
+               <option value="5">حاجة غلط في التاريخ</option>
              </select>
            </div> 
          </div> 
@@ -252,7 +234,7 @@ $('#yes'+CardID).unbind().click(function() {
 });
 $('#no'+CardID).unbind().click(function() {
   btnRent.classList.remove( 'is-open' );
-  console.log("No");
+  // console.log("No");
 });
 
 function distance( x1, y1, x2, y2 ) {
@@ -263,8 +245,8 @@ function distance( x1, y1, x2, y2 ) {
 }
 
       function RentAjax(){
-        console.log(offset);
-        console.log(no_of_records_per_page);
+        // console.log(offset);
+        // console.log(no_of_records_per_page);
         if( document.getElementById('Rent').value ) {
           Rent = document.getElementById('Rent').value;
         }else{
@@ -315,7 +297,7 @@ function distance( x1, y1, x2, y2 ) {
       function OnKeyUpSearch() {
         
         //schow item on change
-        console.log("here1");
+        // console.log("here1");
         document.getElementById('cards').innerHTML='';
         
         offset=0;

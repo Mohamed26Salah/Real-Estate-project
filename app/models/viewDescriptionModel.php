@@ -238,8 +238,40 @@ class viewDescriptionModel extends model
         echo("da5l fe speed");
         $this->dbh->query("DELETE FROM `allestate` WHERE ID = ".$ID);
         $this->dbh->execute();
-        echo($this->SalahID);
+        // echo($this->SalahID);
     }
+    function wishlist($IDArray){
+        if(!empty($_SESSION['user_id'])){
+            $QUERY= "SELECT * FROM `wishlist` WHERE AllID = $IDArray AND UserID='".$_SESSION['user_id']."' ";
+            $this->dbh->query($QUERY);
+            if(empty($this->dbh->single())){
+               return false;
+            }else{
+                return true;
+            }
+        }else{
+            return false;
+        }
+       
+    }
+    public function AddToWishlist($WishListValue){
+        if(!empty($_SESSION['user_id'])){
+            if($WishListValue=="green"){
+                $IDSalah=$this->ID;
+                echo("Green");
+                $this->dbh->query("DELETE FROM `wishlist` WHERE AllID = $IDSalah AND `UserID`='".$_SESSION['user_id']."'");
+                return $this->dbh->execute();
+            }else if($WishListValue=="red"){
+                echo("Red");
+                $this->dbh->query("INSERT INTO `wishlist`(`UserID`, `AllID`) VALUES (:UIDD, :UALLID)");
+                $this->dbh->bind(':UIDD', $_SESSION['user_id']);
+                $this->dbh->bind(':UALLID', $this->ID);
+                return $this->dbh->execute();
+            }
+        }else{
+          return "denied";
+        }
+        }
     public function bathroomAndRooms() {
          
           $this->dbh->query("SELECT * FROM `eav` WHERE `AllID` =".$this->getID());

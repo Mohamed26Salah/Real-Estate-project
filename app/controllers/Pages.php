@@ -81,86 +81,91 @@ class Pages extends Controller
     {
         set_error_handler('myCustomErrorHandler');
         try {
-            $ViewItem = $this->getModel();
+        $ViewItem = $this->getModel();
 
-            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-
-                $Model = $_POST['Model'] . "Model";
-                // echo($Model);
-                require_once APPROOT . "/models/viewItemModel.php";
-                $ViewItem = new viewItemModel();
-
-                if ($_POST['area'] != "Salah") {
-                    $ViewItem->setArea($_POST['area']);
-                    //   echo $_POST['area'];
-                }
-                if ($_POST['pricerange1'] != "Salah") {
-                    $ViewItem->setprice1($_POST['pricerange1']);
-                }
-                if ($_POST['pricerange2'] != "Salah") {
-                    $ViewItem->setprice2($_POST['pricerange2']);
-                }
-                if ($_POST['Payment'] != "Salah") {
-                    $ViewItem->setPayment($_POST['Payment']);
-                }
-                if ($_POST['contarctType'] != "Salah") {
-                    $ViewItem->setcontarctType($_POST['contarctType']);
-                }
-                if ($_POST['Bathroom'] != "Salah") {
-                    $ViewItem->setBathroom($_POST['Bathroom']);
-                }
-                if ($_POST['Rooms'] != "Salah") {
-                    $ViewItem->setRooms($_POST['Rooms']);
-                }
-                if ($_POST['Finishing'] != "Salah") {
-                    $ViewItem->setFinishing($_POST['Finishing']);
-                }
-                if ($_POST['HighLow'] != "Salah") {
-                    $ViewItem->setHighLow($_POST['HighLow']);
-                    // echo $_POST['HighLow'];
-                }
-                if ($_POST['search'] != "Salah") {
-                    $ViewItem->setSearch($_POST['search']);
-                }
-                if ($_POST['Show'] != "Salah") {
-                    $ViewItem->setShow($_POST['Show']);
-                }
-                if ($_POST['Furnished'] != "Salah") {
-                    $ViewItem->setFurnished($_POST['Furnished']);
-                }
-                if ($_POST['Floor'] != "Salah") {
-                    $ViewItem->setFloor($_POST['Floor']);
-                }
-                if ($_POST['TypeID'] != "Salah") {
-                    $ViewItem->setTypeID($_POST['TypeID']);
-                }
-                /////////////////////////////////////////////////////////
-                if ($_POST['NUMOFFloors'] != "Salah") {
-                    $ViewItem->setNUMOFFloors($_POST['NUMOFFloors']);
-                }
-                if ($_POST['Doublex'] != "Salah") {
-                    $ViewItem->setDoublex($_POST['Doublex']);
-                }
-                if ($_POST['nUMOFAB'] != "Salah") {
-                    $ViewItem->setnUMOFAB($_POST['nUMOFAB']);
-                }
-                if ($_POST['TypeOFActivity'] != "Salah") {
-                    $ViewItem->setTypeOFActivity($_POST['TypeOFActivity']);
-                    echo $_POST['TypeOFActivity'];
-                }
-                if ($_POST['NUMOFFlats'] != "Salah") {
-                    $ViewItem->setNUMOFFlats($_POST['NUMOFFlats']);
-                }
-                if ($_POST['Importance'] != "Salah") {
-                    $ViewItem->setImportance($_POST['Importance']);
-                }
-
-
-                echo ($ViewItem->Sort($_POST['offset'], $_POST['no_of_records_per_page']));
+        if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+         
+            $Model=$_POST['Model']."Model";
+            // echo($Model);
+            require_once APPROOT . "/models/viewItemModel.php";
+            $ViewItem = new viewItemModel();
+            
+            if($_POST['area']!="Salah"){
+                $ViewItem->setArea($_POST['area']);
             }
-        } catch (Exception  $e) {
-            echo "<h1 style='display:flex; justify-content:center; margin-top:20%;'>" . $e->getMessage() . '</h1>';
+            if($_POST['pricerange1']!="Salah"){
+                $Price1Validate=filter_var($_POST['pricerange1'], FILTER_SANITIZE_NUMBER_INT);
+                $ViewItem->setprice1($Price1Validate);
+            }
+            if($_POST['pricerange2']!="Salah"){
+                $Price2Validate=filter_var($_POST['pricerange2'], FILTER_SANITIZE_NUMBER_INT);
+                $ViewItem->setprice2($Price2Validate);
+            }
+            if($_POST['Payment']!="Salah"){
+                $ViewItem->setPayment($_POST['Payment']);
+            }
+            if($_POST['contarctType']!="Salah"){
+                $ViewItem->setcontarctType($_POST['contarctType']);
+            }
+            if($_POST['Bathroom']!="Salah"){
+                $BathroomsValidate=filter_var($_POST['Bathroom'], FILTER_SANITIZE_NUMBER_INT);
+                $ViewItem->setBathroom($BathroomsValidate);
+            }
+            if($_POST['Rooms']!="Salah"){
+                $RoomsValidate=filter_var($_POST['Rooms'], FILTER_SANITIZE_NUMBER_INT);
+                $ViewItem->setRooms($RoomsValidate);
+            }
+            if($_POST['Finishing']!="Salah"){
+                $ViewItem->setFinishing($_POST['Finishing']);
+            }
+            if($_POST['HighLow']!="Salah"){
+                $ViewItem->setHighLow($_POST['HighLow']);
+                // echo $_POST['HighLow'];
+            }
+            if($_POST['search']!="Salah"){
+                $SearchValidate=filter_var($_POST['search'], FILTER_SANITIZE_STRING);
+                $ViewItem->setSearch($SearchValidate);
+            }
+            if($_POST['Show']!="Salah"){
+                $ViewItem->setShow($_POST['Show']);
+            }
+            if($_POST['Furnished']!="Salah"){
+                $ViewItem->setFurnished($_POST['Furnished']);
+            }
+            if($_POST['Floor']!="Salah"){
+                $FloorValidate=filter_var($_POST['Floor'], FILTER_SANITIZE_NUMBER_INT);
+                $ViewItem->setFloor($FloorValidate);
+            }
+            if($_POST['TypeID']!="Salah"){
+                $ViewItem->setTypeID($_POST['TypeID']);
+            }
+            if($_POST['NUMOFFloors']!="Salah"){
+                $NUMOFFloorsValidate=filter_var($_POST['NUMOFFloors'], FILTER_SANITIZE_NUMBER_INT);
+                $ViewItem->setNUMOFFloors($NUMOFFloorsValidate);
+            }
+            if($_POST['Doublex']!="Salah"){
+                $ViewItem->setDoublex($_POST['Doublex']);
+            }
+            if($_POST['nUMOFAB']!="Salah"){
+                $NUMOFABValidate=filter_var($_POST['nUMOFAB'], FILTER_SANITIZE_NUMBER_INT);
+                $ViewItem->setnUMOFAB($NUMOFABValidate);
+            }
+            if($_POST['TypeOFActivity']!="Salah"){
+                $TypeOFActivityValidate=filter_var($_POST['TypeOFActivity'], FILTER_SANITIZE_STRING);
+                $ViewItem->setTypeOFActivity($TypeOFActivityValidate);
+            }
+            if($_POST['NUMOFFlats']!="Salah"){
+                $NUMOFFlatsValidate=filter_var($_POST['NUMOFFlats'], FILTER_SANITIZE_NUMBER_INT);
+                $ViewItem->setNUMOFFlats($NUMOFFlatsValidate);
+            }
+            if($_POST['Importance']!="Salah"){
+                $ViewItem->setImportance($_POST['Importance']);
+            }
+            echo ($ViewItem->Sort($_POST['offset'], $_POST['no_of_records_per_page']));
         }
+    } catch (Exception  $e) {
+            echo "<h1 style='display:flex; justify-content:center; margin-top:20%;'>" . $e->getMessage() . '</h1>';
+    }
         // $viewPath = VIEWS_PATH . 'ajax/search.php';
         // require_once $viewPath;
         // $ajax = new ajax($this->getModel(), $this);
@@ -215,7 +220,12 @@ class Pages extends Controller
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 if (isset($_POST['joex'])) {
                     $viewDescription->Delete($_POST['joex']);
+                }else if(isset($_POST['WishListValue'])){
+                    $viewDescription->setID($_POST['CardID']);
+                    echo($viewDescription->AddToWishlist($_POST['WishListValue']));
+                   
                 }
+                
             }
             $viewPath = VIEWS_PATH . 'pages/viewDescription.php';
             require_once $viewPath;
@@ -615,6 +625,11 @@ class Pages extends Controller
                 if (isset($_GET['ID']) && isset($_GET['color'])) {
                     $viewRentDescription->setID($_GET['ID']);
                     $viewRentDescription->setDotColor($_GET['color']);
+                }
+            }
+            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                if (isset($_POST['RentDelete'])) {
+                    $viewRentDescription->Delete($_POST['RentDelete']);
                 }
             }
 

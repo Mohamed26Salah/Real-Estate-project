@@ -132,7 +132,7 @@ class viewItem extends View
          <h4>Search</h4>
          
          <div class="cd-filter-content">
-           <input type="search" name="search" id="search" placeholder="أبحث" >
+           <input type="search" name="search" id="search" placeholder="أبحث" onkeyup="lettersandnumbers(this)" maxlength="50" >
          </div> <!-- cd-filter-content -->
        </div> <!-- cd-filter-block -->
 
@@ -213,14 +213,14 @@ class viewItem extends View
        <div class="cd-filter-block">
          <h4> عدد الفرف</h4>
          <div class="cd-filter-content">
-             <input type="text" id="Rooms" name="Rooms" > 
+             <input type="text" id="Rooms" name="Rooms" onkeyup="numbers(this)" maxlength="50"> 
          </div> 
        </div> 
      
        <div class="cd-filter-block">
          <h4> عدد الحمامات</h4>
          <div class="cd-filter-content">
-             <input type="text" id="Bathroom" name="Bathroom" > 
+             <input type="text" id="Bathroom" name="Bathroom" onkeyup="numbers(this)" maxlength="50"> 
          </div> 
        </div> 
        <?php
@@ -232,7 +232,7 @@ class viewItem extends View
        <div class="cd-filter-block">
          <h4>الدور</h4>
          <div class="cd-filter-content">
-             <input type="text" id="Floor" name="Floor" > 
+             <input type="text" id="Floor" name="Floor" onkeyup="numbers(this)" maxlength="50"> 
          </div> 
        </div> 
        <?php
@@ -244,7 +244,7 @@ class viewItem extends View
        <div class="cd-filter-block">
          <h4> عدد الأدوار</h4>
          <div class="cd-filter-content">
-             <input type="text" id="NUMOFFloors" name="NUMOFFloors" > 
+             <input type="text" id="NUMOFFloors" name="NUMOFFloors" onkeyup="numbers(this)" maxlength="50"> 
          </div> 
        </div> 
        <?php 
@@ -256,7 +256,7 @@ class viewItem extends View
        <div class="cd-filter-block">
          <h4> عدد الشقق</h4>
          <div class="cd-filter-content">
-             <input type="text" id="NUMOFFlats" name="NUMOFFlats" > 
+             <input type="text" id="NUMOFFlats" name="NUMOFFlats" onkeyup="numbers(this)" maxlength="50"> 
          </div> 
        </div> 
        <?php 
@@ -322,7 +322,7 @@ class viewItem extends View
        <div class="cd-filter-block">
          <h4> عدد المباني الأدارية</h4>
          <div class="cd-filter-content">
-             <input type="text" id="nUMOFAB" name="nUMOFAB" > 
+             <input type="text" id="nUMOFAB" name="nUMOFAB" onkeyup="numbers(this)" maxlength="50"> 
          </div> 
        </div> 
        <?php
@@ -332,7 +332,7 @@ class viewItem extends View
        <div class="cd-filter-block">
          <h4> نوع النشاط </h4>
          <div class="cd-filter-content">
-             <input type="text" id="TypeOFActivity" name="TypeOFActivity" > 
+             <input type="text" id="TypeOFActivity" name="TypeOFActivity" onkeyup="lettersandnumbers(this)" maxlength="50"> 
          </div> 
        </div> 
        
@@ -353,8 +353,11 @@ class viewItem extends View
            </div> 
          </div> 
        </div>  
-     
-       <div class="cd-filter-block">
+       <?php
+       if(!empty($_SESSION['Rank'])){
+        if($_SESSION['Rank']=="Admin"||$_SESSION['Rank']=="Moderator"){
+       ?> 
+        <div class="cd-filter-block">
          <h4> العقارات الظاهرة</h4>
          
          <div class="cd-filter-content">
@@ -367,6 +370,21 @@ class viewItem extends View
            </div> 
          </div> 
        </div>  
+      <?php 
+       }else{
+         ?>
+        <input type="hidden" name="Show" id="Show">
+        <?php
+       }
+      }else{
+        ?>
+        <input type="hidden" name="Show" id="Show">
+          <?php 
+      }
+       ?>
+       
+     
+     
        <div class="cd-filter-block">
          <h4> الأهمية </h4>
          
@@ -418,7 +436,7 @@ function WishList(IDArray){
           
           success:function(data)
           {
-            console.log(data);
+            // console.log(data);
             if(data=="denied"){
               // window.location.replace("http://localhost/mvc/public/users/Login");
               window.location.replace("<?php echo $action4; ?>");
@@ -441,8 +459,8 @@ function WishList(IDArray){
 
         var change;
         function salah(IDArray){
-        console.log( IDArray); 
-        console.log( document.getElementById('buttonClick'+IDArray).value);
+        // console.log( IDArray); 
+        // console.log( document.getElementById('buttonClick'+IDArray).value);
         var CardID=IDArray;
         var ShowButton=document.getElementById('buttonClick'+IDArray).value;
          $.ajax({
@@ -613,7 +631,7 @@ function WishList(IDArray){
         
       
      
-        console.log(offset+'  '+no_of_records_per_page);
+        // console.log(offset+'  '+no_of_records_per_page);
         // TypeID=document.getElementById('TypeID').value;
         $.ajax({
           url:"<?php echo $action2;?>",
@@ -626,12 +644,12 @@ function WishList(IDArray){
               // container.innerHTML=data;
               if(!data){
               loadMore = document.getElementById('LoadMore').innerHTML='لا يوجد المزيد';
-               console.log(data);
+              //  console.log(data);
               }else{
               container = document.getElementById('cards')
               container.innerHTML+=data;
               oldData=data;
-              console.log(data);
+              // console.log(data);
             }
                
           }
@@ -640,7 +658,7 @@ function WishList(IDArray){
       }
       $( ".form" ).change(function() {
         //schow item on change
-        console.log("here2");
+        // console.log("here2");
         document.getElementById('cards').innerHTML='';
         offset=0;
         no_of_records_per_page=<?php echo $no_of_records_per_page ;?>;

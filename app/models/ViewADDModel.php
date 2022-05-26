@@ -293,7 +293,9 @@ class ViewADDModel extends model
             echo("Da5l model");
         }
         public function CheckCode(){
-        $this->dbh->query("SELECT * FROM allestate WHERE Code = '".$this->codeInput."'");
+        $ValidatedCkeckCode=filter_var($this->codeInput, FILTER_SANITIZE_STRING);
+
+        $this->dbh->query("SELECT * FROM allestate WHERE Code = '".$ValidatedCkeckCode."'");
         $ALLRECORDS = $this->dbh->single();
         if(empty($ALLRECORDS)){
             
@@ -342,15 +344,15 @@ class ViewADDModel extends model
         $this->dbh->bind(':uAddressUser', $ValidatedAddressUser);
         $ValidatedAddressAdmin=filter_var($this->AddressAdmin, FILTER_SANITIZE_STRING);
         $this->dbh->bind(':uAddressAdmin', $ValidatedAddressAdmin);
-        $ValidatedArea=filter_var($this->Area, FILTER_SANITIZE_STRING);
+        $ValidatedArea=filter_var($this->Area, FILTER_SANITIZE_NUMBER_INT);
         $this->dbh->bind(':uArea', $ValidatedArea);
-        $ValidatedPrice=filter_var($this->Price, FILTER_SANITIZE_STRING);
+        $ValidatedPrice=filter_var($this->Price, FILTER_SANITIZE_NUMBER_INT);
         $this->dbh->bind(':uPrice', $ValidatedPrice);
-        $ValidatedPayment=filter_var($this->Payment, FILTER_SANITIZE_STRING);
-        $this->dbh->bind(':uPayment', $ValidatedPayment);
+        
+        $this->dbh->bind(':uPayment', $this->Payment);
         $ValidatedOwner=filter_var($this->Owner, FILTER_SANITIZE_STRING);
         $this->dbh->bind(':uOwner', $ValidatedOwner);
-        $ValidatedOwnerNum=filter_var($this->OwnerNum, FILTER_SANITIZE_STRING);
+        $ValidatedOwnerNum=filter_var($this->OwnerNum, FILTER_SANITIZE_NUMBER_INT);
         $this->dbh->bind(':uOwnerNum', $ValidatedOwnerNum);
         $ValidatedDescriptionUser=filter_var($this->DescriptionUser, FILTER_SANITIZE_STRING);
         $this->dbh->bind(':uDescriptionUser', $ValidatedDescriptionUser);
@@ -358,14 +360,14 @@ class ViewADDModel extends model
         $this->dbh->bind(':uDescriptionAdmin', $ValidatedDescriptionAdmin);
         $ValidatedName=filter_var($this->Name, FILTER_SANITIZE_STRING);
         $this->dbh->bind(':uName', $ValidatedName);
-        $ValidatedImportance=filter_var($this->Importance, FILTER_SANITIZE_STRING);
-        $this->dbh->bind(':uImportance', $ValidatedImportance);
-        $ValidatedShow=filter_var($this->Show, FILTER_SANITIZE_STRING);
-        $this->dbh->bind(':uShow', $ValidatedShow);
+        
+        $this->dbh->bind(':uImportance', $this->Importance);
+        
+        $this->dbh->bind(':uShow', $this->Show);
         $ValidatedCode=filter_var($this->Code, FILTER_SANITIZE_STRING);
         $this->dbh->bind(':uCode', $ValidatedCode);
-        $ValidatedTypeID=filter_var($this->TypeID, FILTER_SANITIZE_STRING);
-        $this->dbh->bind(':uTypeID', $ValidatedTypeID);
+        
+        $this->dbh->bind(':uTypeID', $this->TypeID);
         $ValidatedcontarctType=filter_var($this->contarctType, FILTER_SANITIZE_STRING);
         $this->dbh->bind(':ucontarctType', $ValidatedcontarctType);
         $this->dbh->execute();
@@ -373,31 +375,50 @@ class ViewADDModel extends model
             $this->dbh->query("SELECT * FROM allestate ORDER BY ID DESC LIMIT 1");
             $ALLRECORDS = $this->dbh->single();
             if($this->TypeID==1){
-                $this->Eav($ALLRECORDS->ID,1,$this->Floor);
+                $ValidatedFloor=filter_var($this->Floor, FILTER_SANITIZE_NUMBER_INT);
+                $ValidatedNUMOFRooms=filter_var($this->NUMOFRooms, FILTER_SANITIZE_NUMBER_INT);
+                $ValidatedNUMOFBathrooms=filter_var($this->NUMOFBathrooms, FILTER_SANITIZE_NUMBER_INT);
+
+
+                $this->Eav($ALLRECORDS->ID,1,$ValidatedFloor);
                 $this->Eav($ALLRECORDS->ID,2,$this->Finishing);
-                $this->Eav($ALLRECORDS->ID,3,$this->NUMOFRooms);
-                $this->Eav($ALLRECORDS->ID,4,$this->NUMOFBathrooms);
+                $this->Eav($ALLRECORDS->ID,3,$ValidatedNUMOFRooms);
+                $this->Eav($ALLRECORDS->ID,4,$ValidatedNUMOFBathrooms);
                 $this->Eav($ALLRECORDS->ID,6,$this->Doublex);
                 $this->Eav($ALLRECORDS->ID,9,$this->Furnished);
             }
             if($this->TypeID==2){
-                $this->Eav($ALLRECORDS->ID,5,$this->NUMOFFloors);
-                $this->Eav($ALLRECORDS->ID,11,$this->NUMOFFlats);
+                $ValidatedNUMOFFloors=filter_var($this->NUMOFFloors, FILTER_SANITIZE_NUMBER_INT);
+                $ValidatedNUMOFFlats=filter_var($this->NUMOFFlats, FILTER_SANITIZE_NUMBER_INT);
+
+
+                $this->Eav($ALLRECORDS->ID,5,$ValidatedNUMOFFloors);
+                $this->Eav($ALLRECORDS->ID,11,$ValidatedNUMOFFlats);
             }
             if($this->TypeID==3){
-                $this->Eav($ALLRECORDS->ID,5,$this->NUMOFFloors);
+                $ValidatedNUMOFFloors=filter_var($this->NUMOFFloors, FILTER_SANITIZE_NUMBER_INT);
+                $ValidatedNUMOFRooms=filter_var($this->NUMOFRooms, FILTER_SANITIZE_NUMBER_INT);
+                $ValidatedNUMOFBathrooms=filter_var($this->NUMOFBathrooms, FILTER_SANITIZE_NUMBER_INT);
+
+                $this->Eav($ALLRECORDS->ID,5,$ValidatedNUMOFFloors);
                 $this->Eav($ALLRECORDS->ID,2,$this->Finishing);
-                $this->Eav($ALLRECORDS->ID,3,$this->NUMOFRooms);
-                $this->Eav($ALLRECORDS->ID,4,$this->NUMOFBathrooms);
+                $this->Eav($ALLRECORDS->ID,3,$ValidatedNUMOFRooms);
+                $this->Eav($ALLRECORDS->ID,4,$ValidatedNUMOFBathrooms);
                 $this->Eav($ALLRECORDS->ID,9,$this->Furnished);
                
             } 
             if($this->TypeID==4||$this->TypeID==5||$this->TypeID==7){
-                $this->Eav($ALLRECORDS->ID,7,$this->TypeOFActivity); 
+                $ValidatedTypeOFActivity=filter_var($this->TypeOFActivity, FILTER_SANITIZE_STRING);
+
+
+                $this->Eav($ALLRECORDS->ID,7,$ValidatedTypeOFActivity); 
             }
             if($this->TypeID==6){
-                $this->Eav($ALLRECORDS->ID,7,$this->TypeOFActivity); 
-                $this->Eav($ALLRECORDS->ID,8,$this->nUMOFAB);
+                $ValidatedTypeOFActivity=filter_var($this->TypeOFActivity, FILTER_SANITIZE_STRING);
+                $ValidatednUMOFAB=filter_var($this->nUMOFAB, FILTER_SANITIZE_NUMBER_INT);
+
+                $this->Eav($ALLRECORDS->ID,7,$ValidatedTypeOFActivity); 
+                $this->Eav($ALLRECORDS->ID,8,$ValidatednUMOFAB);
             }
             if($this->TypeID==8||$this->TypeID==9){
                 $this->Eav($ALLRECORDS->ID,10,$this->Fix); 
@@ -405,31 +426,47 @@ class ViewADDModel extends model
            
         }else{
             if($this->TypeID==1){
-                $this->EditEav($this->EditID,1,$this->Floor);
+                $ValidatedFloor=filter_var($this->Floor, FILTER_SANITIZE_NUMBER_INT);
+                $ValidatedNUMOFRooms=filter_var($this->NUMOFRooms, FILTER_SANITIZE_NUMBER_INT);
+                $ValidatedNUMOFBathrooms=filter_var($this->NUMOFBathrooms, FILTER_SANITIZE_NUMBER_INT);
+
+                $this->EditEav($this->EditID,1,$ValidatedFloor);
                 $this->EditEav($this->EditID,2,$this->Finishing);
-                $this->EditEav($this->EditID,3,$this->NUMOFRooms);
-                $this->EditEav($this->EditID,4,$this->NUMOFBathrooms);
+                $this->EditEav($this->EditID,3,$ValidatedNUMOFRooms);
+                $this->EditEav($this->EditID,4,$ValidatedNUMOFBathrooms);
                 $this->EditEav($this->EditID,6,$this->Doublex);
                 $this->EditEav($this->EditID,9,$this->Furnished);
             }
             if($this->TypeID==2){
-                $this->EditEav($this->EditID,5,$this->NUMOFFloors);
-                $this->EditEav($this->EditID,11,$this->NUMOFFlats);
+                $ValidatedNUMOFFloors=filter_var($this->NUMOFFloors, FILTER_SANITIZE_NUMBER_INT);
+                $ValidatedNUMOFFlats=filter_var($this->NUMOFFlats, FILTER_SANITIZE_NUMBER_INT);
+
+                $this->EditEav($this->EditID,5,$ValidatedNUMOFFloors);
+                $this->EditEav($this->EditID,11,$ValidatedNUMOFFlats);
             }
             if($this->TypeID==3){
-                $this->EditEav($this->EditID,5,$this->NUMOFFloors);
+                $ValidatedNUMOFFloors=filter_var($this->NUMOFFloors, FILTER_SANITIZE_NUMBER_INT);
+                $ValidatedNUMOFRooms=filter_var($this->NUMOFRooms, FILTER_SANITIZE_NUMBER_INT);
+                $ValidatedNUMOFBathrooms=filter_var($this->NUMOFBathrooms, FILTER_SANITIZE_NUMBER_INT);
+
+                $this->EditEav($this->EditID,5,$ValidatedNUMOFFloors);
                 $this->EditEav($this->EditID,2,$this->Finishing);
-                $this->EditEav($this->EditID,3,$this->NUMOFRooms);
-                $this->EditEav($this->EditID,4,$this->NUMOFBathrooms);
+                $this->EditEav($this->EditID,3,$ValidatedNUMOFRooms);
+                $this->EditEav($this->EditID,4,$ValidatedNUMOFBathrooms);
                 $this->EditEav($this->EditID,9,$this->Furnished);
                
             } 
             if($this->TypeID==4||$this->TypeID==5||$this->TypeID==7){
-                $this->EditEav($this->EditID,7,$this->TypeOFActivity); 
+                $ValidatedTypeOFActivity=filter_var($this->TypeOFActivity, FILTER_SANITIZE_STRING);
+
+                $this->EditEav($this->EditID,7,$ValidatedTypeOFActivity); 
             }
             if($this->TypeID==6){
-                $this->EditEav($this->EditID,7,$this->TypeOFActivity); 
-                $this->EditEav($this->EditID,8,$this->nUMOFAB);
+                $ValidatedTypeOFActivity=filter_var($this->TypeOFActivity, FILTER_SANITIZE_STRING);
+                $ValidatednUMOFAB=filter_var($this->nUMOFAB, FILTER_SANITIZE_NUMBER_INT);
+
+                $this->EditEav($this->EditID,7,$ValidatedTypeOFActivity); 
+                $this->EditEav($this->EditID,8,$ValidatednUMOFAB);
             }
             if($this->TypeID==8||$this->TypeID==9){
                 $this->EditEav($this->EditID,10,$this->Fix);

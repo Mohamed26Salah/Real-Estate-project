@@ -210,48 +210,52 @@ class ViewADDRentModel extends model
         
         $this->dbh->bind(':utypeName',$this->Show);
         // echo($this->Show);
-        // $Validatedarea=filter_var($this->Area, FILTER_SANITIZE_STRING);
-        $this->dbh->bind(':uarea', $this->Area);
+        $Validatedarea=filter_var($this->Area, FILTER_SANITIZE_NUMBER_INT);
+        $this->dbh->bind(':uarea', $Validatedarea);
         // echo($this->Area);
-        // $Validateddescription=filter_var($this->Description, FILTER_SANITIZE_STRING);
-        $this->dbh->bind(':udescription', $this->Description);
+        $Validateddescription=filter_var($this->Description, FILTER_SANITIZE_STRING);
+        $this->dbh->bind(':udescription', $Validateddescription);
         // echo($this->Validateddescription);
-        // $ValidatedrentPrice=filter_var($this->Price, FILTER_SANITIZE_STRING);
-        $this->dbh->bind(':urentPrice', $this->Price);
+        $ValidatedrentPrice=filter_var($this->Price, FILTER_SANITIZE_NUMBER_INT);
+        $this->dbh->bind(':urentPrice', $ValidatedrentPrice);
         // echo($this->ValidatedrentPrice);
         // $Validatedfurnished=filter_var($this->furnished, FILTER_SANITIZE_STRING);
         $this->dbh->bind(':ufurnished', $this->furnished);
 
-        // $Validatedfloor=filter_var($this->NUMOFFloors, FILTER_SANITIZE_STRING);
-        $this->dbh->bind(':ufloor', $this->NUMOFFloors);
+        $Validatedfloor=filter_var($this->NUMOFFloors, FILTER_SANITIZE_NUMBER_INT);
+        $this->dbh->bind(':ufloor', $Validatedfloor);
 
         // $ValidatedFD=filter_var($this->Finishing, FILTER_SANITIZE_STRING);
         $this->dbh->bind(':uFD', $this->Finishing);
 
-        
-        $this->dbh->bind(':uTOR',$this->TOR);
+        $ValidatedTOR=filter_var($this->TOR, FILTER_SANITIZE_STRING);
+        $this->dbh->bind(':uTOR',$ValidatedTOR);
 
-      
-        $this->dbh->bind(':uTOREND',$this->TOREND);
+        $ValidatedTOREND=filter_var($this->TOREND, FILTER_SANITIZE_STRING);
+        $this->dbh->bind(':uTOREND',$ValidatedTOREND);
 
-        $this->dbh->bind(':uStart_OF_Rent',$this->StartOFRent);
+        $ValidatedStartOFRent=filter_var($this->StartOFRent, FILTER_SANITIZE_STRING);
+        $this->dbh->bind(':uStart_OF_Rent',$ValidatedStartOFRent);
 
-        $this->dbh->bind(':uEND_OF_Rent',$this->ENDOFRent);
+        $ValidatedENDOFRent=filter_var($this->ENDOFRent, FILTER_SANITIZE_STRING);
+        $this->dbh->bind(':uEND_OF_Rent',$ValidatedENDOFRent);
+
         $this->dbh->bind(':ustatus',10);
-        // $ValidatedLessorName=filter_var($this->LessorName, FILTER_SANITIZE_STRING);
-        $this->dbh->bind(':uLessorName', $this->LessorName);
 
-        // $ValidatedTenantName=filter_var($this->TenantName, FILTER_SANITIZE_STRING);
-        $this->dbh->bind(':uTenantName', $this->TenantName);
+        $ValidatedLessorName=filter_var($this->LessorName, FILTER_SANITIZE_STRING);
+        $this->dbh->bind(':uLessorName', $ValidatedLessorName);
 
-        // $ValidatedLessorNum=filter_var($this->LessorNum, FILTER_SANITIZE_STRING);
-        $this->dbh->bind(':uLessorNum', $this->LessorNum);
+        $ValidatedTenantName=filter_var($this->TenantName, FILTER_SANITIZE_STRING);
+        $this->dbh->bind(':uTenantName', $ValidatedTenantName);
 
-        // $ValidatedTenantNum=filter_var($this->TenantNum, FILTER_SANITIZE_STRING);
-        $this->dbh->bind(':uTenantNum', $this->TenantNum);
+        $ValidatedLessorNum=filter_var($this->LessorNum, FILTER_SANITIZE_NUMBER_INT);
+        $this->dbh->bind(':uLessorNum', $ValidatedLessorNum);
 
-        // $Validatedcode=filter_var($this->Code, FILTER_SANITIZE_STRING);
-        $this->dbh->bind(':ucode', $this->Code);
+        $ValidatedTenantNum=filter_var($this->TenantNum, FILTER_SANITIZE_NUMBER_INT);
+        $this->dbh->bind(':uTenantNum', $ValidatedTenantNum);
+
+        $Validatedcode=filter_var($this->Code, FILTER_SANITIZE_STRING);
+        $this->dbh->bind(':ucode', $Validatedcode);
 
         $this->dbh->execute();
         

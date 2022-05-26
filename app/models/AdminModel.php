@@ -31,6 +31,7 @@ class AdminModel
        
         return ($this->DashBoard->ListUsers());
     }else if(isset($_POST['state'])){
+        // $Search=filter_var($_POST['search'], FILTER_SANITIZE_STRING);
         return ($this->DashBoard->SearchMain($_POST['state'],$_POST['search'],$_POST['offsettt'],$_POST['norpptt']));
     }else if(isset($_POST['ConfirmAboutAdd'])){
         return ($this->DashBoard->ConfirmUserAdd($_POST['newEmail'],$_POST['name1'],$_POST['title1'],$_POST['disc1']));
@@ -85,13 +86,14 @@ class AdminModel
 public function viewRent() {
     $this->ViewRent = new viewRentModel;
 
-
+    
         if(isset($_POST['CardID'])){
             return ($this->ViewRent->Paid($_POST['CardID']));
         }
         if(isset($_POST['joex'])){
             if($_POST['search']!="Salah"){
-                $this->ViewRent->setSearch($_POST['search']);
+                $SearchValidate=filter_var($_POST['search'], FILTER_SANITIZE_STRING);
+                $this->ViewRent->setSearch($SearchValidate);
             }
             if($_POST['Rent']!="Salah"){
                 $this->ViewRent->setRent($_POST['Rent']);

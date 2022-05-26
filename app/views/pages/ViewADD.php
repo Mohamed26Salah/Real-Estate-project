@@ -40,11 +40,11 @@ class ViewADD extends view
  
   <p class='field required half'>
     <label class='label' for='Price'>السعر</label>
-    <input class='text-input' id='Price' name='Price' onkeyup="numbers(this)" required type='text'>
+    <input class='text-input' id='Price' name='Price' onkeyup="numbers(this)" required type='text' maxlength="50">
   </p>
   <p class='field half required'>
     <label class='label' for='Area'>المساحة</label>
-    <input class='text-input' id='Area' name='Area'required onkeyup="numbers(this)" type='text'>
+    <input class='text-input' id='Area' name='Area'required onkeyup="numbers(this)" type='text' maxlength="50">
   </p>
   <p class='field half required'>
     <label class='label' for='AddressUser'>العنوان للمستخدم</label>
@@ -52,7 +52,7 @@ class ViewADD extends view
   </p>
   <p class='field half required'>
     <label class='label' for='AddressAdmin'>العنوان للمكتب</label>
-    <input class='text-input' id='AddressAdmin' name='AddressAdmin' onkeyup="lettersandnumbers(this)" required type='text'>
+    <input class='text-input' id='AddressAdmin' name='AddressAdmin' onkeyup="lettersandnumbers(this)" required type='text' maxlength="300">
   </p>
 
   <!-- <p class='field half'>
@@ -68,20 +68,20 @@ class ViewADD extends view
   </p>
   <p class='field half required'>
     <label class='label' for='OwnerNum'>رقم صاحب العقار</label>
-    <input class='text-input' id='OwnerNum' name='OwnerNum' onkeyup="numbers(this)" required type='text'>
+    <input class='text-input' id='OwnerNum' name='OwnerNum' maxlength="50" onkeyup="numbers(this)" required type='text'>
   </p>
   <p class='field required half'>
     <label class='label' for='Code'>الكود</label>
-    <input class='text-input' id='Code' name='Code' onkeyup="CheckCode(this)" onkeyup="lettersandnumbersEnglishOnly(this)" maxlength="11" required type='text'>
+    <input class='text-input' id='Code' name='Code' onkeyup="CheckCode(this),lettersandnumbersEnglishOnly(this)"  maxlength="11" required type='text'>
     <span  id='CodeError' style="color:red;"></span>
   </p>
   <p class='field required'>
     <label class='label' for='DescriptionUser'>الوصف للمستخدم</label>
-    <textarea class='textarea' cols='50' id='DescriptionUser' name='DescriptionUser' onkeyup="lettersandnumbers(this)" required rows='4'></textarea>
+    <textarea class='textarea' cols='50' id='DescriptionUser' name='DescriptionUser' onkeyup="lettersandnumbers(this)" maxlength="500" required rows='4'></textarea>
   </p>
   <p class='field required'>
     <label class='label' for='DescriptionAdmin'>الوصف للمكتب</label>
-    <textarea class='textarea' cols='50' id='DescriptionAdmin' name='DescriptionAdmin' onkeyup="lettersandnumbers(this)" required rows='4'></textarea>
+    <textarea class='textarea' cols='50' id='DescriptionAdmin' name='DescriptionAdmin' onkeyup="lettersandnumbers(this)" required maxlength="1000" rows='4'></textarea>
   </p>
 
   
@@ -131,7 +131,7 @@ class ViewADD extends view
     ?>
     <p class='field required half'>
     <label class='label' for='Floor'> الدور</label>
-    <input class='text-input' id='Floor' name='Floor' onkeyup="numbers(this)" required type='text'>
+    <input class='text-input' id='Floor' name='Floor' onkeyup="numbers(this)" maxlength="50" required type='text'>
   </p>
   <p class='field half'>
     <label class='label' for='Doublex'> دوبلكس</label>
@@ -149,11 +149,11 @@ class ViewADD extends view
  
   <p class='field required half'>
     <label class='label' for='NUMOFRooms'>عددالغرف</label>
-    <input class='text-input' id='NUMOFRooms' name='NUMOFRooms' onkeyup="numbers(this)" required type='text'>
+    <input class='text-input' id='NUMOFRooms' name='NUMOFRooms' onkeyup="numbers(this)" maxlength="50" required type='text'>
   </p>
   <p class='field required half'>
     <label class='label' for='NUMOFBathrooms'> عدد الحمامات </label>
-    <input class='text-input' id='NUMOFBathrooms' name='NUMOFBathrooms' onkeyup="numbers(this)"required type='text'>
+    <input class='text-input' id='NUMOFBathrooms' name='NUMOFBathrooms' onkeyup="numbers(this)" maxlength="50" required type='text'>
   </p>
     <input id='TypeID' name='TypeID' type='hidden' value="1">
   </p>
@@ -185,7 +185,7 @@ class ViewADD extends view
     ?>
     <p class='field required half'>
     <label class='label' for='NUMOFFloors'>عدد الأدوار</label>
-    <input class='text-input' id='NUMOFFloors' name='NUMOFFloors' onkeyup="numbers(this)" required type='text'>
+    <input class='text-input' id='NUMOFFloors' name='NUMOFFloors' onkeyup="numbers(this)" maxlength="50" required type='text'>
    </p>
   
    <?php
@@ -194,7 +194,7 @@ class ViewADD extends view
     ?>
     <p class='field required half'>
     <label class='label' for='NUMOFFlats'>عدد الشقق</label>
-    <input class='text-input' id='NUMOFFlats' name='NUMOFFlats' onkeyup="numbers(this)" required type='text'>
+    <input class='text-input' id='NUMOFFlats' name='NUMOFFlats' onkeyup="numbers(this)" maxlength="50" required type='text'>
    </p>
    <?php
   }
@@ -203,7 +203,7 @@ class ViewADD extends view
     ?>
    <p class='field required half'>
     <label class='label' for='TypeOFActivity'>نوع النشاط</label>
-    <input class='text-input' id='TypeOFActivity' name='TypeOFActivity' onkeyup="lettersandnumbers(this)" required type='text'>
+    <input class='text-input' id='TypeOFActivity' name='TypeOFActivity' onkeyup="lettersandnumbers(this)" maxlength="50" required type='text'>
   </p>
    <?php
   }
@@ -211,7 +211,7 @@ class ViewADD extends view
     ?>
    <p class='field required half'>
     <label class='label' for='nUMOFAB'>عدد المباني الأدارية</label>
-    <input class='text-input' id='nUMOFAB' name='nUMOFAB' onkeyup="lettersandnumbers(this)" required type='text'>
+    <input class='text-input' id='nUMOFAB' name='nUMOFAB' onkeyup="lettersandnumbers(this)" maxlength="50" required type='text'>
   </p>
    <?php
   }

@@ -6,7 +6,7 @@ class viewDescription extends View
     require APPROOT . '/views/inc/header.php';
 
     $cardDetails = $this->model->cardDetails();
-
+   
     $this->model->bathroomAndRooms();
 
     $bathrooms = $this->model->getBathroom();
@@ -19,6 +19,7 @@ class viewDescription extends View
     $furnished = $this->model->getFurnished();
     $floor = $this->model->getFloor();
     $action = URLROOT . 'Pages/viewEdit';
+    $action2 = 'viewDescription';
     
 
     $TypeID = $_GET['TypeID'];
@@ -332,7 +333,26 @@ class viewDescription extends View
 	        				
 	        			</div>
 	        			<div class="product-count">
-                <a href="#" class="round-black-btn btn-lg" style= "float:right;">Add to wishlist<i class='fa fa-heart' aria-hidden='true'></i></a>
+                <div class="switchAll" >
+            <?php
+            
+            if($this->model->wishlist($cardDetails->ID)){
+              $WishList="green";
+              $WishListString="Saved";
+              ?>
+              <button onclick="WishList(<?php echo($cardDetails->TypeID); ?>)" class="round-black-btn btn-lg" value = <?php echo ($WishList); ?> id="WishList" style="background-color:<?php echo($WishList); ?>; margin-bottom:50px;" ><span id="Span"> <?php echo($WishListString); ?> <i class='fa fa-heart' aria-hidden='true'></i></span></button>
+              <?php
+            }else{
+              $WishList="red";
+              $WishListString="Add To WishList";
+              ?>
+              <button onclick="WishList(<?php echo($cardDetails->TypeID); ?>)" class="round-black-btn btn-lg" value = <?php echo ($WishList); ?> id="WishList" style="background-color:<?php echo($WishList); ?>; margin-bottom:50px;" ><span id="Span"> <?php echo($WishListString); ?> <i class='fa fa-heart' aria-hidden='true'></i></span></button>
+              <?php
+            }
+            ?>
+
+            </div>
+                <!-- <a href="#" class="round-black-btn btn-lg" style= "float:right;">Add to wishlist<i class='fa fa-heart' aria-hidden='true'></i></a> -->
                 <?php
                   if(!empty($_SESSION['user_id'])) {
                     if($_SESSION['Rank'] == "Admin"||$_SESSION['Rank'] == "Moderator") {
@@ -414,6 +434,40 @@ class viewDescription extends View
 		</div>
 	</div>
   <script>
+    function WishList(IDArray){
+        // console.log(IDArray); 
+        // console.log(document.getElementById('button'+IDArray).value);
+       
+        var CardID=IDArray;
+        var WishListValue=document.getElementById('WishList').value;
+      
+         $.ajax({
+          url:"<?php echo $action2;?>",
+          method:"POST",
+          data:{CardID:CardID,WishListValue:WishListValue},
+          
+          success:function(data)
+          {
+            console.log(data);
+            if(data=="denied"){
+             
+              window.location.replace("<?php echo $action; ?>");
+
+            }
+            if(WishListValue=="green"){
+              WishListValue="red";
+              $('#WishList').css("background-color", "red");
+              $('#Span').html("Add to WishList <i class='fa fa-heart' aria-hidden='true'></i>");
+              }else if(WishListValue=="red"){
+              WishListValue="green";
+              $('#WishList').css("background-color", "green");
+              $('#Span').html("Saved");
+              }
+            document.getElementById('WishList').value=WishListValue;
+          }
+        })
+      
+        }
     function button(){
 
    

@@ -150,7 +150,7 @@ class DashBoard extends View
  -->
                                 <div class="search">
                                     <label>
-                                        <input type="text" id='Search here' placeholder="Search here" onkeyup='searching(1 ,<?php echo $offset; ?> ,<?php echo $no_of_records_per_page; ?>);'>
+                                        <input type="text" id='Search here' placeholder="Search here" maxlength="50" onkeyup='searching(1 ,<?php echo $offset; ?> ,<?php echo $no_of_records_per_page; ?>),lettersandnumbers(this)' >
                                         <ion-icon name="search-outline"></ion-icon>
                                     </label>
                                 </div>
@@ -315,9 +315,9 @@ class DashBoard extends View
             <div class="card-about">
                 
                  <div class="container-about">
-                   <h2><input type="text" id='NV' placeholder="Enter Name"></h2>
-                   <p class="title-about"><input type="text" id='TV' placeholder="Enter Title"></p>
-                   <p><input type="textArea" id='DV' placeholder="Enter Description"></p>
+                   <h2><input type="text" id='NV' placeholder="Enter Name" onkeyup="lettersandnumbers(this)" maxlength="50"></h2>
+                   <p class="title-about"><input type="text" id='TV' placeholder="Enter Title" onkeyup="lettersandnumbers(this)" maxlength="50"></p>
+                   <p><input type="textArea" id='DV' placeholder="Enter Description" onkeyup="lettersandnumbers(this)" maxlength="200"></p>
                    
                    Email : <select id="newaboutemail" name="about" >
                     </select>
@@ -373,9 +373,9 @@ class DashBoard extends View
                  <img src=` + image + `  >
                  </div>
                  <div class="container-about">
-                   <h2><input type="text" id='N` + ID + `V' value="` + name + `"></h2>
-                   <p class="title-about"><input type="text" id='T` + ID + `V' value="` + title + `"></p>
-                   <p><input type="textArea" id='D` + ID + `V' value="` + disc + `"></p>
+                   <h2><input type="text" id='N` + ID + `V' value="` + name + `" onkeyup="lettersandnumbers(this)" maxlength="50"></h2>
+                   <p class="title-about"><input type="text" id='T` + ID + `V' value="` + title + `" onkeyup="lettersandnumbers(this)" maxlength="50"></p>
+                   <p><input type="textArea" id='D` + ID + `V' value="` + disc + `" onkeyup="lettersandnumbers(this)" maxlength="200"></p>
                    <p>` + email + `</p>
                    <select id="about` + ID + `" name="about">
                     </select>
