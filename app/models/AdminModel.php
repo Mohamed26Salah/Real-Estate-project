@@ -28,7 +28,8 @@ class AdminModel
     }else if(isset($_POST['DeleteAbout'])){
         return ($this->DashBoard->DeleteUserAbout($_POST['ID']));
     }else if(isset($_POST['EditAbout'])){
-        return ($this->DashBoard->DashBoard());
+       
+        return ($this->DashBoard->ListUsers());
     }else if(isset($_POST['state'])){
         return ($this->DashBoard->SearchMain($_POST['state'],$_POST['search'],$_POST['offsettt'],$_POST['norpptt']));
     }else if(isset($_POST['ConfirmAboutAdd'])){

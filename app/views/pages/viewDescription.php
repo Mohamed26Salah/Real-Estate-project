@@ -372,7 +372,7 @@ class viewDescription extends View
 				<div class="tab-content" id="myTabContent">
 				  	<div class="tab-pane fade show active" id="description" role="tabpanel" aria-labelledby="description-tab">
               <?php
-              if(!empty($_SESSION['Rank'])) {
+              if(!empty($_SESSION['user_id'])) {
 
               
                 if($_SESSION['Rank'] == "Admin"||$_SESSION['Rank'] == "Moderator") {
@@ -399,13 +399,7 @@ class viewDescription extends View
                  echo $cardDetails->DescriptionUser . "<br><br>"; 
 
               }
-            
-                
-  
-                
-                
-                
-                
+        
               ?>
 				  	
 				  	</div>

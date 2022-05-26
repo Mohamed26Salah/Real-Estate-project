@@ -725,7 +725,7 @@ public function ViewADD()
         //     echo($DashBoard->EditConfirm($_POST['ConfirmID'],$_POST['Rank'],$_POST['valuee']));
         // }
 
-        $AdminDashbaord = new AdminModel();
+        $AdminDashbaord = new AdminModel;
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             echo $AdminDashbaord->Dashboard();
