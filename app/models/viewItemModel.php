@@ -322,12 +322,12 @@ class viewItemModel extends model
             if(!empty($_SESSION['user_id'])){
                 if($_SESSION['Rank']== "User"){
                     $output2.= <<<EOT
-                    <input onclick="salah($IDArray)" id="buttonClick$IDArray" style="visibility: hidden;" class="toggle" $Checked type="checkbox" value=$VisibleArray />';
+                    <input onclick="salah($IDArray)" id="buttonClick$IDArray" style="visibility: hidden;" class="toggle" $Checked type="checkbox" value=$VisibleArray />
                     EOT;
                 }
                 else{
                     $output2.= <<<EOT
-                     '<input onclick="salah($IDArray)" id="buttonClick$IDArray"  class="toggle" $Checked type="checkbox" value=$VisibleArray />';
+                     <input onclick="salah($IDArray)" id="buttonClick$IDArray"  class="toggle" $Checked type="checkbox" value=$VisibleArray />
                      EOT;
                 }
             }
@@ -630,10 +630,23 @@ class viewItemModel extends model
             }
             
         }
-        if(!empty($this->Show)){
-            $AllSort.="Visible = ".$this->Show;
+
+        if(!empty($_SESSION['Rank'])){
+            if($_SESSION['Rank']=="Admin"||$_SESSION['Rank']=="Moderator"){
+                if(!empty($this->Show)){
+                    $AllSort.="Visible = ".$this->Show;
+                    $AllSort.=" AND ";
+                }
+            }else if($_SESSION['Rank']=="User"){
+                $AllSort.="Visible = 1";
+                $AllSort.=" AND ";
+            }
+        }else{
+            $AllSort.="Visible = 1";
             $AllSort.=" AND ";
         }
+       
+        
         ////////////////////////////////////////////////////////
         if(!empty($this->Finishing)){
             $UltimateJoinFinishing=$this->Finishing;

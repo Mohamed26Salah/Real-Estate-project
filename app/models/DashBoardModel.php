@@ -41,9 +41,10 @@ class DashBoardModel extends model
 
           $ALLRECORDS = $this->dbh->single();
 
-          $this->dbh->query("SELECT *from `user` WHERE  `ID`= $ID");
+          $this->dbh->query("SELECT * from `user` WHERE  `ID`= $ID");
 
           $ALLRECORDS2 = $this->dbh->single();
+        
           $customer = <<<EOT
               <td>$ALLRECORDS2->name</td>
               <td>0111454768</td>
@@ -87,12 +88,16 @@ class DashBoardModel extends model
           $this->dbh->query("SELECT * FROM `user` WHERE  `email`='" . $newEmail . "'");
 
           $result2 = $this->dbh->single();
+          $Name=filter_var($name, FILTER_SANITIZE_STRING);
+          $Title=filter_var($title, FILTER_SANITIZE_STRING);
+          $Description=filter_var($disc, FILTER_SANITIZE_STRING);
 
-          $this->dbh->query("INSERT INTO `aboutus`( `UserID`, `name`, `Title`, `email`, `Description`) VALUES ('$result2->ID','$name','$title','$newEmail','$disc')");
+
+          $this->dbh->query("INSERT INTO `aboutus`( `UserID`, `name`, `Title`, `email`, `Description`) VALUES ('$result2->ID','$Name','$Title','$newEmail','$Description')");
 
           $this->dbh->single();
 
-          $this->dbh->query("SELECT *   FROM `aboutus` WHERE   `UserID`=" . $result2->ID);
+          $this->dbh->query("SELECT * FROM `aboutus` WHERE   `UserID`=" . $result2->ID);
           $result4 = $this->dbh->single();
 
           if(substr($result2->image,0,4) == 'http') {
@@ -135,8 +140,10 @@ class DashBoardModel extends model
           $this->dbh->query("SELECT * FROM `user` WHERE  `email`='" . $newEmail . "'");
 
           $result2 = $this->dbh->single();
-
-          $this->dbh->query("INSERT INTO `aboutus`( `ID`,`UserID`, `name`, `Title`, `email`, `Description`) VALUES ('$ID','$result2->ID','$name','$title','$newEmail','$disc')");
+          $Name=filter_var($name, FILTER_SANITIZE_STRING);
+          $Title=filter_var($title, FILTER_SANITIZE_STRING);
+          $Description=filter_var($disc, FILTER_SANITIZE_STRING);
+          $this->dbh->query("INSERT INTO `aboutus`( `ID`,`UserID`, `name`, `Title`, `email`, `Description`) VALUES ('$ID','$result2->ID','$Name','$Title','$newEmail','$Description')");
 
           $result3 = $this->dbh->single();
 
@@ -162,7 +169,7 @@ class DashBoardModel extends model
            <p>$disc</p>
            <p>$newEmail</p>
            
-           <p><button class="button-about" onclick ="aboutUserEdit($result4->ID ,'$IMAGEROOT2$result2->image' ,'$name' , '$title','$disc ','$newEmail');" >Edit</button></p>
+           <p><button class="button-about" onclick ="aboutUserEdit($result4->ID ,'$IMAGEROOT2$result2->image' ,'$Name' , '$Title','$Description ','$newEmail');" >Edit</button></p>
            <p><button class="button-about" onclick ="aboutUserDelete($result4->ID ,'$IMAGEROOT2$result2->image' ,'$result4->name' , '$result4->Title ','$result4->Description ','$result4->email');" >Delete</button></p>
 
          </div>
@@ -268,7 +275,7 @@ class DashBoardModel extends model
                $output .= <<<EOT
                                    <div class="search">
                                    <label>
-                                   <input type="text" id='Search here' placeholder="Search here" onkeyup='searching(2 , $offset ,$no_of_records_per_page);';>
+                                   <input type="text" id='Search here' placeholder="Search here" maxlength="50" onkeyup='searching(2 , $offset ,$no_of_records_per_page),onkeyup="lettersandnumbers(this)"';>
                                    <ion-icon name="search-outline"></ion-icon>
                                    </label>
                               </div >
@@ -342,7 +349,7 @@ class DashBoardModel extends model
                $output .= <<<EOT
                               <div class="search">
                               <label>
-                              <input type="text" id='Search here' placeholder="Search here" onkeyup='searching(3 , $offset ,$no_of_records_per_page);';>
+                              <input type="text" id='Search here' placeholder="Search here" maxlength="50" onkeyup='searching(3 , $offset ,$no_of_records_per_page),onkeyup="lettersandnumbers(this)"';>
                               <ion-icon name="search-outline"></ion-icon>
                               </label>
                          </div >

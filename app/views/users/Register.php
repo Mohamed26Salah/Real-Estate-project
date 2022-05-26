@@ -77,7 +77,8 @@ EOT;
     $err = $this->model->getNameErr();
     $valid = (!empty($err) ? 'is-invalid' : '');
     $validation="lettersandnumbers(this)";
-    $this->printInput('text', 'name', $val, $err, $valid,$validation);
+    $CopyOFF="autocomplete='off' onpaste='return false;' onCopy='return false' onCut='return false' onDrag='return false'";
+    $this->printInput('text', 'name', $val, $err, $valid,$validation,$CopyOFF);
   }
   private function printEmail()
   {
@@ -85,7 +86,8 @@ EOT;
     $err = $this->model->getEmailErr();
     $valid = (!empty($err) ? 'is-invalid' : '');
     $validation="";
-    $this->printInput('email', 'email', $val, $err, $valid,$validation);
+    $CopyOFF="autocomplete='off' onpaste='return false;' onCopy='return false' onCut='return false' onDrag='return false'";
+    $this->printInput('email', 'email', $val, $err, $valid,$validation,$CopyOFF);
   }
 
   private function printPassword()
@@ -94,7 +96,8 @@ EOT;
     $err = $this->model->getPasswordErr();
     $valid = (!empty($err) ? 'is-invalid' : '');
     $validation="";
-    $this->printInput('password', 'password', $val, $err, $valid,$validation);
+    $CopyOFF="autocomplete='off' onpaste='return false;' onCopy='return false' onCut='return false' onDrag='return false'";
+    $this->printInput('password', 'password', $val, $err, $valid,$validation,$CopyOFF);
   }
   private function printConfirmPassword()
   {
@@ -102,17 +105,18 @@ EOT;
     $err = $this->model->getConfirmPasswordErr();
     $valid = (!empty($err) ? 'is-invalid' : '');
     $validation="";
-    $this->printInput('password', 'confirm_password', $val, $err, $valid,$validation);
+    $CopyOFF="autocomplete='off' onpaste='return false;' onCopy='return false' onCut='return false' onDrag='return false'";
+    $this->printInput('password', 'confirm_password', $val, $err, $valid,$validation,$CopyOFF);
   }
 
-  private function printInput($type, $fieldName, $val, $err, $valid,$Validation)
+  private function printInput($type, $fieldName, $val, $err, $valid,$Validation,$CopyOFF)
   {
     $label = str_replace("_", " ", $fieldName);
     $label = ucwords($label);
     $text = <<<EOT
     <div class="form-group">
       <label for="$fieldName"> $label: <sup>*</sup></label>
-      <input type="$type" name="$fieldName" class="form-control form-control-lg $valid" id="$fieldName" value="$val" onkeyup=$Validation>
+      <input type="$type" name="$fieldName" class="form-control form-control-lg $valid" id="$fieldName" value="$val" onkeyup=$Validation $CopyOFF>
       <span class="invalid-feedback">$err</span>
     </div>
 EOT;

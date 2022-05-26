@@ -112,6 +112,7 @@ EOT;
     $valid = (!empty($err) ? 'is-invalid' : '');
     $validation="lettersandnumbers(this)";
     $placeHolder ="Enter your current password";
+    
     $this->printInputEmailName('name', 'name', $val, $err, $valid,$validation);
   }
 

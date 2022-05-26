@@ -9,10 +9,15 @@ class viewRentDescription extends View
     $images = $this->model->showPropertyImage();
     $EditID = $_GET['ID'];
     $action = URLROOT . 'Pages/viewEditRent';
+    $action2 = URLROOT . 'Pages/viewRent';
+
 ?>
 
 <html>
+<input type="hidden" id="RentID" name="RentID" value="<?php echo $rentDetails->ID ?>">
 <link rel="stylesheet" href="<?php echo URLROOT; ?>css/viewRentDescription.css">
+<link rel="stylesheet" href="<?php echo URLROOT; ?>css/Button.css">
+
   <!--Important link from https://bootsnipp.com/snippets/XqvZr-->
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <!------ Include the above in your HEAD tag ---------->
@@ -102,10 +107,32 @@ class viewRentDescription extends View
 
 
              <!-- ################################################################################################ -->
-             <a href="<?php echo $action; ?>?IDE=<?php echo $EditID;?>&color=<?php echo $_GET['color']; ?>" class="btn btn-success btn-lg" style= "float:left; color:white; text-decoration:none; margin-top:1rem; margin-left:25px;">Edit</a>
+           
             <div class="col-md-12 mt-5 text-right" dir="rtl">
 	        		<div class="product-dtl">
         				<div class="product-info">
+                <?php
+                  if(!empty($_SESSION['user_id'])) {
+                    if($_SESSION['Rank'] == "Admin"||$_SESSION['Rank'] == "Moderator") {
+                  ?>
+							                     
+                   <div class="btnRent" id="btnRent" style= "float:left; margin-left:-1%;">
+                    <div class="btnRent-back" id="btnRent-back">
+                    <p style="font-size:30px">هل أنت متأكد ؟</p>
+                    <button class="yes" id="yes" style="font-size:20px" >نعم</button>
+                    <button class="no" id="no" style="font-size:20px">لا</button>
+                    </div>
+                    
+                    <div class="btnRent-front" ID="btnRent-front" onclick="button()">احذف</div>
+                   
+                    </div>
+                    
+                
+                    <a href="<?php echo $action; ?>?IDE=<?php echo $EditID;?>&color=<?php echo $_GET['color']; ?>" class="btn btn-success btn-lg" style= "float:left; color:white; text-decoration:none; margin-top:1rem; margin-left:25px;">Edit</a>
+                  <?php
+                    }
+                  }
+                  ?>
 		        			<div class="product-name">
 
                             </div>
@@ -226,15 +253,76 @@ class viewRentDescription extends View
 			
 		</div>
 	</div>
-	<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
-    
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="	sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> -->
+	
+<script>
+function button(){
+      
+  var btnRent = document.getElementById( 'btnRent' );
+var btnFront = document.getElementById( 'btnRent-front' );
+var btnYes = document.getElementById( 'yes' );
+var btnNo = document.getElementById( 'no');
 
+// btnFront.addEventListener( 'click', function( event ) {
+  var mx = event.clientX - btnRent.offsetLeft,
+      my = event.clientY - btnRent.offsetTop;
+
+  var w = btnRent.offsetWidth,
+      h = btnRent.offsetHeight;
+    
+  var directions = [
+    { id: 'top', x: w/2, y: 0 },
+    { id: 'right', x: w, y: h/2 },
+    { id: 'bottom', x: w/2, y: h },
+    { id: 'left', x: 0, y: h/2 }
+  ];
+  
+  directions.sort( function( a, b ) {
+    return distance( mx, my, a.x, a.y ) - distance( mx, my, b.x, b.y );
+  } );
+  
+  btnRent.setAttribute( 'data-direction', directions.shift().id );
+  btnRent.classList.add( 'is-open' );
+
+
+$('#yes').unbind().click(function() {
+  btnRent.classList.remove( 'is-open' );
+  var RentDelete = document.getElementById("RentID").value;
+  console.log(RentDelete);
+  $.ajax({
+          url:"viewRentDescription",
+          method:"POST",
+          data:{RentDelete:RentDelete},
+          
+          success:function(data)
+          {
+           
+            window.location.replace("<?php echo($action2); ?>")   
+          }
+        })
+       
+
+});
+$('#no').unbind().click(function() {
+  btnRent.classList.remove( 'is-open' );
+  console.log("No");
+});
+
+function distance( x1, y1, x2, y2 ) {
+  var dx = x1-x2;
+  var dy = y1-y2;
+  return Math.sqrt( dx*dx + dy*dy );
+}
+}
+
+
+  
+</script>
   <footer> <?php
   require APPROOT . '/views/inc/footer2.php';
   ?> </footer>
 </div>
+
+
 <?php
     
 

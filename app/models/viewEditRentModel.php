@@ -48,11 +48,11 @@ class viewEditRentModel extends model
 
         <p class='field required half'>
         <label class='label' for='Price'>السعر</label>
-        <input class='text-input' id='Price' name='Price' onkeyup="numbers(this)" required type='text' value="$record->rentPrice">
+        <input class='text-input' id='Price' name='Price' onkeyup="numbers(this)" required type='text' maxlength="50" value="$record->rentPrice">
         </p>
         EOT;
         $TypeNameArray="";
-        if($record->typeName=="Flat"){
+        if($record->typeName=="Flats"){
             $TypeNameArray= "<option value=''>نوع العقار</option>
             <option selected value='Flats'>شقه</option>
             <option value='Residential Building'>عمارة</option>
@@ -147,11 +147,11 @@ class viewEditRentModel extends model
         </p>
         <p class='field half required half'>
         <label class='label' for='Area'>المساحة</label>
-        <input class='text-input' id='Area' name='Area'required onkeyup="numbers(this)" type='text' value="$record->area">
+        <input class='text-input' id='Area' name='Area'required onkeyup="numbers(this)" type='text' maxlength="50" value="$record->area">
         </p>
         <p class='field required half'>
         <label class='label' for='NUMOFFloors'> الدور</label>
-        <input class='text-input' id='NUMOFFloors' name='NUMOFFloors' onkeyup="numbers(this)" required type='text' value="$record->floor">
+        <input class='text-input' id='NUMOFFloors' name='NUMOFFloors' onkeyup="numbers(this)" required type='text' maxlength="50" value="$record->floor">
         </p>
         <p class='field half required'>
         <label class='label' for='LessorName'>اسم المؤجر</label>
@@ -160,7 +160,7 @@ class viewEditRentModel extends model
 
         <p class='field half required'>
         <label class='label' for='LessorNum'>رقم المؤجر</label>
-        <input class='text-input' id='LessorNum' name='LessorNum' onkeyup="numbers(this)" required type='text' value="$record->LessorNum">
+        <input class='text-input' id='LessorNum' name='LessorNum' onkeyup="numbers(this)" required type='text' maxlength="50" value="$record->LessorNum">
         </p>
         <p class='field half required'>
         <label class='label' for='TenantName'>اسم المستأجر</label>
@@ -168,11 +168,11 @@ class viewEditRentModel extends model
         </p>
         <p class='field half required'>
         <label class='label' for='TenantNum'>رقم المستأجر</label>
-        <input class='text-input' id='TenantNum' name='TenantNum' onkeyup="numbers(this)" required type='text' value="$record->TenantNum">
+        <input class='text-input' id='TenantNum' name='TenantNum' onkeyup="numbers(this)" required type='text' maxlength="50" value="$record->TenantNum">
         </p>
         <p class='field required'>
         <label class='label' for='Description'>الوصف</label>
-        <textarea class='textarea' cols='50' id='Description' name='Description' onkeyup="lettersandnumbers(this)" required rows='4'>$record->description</textarea>
+        <textarea class='textarea' cols='50' id='Description' name='Description' onkeyup="lettersandnumbers(this)" maxlength="1000" required rows='4'>$record->description</textarea>
         </p>
         EOT;
         $furnishedString="";

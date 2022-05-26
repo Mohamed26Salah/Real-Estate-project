@@ -117,7 +117,8 @@ class viewEditModel extends model
         if($OldCode==$NewCode){
 
         }else{
-            $this->dbh->query("SELECT * FROM allestate WHERE Code = '".$NewCode."'");
+          $ValidatedCkeckCode=filter_var($NewCode, FILTER_SANITIZE_STRING);
+            $this->dbh->query("SELECT * FROM allestate WHERE Code = '".$ValidatedCkeckCode."'");
             $ALLRECORDS = $this->dbh->single();
             if(empty($ALLRECORDS)){
                 
@@ -202,11 +203,11 @@ class viewEditModel extends model
          
           <p class='field required half'>
             <label class='label' for='Price'>السعر</label>
-            <input class='text-input' id='Price' name='Price' onkeyup="numbers(this)" required type='text' value="$record->Price">
+            <input class='text-input' id='Price' name='Price' onkeyup="numbers(this)" required type='text' maxlength="50" value="$record->Price">
           </p>
           <p class='field half required'>
             <label class='label' for='Area'>المساحة</label>
-            <input class='text-input' id='Area' name='Area'required onkeyup="numbers(this)" type='text' value="$record->Area" >
+            <input class='text-input' id='Area' name='Area'required onkeyup="numbers(this)" type='text' maxlength="50" value="$record->Area" >
           </p>
           <p class='field half required'>
             <label class='label' for='AddressUser'>العنوان للمستخدم</label>
@@ -214,7 +215,7 @@ class viewEditModel extends model
           </p>
           <p class='field half required'>
             <label class='label' for='AddressAdmin'>العنوان للمكتب</label>
-            <input class='text-input' id='AddressAdmin' name='AddressAdmin' onkeyup="lettersandnumbers(this)" required type='text' value="$record->AddressAdmin" >
+            <input class='text-input' id='AddressAdmin' name='AddressAdmin' onkeyup="lettersandnumbers(this)" required maxlength="300" type='text' value="$record->AddressAdmin" >
           </p>
           <p class='field half required'>
             <label class='label' for='Owner'>اسم صاحب العقار</label>
@@ -222,20 +223,20 @@ class viewEditModel extends model
           </p>
           <p class='field half required'>
             <label class='label' for='OwnerNum'>رقم صاحب العقار</label>
-            <input class='text-input' id='OwnerNum' name='OwnerNum' onkeyup="numbers(this)" required type='text' value="$record->OwnerNumber">
+            <input class='text-input' id='OwnerNum' name='OwnerNum' onkeyup="numbers(this)" maxlength="50" required type='text' value="$record->OwnerNumber">
           </p>
           <p class='field required half'>
             <label class='label' for='Code'>الكود</label>
-            <input class='text-input' id='Code' name='Code' onkeyup="CheckCode(this)" onkeyup="lettersandnumbersEnglishOnly(this)" maxlength="11" required type='text' value="$record->Code" >
+            <input class='text-input' id='Code' name='Code' onkeyup="CheckCode(this),lettersandnumbersEnglishOnly(this)" maxlength="11" required type='text' value="$record->Code" >
             <span  id='CodeError' style="color:red;"></span>
           </p>
           <p class='field required'>
             <label class='label' for='DescriptionUser'>الوصف للمستخدم</label>
-            <textarea class='textarea' cols='50' id='DescriptionUser' name='DescriptionUser' onkeyup="lettersandnumbers(this)" required rows='4'>$record->DescriptionUser</textarea>
+            <textarea class='textarea' cols='50' id='DescriptionUser' name='DescriptionUser' onkeyup="lettersandnumbers(this)" maxlength="500" required rows='4'>$record->DescriptionUser</textarea>
           </p>
           <p class='field required'>
             <label class='label' for='DescriptionAdmin'>الوصف للمكتب</label>
-            <textarea class='textarea' cols='50' id='DescriptionAdmin' name='DescriptionAdmin' onkeyup="lettersandnumbers(this)" required rows='4'>$record->DescriptionAdmin</textarea>
+            <textarea class='textarea' cols='50' id='DescriptionAdmin' name='DescriptionAdmin' onkeyup="lettersandnumbers(this)" maxlength="1000" required rows='4'>$record->DescriptionAdmin</textarea>
           </p>
           <p class='field required half'>
             <label class='label' for='contarctType'>النوع</label>
@@ -335,16 +336,16 @@ if($this->Doublex == 1){
 
           <p class='field required half'>
             <label class='label' for='Floor'> الدور</label>
-            <input class='text-input' id='Floor' name='Floor' onkeyup="numbers(this)" required type='text'  value="$this->Floor" >
+            <input class='text-input' id='Floor' name='Floor' onkeyup="numbers(this)" required type='text' maxlength="50"  value="$this->Floor" >
           </p>
         
           <p class='field required half'>
             <label class='label' for='NUMOFRooms'>عددالغرف</label>
-            <input class='text-input' id='NUMOFRooms' name='NUMOFRooms' onkeyup="numbers(this)" required type='text' value="$this->Room" >
+            <input class='text-input' id='NUMOFRooms' name='NUMOFRooms' onkeyup="numbers(this)" required type='text' maxlength="50" value="$this->Room" >
           </p>
           <p class='field required half'>
             <label class='label' for='NUMOFBathrooms'> عدد الحمامات </label>
-            <input class='text-input' id='NUMOFBathrooms' name='NUMOFBathrooms' onkeyup="numbers(this)"required type='text' value="$this->Bathroom" >
+            <input class='text-input' id='NUMOFBathrooms' name='NUMOFBathrooms' onkeyup="numbers(this)"required type='text' maxlength="50" value="$this->Bathroom" >
           </p>
             <input id='TypeID' name='TypeID' type='hidden' value="1">
           </p>
@@ -388,12 +389,12 @@ if($this->Doublex == 1){
           $output .=<<<EOT
           <p class='field required half'>
           <label class='label' for='NUMOFFlats'>عدد الشقق</label>
-          <input class='text-input' id='NUMOFFlats' name='NUMOFFlats' onkeyup="numbers(this)" required type='text' value="$this->NUMOFFlats">
+          <input class='text-input' id='NUMOFFlats' name='NUMOFFlats' onkeyup="numbers(this)" maxlength="50" required type='text' value="$this->NUMOFFlats">
           </p>
 
           <p class='field required half'>
           <label class='label' for='NUMOFFloors'>عدد الأدوار</label>
-          <input class='text-input' id='NUMOFFloors' name='NUMOFFloors' onkeyup="numbers(this)" required type='text' value="$this->NumOfFloors">
+          <input class='text-input' id='NUMOFFloors' name='NUMOFFloors' onkeyup="numbers(this)" maxlength="50" required type='text' value="$this->NumOfFloors">
           </p>
           EOT;
 
@@ -458,15 +459,15 @@ if($this->Furnished == 1){
 
           <p class='field required half'>
           <label class='label' for='NUMOFFloors'>عدد الأدوار</label>
-          <input class='text-input' id='NUMOFFloors' name='NUMOFFloors' onkeyup="numbers(this)" required type='text' value="$this->NumOfFloors">
+          <input class='text-input' id='NUMOFFloors' name='NUMOFFloors' onkeyup="numbers(this)" maxlength="50" required type='text' value="$this->NumOfFloors">
           </p>
           <p class='field required half'>
             <label class='label' for='NUMOFRooms'>عددالغرف</label>
-            <input class='text-input' id='NUMOFRooms' name='NUMOFRooms' onkeyup="numbers(this)" required type='text' value="$this->Room" >
+            <input class='text-input' id='NUMOFRooms' name='NUMOFRooms' onkeyup="numbers(this)" maxlength="50" required type='text' value="$this->Room" >
           </p>
           <p class='field required half'>
             <label class='label' for='NUMOFBathrooms'> عدد الحمامات </label>
-            <input class='text-input' id='NUMOFBathrooms' name='NUMOFBathrooms' onkeyup="numbers(this)"required type='text' value="$this->Bathroom" >
+            <input class='text-input' id='NUMOFBathrooms' name='NUMOFBathrooms' onkeyup="numbers(this)" maxlength="50" required type='text' value="$this->Bathroom" >
           </p>
             <input id='TypeID' name='TypeID' type='hidden' value="1">
           </p>
@@ -502,7 +503,7 @@ if($this->Furnished == 1){
               $output .=<<<EOT
               <p class='field required half'>
               <label class='label' for='TypeOFActivity'>نوع النشاط</label>
-              <input class='text-input' id='TypeOFActivity' name='TypeOFActivity' onkeyup="lettersandnumbers(this)" required type='text' value="$this->TypeOFActivity">
+              <input class='text-input' id='TypeOFActivity' name='TypeOFActivity' onkeyup="lettersandnumbers(this)" maxlength="50" required type='text' value="$this->TypeOFActivity">
               </p>
               EOT;
 
@@ -523,11 +524,11 @@ if($this->Furnished == 1){
         $output .=<<<EOT
         <p class='field required half'>
         <label class='label' for='TypeOFActivity'>نوع النشاط</label>
-        <input class='text-input' id='TypeOFActivity' name='TypeOFActivity' onkeyup="lettersandnumbers(this)" required type='text' value="$this->TypeOFActivity">
+        <input class='text-input' id='TypeOFActivity' name='TypeOFActivity' maxlength="50" onkeyup="lettersandnumbers(this)" required type='text' value="$this->TypeOFActivity">
         </p>
         <p class='field required half'>
         <label class='label' for='nUMOFAB'>عدد المباني الأدارية</label>
-        <input class='text-input' id='nUMOFAB' name='nUMOFAB' onkeyup="lettersandnumbers(this)" required type='text' value="$this->nUMOFAB">
+        <input class='text-input' id='nUMOFAB' name='nUMOFAB' onkeyup="lettersandnumbers(this)" maxlength="50" required type='text' value="$this->nUMOFAB">
         </p>
         EOT;
 
