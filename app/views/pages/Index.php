@@ -38,8 +38,8 @@ class Index extends View
     <div class="centerbox">
  
  <div class="main-form-container">
-            <form id="MainSearchForm" class="" method="post" action="<?php echo URLROOT."pages/viewItem?TypeID=1";?>">
-              <input type="text" class="main-input main-name" id="SearchBar" name="SearchBar" value="Looking for something?" onfocus="clearText(this);" onblur="replaceText(this);" />
+            <!-- <form id="MainSearchForm" class="" method="post" action="<?php echo URLROOT."pages/viewItem?TypeID=1";?>">
+              <input type="text" class="main-input main-name" id="SearchBar" name="SearchBar" value="Looking for something?" onfocus="clearText(this);" onblur="replaceText(this);" disabled="disabled" />
                 <button type="button" class="main-btn" id="mainbtn">
                   <p class="search-small">SEARCH BY</p>
                   <p class="search-large">Houses</p>
@@ -57,7 +57,7 @@ class Index extends View
           <li id="9">in Lands</li>
               </ul>
               <input id="main-submit" class="" type="submit" value="Search" style="border: 0px; padding-top:0px;"/>
-            </form>
+            </form> -->
           </div>
           </div>
           <!-- mobile submit -->

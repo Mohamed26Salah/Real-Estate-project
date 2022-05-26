@@ -70,12 +70,19 @@
                 <li style = "font-weight:1000;" class="<?php echo $activeAbout; ?>"><a href="<?php echo URLROOT . 'pages/about'; ?>"><span>عن أمان</span></a></li>
 
                 <?php if(!empty($_SESSION['user_id'])) {
+                   if($_SESSION['Rank']=="Admin"||$_SESSION['Rank'] == "Moderator"){
+                    ?>
+                  <li style = "font-weight:1000;"  class="<?php echo $activeRent; ?>"><a href="<?php echo URLROOT . 'pages/viewRent'; ?>"><span>الايجارات</span></a></li>
+                  <?php
+                   }
                   if($_SESSION['Rank']=="Admin"){
                 ?>
-                <li style = "font-weight:1000;"  class="<?php echo $activeRent; ?>"><a href="<?php echo URLROOT . 'pages/viewRent'; ?>"><span>الايجارات</span></a></li>
                 <li class="<?php echo $activeDashboard; ?>"><a href="<?php echo URLROOT . "pages/DashBoard"; ?>"><span>DashBoard</span></a></li>
                 <?php }
-                 }?>
+               
+                }
+                 ?>
+                 
                  <?php
                  if(!empty($_SESSION['user_id'])){
                    ?>

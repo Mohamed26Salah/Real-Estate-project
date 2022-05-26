@@ -298,7 +298,7 @@ class viewDescription extends View
 
                   <?php
                   if(!empty($_SESSION['user_id'])) {
-                    if($_SESSION['Rank'] == "Admin") {
+                    if($_SESSION['Rank'] == "Admin"||$_SESSION['Rank'] == "Moderator") {
                   ?>
                         <div class="col-md-6 mt-3">
                         <i class="fa fa-user fa-lg" aria-hidden="true"style="font-weight: bold; "></i><label for="color" > اسم صاحب العقار: </label>
@@ -335,7 +335,7 @@ class viewDescription extends View
                 <a href="#" class="round-black-btn btn-lg" style= "float:right;">Add to wishlist<i class='fa fa-heart' aria-hidden='true'></i></a>
                 <?php
                   if(!empty($_SESSION['user_id'])) {
-                    if($_SESSION['Rank'] == "Admin") {
+                    if($_SESSION['Rank'] == "Admin"||$_SESSION['Rank'] == "Moderator") {
                   ?>
 							                     
                    <div class="btnRent" id="btnRent" style= "float:left; margin-left:-1%;">
@@ -375,7 +375,7 @@ class viewDescription extends View
               if(!empty($_SESSION['Rank'])) {
 
               
-                if($_SESSION['Rank'] == "Admin") {
+                if($_SESSION['Rank'] == "Admin"||$_SESSION['Rank'] == "Moderator") {
                   ?>
                   <span style = "font-weight:bold;"> وصف المستخدم :</span><br><br>
                   <?php
@@ -386,9 +386,22 @@ class viewDescription extends View
                   <?php
                    echo $cardDetails->DescriptionAdmin; 
                 }
+                else if($_SESSION['Rank'] == "User"){
+                  ?>
+                  <span style = "font-weight:bold;"> وصف المستخدم :</span><br><br>
+                  <?php
+                   echo $cardDetails->DescriptionUser . "<br><br>"; 
+                }
+              }else{
+                ?>
+                <span style = "font-weight:bold;"> وصف المستخدم :</span><br><br>
+                <?php
+                 echo $cardDetails->DescriptionUser . "<br><br>"; 
+
               }
+            
                 
-                  echo $cardDetails->DescriptionUser . "<br><br>"; 
+  
                 
                 
                 

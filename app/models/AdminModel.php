@@ -28,7 +28,6 @@ class AdminModel
     }else if(isset($_POST['DeleteAbout'])){
         return ($this->DashBoard->DeleteUserAbout($_POST['ID']));
     }else if(isset($_POST['EditAbout'])){
-       
         return ($this->DashBoard->DashBoard());
     }else if(isset($_POST['state'])){
         return ($this->DashBoard->SearchMain($_POST['state'],$_POST['search'],$_POST['offsettt'],$_POST['norpptt']));
@@ -62,8 +61,12 @@ class AdminModel
        
         
     }else if(isset($_POST['SearchBar'])){
+        // $this->ViewItem->setSearch($_POST['SearchBar']);
+        // return ($this->ViewItem->Sort($_POST['offset'],$_POST['no_of_records_per_page']));
         return '<script>console.log("'.$_POST['SearchBar'] .'"); </script>';
+
     }
+    
    
 }
 

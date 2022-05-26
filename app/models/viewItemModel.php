@@ -26,7 +26,17 @@ class viewItemModel extends model
     protected $nUMOFAB;
     protected $TypeOFActivity;
     protected $NUMOFFlats;
+    protected $Importance;
 
+
+    public function getImportance()
+    {
+        return $this->Importance;
+    }
+    public function setImportance($Importance)
+    {
+        $this->Importance = $Importance;
+    }
 
     public function getNUMOFFlats()
     {
@@ -590,6 +600,10 @@ class viewItemModel extends model
           }
         if(!empty($this->Payment)){
             $AllSort.="`PaymentMethod` = '".$this->Payment."'";
+            $AllSort.=" AND ";
+        }
+        if(!empty($this->Importance)){
+            $AllSort.="`Priroty` = '".$this->Importance."'";
             $AllSort.=" AND ";
         }
         if(!empty($this->contarctType)){

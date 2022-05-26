@@ -105,7 +105,7 @@ class viewRent extends View
          <h4>Search</h4>
          
          <div class="cd-filter-content">
-           <input type="search" name="search" id="search" placeholder="أبحث" onkeyup="OnKeyUpSearch()" >
+           <input type="search" name="search" id="search" placeholder="أبحث" >
          </div> <!-- cd-filter-content -->
        </div> <!-- cd-filter-block -->
 

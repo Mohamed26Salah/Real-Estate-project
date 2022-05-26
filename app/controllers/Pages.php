@@ -42,13 +42,15 @@ public function viewItem()
             // }
 
             echo $viewItemAdmin->viewItem();
-
-        
+         
             $viewPath = VIEWS_PATH . 'pages/viewItem.php';
             require_once $viewPath;
             $indexView = new viewItem($this->getModel(), $this);
             $indexView->output();
         
+            
+        
+          
        
 
        
@@ -56,7 +58,7 @@ public function viewItem()
 
     public function ajax()
     {
-        // $ViewItem = $this->getModel();
+        $ViewItem = $this->getModel();
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST'){
          
@@ -126,6 +128,9 @@ public function viewItem()
             }
             if($_POST['NUMOFFlats']!="Salah"){
                 $ViewItem->setNUMOFFlats($_POST['NUMOFFlats']);
+            }
+            if($_POST['Importance']!="Salah"){
+                $ViewItem->setImportance($_POST['Importance']);
             }
           
            
