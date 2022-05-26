@@ -97,7 +97,15 @@
                 <?php } ?>
           
                 <li class="has-children">
+                <?php if(empty($_SESSION['user_id'])){
+                    ?>
                   <a><span  style = "font-weight:1000;" >انضم الينا</span></a>
+                  <?php } ?>
+
+                  <?php if(!empty($_SESSION['user_id'])){
+                    ?>
+                  <a><span  style = "font-weight:bold;" class="text-right" dir="rtl" > اهلا ، <?php echo strtok(($_SESSION['user_name']),' '); ?></span></a>
+                  <?php } ?>
                   <ul class="dropdown arrow-top">
                     <?php if(empty($_SESSION['user_id'])){
                       ?>
