@@ -38,29 +38,40 @@ class Pages extends Controller
         try {
             $viewItemAdmin = new AdminModel();
             $ViewItem = $this->getModel();
+            if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 
 
             // if(isset($_POST['ShowButton'])){
-            //     // $ViewItem->setButtonShow($_POST['ShowButton']);
-            //     // $ViewItem->setID($_POST['CardID']);
-            //     // echo($ViewItem->button());
+            //     $ViewItem->setButtonShow($_POST['ShowButton']);
+            //     $ViewItem->setID($_POST['CardID']);
+            //     echo($ViewItem->button());
 
-            //     echo ($viewItemAdmin->viewItemButton());
+            //     // echo ($viewItemAdmin->viewItemButton());
             // }else if(isset($_POST['WishListValue'])){
             //     // $ViewItem->setID($_POST['CardID']);
             //     // echo($ViewItem->AddToWishlist($_POST['WishListValue']));
 
             //     echo($viewItemAdmin->viewItem());
+            //     $ViewItem->setID($_POST['CardID']);
+            //     echo($ViewItem->AddToWishlist($_POST['WishListValue']));
+               
+            //     // echo($viewItemAdmin->viewItem());
             // }else if(isset($_POST['SearchBar'])){
             //     echo'<script>console.log("'.$_POST['SearchBar'] .'"); </script>';
             // }
-
             echo $viewItemAdmin->viewItem();
 
-            $viewPath = VIEWS_PATH . 'pages/viewItem.php';
+            }
+           
+            // echo $ViewItem->viewItem();
+
+           else {
+
+           $viewPath = VIEWS_PATH . 'pages/viewItem.php';
             require_once $viewPath;
             $indexView = new viewItem($this->getModel(), $this);
             $indexView->output();
+           }
         } catch (Exception  $e) {
             echo "<h1 style='display:flex; justify-content:center; margin-top:20%;'>" . $e->getMessage() . '</h1>';
         }

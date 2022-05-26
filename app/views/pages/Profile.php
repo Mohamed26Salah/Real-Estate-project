@@ -3,6 +3,15 @@ class Profile extends View
 {
   public function output()
   {
+
+    try{
+        if(empty($_SESSION['user_id']))  {
+          throw new Exception('no user found');
+        }    
+          }
+          catch(Exception $e){
+                  redirect('index');
+          }
     
     require APPROOT . '/views/inc/header.php';
     

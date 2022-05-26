@@ -4,6 +4,14 @@ class ViewADDRent extends view
 
   public function output()
   {
+    try{
+      if(empty($_SESSION['user_id'])||$_SESSION['Rank']== "User")  {
+        throw new Exception('not Admin');
+      }    
+        }
+        catch(Exception $e){
+                redirect('index');
+        }
     require APPROOT . '/views/inc/header.php';
     $action = 'ViewADDRent'; 
     $action2 = URLROOT . 'Pages/viewRent'; 
