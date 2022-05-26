@@ -318,10 +318,22 @@ class viewItemModel extends model
             <a href="$approot?ID=$IDArray&TypeID=$this->TypeID"><img src="$imgroot$Image" width="350px" height="238px"> </a>
             <div class="title">
             <div class="switchAll" style = "margin-left:70%; margin-bottom:-5%; margin:top:-5%;">
+            EOT;
+            if(!empty($_SESSION['user_id'])){
+                if($_SESSION['Rank']== "User"){
+                    $output2.= <<<EOT
+                    <input onclick="salah($IDArray)" id="buttonClick$IDArray" style="visibility: hidden;" class="toggle" $Checked type="checkbox" value=$VisibleArray />';
+                    EOT;
+                }
+                else{
+                    $output2.= <<<EOT
+                     '<input onclick="salah($IDArray)" id="buttonClick$IDArray"  class="toggle" $Checked type="checkbox" value=$VisibleArray />';
+                     EOT;
+                }
+            }
             
-            <input onclick="salah($IDArray)" id="buttonClick$IDArray" class="toggle" $Checked type="checkbox" value=$VisibleArray />
             
-            
+        $output2.=<<<EOT
             </div>
             <strong style="font-size:20px;font-weight: bold; ">$PriceArray EGP</strong>
             <a href="$approot?ID=$IDArray&TypeID=$this->TypeID"> <h2 style="font-family: Open Sans, sans-serif; color: #403b45; font-weight: bold;font-size:16px; margin-top: 1.5%; ">$NameArray</h2></a>

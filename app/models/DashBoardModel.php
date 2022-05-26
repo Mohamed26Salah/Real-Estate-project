@@ -95,6 +95,14 @@ class DashBoardModel extends model
           $this->dbh->query("SELECT *   FROM `aboutus` WHERE   `UserID`=" . $result2->ID);
           $result4 = $this->dbh->single();
 
+          if(substr($result2->image,0,4) == 'http') {
+               $IMAGEROOT2 = '';
+           }
+           else {
+               $IMAGEROOT2 = IMAGEROOT3;
+
+           }
+
           $output2 .= <<<EOT
           <div class="column" id="$result4->ID">
            <div class="card-about">
@@ -119,8 +127,7 @@ class DashBoardModel extends model
      }
      public function ConfirmUser($email, $newEmail, $ID, $name, $title, $disc)
      {
-          $IMAGEROOT2 = IMAGEROOT2;
-
+          
           $ALL = "DELETE   FROM `aboutus` WHERE   `ID`=" . $ID;
           $this->dbh->query($ALL);
           $output2 = "";
@@ -135,11 +142,18 @@ class DashBoardModel extends model
 
           $this->dbh->query("SELECT *   FROM `aboutus` WHERE   `UserID`=" . $result2->ID);
           $result4 = $this->dbh->single();
+          if(substr($result2->image,0,4) == 'http') {
+               $IMAGEROOT2 = '';
+           }
+           else {
+               $IMAGEROOT2 = IMAGEROOT3;
 
+           }
           $output2 .= <<<EOT
          
            <div class="card-about">
            <div class="imagecontainer">
+           
          <img src=$IMAGEROOT2$result2->image>
          </div>
          <div class="container-about">
@@ -274,7 +288,7 @@ class DashBoardModel extends model
                     </thead>
                     <tbody>
                     EOT;
-               $imgroot = IMAGEROOT2;
+               
                $this->dbh->query("SELECT *  FROM `rents` WHERE  1 LIMIT $offset, $no_of_records_per_page");
 
                $ALLRECORDS[0] = $this->dbh->resultSet();
@@ -348,7 +362,7 @@ class DashBoardModel extends model
                     </thead>
                     <tbody>
                     EOT;
-               $imgroot = IMAGEROOT2;
+               
 
                $this->dbh->query("SELECT *  FROM `allestate` WHERE  1 LIMIT $offset, $no_of_records_per_page");
 
@@ -448,7 +462,7 @@ class DashBoardModel extends model
                          </thead>
                          <tbody>
                          EOT;
-                    $imgroot = IMAGEROOT2;
+                    
                     $this->dbh->query("SELECT *  FROM `rents` WHERE  rents.typeName LIKE '%" . $search . "%'
                     OR rents.code LIKE '%" . $search . "%'
                     OR rents.LessorName LIKE '%" . $search . "%'
@@ -519,7 +533,7 @@ class DashBoardModel extends model
                          </thead>
                          <tbody>
                          EOT;
-                    $imgroot = IMAGEROOT2;
+                    
 
                     $this->dbh->query("SELECT *  FROM `allestate` WHERE  allestate.AddressUser LIKE '%" . $search . "%'
                     OR allestate.Area LIKE '%" . $search . "%'
