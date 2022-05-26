@@ -319,6 +319,12 @@ class viewItemModel extends model
             <div class="title">
             <div class="switchAll" style = "margin-left:70%; margin-bottom:-5%; margin:top:-5%;">
             EOT;
+
+            if(empty($_SESSION['user_id'])) {
+                $output2.= <<<EOT
+                <input onclick="salah($IDArray)" id="buttonClick$IDArray" style="visibility: hidden;" class="toggle" $Checked type="checkbox" value=$VisibleArray />
+                EOT;
+            }
             if(!empty($_SESSION['user_id'])){
                 if($_SESSION['Rank']== "User"){
                     $output2.= <<<EOT
