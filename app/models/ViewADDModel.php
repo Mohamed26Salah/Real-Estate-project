@@ -287,15 +287,22 @@ class ViewADDModel extends model
              $this->TypeID = $TypeID;
          }
           //////////////////////////////////////////
+        function test_input($data) {
+            $data = trim($data);
+            $data = stripslashes($data);
+            $data = htmlspecialchars($data);
+            return $data;
+        }
         public function DeleteImages($ID){
             $this->dbh->query(" DELETE FROM `allestateimages` WHERE allestateID = '".$ID."'");
             $this->dbh->execute();
             echo("Da5l model");
         }
         public function CheckCode(){
-        $ValidatedCkeckCode=filter_var($this->codeInput, FILTER_SANITIZE_STRING);
-
-        $this->dbh->query("SELECT * FROM allestate WHERE Code = '".$ValidatedCkeckCode."'");
+        // $ValidatedCkeckCode=filter_var($this->codeInput, FILTER_SANITIZE_STRING);
+        $this->dbh->query("SELECT * FROM allestate WHERE Code = :ValidatedCkeckCode");
+        $ValidatedCkeckCode=$this->test_input($this->codeInput);
+        $this->dbh->bind(':ValidatedCkeckCode', $ValidatedCkeckCode);
         $ALLRECORDS = $this->dbh->single();
         if(empty($ALLRECORDS)){
             
@@ -306,8 +313,8 @@ class ViewADDModel extends model
         public function OneImages($Value){
             $this->dbh->query("SELECT * FROM allestate ORDER BY ID DESC LIMIT 1");
             $ALLRECORDS = $this->dbh->single();
-            $this->dbh->query("UPDATE `allestate` SET `image`= :uImage WHERE `ID` = ".$ALLRECORDS->ID); 
-            // $this->dbh->bind(':uIID', $ALLRECORDS->ID);
+            $this->dbh->query("UPDATE `allestate` SET `image`= :uImage WHERE `ID` = :uIID"); 
+            $this->dbh->bind(':uIID', $ALLRECORDS->ID);
             $this->dbh->bind(':uImage', $Value);
             $this->dbh->execute();
             // echo($ALLRECORDS->ID);
@@ -329,20 +336,25 @@ class ViewADDModel extends model
             $this->dbh->execute();
         }
         public function EditEav($AllID,$AtrributeID,$Value){
-            $this->dbh->query("UPDATE `eav` SET `Value`= :uValue WHERE `AllID`= '".$AllID."' AND `AtrributeID` = ".$AtrributeID); 
+            $this->dbh->query("UPDATE `eav` SET `Value`= :uValue WHERE `AllID`= :AllID AND `AtrributeID` = :AtrributeID"); 
             $this->dbh->bind(':uValue', $Value);
+            $this->dbh->bind(':AllID', $AllID);
+            $this->dbh->bind(':AtrributeID', $AtrributeID);
             $this->dbh->execute();
         }
         public function Add(){
             if(empty($this->EditID)){
                 $this->dbh->query("INSERT INTO allestate (`AMID`,`AddressUser`, `AddressAdmin`, `Area`,`Price`,`PaymentMethod`,`Owner`,`OwnerNumber`,`DescriptionUser`,`DescriptionAdmin`,`Name`,`Priroty`,`Visible`,`Code`,`TypeID`,`offered`) VALUES(:uAMID, :uAddressUser, :uAddressAdmin, :uArea, :uPrice, :uPayment, :uOwner, :uOwnerNum, :uDescriptionUser, :uDescriptionAdmin, :uName, :uImportance, :uShow, :uCode, :uTypeID, :ucontarctType)");
             }else{
-                $this->dbh->query("UPDATE `allestate` SET `AMID`= :uAMID, `AddressUser`=:uAddressUser,`AddressAdmin`= :uAddressAdmin,`Area`= :uArea,`Price`= :uPrice,`PaymentMethod`= :uPayment,`Owner`= :uOwner,`OwnerNumber`= :uOwnerNum,`DescriptionUser`= :uDescriptionUser,`DescriptionAdmin`= :uDescriptionAdmin,`Name`= :uName,`Priroty`= :uImportance,`Visible`= :uShow,`Code`= :uCode,`TypeID`= :uTypeID,`offered`= :ucontarctType WHERE ID = ".$this->EditID);
+                $this->dbh->query("UPDATE `allestate` SET `AMID`= :uAMID, `AddressUser`=:uAddressUser,`AddressAdmin`= :uAddressAdmin,`Area`= :uArea,`Price`= :uPrice,`PaymentMethod`= :uPayment,`Owner`= :uOwner,`OwnerNumber`= :uOwnerNum,`DescriptionUser`= :uDescriptionUser,`DescriptionAdmin`= :uDescriptionAdmin,`Name`= :uName,`Priroty`= :uImportance,`Visible`= :uShow,`Code`= :uCode,`TypeID`= :uTypeID,`offered`= :ucontarctType WHERE ID = :EditID");
+                $this->dbh->bind(':EditID', $this->EditID);
             }
         $this->dbh->bind(':uAMID', $_SESSION['user_id']);
-        $ValidatedAddressUser=filter_var($this->AddressUser, FILTER_SANITIZE_STRING);
+        // $ValidatedAddressUser=filter_var($this->AddressUser, FILTER_SANITIZE_STRING);
+        $ValidatedAddressUser=$this->test_input($this->AddressUser);
         $this->dbh->bind(':uAddressUser', $ValidatedAddressUser);
-        $ValidatedAddressAdmin=filter_var($this->AddressAdmin, FILTER_SANITIZE_STRING);
+        // $ValidatedAddressAdmin=filter_var($this->AddressAdmin, FILTER_SANITIZE_STRING);
+        $ValidatedAddressAdmin=$this->test_input($this->AddressAdmin);
         $this->dbh->bind(':uAddressAdmin', $ValidatedAddressAdmin);
         $ValidatedArea=filter_var($this->Area, FILTER_SANITIZE_NUMBER_INT);
         $this->dbh->bind(':uArea', $ValidatedArea);
@@ -350,25 +362,31 @@ class ViewADDModel extends model
         $this->dbh->bind(':uPrice', $ValidatedPrice);
         
         $this->dbh->bind(':uPayment', $this->Payment);
-        $ValidatedOwner=filter_var($this->Owner, FILTER_SANITIZE_STRING);
+        // $ValidatedOwner=filter_var($this->Owner, FILTER_SANITIZE_STRING);
+        $ValidatedOwner=$this->test_input($this->Owner);
         $this->dbh->bind(':uOwner', $ValidatedOwner);
         $ValidatedOwnerNum=filter_var($this->OwnerNum, FILTER_SANITIZE_NUMBER_INT);
         $this->dbh->bind(':uOwnerNum', $ValidatedOwnerNum);
-        $ValidatedDescriptionUser=filter_var($this->DescriptionUser, FILTER_SANITIZE_STRING);
+        // $ValidatedDescriptionUser=filter_var($this->DescriptionUser, FILTER_SANITIZE_STRING);
+        $ValidatedDescriptionUser=$this->test_input($this->DescriptionUser);
         $this->dbh->bind(':uDescriptionUser', $ValidatedDescriptionUser);
-        $ValidatedDescriptionAdmin=filter_var($this->DescriptionAdmin, FILTER_SANITIZE_STRING);
+        // $ValidatedDescriptionAdmin=filter_var($this->DescriptionAdmin, FILTER_SANITIZE_STRING);
+        $ValidatedDescriptionAdmin=$this->test_input($this->DescriptionAdmin);
         $this->dbh->bind(':uDescriptionAdmin', $ValidatedDescriptionAdmin);
-        $ValidatedName=filter_var($this->Name, FILTER_SANITIZE_STRING);
+        // $ValidatedName=filter_var($this->Name, FILTER_SANITIZE_STRING);
+        $ValidatedName=$this->test_input($this->Name);
         $this->dbh->bind(':uName', $ValidatedName);
         
         $this->dbh->bind(':uImportance', $this->Importance);
         
         $this->dbh->bind(':uShow', $this->Show);
-        $ValidatedCode=filter_var($this->Code, FILTER_SANITIZE_STRING);
+        // $ValidatedCode=filter_var($this->Code, FILTER_SANITIZE_STRING);
+        $ValidatedCode=$this->test_input($this->Code);
         $this->dbh->bind(':uCode', $ValidatedCode);
         
         $this->dbh->bind(':uTypeID', $this->TypeID);
-        $ValidatedcontarctType=filter_var($this->contarctType, FILTER_SANITIZE_STRING);
+        // $ValidatedcontarctType=filter_var($this->contarctType, FILTER_SANITIZE_STRING);
+        $ValidatedcontarctType=$this->test_input($this->contarctType);
         $this->dbh->bind(':ucontarctType', $ValidatedcontarctType);
         $this->dbh->execute();
         if(empty($this->EditID)){
@@ -408,13 +426,15 @@ class ViewADDModel extends model
                
             } 
             if($this->TypeID==4||$this->TypeID==5||$this->TypeID==7){
-                $ValidatedTypeOFActivity=filter_var($this->TypeOFActivity, FILTER_SANITIZE_STRING);
+                // $ValidatedTypeOFActivity=filter_var($this->TypeOFActivity, FILTER_SANITIZE_STRING);
+                $ValidatedTypeOFActivity=$this->test_input($this->TypeOFActivity);
 
 
                 $this->Eav($ALLRECORDS->ID,7,$ValidatedTypeOFActivity); 
             }
             if($this->TypeID==6){
-                $ValidatedTypeOFActivity=filter_var($this->TypeOFActivity, FILTER_SANITIZE_STRING);
+                // $ValidatedTypeOFActivity=filter_var($this->TypeOFActivity, FILTER_SANITIZE_STRING);
+                $ValidatedTypeOFActivity=$this->test_input($this->TypeOFActivity);
                 $ValidatednUMOFAB=filter_var($this->nUMOFAB, FILTER_SANITIZE_NUMBER_INT);
 
                 $this->Eav($ALLRECORDS->ID,7,$ValidatedTypeOFActivity); 
@@ -457,12 +477,13 @@ class ViewADDModel extends model
                
             } 
             if($this->TypeID==4||$this->TypeID==5||$this->TypeID==7){
-                $ValidatedTypeOFActivity=filter_var($this->TypeOFActivity, FILTER_SANITIZE_STRING);
-
+                // $ValidatedTypeOFActivity=filter_var($this->TypeOFActivity, FILTER_SANITIZE_STRING);
+                $ValidatedTypeOFActivity=$this->test_input($this->TypeOFActivity);
                 $this->EditEav($this->EditID,7,$ValidatedTypeOFActivity); 
             }
             if($this->TypeID==6){
-                $ValidatedTypeOFActivity=filter_var($this->TypeOFActivity, FILTER_SANITIZE_STRING);
+                // $ValidatedTypeOFActivity=filter_var($this->TypeOFActivity, FILTER_SANITIZE_STRING);
+                $ValidatedTypeOFActivity=$this->test_input($this->TypeOFActivity);
                 $ValidatednUMOFAB=filter_var($this->nUMOFAB, FILTER_SANITIZE_NUMBER_INT);
 
                 $this->EditEav($this->EditID,7,$ValidatedTypeOFActivity); 

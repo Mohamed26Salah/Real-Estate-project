@@ -295,7 +295,7 @@ var btnNo = document.getElementById( 'no');
 $('#yes').unbind().click(function() {
   btnRent.classList.remove( 'is-open' );
   var RentDelete = document.getElementById("RentID").value;
-  console.log(RentDelete);
+  // console.log(RentDelete);
   $.ajax({
           url:"viewRentDescription",
           method:"POST",

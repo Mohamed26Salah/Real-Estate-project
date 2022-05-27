@@ -213,14 +213,14 @@ class viewItem extends View
        <div class="cd-filter-block">
          <h4> عدد الفرف</h4>
          <div class="cd-filter-content">
-             <input type="text" id="Rooms" name="Rooms" onkeyup="numbers(this)" maxlength="50"> 
+             <input type="text" id="Rooms" name="Rooms" onkeyup="numbers(this)" maxlength="50" placeholder="ضع عدد الشقق"> 
          </div> 
        </div> 
      
        <div class="cd-filter-block">
          <h4> عدد الحمامات</h4>
          <div class="cd-filter-content">
-             <input type="text" id="Bathroom" name="Bathroom" onkeyup="numbers(this)" maxlength="50"> 
+             <input type="text" id="Bathroom" name="Bathroom" onkeyup="numbers(this)" maxlength="50" placeholder="ضع عدد الحمامات"> 
          </div> 
        </div> 
        <?php
@@ -232,7 +232,7 @@ class viewItem extends View
        <div class="cd-filter-block">
          <h4>الدور</h4>
          <div class="cd-filter-content">
-             <input type="text" id="Floor" name="Floor" onkeyup="numbers(this)" maxlength="50"> 
+             <input type="text" id="Floor" name="Floor" onkeyup="numbers(this)" maxlength="50" placeholder="ضع الدور "> 
          </div> 
        </div> 
        <?php
@@ -244,7 +244,7 @@ class viewItem extends View
        <div class="cd-filter-block">
          <h4> عدد الأدوار</h4>
          <div class="cd-filter-content">
-             <input type="text" id="NUMOFFloors" name="NUMOFFloors" onkeyup="numbers(this)" maxlength="50"> 
+             <input type="text" id="NUMOFFloors" name="NUMOFFloors" onkeyup="numbers(this)" maxlength="50" placeholder="صع عدد الأدوار"> 
          </div> 
        </div> 
        <?php 
@@ -256,7 +256,7 @@ class viewItem extends View
        <div class="cd-filter-block">
          <h4> عدد الشقق</h4>
          <div class="cd-filter-content">
-             <input type="text" id="NUMOFFlats" name="NUMOFFlats" onkeyup="numbers(this)" maxlength="50"> 
+             <input type="text" id="NUMOFFlats" name="NUMOFFlats" onkeyup="numbers(this)" maxlength="50" placeholder="صع عدد الشقق"> 
          </div> 
        </div> 
        <?php 
@@ -322,7 +322,7 @@ class viewItem extends View
        <div class="cd-filter-block">
          <h4> عدد المباني الأدارية</h4>
          <div class="cd-filter-content">
-             <input type="text" id="nUMOFAB" name="nUMOFAB" onkeyup="numbers(this)" maxlength="50"> 
+             <input type="text" id="nUMOFAB" name="nUMOFAB" onkeyup="numbers(this)" maxlength="50" placeholder="ضع عدد المباني الأدارية"> 
          </div> 
        </div> 
        <?php
@@ -332,7 +332,7 @@ class viewItem extends View
        <div class="cd-filter-block">
          <h4> نوع النشاط </h4>
          <div class="cd-filter-content">
-             <input type="text" id="TypeOFActivity" name="TypeOFActivity" onkeyup="lettersandnumbers(this)" maxlength="50"> 
+             <input type="text" id="TypeOFActivity" name="TypeOFActivity" onkeyup="lettersandnumbers(this)" maxlength="50" placeholder="ضع نوع النشاط"> 
          </div> 
        </div> 
        

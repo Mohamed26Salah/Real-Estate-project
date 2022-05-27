@@ -56,11 +56,18 @@ class RegisterModel extends UserModel
     {
         $this->confirmPasswordErr = $confirmPasswordErr;
     }
+    function test_input($data) {
+        $data = trim($data);
+        $data = stripslashes($data);
+        $data = htmlspecialchars($data);
+        return $data;
+    }
     public function signup()
     {
 
         $this->dbh->query("INSERT INTO user (`name`, `email`, `password`,`Rank`) VALUES(:uname, :email, :pass,:Ranke)");
-        $ValidatedName=filter_var($this->name, FILTER_SANITIZE_STRING);
+        // $ValidatedName=filter_var($this->name, FILTER_SANITIZE_STRING);
+        $ValidatedName=$this->test_input($this->name);
         $this->dbh->bind(':uname', $ValidatedName);
         $ValidatedEmail=filter_var($this->email, FILTER_SANITIZE_EMAIL); 
         $this->dbh->bind(':email', $ValidatedEmail);
@@ -73,7 +80,8 @@ class RegisterModel extends UserModel
     public function signupGoogle() {
         
         $this->dbh->query("INSERT INTO user (`name`, `email`, `Rank` , `image`) VALUES(:uname, :email,:Ranke , :img)");
-        $ValidatedName=filter_var($this->name, FILTER_SANITIZE_STRING);
+        // $ValidatedName=filter_var($this->name, FILTER_SANITIZE_STRING);
+        $ValidatedName=$this->test_input($this->name);
         $this->dbh->bind(':uname', $ValidatedName);
         $ValidatedEmail=filter_var($this->email, FILTER_SANITIZE_EMAIL); 
         $this->dbh->bind(':email', $ValidatedEmail);

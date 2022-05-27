@@ -112,13 +112,20 @@ class viewEditModel extends model
     {
         $this->nUMOFAB = $nUMOFAB;
     }
-
+    function test_input($data) {
+      $data = trim($data);
+      $data = stripslashes($data);
+      $data = htmlspecialchars($data);
+      return $data;
+  }
     public function CheckCodeEdit($OldCode,$NewCode){
         if($OldCode==$NewCode){
 
         }else{
-          $ValidatedCkeckCode=filter_var($NewCode, FILTER_SANITIZE_STRING);
-            $this->dbh->query("SELECT * FROM allestate WHERE Code = '".$ValidatedCkeckCode."'");
+          // $ValidatedCkeckCode=filter_var($NewCode, FILTER_SANITIZE_STRING);
+            $this->dbh->query("SELECT * FROM allestate WHERE Code = :ValidatedCkeckCode");
+            $ValidatedCkeckCode=$this->test_input($NewCode);
+            $this->dbh->bind(':ValidatedCkeckCode', $ValidatedCkeckCode);
             $ALLRECORDS = $this->dbh->single();
             if(empty($ALLRECORDS)){
                 
@@ -135,13 +142,15 @@ class viewEditModel extends model
           $this->dbh->execute();
       }
       public function OneImages($Value,$ID){
-        $this->dbh->query("UPDATE `allestate` SET `image`= :uImage WHERE `ID` = ".$ID); 
+        $this->dbh->query("UPDATE `allestate` SET `image`= :uImage WHERE `ID` = :uIID"); 
+         $this->dbh->bind(':uIID', $ID);
         $this->dbh->bind(':uImage', $Value);
         $this->dbh->execute();
         // echo($ALLRECORDS->ID);
     }
     public function ShowEdit(){
-        $this->dbh->query("SELECT * FROM `allestate` WHERE `ID` = '$this->ID'");
+        $this->dbh->query("SELECT * FROM `allestate` WHERE `ID` = :uuID");
+        $this->dbh->bind(':uuID', $this->ID);
         $record = $this->dbh->single();
         $ContractType="";
         if($record->offered == 1){
@@ -266,7 +275,8 @@ class viewEditModel extends model
          
 if($record->TypeID==1){
     
-$this->dbh->query("SELECT * FROM `eav` WHERE `AllID` =".$this->ID);
+$this->dbh->query("SELECT * FROM `eav` WHERE `AllID` = :uuID");
+$this->dbh->bind(':uuID', $this->ID);
 $recordEav = $this->dbh->resultSet();
 
 foreach ($recordEav as $item) {
@@ -374,7 +384,8 @@ if($this->Doublex == 1){
     EOT;
           
         }else if($record->TypeID==2){
-          $this->dbh->query("SELECT * FROM `eav` WHERE `AllID` =".$this->ID);
+          $this->dbh->query("SELECT * FROM `eav` WHERE `AllID` = :uuID");
+          $this->dbh->bind(':uuID', $this->ID);
           $recordEav = $this->dbh->resultSet();
 
           foreach ($recordEav as $item) {
@@ -402,7 +413,8 @@ if($this->Doublex == 1){
       
         else if($record->TypeID==3){
            
-$this->dbh->query("SELECT * FROM `eav` WHERE `AllID` =".$this->ID);
+$this->dbh->query("SELECT * FROM `eav` WHERE `AllID` = :uuID");
+$this->dbh->bind(':uuID', $this->ID);
 $recordEav = $this->dbh->resultSet();
 
 foreach ($recordEav as $item) {
@@ -491,7 +503,8 @@ if($this->Furnished == 1){
       
           
           } else if($record->TypeID==4||$record->TypeID==5||$record->TypeID==7){
-              $this->dbh->query("SELECT * FROM `eav` WHERE `AllID` =".$this->ID);
+              $this->dbh->query("SELECT * FROM `eav` WHERE `AllID` = :uuID");
+              $this->dbh->bind(':uuID', $this->ID);
               $recordEav = $this->dbh->resultSet();
 
               foreach ($recordEav as $item) {
@@ -509,7 +522,8 @@ if($this->Furnished == 1){
 
        }
        else if($record->TypeID==6){
-        $this->dbh->query("SELECT * FROM `eav` WHERE `AllID` =".$this->ID);
+        $this->dbh->query("SELECT * FROM `eav` WHERE `AllID` = :uuID");
+        $this->dbh->bind(':uuID', $this->ID);
         $recordEav = $this->dbh->resultSet();
 
         foreach ($recordEav as $item) {

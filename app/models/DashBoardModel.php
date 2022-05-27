@@ -2,6 +2,12 @@
 class DashBoardModel extends model
 {
 
+     function test_input($data) {
+          $data = trim($data);
+          $data = stripslashes($data);
+          $data = htmlspecialchars($data);
+          return $data;
+      }
      public function getDashBoardData()
      {
 
@@ -88,9 +94,12 @@ class DashBoardModel extends model
           $this->dbh->query("SELECT * FROM `user` WHERE  `email`='" . $newEmail . "'");
 
           $result2 = $this->dbh->single();
-          $Name=filter_var($name, FILTER_SANITIZE_STRING);
-          $Title=filter_var($title, FILTER_SANITIZE_STRING);
-          $Description=filter_var($disc, FILTER_SANITIZE_STRING);
+          // $Name=filter_var($name, FILTER_SANITIZE_STRING);
+          // $Title=filter_var($title, FILTER_SANITIZE_STRING);
+          // $Description=filter_var($disc, FILTER_SANITIZE_STRING);
+          $Name=$this->test_input($name);
+          $Title=$this->test_input($title);
+          $Description=$this->test_input($disc);
 
 
           $this->dbh->query("INSERT INTO `aboutus`( `UserID`, `name`, `Title`, `email`, `Description`) VALUES ('$result2->ID','$Name','$Title','$newEmail','$Description')");
@@ -140,9 +149,12 @@ class DashBoardModel extends model
           $this->dbh->query("SELECT * FROM `user` WHERE  `email`='" . $newEmail . "'");
 
           $result2 = $this->dbh->single();
-          $Name=filter_var($name, FILTER_SANITIZE_STRING);
-          $Title=filter_var($title, FILTER_SANITIZE_STRING);
-          $Description=filter_var($disc, FILTER_SANITIZE_STRING);
+          // $Name=filter_var($name, FILTER_SANITIZE_STRING);
+          // $Title=filter_var($title, FILTER_SANITIZE_STRING);
+          // $Description=filter_var($disc, FILTER_SANITIZE_STRING);
+          $Name=$this->test_input($name);
+          $Title=$this->test_input($title);
+          $Description=$this->test_input($disc);
           $this->dbh->query("INSERT INTO `aboutus`( `ID`,`UserID`, `name`, `Title`, `email`, `Description`) VALUES ('$ID','$result2->ID','$Name','$Title','$newEmail','$Description')");
 
           $result3 = $this->dbh->single();
@@ -275,7 +287,7 @@ class DashBoardModel extends model
                $output .= <<<EOT
                                    <div class="search">
                                    <label>
-                                   <input type="text" id='Search here' placeholder="Search here" maxlength="50" onkeyup='searching(2 , $offset ,$no_of_records_per_page),onkeyup="lettersandnumbers(this)"';>
+                                   <input type="text" id='Search here' placeholder="Search here" maxlength="50" onkeyup='searching(2 , $offset ,$no_of_records_per_page),lettersandnumbers(this)'>
                                    <ion-icon name="search-outline"></ion-icon>
                                    </label>
                               </div >
@@ -349,7 +361,7 @@ class DashBoardModel extends model
                $output .= <<<EOT
                               <div class="search">
                               <label>
-                              <input type="text" id='Search here' placeholder="Search here" maxlength="50" onkeyup='searching(3 , $offset ,$no_of_records_per_page),onkeyup="lettersandnumbers(this)"';>
+                              <input type="text" id='Search here' placeholder="Search here" maxlength="50" onkeyup='searching(3 , $offset ,$no_of_records_per_page),lettersandnumbers(this)'>
                               <ion-icon name="search-outline"></ion-icon>
                               </label>
                          </div >

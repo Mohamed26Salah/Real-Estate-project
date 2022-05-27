@@ -134,6 +134,12 @@ class ProfileModel extends model
      {
          return $this->findUserByEmail($email) > 0;
      }
+     function test_input($data) {
+        $data = trim($data);
+        $data = stripslashes($data);
+        $data = htmlspecialchars($data);
+        return $data;
+    }
      public function findUserByEmail($email)
      {
          $this->dbh->query('select * from user where email= :email');
@@ -145,7 +151,8 @@ class ProfileModel extends model
      public function EditProfile()
      {
          $this->dbh->query("UPDATE user SET `name`=:uname, `email`=:email WHERE ID=:id");
-         $ValidatedName=filter_var($this->name, FILTER_SANITIZE_STRING);
+        //  $ValidatedName=filter_var($this->name, FILTER_SANITIZE_STRING);
+         $ValidatedName=$this->test_input($this->name);
          $this->dbh->bind(':uname', $ValidatedName);
          $ValidatedEmail=filter_var($this->email, FILTER_SANITIZE_EMAIL); 
          $this->dbh->bind(':email', $ValidatedEmail);

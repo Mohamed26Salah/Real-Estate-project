@@ -79,6 +79,12 @@ class Pages extends Controller
 
     public function ajax()
     {
+        function test_input($data) {
+            $data = trim($data);
+            $data = stripslashes($data);
+            $data = htmlspecialchars($data);
+            return $data;
+        }
         set_error_handler('myCustomErrorHandler');
         try {
         $ViewItem = $this->getModel();
@@ -123,7 +129,8 @@ class Pages extends Controller
                 // echo $_POST['HighLow'];
             }
             if($_POST['search']!="Salah"){
-                $SearchValidate=filter_var($_POST['search'], FILTER_SANITIZE_STRING);
+                // $SearchValidate=filter_var($_POST['search'], FILTER_SANITIZE_STRING);
+                $SearchValidate=test_input($_POST['search']);
                 $ViewItem->setSearch($SearchValidate);
             }
             if($_POST['Show']!="Salah"){
@@ -151,7 +158,8 @@ class Pages extends Controller
                 $ViewItem->setnUMOFAB($NUMOFABValidate);
             }
             if($_POST['TypeOFActivity']!="Salah"){
-                $TypeOFActivityValidate=filter_var($_POST['TypeOFActivity'], FILTER_SANITIZE_STRING);
+                // $TypeOFActivityValidate=filter_var($_POST['TypeOFActivity'], FILTER_SANITIZE_STRING);
+                $TypeOFActivityValidate=test_input($_POST['TypeOFActivity']);
                 $ViewItem->setTypeOFActivity($TypeOFActivityValidate);
             }
             if($_POST['NUMOFFlats']!="Salah"){
@@ -757,7 +765,7 @@ class Pages extends Controller
     }
     public function DashBoard()
     {
-        set_error_handler('myCustomErrorHandler');
+        // set_error_handler('myCustomErrorHandler');
         try {
 
             // if (isset($_POST['DEL'])) {

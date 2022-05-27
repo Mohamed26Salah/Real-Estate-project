@@ -82,7 +82,12 @@ class AdminModel
    
 // }
 
-
+function test_input($data) {
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+}
 public function viewRent() {
     $this->ViewRent = new viewRentModel;
 
@@ -92,7 +97,8 @@ public function viewRent() {
         }
         if(isset($_POST['joex'])){
             if($_POST['search']!="Salah"){
-                $SearchValidate=filter_var($_POST['search'], FILTER_SANITIZE_STRING);
+                // $SearchValidate=filter_var($_POST['search'], FILTER_SANITIZE_STRING);
+                $SearchValidate=$this->test_input($_POST['search']);
                 $this->ViewRent->setSearch($SearchValidate);
             }
             if($_POST['Rent']!="Salah"){
