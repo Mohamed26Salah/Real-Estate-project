@@ -216,14 +216,18 @@ $('#yes'+CardID).unbind().click(function() {
           {
             //  console.log(data);
              var result = data.substr(22, 1);
-             var result2=data.substr(0, 21);
+             var result2String="بداية إلايجار الحالي <br>"
+             var result2= data.substr(0, 10);
+             var result3String="نهاية إلايجار الحالي <br>"
+             var result3= data.substr(11, 10);
              if(result=="1"){
             $('#btnRent'+CardID).html("");
             $('#btnRent'+CardID).remove();
-            $('#TOR'+CardID).html(data);
+            $('#TOR'+CardID).html(result2String+result2);
             $('#Background'+CardID).css({backgroundColor: "#20AF1C"});
              }else if(result=="2"){
-            $('#TOR'+CardID).html(result2);
+            $('#TOR'+CardID).html(result2String+result2);
+            $('#TOREND'+CardID).html(result3String+result3);
             $('#Background'+CardID).css({backgroundColor: "#B709D3"});
              }
            

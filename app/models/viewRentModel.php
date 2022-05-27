@@ -79,9 +79,9 @@ class viewRentModel extends model
                                 <h5 class="title" style="font-size:20px;">Price: $rentPrice</h5>
                                 <hr style="height:5px;">
                                 
-                                <div id="TOR$ID">بداية الأيجار الحالي  <br>$TOR</div>
+                                <div id="TOR$ID">بداية إلايجار الحالي  <br>$TOR</div>
                                 <hr style="height:5px;">
-                                <div id="TOR$ID">نهاية الأيجار الحالي<br>$TOREND</div>
+                                <div id="TOREND$ID">نهاية إلايجار الحالي<br>$TOREND</div>
                                 <hr style="height:5px;">
                                 <div>بداية العقد<br>$Start_OF_Rent</div>
                                 <hr style="height:5px;">
@@ -92,7 +92,9 @@ class viewRentModel extends model
                                 <div>أسم المؤجر<br>$LessorName</div>
                                 <hr style="height:5px;">
                                 <div>أسم المستأجر<br>$TenantName</div>
+                                <div style="margin-left:8.5px;">
                                 $YesNo
+                                </div>
                                <br>
                                 <a href="$approot?ID=$ID&color=$colorWithOutHash" class="btn btn-success btn-lg" >Read More</a>
 

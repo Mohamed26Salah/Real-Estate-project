@@ -219,23 +219,26 @@ class viewEditRentModel extends model
         </select>
         </p>
 
-
+        
         <p class='field half required'>
         <label class='label' for='StartOFRent'>بداية التعاقد</label>
-        <input class='text-input' id='StartOFRent' name='StartOFRent' required type='date' value="$record->Start_OF_Rent">
+        <input class='text-input' id='StartOFRent' onchange="defineDate(),disabledd(),disabledd2()" name='StartOFRent' required type='date' value="$record->Start_OF_Rent" disabled>
         </p>
         <p class='field half required'>
         <label class='label' for='ENDOFRent'>نهاية التعاقد</label>
-        <input class='text-input' id='ENDOFRent' name='ENDOFRent' required type='date' value="$record->END_OF_Rent">
+        <input class='text-input' id='ENDOFRent' onchange="defineDate2(),disabledd(),openclose()" name='ENDOFRent' required type='date' value="$record->END_OF_Rent" min="" max="" disabled>
         </p>
         <p class='field half required'>
         <label class='label' for='TOR'>بداية الأيجار الحالى</label>
-        <input class='text-input' id='TOR' name='TOR' required type='date' value="$record->TOR">
+        <input class='text-input' id='TOR' onchange="defineDate3(),disabledd3(),openclose2()" name='TOR' required type='date' value="$record->TOR" min="" max="" disabled >
         </p>
         <p class='field half required'>
         <label class='label' for='TOREND'>نهاية الأيجار الحالى</label>
-        <input class='text-input' id='TOREND' name='TOREND' required type='date' value="$record->TOREND">
+        <input class='text-input' id='TOREND' onchange="openclose3()" name='TOREND' required type='date' value="$record->TOREND" min="" max="" disabled>
         </p>
+        <button type="button" onclick="ClearLastEdit(),CheckDates()" class="btn btn-primary"> أمسح التواريخ من أجل تغيرها</button>
+
+
         <p class='field required'>
         <div class="alert alert-danger"role="alert">
         ملحوظة:

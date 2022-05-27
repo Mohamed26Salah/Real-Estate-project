@@ -340,13 +340,14 @@ class viewDescription extends View
               $WishList="green";
               $WishListString="Saved";
               ?>
-              <button onclick="WishList(<?php echo($cardDetails->TypeID); ?>)" class="round-black-btn btn-lg" value = <?php echo ($WishList); ?> id="WishList" style="background-color:<?php echo($WishList); ?>; margin-bottom:50px;" ><span id="Span"> <?php echo($WishListString); ?> <i class='fa fa-heart' aria-hidden='true'></i></span></button>
+              <button onclick="WishList(<?php echo($cardDetails->ID); ?>)" class="buttonWishList" value = <?php echo ($WishList); ?> id="WishList" style="background-color:<?php echo($WishList); ?>; margin-bottom:50px;" ><span id="Span" > <?php echo($WishListString); ?></span></button>
+
               <?php
             }else{
               $WishList="red";
               $WishListString="Add To WishList";
               ?>
-              <button onclick="WishList(<?php echo($cardDetails->TypeID); ?>)" class="round-black-btn btn-lg" value = <?php echo ($WishList); ?> id="WishList" style="background-color:<?php echo($WishList); ?>; margin-bottom:50px;" ><span id="Span"> <?php echo($WishListString); ?> <i class='fa fa-heart' aria-hidden='true'></i></span></button>
+              <button onclick="WishList(<?php echo($cardDetails->ID); ?>)" class="buttonWishList" value = <?php echo ($WishList); ?> id="WishList" style="background-color:<?php echo($WishList); ?>; margin-bottom:50px;" ><span id="Span" style="margin-right:2.5px;"> <?php echo($WishListString); ?> <i class='fa fa-heart' aria-hidden='true'></i></span></button>
               <?php
             }
             ?>

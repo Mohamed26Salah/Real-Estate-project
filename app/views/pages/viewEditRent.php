@@ -36,6 +36,83 @@ class viewEditRent extends view
           </form>
         </div>
         <script>
+           function ClearLastEdit(){
+    document.getElementById("StartOFRent").value=""
+    document.getElementById("ENDOFRent").value=""
+    document.getElementById("TOR").value=""
+    document.getElementById("TOREND").value=""
+    $( "#StartOFRent" ).prop( "disabled", false);
+    $( "#ENDOFRent" ).prop( "disabled", true );
+    $( "#TOR" ).prop( "disabled", true );
+    document.getElementById("TOR").min=""
+    document.getElementById("TOR").max=""
+    $( "#TOREND" ).prop( "disabled", true );
+    document.getElementById("TOREND").min=""
+    document.getElementById("TOREND").max=""
+  }
+  function openclose(){
+    $( "#StartOFRent" ).prop( "disabled", true );
+  }
+  function openclose2(){
+    $( "#ENDOFRent" ).prop( "disabled", true );
+  }
+  function openclose3(){
+    $( "#TOR" ).prop( "disabled", true );
+  }
+  function disabledd(){
+    //Disable the smaller dates
+    if(document.getElementById("StartOFRent").value && document.getElementById("ENDOFRent").value ){
+      $( "#TOR" ).prop( "disabled", false );
+      // $( "#TOREND" ).prop( "disabled", false );
+    }else{
+      $( "#TOR" ).prop( "disabled", true  );
+      // $( "#TOREND" ).prop( "disabled", true  );
+    }
+  }
+  function disabledd2(){
+    //disable the end of rent
+    if(document.getElementById("StartOFRent").value ){
+      $( "#ENDOFRent" ).prop( "disabled", false );
+    }else{
+      $( "#ENDOFRent" ).prop( "disabled", true );
+    }
+  }
+  function disabledd3(){
+    //disable TOREND
+    if(document.getElementById("TOR").value ){
+      $( "#TOREND" ).prop( "disabled", false );
+    }else{
+      $( "#TOREND" ).prop( "disabled", true );
+    }
+  }
+function defineDate(){
+  //define min and max for smaller dates and min for end of rent
+  var date4=document.getElementById("StartOFRent").value
+  // document.getElementById("TOR").value=date4
+  document.getElementById("TOR").min=date4
+  document.getElementById("TOREND").min=date4
+  document.getElementById("ENDOFRent").min=date4
+
+ 
+}
+function defineDate2(){
+  // document.getElementById("StartOFRent").value=""
+  //define min and max for smaller dates bs
+  var date5=document.getElementById("ENDOFRent").value
+ 
+  document.getElementById("TOREND").max=date5
+  // document.getElementById("TOREND").value=date5
+  document.getElementById("TOR").max=date5
+  
+}
+
+function defineDate3(){
+  //define min and max for TOREND dates bs
+  var date1=document.getElementById("TOR").value
+ 
+  document.getElementById("TOREND").min=date1
+
+}
         itemsAjax();
         function itemsAjax(){
         // console.log("da5l")

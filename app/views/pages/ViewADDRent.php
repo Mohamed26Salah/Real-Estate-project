@@ -98,20 +98,21 @@ class ViewADDRent extends view
  
  <p class='field half required'>
     <label class='label' for='StartOFRent'>بداية التعاقد</label>
-    <input class='text-input' id='StartOFRent' name='StartOFRent' required type='date'>
+    <input class='text-input' id='StartOFRent' onchange="defineDate(),disabledd(),disabledd2()" name='StartOFRent' required type='date' >
   </p>
   <p class='field half required'>
     <label class='label' for='ENDOFRent'>نهاية التعاقد</label>
-    <input class='text-input' id='ENDOFRent' name='ENDOFRent' required type='date'>
+    <input class='text-input' id='ENDOFRent' onchange="defineDate2(),disabledd(),openclose()" name='ENDOFRent' required type='date' value="" min="" max="" disabled>
   </p>
 <p class='field half required'>
     <label class='label' for='TOR'>بداية الأيجار الحالى</label>
-    <input class='text-input' id='TOR' name='TOR' required type='date'>
+    <input class='text-input' id='TOR' onchange="defineDate3(),disabledd3(),openclose2()" name='TOR' required type='date' value="" min="" max="" disabled >
   </p>
   <p class='field half required'>
     <label class='label' for='TOREND'>نهاية الأيجار الحالى</label>
-    <input class='text-input' id='TOREND' name='TOREND' required type='date'>
+    <input class='text-input' id='TOREND' onchange="openclose3()" name='TOREND' required type='date' value="" min="" max="" disabled>
   </p>
+  <button type="button" onclick="ClearLastEdit(),CheckDates()" class="btn btn-primary">أمسح التواريخ</button>
   <p class='field required'>
   <div class="alert alert-danger"role="alert">
     ملحوظة:
@@ -143,7 +144,111 @@ class ViewADDRent extends view
     ?>
 
 <script>
+  function ClearLastEdit(){
+    document.getElementById("StartOFRent").value=""
+    document.getElementById("ENDOFRent").value=""
+    document.getElementById("TOR").value=""
+    document.getElementById("TOREND").value=""
+    $( "#StartOFRent" ).prop( "disabled", false);
+    $( "#ENDOFRent" ).prop( "disabled", true );
+    $( "#TOR" ).prop( "disabled", true );
+    document.getElementById("TOR").min=""
+    document.getElementById("TOR").max=""
+    $( "#TOREND" ).prop( "disabled", true );
+    document.getElementById("TOREND").min=""
+    document.getElementById("TOREND").max=""
+  }
+  function openclose(){
+    $( "#StartOFRent" ).prop( "disabled", true );
+  }
+  function openclose2(){
+    $( "#ENDOFRent" ).prop( "disabled", true );
+  }
+  function openclose3(){
+    $( "#TOR" ).prop( "disabled", true );
+  }
+  function disabledd(){
+    //Disable the smaller dates
+    if(document.getElementById("StartOFRent").value && document.getElementById("ENDOFRent").value ){
+      $( "#TOR" ).prop( "disabled", false );
+      // $( "#TOREND" ).prop( "disabled", false );
+    }else{
+      $( "#TOR" ).prop( "disabled", true  );
+      // $( "#TOREND" ).prop( "disabled", true  );
+    }
+  }
+  function disabledd2(){
+    //disable the end of rent
+    if(document.getElementById("StartOFRent").value ){
+      $( "#ENDOFRent" ).prop( "disabled", false );
+    }else{
+      $( "#ENDOFRent" ).prop( "disabled", true );
+    }
+  }
+  function disabledd3(){
+    //disable TOREND
+    if(document.getElementById("TOR").value ){
+      $( "#TOREND" ).prop( "disabled", false );
+    }else{
+      $( "#TOREND" ).prop( "disabled", true );
+    }
+  }
+function defineDate(){
+  //define min and max for smaller dates and min for end of rent
+  var date4=document.getElementById("StartOFRent").value
+  // document.getElementById("TOR").value=date4
+  document.getElementById("TOR").min=date4
+  document.getElementById("TOREND").min=date4
+  document.getElementById("ENDOFRent").min=date4
 
+ 
+}
+function defineDate2(){
+  // document.getElementById("StartOFRent").value=""
+  //define min and max for smaller dates bs
+  var date5=document.getElementById("ENDOFRent").value
+ 
+  document.getElementById("TOREND").max=date5
+  // document.getElementById("TOREND").value=date5
+  document.getElementById("TOR").max=date5
+  
+}
+
+function defineDate3(){
+  //define min and max for TOREND dates bs
+  var date1=document.getElementById("TOR").value
+ 
+  document.getElementById("TOREND").min=date1
+
+}
+function CheckDates(){
+ var date4=new Date(document.getElementById("StartOFRent").value);
+ var date5=new Date(document.getElementById("ENDOFRent").value);
+ var date1=new Date(document.getElementById("TOR").value);
+ var date2=new Date(document.getElementById("TOREND").value);
+ var date3=new Date();
+
+
+//  console.log(g1.getTime());
+
+            if((date3.getTime()<date4.getTime())  || ((date3.getTime() < date1.getTime())&&(date3.getTime() > date4.getTime()))){
+              console.log("Yellow");
+            }
+            else if((date3.getTime() > date5.getTime())){
+              console.log("Black");
+             
+            }else if ((date3.getTime() >= date1.getTime()) && (date3.getTime() <= date2.getTime())){
+              console.log("Green");
+            }
+            else if((date3.getTime() > date2.getTime())&&(date3.getTime() < date5.getTime())){
+              console.log("Red");
+
+            }else{
+              console.log("5raa");
+            }
+            
+
+}
   function CheckCode(input){
     codeInput=input.value;
     $.ajax({
@@ -301,7 +406,7 @@ class ViewADDRent extends view
           success:function(data)
           {
             // console.log(data);
-            window.location.replace("<?php echo $action2;?>");
+           
           }
         })
       
