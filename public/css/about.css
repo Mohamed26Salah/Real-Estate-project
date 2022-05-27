@@ -18,22 +18,30 @@
   }
   
   .card-about {
-    background-color: #C9E0FF;
+    background-color: #4b99ec;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     margin: 8px;
   }
 
   .card-about img{
-  max-height:400px; 
-  max-width:100%;
+    height: 100%;
+    max-height:auto; 
+    max-width:100%;
   }
   
+  
+  .card-about {
+    background-color: #4b99ec;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    margin: 8px;
+  }
+
   .about-section {
       margin-top:10%;
       /* background: #C9E0FF; */
     padding: 50px;
     text-align: center;
-    background-color: #C9E0FF;
+    background-color: #4b99ec;
     color: #00111C;
   }
   
@@ -73,4 +81,15 @@
       width: 100%;
       display: block;
     }
+  }
+
+  
+  .imagecontainer{
+    display: flex;
+    justify-content: center;
+    background-color: black;
+    height:100%; 
+    width:100%;
+    min-height: 510px;
+    align-items: center;
   }

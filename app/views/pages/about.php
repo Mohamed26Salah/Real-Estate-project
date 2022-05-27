@@ -8,10 +8,10 @@ class About extends view
     $data2 = $this->model->load2($data);
 
     require APPROOT . '/views/inc/header.php';
-    $IMAGEROOT2 = IMAGEROOT2;
+    $IMAGEROOT2 = IMAGEROOT3;
 ?>
   <link rel="stylesheet" href="<?php echo URLROOT; ?>css/about.css">
-    <body style="background:#003356;">
+    <body >
 
 
       <div class="about-section">
@@ -29,16 +29,25 @@ class About extends view
           foreach ($data2 as $user2) {
             if ($user2->ID == $user->UserID) {
 
+              
+                if (substr($user2->image, 0, 4) == 'http') {
+                     $IMAGEROOT2 = '';
+                } else {
+                     $IMAGEROOT2 = IMAGEROOT3;
+                }
+
               $output = <<<EOT
   <div class="column">
   <div class="card-about">
+  <div class="imagecontainer">
     <img src=$IMAGEROOT2$user2->image>
+    </div>
     <div class="container-about">
       <h2>$user2->name</h2>
       <p class="title-about">$user->Title</p>
       <p>$user->Description</p>
       <p>$user->email</p>
-      <p><button class="button-about">Contact</button></p>
+      
     </div>
   </div>
 </div>

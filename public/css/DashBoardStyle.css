@@ -34,7 +34,7 @@ body {
 .navigationDashBoard {
   position: relative;
   width: 300px;
-  height: 70rem;
+  height: 67rem;
   background: var(--blue);
   border-left: 10px solid var(--blue);
   transition: 0.5s;

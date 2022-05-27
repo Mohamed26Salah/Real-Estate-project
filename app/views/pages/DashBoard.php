@@ -29,7 +29,7 @@ class DashBoard extends View
             <!-- =============== Navigation ================ -->
             <div class="containerDashBoard">
 
-                <div class="navigationDashBoard" id="navigationDS">
+                <div class="navigationDashBoard" id="navigationDS" >
 
                     <ul>
                         <span class="icon">
@@ -154,14 +154,14 @@ class DashBoard extends View
                                         <ion-icon name="search-outline"></ion-icon>
                                     </label>
                                 </div>
-                                <a href="#" class="btn">View All</a>
+                               
                             </div>
 
                             <table>
                                 <thead>
                                     <tr>
                                         <td>Name</td>
-                                        <td>Number</td>
+                                        
                                         <td>Role</td>
                                         <td>Edit</td>
                                     </tr>
@@ -172,7 +172,7 @@ class DashBoard extends View
                                         $userDisplay = <<<EOT
                             <tr id="$count">
                                 <td>$user->name</td>
-                                <td>0111454768</td>
+                                
                                 <td>$user->Rank</td>
                                 <td><a  class="btn" onclick="Editing($count , '$user->name'  , '$user->ID' ,'$user->Rank');" style="background-color: #4b99ec; color: white; font-size:15px;">Edit</a></td>
                             </tr>

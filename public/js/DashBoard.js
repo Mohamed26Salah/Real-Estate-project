@@ -1,9 +1,6 @@
 if (window.location.href.search("DashBoard") != -1) {
 
-  $(document).ready(function () {
-    document.getElementById("navigationDS").style.height = (window.outerHeight) + "px";
-
-  });
+ 
 
   function Editing(value, name, ID, Rank) {
 
@@ -15,7 +12,7 @@ if (window.location.href.search("DashBoard") != -1) {
     
     <form method="post" action="" >
                             <td>`+ name + `</td>
-                            <td>0111000000</td>
+                            
                             <td> <select id="Rank`+ ID + `" name="Rank">
                             <option value="Moderator">Moderator</option>
                             <option value="User">User</option>
