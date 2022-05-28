@@ -39,7 +39,7 @@ if (window.location.href.search("DashBoard") != -1) {
     customer.innerHTML = ` 
                           
                               <td>`+ name + `</td>
-                              <td>0111454768</td>
+                              
                               <td>`+ Rankk + `</td>
                               <td><a  class="btn" onclick="Editing(`+ valuee + ` , '` + name + `'  , ` + ID + `,'` + Rankk + `' );" style="background-color: #4b99ec; color: white; font-size:15px;">Edit</a></td>
                           
