@@ -3,20 +3,19 @@ class DashBoard extends View
 {
     public function output()
     {
-        try{
-                  if(empty($_SESSION['user_id'])||$_SESSION['Rank']== "User")  {
-                    throw new Exception('not Admin');
-                  }    
-                    }
-                    catch(Exception $e){
-                            redirect('index');
-                    }
+        try {
+            if (empty($_SESSION['user_id']) || $_SESSION['Rank'] == "User") {
+                throw new Exception('not Admin');
+            }
+        } catch (Exception $e) {
+            redirect('index');
+        }
 
         require APPROOT . '/views/inc/header.php';
-        
+
 ?>
         <html>
-           
+
         <!-- <link rel="stylesheet" href="<?php echo URLROOT; ?>css/DashBoardStyle.css"> -->
         <?php $action3 = 'DashBoard'; ?>
         <?php
@@ -29,7 +28,7 @@ class DashBoard extends View
             <!-- =============== Navigation ================ -->
             <div class="containerDashBoard">
 
-                <div class="navigationDashBoard" id="navigationDS" >
+                <div class="navigationDashBoard" id="navigationDS">
 
                     <ul>
                         <span class="icon">
@@ -150,18 +149,18 @@ class DashBoard extends View
  -->
                                 <div class="search">
                                     <label>
-                                        <input type="text" id='Search here' placeholder="Search here" maxlength="50" onkeyup='searching(1 ,<?php echo $offset; ?> ,<?php echo $no_of_records_per_page; ?>),lettersandnumbers(this)' >
+                                        <input type="text" id='Search here' placeholder="Search here" maxlength="50" onkeyup='searching(1 ,<?php echo $offset; ?> ,<?php echo $no_of_records_per_page; ?>),lettersandnumbers(this)'>
                                         <ion-icon name="search-outline"></ion-icon>
                                     </label>
                                 </div>
-                               
+
                             </div>
 
                             <table>
                                 <thead>
                                     <tr>
                                         <td>Name</td>
-                                        
+
                                         <td>Role</td>
                                         <td>Edit</td>
                                     </tr>
@@ -459,7 +458,7 @@ class DashBoard extends View
                 function Confirm(ConfirmID, valuee) {
 
                     Rank = document.getElementById('Rank' + ConfirmID).value;
-                    
+
 
                     $.ajax({
                         url: "<?php echo $action3; ?>",
@@ -543,31 +542,31 @@ class DashBoard extends View
                         },
 
                         success: function(data) {
+                            console.log(data);
 
                             if (state == 1) {
                                 customer = document.getElementById('mainSearchContainer');
                                 customer.innerHTML = data;
-                            } else if(state==3){
+                            } else if (state == 3) {
                                 if (search) {
                                     customer = document.getElementById('SearchThirdContainer');
 
                                     customer.innerHTML = data;
-                                  
-                                }else{
-                                     switchMainDashBoard(oldpage, offset, no_of_records_per_page);
+
+                                } else {
+                                    switchMainDashBoard(oldpage, offset, no_of_records_per_page);
                                 }
 
-                            }
-                            else if(state==2){
+                            } else if (state == 2) {
                                 console.log("right state")
                                 if (search) {
                                     console.log("Searched")
                                     customer = document.getElementById('SearchSecondContainer');
 
                                     customer.innerHTML = data;
-                                  
-                                }else{
-                                     switchMainDashBoard(oldpage, offset, no_of_records_per_page);
+
+                                } else {
+                                    switchMainDashBoard(oldpage, offset, no_of_records_per_page);
                                 }
                             }
 

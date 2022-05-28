@@ -496,6 +496,7 @@ margin: 5px;;
 }
 
 @media (max-width: 480px) {
+  html, body {margin: 0; height: 100%; overflow: hidden}
   .cardBoxDashBoard {
     grid-template-columns: repeat(1, 1fr);
   }
@@ -517,7 +518,6 @@ margin: 5px;;
 
   .navigationDashBoard.active {
     width: 100%;
-    height: 100%;
     left: 0;
   }
 
