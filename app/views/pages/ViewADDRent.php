@@ -406,7 +406,7 @@ function CheckDates(){
           success:function(data)
           {
             // console.log(data);
-           
+            window.location.replace("<?php echo $action2;?>");
           }
         })
       

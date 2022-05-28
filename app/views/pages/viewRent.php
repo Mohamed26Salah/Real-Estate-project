@@ -224,6 +224,7 @@ $('#yes'+CardID).unbind().click(function() {
             $('#btnRent'+CardID).html("");
             $('#btnRent'+CardID).remove();
             $('#TOR'+CardID).html(result2String+result2);
+            $('#TOREND'+CardID).html(result3String+result3);
             $('#Background'+CardID).css({backgroundColor: "#20AF1C"});
              }else if(result=="2"){
             $('#TOR'+CardID).html(result2String+result2);

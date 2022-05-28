@@ -236,7 +236,7 @@ class viewEditRentModel extends model
         <label class='label' for='TOREND'>نهاية الأيجار الحالى</label>
         <input class='text-input' id='TOREND' onchange="openclose3()" name='TOREND' required type='date' value="$record->TOREND" min="" max="" disabled>
         </p>
-        <button type="button" onclick="ClearLastEdit(),CheckDates()" class="btn btn-primary"> أمسح التواريخ من أجل تغيرها</button>
+        <button type="button" onclick="ClearLastEdit()" class="btn btn-primary"> أمسح التواريخ من أجل تغيرها</button>
 
 
         <p class='field required'>

@@ -294,7 +294,8 @@ class ViewADDModel extends model
             return $data;
         }
         public function DeleteImages($ID){
-            $this->dbh->query(" DELETE FROM `allestateimages` WHERE allestateID = '".$ID."'");
+            $this->dbh->query(" DELETE FROM `allestateimages` WHERE allestateID = :UIDD ");
+            $this->dbh->bind(':UIDD', $ID);
             $this->dbh->execute();
             echo("Da5l model");
         }

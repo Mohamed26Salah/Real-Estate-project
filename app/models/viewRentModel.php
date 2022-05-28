@@ -35,9 +35,15 @@ class viewRentModel extends model
             $TorEndNew=date_format($dataJoex,"Y-m-d");
             $TorEndOldd=date('Y-m-d', strtotime($TorEndOld));
             $TorEndNeww=date('Y-m-d', strtotime($TorEndNew));
+            /////////////////////////////////////////////////////////////////////////////////////////
+          
+           
             $QUERY= "UPDATE `rents` SET`TOR`= '".$TorEndOldd."',`TOREND`= '".$TorEndNeww."',`status`= 1 WHERE ID=$ID";
             $this->dbh->query($QUERY);
             $this->dbh->execute();
+           
+            /////////////////////////////////////////////////////////////////////////////////////////
+          
 
             $date3 = date('Y-m-d');
             if (($date3 >= $TorEndOldd) && ($date3 <= $TorEndNeww)){
@@ -110,21 +116,15 @@ class viewRentModel extends model
   
     public function ViewRentOn($offset, $no_of_records_per_page)
     {
-        $this->dbh->query("SELECT * FROM `rents`  LIMIT $offset, $no_of_records_per_page");
+        $this->dbh->query("SELECT * FROM `rents`  LIMIT :offset, :no_of_records_per_page");
+        $this->dbh->bind(':offset',$offset , PDO::PARAM_INT);
+        $this->dbh->bind(':no_of_records_per_page',$no_of_records_per_page , PDO::PARAM_INT);
 
         $ALLRECORDS = $this->dbh->resultSet();
 
         return $ALLRECORDS;
     }
-    // public function TimeLeftForRent($date11)
-    // {
-    //     $date1 = new DateTime($date11);
-    //     $date2 = new DateTime(date("Y-m-d"));
-    //     $interval = $date1->diff($date2);
-    //     // echo "difference " . $interval->y . " years, " . $interval->m . " months, " . $interval->d . " days ";
-    //     // shows the total amount of days (not divided into years, months and days like above)
-    //     return $interval->days;
-    // }
+
     public function UpdateRents(){
         $this->dbh->query("SELECT * FROM `rents`");
         $ALLRECORDS = $this->dbh->resultSet();
@@ -147,7 +147,7 @@ class viewRentModel extends model
                 $this->dbh->query($QUERY);
                 $this->dbh->execute();
             }
-            else if(($date3 > $date5)){
+            else if(($date3 >= $date5)){
                 $QUERY= "UPDATE `rents` SET `status`= 3 WHERE ID=$Item->ID";
                 $this->dbh->query($QUERY);
                 $this->dbh->execute();
@@ -169,6 +169,12 @@ class viewRentModel extends model
             
         }
     }
+    function test_input($data) {
+        $data = trim($data);
+        $data = stripslashes($data);
+        $data = htmlspecialchars($data);
+        return $data;
+    }
     public function CheckIfRentIsStillValid($offset,$no_of_records_per_page){
         $Search="";
         $Status="`status` = 1";
@@ -178,26 +184,31 @@ class viewRentModel extends model
             $Status.=" AND ";
         }
         if(!empty($this->Search)){
-            $Search=" AND (code LIKE '%".$this->Search."%'
-            OR typeName LIKE '%".$this->Search."%'
-            OR rentPrice LIKE '%".$this->Search."%'
-            OR TOR LIKE '%".$this->Search."%'
-            OR TOREND LIKE '%".$this->Search."%'
-            OR Start_OF_Rent LIKE '%".$this->Search."%'
-            OR END_OF_Rent LIKE '%".$this->Search."%'
-            OR LessorName LIKE '%".$this->Search."%'
-            OR TenantName LIKE '%".$this->Search."%'
-            OR LessorNUM LIKE '%".$this->Search."%'
-            OR TenantNUM LIKE '%".$this->Search."%'
-            OR area LIKE '%".$this->Search."%'
-            OR description LIKE '%".$this->Search."%'
-            OR floor LIKE '%".$this->Search."%'
+            $ValidatedSearch=$this->test_input($this->Search);
+            $Search=" AND (code LIKE '%".$ValidatedSearch."%'
+            OR typeName LIKE '%".$ValidatedSearch."%'
+            OR rentPrice LIKE '%".$ValidatedSearch."%'
+            OR TOR LIKE '%".$ValidatedSearch."%'
+            OR TOREND LIKE '%".$ValidatedSearch."%'
+            OR Start_OF_Rent LIKE '%".$ValidatedSearch."%'
+            OR END_OF_Rent LIKE '%".$ValidatedSearch."%'
+            OR LessorName LIKE '%".$ValidatedSearch."%'
+            OR TenantName LIKE '%".$ValidatedSearch."%'
+            OR LessorNUM LIKE '%".$ValidatedSearch."%'
+            OR TenantNUM LIKE '%".$ValidatedSearch."%'
+            OR area LIKE '%".$ValidatedSearch."%'
+            OR description LIKE '%".$ValidatedSearch."%'
+            OR floor LIKE '%".$ValidatedSearch."%'
             )";
         }
         $Status=substr_replace($Status ,"", -4);
         // echo($Status);
         // echo($Search);
-        $this->dbh->query("SELECT * FROM `rents` WHERE" .$Status.$Search. "LIMIT $offset, $no_of_records_per_page");
+        $this->dbh->query("SELECT * FROM `rents` WHERE" .$Status.$Search. "LIMIT :offset, :no_of_records_per_page");
+        $this->dbh->bind(':offset',$offset , PDO::PARAM_INT);
+        $this->dbh->bind(':no_of_records_per_page',$no_of_records_per_page , PDO::PARAM_INT);
+        // $this->dbh->bind(':Status',$Status , PDO::PARAM_INT);
+
         $output='';
         $Background_Color="";
         $Font_Color="";

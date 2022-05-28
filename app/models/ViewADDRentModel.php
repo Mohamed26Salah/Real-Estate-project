@@ -180,13 +180,16 @@ class ViewADDRentModel extends model
         return $data;
     }
      
-        public function DeleteImages($ID){
-            $this->dbh->query(" DELETE FROM `allestateimages` WHERE allestateID = '".$ID."'");
-            $this->dbh->execute();
-            echo("Da5l model");
-        }
+    public function DeleteImages($ID){
+        $this->dbh->query(" DELETE FROM `rentsimages` WHERE RentsID = :UIDD ");
+        $this->dbh->bind(':UIDD', $ID);
+        $this->dbh->execute();
+        echo("Da5l model");
+    }
         public function CheckCode(){
-        $this->dbh->query("SELECT * FROM rents WHERE code = '".$this->Code."'");
+        $this->dbh->query("SELECT * FROM rents WHERE code = :ValidatedCkeckCode ");
+        $ValidatedCkeckCode=$this->test_input($this->Code);
+        $this->dbh->bind(':ValidatedCkeckCode', $ValidatedCkeckCode);
         $ALLRECORDS = $this->dbh->single();
         if(empty($ALLRECORDS)){
             
