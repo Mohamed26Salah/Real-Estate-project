@@ -1,8 +1,8 @@
 <?php
 // DB Params
-define('DB_HOST', '');
+define('DB_HOST', 'localhost');
 define('DB_USER', 'root');
-define('DB_PASS', 'e1505582bf5bb1696e5fcd79f8fab77f657ff0a8c80d103d');
+define('DB_PASS', '3a0ba891672c1937ef0e9ebae71ea68f508e2bd33a00f49c');
 define('DB_NAME', 'real-estate project');
 
 // App Root
