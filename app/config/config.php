@@ -2,7 +2,7 @@
 // DB Params
 define('DB_HOST', 'localhost');
 define('DB_USER', 'root');
-define('DB_PASS', '');
+define('DB_PASS', '54610a90981e81e3f4fe62a12b30d0be05c5f3408f6b1589');
 define('DB_NAME', 'real-estate project');
 
 // App Root
