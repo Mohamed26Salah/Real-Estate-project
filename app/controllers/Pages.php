@@ -169,6 +169,7 @@ class Pages extends Controller
             if($_POST['Importance']!="Salah"){
                 $ViewItem->setImportance($_POST['Importance']);
             }
+           
             echo ($ViewItem->Sort($_POST['offset'], $_POST['no_of_records_per_page']));
         }
     } catch (Exception  $e) {
