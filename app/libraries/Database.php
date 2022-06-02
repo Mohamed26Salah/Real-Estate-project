@@ -21,7 +21,7 @@ class Database
     {
         //DSN: The Data Source Name, contains the information required to connect to the database.
         // Set DSN
-        $dsn = 'mysql:host=' . $this->host . ';dbname=' . $this->dbname;
+        $dsn = 'mysql:host=' . $this->host . ';port=3306;dbname=' . $this->dbname;
         $options = array(
             PDO::ATTR_PERSISTENT => true,
             PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,

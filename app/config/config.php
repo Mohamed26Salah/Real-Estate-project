@@ -3,7 +3,7 @@
 
 define('DB_HOST', '165.22.90.191');
 
-define('DB_USER', 'root');
+define('DB_USER', 'Salah');
 
 define('DB_PASS', '709c531e7241ba11991473d74c58d63a2a2dcbbff64ecf3e');
 
