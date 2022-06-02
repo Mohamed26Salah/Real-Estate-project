@@ -752,11 +752,11 @@ class Pages extends Controller
         }
     }
 
-    public function about()
+    public function About()
     {
         set_error_handler('myCustomErrorHandler');
         try {
-            $viewPath = VIEWS_PATH . 'pages/about.php';
+            $viewPath = VIEWS_PATH . 'pages/About.php';
             require_once $viewPath;
             $WishListView = new About($this->getModel(), $this);
             $WishListView->output();
