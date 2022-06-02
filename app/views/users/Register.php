@@ -15,8 +15,8 @@ class Register extends view
 
   private function printForm()
   {
-    $action = URLROOT . 'users/register';
-    $loginUrl = URLROOT . 'users/login';
+    $action = URLROOT . 'users/Register';
+    $loginUrl = URLROOT . 'users/Login';
 
 
     $clientID = '456173517303-1quvd4kcrdb4mnc4okv1tsujdnsqaqbk.apps.googleusercontent.com';
