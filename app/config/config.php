@@ -1,11 +1,11 @@
 <?php
 // DB Params
 //firstDroplet Database
-define('DB_HOST', '104.248.26.63');
+define('DB_HOST', '165.22.90.191');
 
-define('DB_USER', '');
+define('DB_USER', 'root');
 //firstDroplet Database
-define('DB_PASS', '54610a90981e81e3f4fe62a12b30d0be05c5f3408f6b1589');
+define('DB_PASS', 'newpassword');
 
 define('DB_NAME', 'real-estate project');
 
@@ -13,7 +13,7 @@ define('DB_NAME', 'real-estate project');
 //echo dirname(dirname(__FILE__));
 define('APPROOT', dirname(dirname(__FILE__)));
 // URL Root
-define('URLROOT', 'http://104.248.26.63/mvc/public/');
+define('URLROOT', 'http://165.22.90.191/mvc/public/');
 // define('URLROOT', 'http://104.248.26.63/mvc/app/views');
 
 // Site Name
@@ -25,6 +25,6 @@ define('VIEWS_PATH', '../app/views/');
 define('models_PATH', '../app/models/');
 //Imagese
 define('IMAGEROOT','../app/views/images/');
-define('IMAGEROOT2','http://104.248.26.63/mvc/public/images/');
-define('IMAGEROOT3','http://104.248.26.63/mvc/app/views/images/');
+define('IMAGEROOT2','http://165.22.90.191/mvc/public/images/');
+define('IMAGEROOT3','http://165.22.90.191/mvc/app/views/images/');
 
