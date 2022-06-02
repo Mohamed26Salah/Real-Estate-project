@@ -64,10 +64,10 @@
             <nav class="site-navigation position-relative text-right" role="navigation">
 
               <ul class="site-menu js-clone-nav mr-auto d-none d-lg-block">
-                <li style = "font-weight:1000;" class="<?php echo $activeIndex; ?>"><a href="<?php echo URLROOT . 'index'; ?>"><span>الصفحة الرئيسية</span></a></li>
+                <li style = "font-weight:1000;" class="<?php echo $activeIndex; ?>"><a href="<?php echo URLROOT . 'pages/Index'; ?>"><span>الصفحة الرئيسية</span></a></li>
                 <!-- <li class="<?php echo $activeItem; ?>"><a href="<?php echo URLROOT . 'pages/viewItem'; ?>"><span>view Item</span></a></li> -->
                 
-                <li style = "font-weight:1000;" class="<?php echo $activeAbout; ?>"><a href="<?php echo URLROOT . 'pages/About'; ?>"><span>عن أمان</span></a></li>
+                <li style = "font-weight:1000;" class="<?php echo $activeAbout; ?>"><a href="<?php echo URLROOT . 'pages/about'; ?>"><span>عن أمان</span></a></li>
 
                 <?php if(!empty($_SESSION['user_id'])) {
                    if($_SESSION['Rank']=="Admin"||$_SESSION['Rank'] == "Moderator"){
