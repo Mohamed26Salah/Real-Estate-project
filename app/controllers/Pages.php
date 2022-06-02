@@ -16,14 +16,14 @@ class Pages extends Controller
         
         
 
-    public function Index()
+    public function index()
     {
         // try {
             
-            $viewPath = VIEWS_PATH . 'pages/Index.php';
+            $viewPath = VIEWS_PATH . 'pages/index.php';
             require_once $viewPath;
 
-            $indexView = new Index($this->getModel(), $this);
+            $indexView = new index($this->getModel(), $this);
 
             $indexView->output();
         // } catch (Exception  $e) {
@@ -752,17 +752,17 @@ class Pages extends Controller
         }
     }
 
-    public function About()
+    public function about()
     {
-        set_error_handler('myCustomErrorHandler');
-        try {
-            $viewPath = VIEWS_PATH . 'pages/About.php';
+        // set_error_handler('myCustomErrorHandler');
+        // try {
+            $viewPath = VIEWS_PATH . 'pages/about.php';
             require_once $viewPath;
-            $WishListView = new About($this->getModel(), $this);
+            $WishListView = new about($this->getModel(), $this);
             $WishListView->output();
-        } catch (Exception  $e) {
-            echo "<h1 style='display:flex; justify-content:center; margin-top:20%;'>" . $e->getMessage() . '</h1>';
-        }
+        // } catch (Exception  $e) {
+        //     echo "<h1 style='display:flex; justify-content:center; margin-top:20%;'>" . $e->getMessage() . '</h1>';
+        // }
     }
     public function DashBoard()
     {
