@@ -1,6 +1,6 @@
 <?php
-// require_once 'UserModel.php';
-class viewItemModel extends model
+// require_once 'ViewCards.php';
+class viewItemModel extends model 
 {
     protected $area;
     protected $price1;
