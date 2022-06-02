@@ -64,20 +64,20 @@
             <nav class="site-navigation position-relative text-right" role="navigation">
 
               <ul class="site-menu js-clone-nav mr-auto d-none d-lg-block">
-                <li style = "font-weight:1000;" class="<?php echo $activeIndex; ?>"><a href="<?php echo URLROOT . 'Pages/Index'; ?>"><span>الصفحة الرئيسية</span></a></li>
+                <li style = "font-weight:1000;" class="<?php echo $activeIndex; ?>"><a href="<?php echo URLROOT . 'Index'; ?>"><span>الصفحة الرئيسية</span></a></li>
                 <!-- <li class="<?php echo $activeItem; ?>"><a href="<?php echo URLROOT . 'pages/viewItem'; ?>"><span>view Item</span></a></li> -->
                 
-                <li style = "font-weight:1000;" class="<?php echo $activeAbout; ?>"><a href="<?php echo URLROOT . 'Pages/About'; ?>"><span>عن أمان</span></a></li>
+                <li style = "font-weight:1000;" class="<?php echo $activeAbout; ?>"><a href="<?php echo URLROOT . 'pages/about'; ?>"><span>عن أمان</span></a></li>
 
                 <?php if(!empty($_SESSION['user_id'])) {
                    if($_SESSION['Rank']=="Admin"||$_SESSION['Rank'] == "Moderator"){
                     ?>
-                  <li style = "font-weight:1000;"  class="<?php echo $activeRent; ?>"><a href="<?php echo URLROOT . 'Pages/viewRent'; ?>"><span>الايجارات</span></a></li>
+                  <li style = "font-weight:1000;"  class="<?php echo $activeRent; ?>"><a href="<?php echo URLROOT . 'pages/viewRent'; ?>"><span>الايجارات</span></a></li>
                   <?php
                    }
                   if($_SESSION['Rank']=="Admin"){
                 ?>
-                <li class="<?php echo $activeDashboard; ?>"><a href="<?php echo URLROOT . "Pages/DashBoard"; ?>"><span>DashBoard</span></a></li>
+                <li class="<?php echo $activeDashboard; ?>"><a href="<?php echo URLROOT . "pages/DashBoard"; ?>"><span>DashBoard</span></a></li>
                 <?php }
                
                 }
@@ -86,14 +86,14 @@
                  <?php
                  if(!empty($_SESSION['user_id'])){
                    ?>
-                  <li class="<?php echo $activeWishList; ?>"><a href="<?php echo URLROOT . 'Pages/wishlist'; ?>"><span><i class="fa fa-heart" aria-hidden="true"></i></span></a></li>
+                  <li class="<?php echo $activeWishList; ?>"><a href="<?php echo URLROOT . 'pages/wishlist'; ?>"><span><i class="fa fa-heart" aria-hidden="true"></i></span></a></li>
                   <?php
                  } 
                  ?>
 
                 <?php if(!empty($_SESSION['user_id'])){
                     ?>
-                 <li class="<?php echo $activeProfile; ?>"><a href="<?php echo URLROOT . 'Pages/Profile'; ?> "><span> <?php echo $_SESSION['user_name'];?>   <i class="fa fa-user" aria-hidden="true"></i>
+                 <li class="<?php echo $activeProfile; ?>"><a href="<?php echo URLROOT . 'pages/Profile'; ?> "><span> <?php echo $_SESSION['user_name'];?>   <i class="fa fa-user" aria-hidden="true"></i>
                 <?php } ?>
           
                 <li class="has-children">
