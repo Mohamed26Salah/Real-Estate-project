@@ -13,7 +13,7 @@ define('DB_NAME', 'real-estate project');
 define('APPROOT', dirname(dirname(__FILE__)));
 // URL Root
 // define('URLROOT', 'http://104.248.26.63/mvc/public/');
-define('URLROOT', 'http://104.248.26.63/mvc/app/views/');
+define('URLROOT', 'http://104.248.26.63/mvc/app/views');
 
 // Site Name
 define('SITENAME', 'MataNa');
