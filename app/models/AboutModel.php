@@ -1,5 +1,5 @@
 <?php
-class AboutModel extends model
+class aboutModel extends model
 {
 
 
