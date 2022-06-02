@@ -1,19 +1,11 @@
 <?php
 // DB Params
 //firstDroplet Database
-// define('DB_HOST', '104.248.26.63');
-
-//SecoundDroplet Database
-define('DB_HOST', '167.99.250.255');
+define('DB_HOST', '104.248.26.63');
 
 define('DB_USER', 'newuser');
 //firstDroplet Database
-// define('DB_PASS', '54610a90981e81e3f4fe62a12b30d0be05c5f3408f6b1589');
-
-//SecoundDroplet Database
-define('DB_PASS', 'f00cd24b45f4eac06b3a728892e03322a5f2bab8607bb7b2');
-
-
+define('DB_PASS', '54610a90981e81e3f4fe62a12b30d0be05c5f3408f6b1589');
 define('DB_NAME', 'real-estate project');
 
 // App Root
