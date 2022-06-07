@@ -212,7 +212,7 @@ class viewEditModel extends model
          
           <p class='field required half'>
             <label class='label' for='Price'>السعر</label>
-            <input class='text-input' id='Price' name='Price' onkeyup="numbers(this)" required type='text' maxlength="20" value="$record->Price">
+            <input class='text-input' id='Price' name='Price' onkeyup="numbers(this)" required type='text' maxlength="7" value="$record->Price">
           </p>
           <p class='field half required'>
             <label class='label' for='Area'>المساحة</label>
@@ -220,11 +220,11 @@ class viewEditModel extends model
           </p>
           <p class='field half required'>
             <label class='label' for='AddressUser'>العنوان للمستخدم</label>
-            <input class='text-input' id='AddressUser' name='AddressUser' onkeyup="lettersandnumbers(this)" maxlength="60" required type='text' value="$record->AddressUser" >
+            <input class='text-input' id='AddressUser' name='AddressUser' onkeyup="Address(this)" maxlength="60" required type='text' value="$record->AddressUser" >
           </p>
           <p class='field half required'>
             <label class='label' for='AddressAdmin'>العنوان للمكتب</label>
-            <input class='text-input' id='AddressAdmin' name='AddressAdmin' onkeyup="lettersandnumbers(this)" required maxlength="300" type='text' value="$record->AddressAdmin" >
+            <input class='text-input' id='AddressAdmin' name='AddressAdmin' onkeyup="Address(this)" required maxlength="300" type='text' value="$record->AddressAdmin" >
           </p>
           <p class='field half required'>
             <label class='label' for='Owner'>اسم صاحب العقار</label>

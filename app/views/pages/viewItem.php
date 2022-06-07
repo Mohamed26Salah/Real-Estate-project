@@ -66,7 +66,7 @@ class viewItem extends View
      </div> 
    </div> 
    <?php if(!empty($_SESSION['user_id'])) { 
-     if($_SESSION['Rank'] == "Admin") {
+     if($_SESSION['Rank'] == "Admin" || $_SESSION['Rank'] == "Moderator") {
        ?>
        <a href="<?php echo $actionAdd;?>?TypeID=<?PHP echo($_GET['TypeID'])?>" class="AddbuttonViewPage" style="color:white; font-size:20px; float:right; list-style-type: none; ">أضافة <?php  echo $prop; ?></a>
 <?php

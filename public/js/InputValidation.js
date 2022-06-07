@@ -15,3 +15,7 @@ function numbers(input){
     var regex=/[^a-z A-Z 0-9]/gi;
     input.value=input.value.replace(regex,"");
   }
+  function Address(input){
+    var regex=/[^a-z A-Z 0-9 , / ، ا-ي ؤأإئء؟]/gi;
+    input.value=input.value.replace(regex,"");
+  }

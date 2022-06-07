@@ -131,8 +131,8 @@ class Index extends View
 
         <div class="card-index">
           <div class="content">
-            <h2 class="title">مصاتع</h2>
-            <a href="<?php echo URLROOT . 'pages/viewItem?TypeID=7'; ?>"><button class="btn"> عرض مصاتع</button></a>
+            <h2 class="title">مصانع</h2>
+            <a href="<?php echo URLROOT . 'pages/viewItem?TypeID=7'; ?>"><button class="btn"> عرض مصانع</button></a>
           </div>
         </div>
 

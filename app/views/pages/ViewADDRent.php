@@ -32,7 +32,7 @@ class ViewADDRent extends view
  
   <p class='field required half'>
     <label class='label' for='Price'>السعر</label>
-    <input class='text-input' id='Price' name='Price' onkeyup="numbers(this)" required type='text' maxlength="20">
+    <input class='text-input' id='Price' name='Price' onkeyup="numbers(this)" required type='text' maxlength="7">
   </p>
   <p class='field required'>
     <label class='label' for='Show'>نوع العقار</label>

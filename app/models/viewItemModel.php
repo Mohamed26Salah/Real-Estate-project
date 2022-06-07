@@ -728,7 +728,7 @@ class viewItemModel extends model
         // $QUERY= "SELECT * FROM `allestate`".$join."WHERE ".$AllSort.$AllJoin.$UltimateJoin.$Search.$SearchAll.$SuperUltimateJoin." LIMIT $offset, $no_of_records_per_page";
 
         $QUERY= "SELECT * FROM `allestate`".$join."WHERE ".$AllSort.$AllJoin.$Search.$SuperUltimateJoin." ";
-         //echo $QUERY;
+        //echo $QUERY;
         $this->dbh->query($QUERY);
         $ALLRECORDS = $this->dbh->resultSet();
         array_push($ALLRECORDS, (object)[

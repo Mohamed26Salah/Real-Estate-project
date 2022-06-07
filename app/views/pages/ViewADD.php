@@ -40,7 +40,7 @@ class ViewADD extends view
  
   <p class='field required half'>
     <label class='label' for='Price'>السعر</label>
-    <input class='text-input' id='Price' name='Price' onkeyup="numbers(this)" required type='text' maxlength="20">
+    <input class='text-input' id='Price' name='Price' onkeyup="numbers(this)" required type='text' maxlength="7">
   </p>
   <p class='field half required'>
     <label class='label' for='Area'>المساحة</label>
@@ -48,11 +48,11 @@ class ViewADD extends view
   </p>
   <p class='field half required'>
     <label class='label' for='AddressUser'>العنوان للمستخدم</label>
-    <input class='text-input' id='AddressUser' name='AddressUser' onkeyup="lettersandnumbers(this)" maxlength="60" required type='text'>
+    <input class='text-input' id='AddressUser' name='AddressUser' onkeyup="Address(this)" maxlength="60" required type='text'>
   </p>
   <p class='field half required'>
     <label class='label' for='AddressAdmin'>العنوان للمكتب</label>
-    <input class='text-input' id='AddressAdmin' name='AddressAdmin' onkeyup="lettersandnumbers(this)" required type='text' maxlength="300">
+    <input class='text-input' id='AddressAdmin' name='AddressAdmin' onkeyup="Address(this)" required type='text' maxlength="300">
   </p>
 
   <!-- <p class='field half'>

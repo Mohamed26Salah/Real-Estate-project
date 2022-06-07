@@ -48,7 +48,7 @@ class viewEditRentModel extends model
 
         <p class='field required half'>
         <label class='label' for='Price'>السعر</label>
-        <input class='text-input' id='Price' name='Price' onkeyup="numbers(this)" required type='text' maxlength="20" value="$record->rentPrice">
+        <input class='text-input' id='Price' name='Price' onkeyup="numbers(this)" required type='text' maxlength="7" value="$record->rentPrice">
         </p>
         EOT;
         $TypeNameArray="";
