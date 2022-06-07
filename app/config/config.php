@@ -15,7 +15,7 @@ define('DB_NAME', 'real-estate project');
 //echo dirname(dirname(__FILE__));
 define('APPROOT', dirname(dirname(__FILE__)));
 // URL Root
-define('URLROOT', 'http://localhost/mvc/public/');
+define('URLROOT', 'http://0.0.0.0/mvc/public/');
 // Site Name
 define('SITENAME', 'MataNa');
 //App Version
@@ -25,6 +25,6 @@ define('VIEWS_PATH', '../app/views/');
 define('models_PATH', '../app/models/');
 //Imagese
 define('IMAGEROOT','../app/views/images/');
-define('IMAGEROOT2','http://localhost/mvc/public/images/');
-define('IMAGEROOT3','http://localhost/mvc/app/views/images/');
+define('IMAGEROOT2','http://0.0.0.0/mvc/public/images/');
+define('IMAGEROOT3','http://0.0.0.0/mvc/app/views/images/');
 
