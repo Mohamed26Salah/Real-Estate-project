@@ -1,8 +1,8 @@
 <?php
 // DB Params
 define('DB_HOST', 'localhost');
-define('DB_USER', 'Ahmed');
-define('DB_PASS', 'Ahmed');
+define('DB_USER', 'root');
+define('DB_PASS', '');
 define('DB_NAME', 'real-estate project');
 
 
