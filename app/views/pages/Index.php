@@ -71,8 +71,8 @@ class Index extends View
             </form> -->
             </div>
           </div>
-          <!-- mobile submit -->
-          <button type="button" id="main-submit-mobile">Search</button>
+          <!-- mobile submit
+          <button type="button" id="main-submit-mobile">Search</button> -->
 
 
         </div>

@@ -496,7 +496,7 @@ margin: 5px;;
 }
 
 @media (max-width: 480px) {
-  html, body {margin: 0; height: 100%; overflow: hidden}
+  html, body {margin: 0; height: 100%; }
   .cardBoxDashBoard {
     grid-template-columns: repeat(1, 1fr);
   }

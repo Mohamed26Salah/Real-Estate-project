@@ -302,6 +302,12 @@ class DashBoardModel extends model
           if ($page == 1) {
                $output = "";
                $output .= <<<EOT
+                                        <button class="toggleDashBoard" style='margin:10px;' onclick=" 
+                                        navigation.classList.toggle('active');
+                                        main.classList.toggle('active');
+                                   ">
+                                   <ion-icon name="menu-outline"></ion-icon>
+                                   </button>
                                    <div class="search">
                                    <label>
                                    <input type="text" id='Search here' placeholder="Search here" maxlength="50" onkeyup='searching(2 , $offset ,$no_of_records_per_page),lettersandnumbers(this)'>
@@ -379,6 +385,12 @@ class DashBoardModel extends model
           if ($page == 3) {
                $output = "";
                $output .= <<<EOT
+                                   <button class="toggleDashBoard" style='margin:10px;'onclick=" 
+                                   navigation.classList.toggle('active');
+                                   main.classList.toggle('active');
+                              ">
+                              <ion-icon name="menu-outline"></ion-icon>
+                              </button>
                               <div class="search">
                               <label>
                               <input type="text" id='Search here' placeholder="Search here" maxlength="50" onkeyup='searching(3 , $offset ,$no_of_records_per_page),lettersandnumbers(this)'>

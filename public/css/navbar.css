@@ -189,7 +189,8 @@
           cursor: pointer;
           -webkit-transition: .3s all ease;
           -o-transition: .3s all ease;
-          transition: .3s all ease; }
+          transition: .3s all ease;
+          }
           .site-mobile-menu .site-mobile-menu-header .site-mobile-menu-close span:hover {
             color: #f8f9fa; }
       .site-mobile-menu .site-mobile-menu-header .site-mobile-menu-logo {
