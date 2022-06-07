@@ -656,7 +656,7 @@ background-color: black;
   padding: 10px;
   border-radius: 10px;
   border: 1px solid transparent;
-  background-color: red;
+  background-color: #4b99ec;
   transition: .3s;
 }
 #LoadMore:hover {

@@ -52,7 +52,7 @@
       <div class="site-mobile-menu-body"></div>
     </div>
     
-    <header class="site-navbar" style="position: relative; background-color: white; " role="banner">
+    <header class="site-navbar shadow p-4 mb-4 bg-white" style="position: relative; background-color: white; " role="banner">
 
       <div class="container">
         <div class="row align-items-center">

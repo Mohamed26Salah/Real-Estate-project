@@ -50,7 +50,7 @@ class viewRent extends View
   <main class="cd-main-content">
    <section class="cd-gallery">
     <div style="text-align: right; margin-right:40px ; margin-top:20px;">
-  <a href="<?php echo $action3;?>" class="fcc-btn">ADD</a>
+  <a href="<?php echo $action3;?>" class="fcc-btn" style="background-color:black ;">اضافة</a>
 </div>
      <ul>
        
@@ -148,7 +148,7 @@ class viewRent extends View
  </main> 
  <ul class="row" onclick=itemsAjax2();>
 
-<li id="LoadMore" style="width:20%; cursor: pointer;">Load More</li>
+<li id="LoadMore" style="width:20%; cursor: pointer;">تحميل المزيد</li>
 </ul>
 
     
@@ -276,7 +276,7 @@ function distance( x1, y1, x2, y2 ) {
           success:function(data)
           {
             if(!data){
-              loadMore = document.getElementById('LoadMore').innerHTML='No more items to Load';
+              loadMore = document.getElementById('LoadMore').innerHTML='لا يوجد المزيد';
               
               }else{
               container = document.getElementById('cards')

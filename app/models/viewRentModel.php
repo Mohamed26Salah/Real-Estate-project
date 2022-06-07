@@ -102,7 +102,7 @@ class viewRentModel extends model
                                 $YesNo
                                 </div>
                                <br>
-                                <a href="$approot?ID=$ID&color=$colorWithOutHash" class="btn btn-success btn-lg" >Read More</a>
+                                <a href="$approot?ID=$ID&color=$colorWithOutHash" class="btn btn-success btn-lg" >قراءة المزيد</a>
 
                             </div>
                         </div> <!-- end card -->

@@ -56,7 +56,7 @@ class viewDescription extends View
 		<div class="container">
     <a href="<?php echo URLROOT . 'pages/viewItem?TypeID='.$cardDetails->TypeID;?>"><button type="button" class="btn btn-dark"> < Back</button></a>
 	        <div class="heading-section">
-	            <h2>Unit Details</h2>
+	            <h2>تفاصيل العقار</h2>
 	        </div>
 	        <div class="row" >
 	        	<div class="col-lg-12 shadow p-4 mb-4 bg-white">
