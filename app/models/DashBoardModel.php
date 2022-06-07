@@ -2,18 +2,19 @@
 class DashBoardModel extends model
 {
 
-     function test_input($data) {
+     function test_input($data)
+     {
           $data = trim($data);
           $data = stripslashes($data);
           $data = htmlspecialchars($data);
           return $data;
-      }
+     }
      public function getDashBoardData()
      {
 
           $ALLRECORDS = [];
           $this->dbh->query("SELECT COUNT(*) AS count1 FROM `allestate` ");
-        
+
 
           $ALLRECORDS[0] = $this->dbh->single();
 
@@ -42,33 +43,49 @@ class DashBoardModel extends model
      }
      public function EditConfirm($ID, $Rank, $count)
      {
+          if ($Rank != "Moderator" && $Rank != "User") {
+               $this->dbh->query("SELECT * from `user` WHERE  `ID`= :uIDu");
+               $this->dbh->bind(':uIDu', $ID, PDO::PARAM_INT);
+               $ALLRECORDS2 = $this->dbh->single();
 
-          $this->dbh->query("UPDATE `user` SET `Rank`= :uRank WHERE `ID`= :uIDu");
-          $this->dbh->bind(':uRank', $Rank);
-          $this->dbh->bind(':uIDu', $ID , PDO::PARAM_INT);
+               $customer = <<<EOT
+                               <td>$ALLRECORDS2->name</td>
+               
+                              <td>$ALLRECORDS2->Rank</td>
+                              <td><a  class="btn" onclick="Editing($count , '$ALLRECORDS2->name'  , '$ALLRECORDS2->ID' ,  '$ALLRECORDS2->Rank');" style="background-color: #4b99ec; color: white; font-size:15px;">Edit</a></td>
+               EOT;
 
-          $ALLRECORDS = $this->dbh->single();
+               return $customer;
+          } else {
 
-          $this->dbh->query("SELECT * from `user` WHERE  `ID`= :uIDu");
-          $this->dbh->bind(':uIDu', $ID , PDO::PARAM_INT);
-          $ALLRECORDS2 = $this->dbh->single();
-        
-          $customer = <<<EOT
+
+               $this->dbh->query("UPDATE `user` SET `Rank`= :uRank WHERE `ID`= :uIDu");
+               $this->dbh->bind(':uRank', $Rank);
+               $this->dbh->bind(':uIDu', $ID, PDO::PARAM_INT);
+
+               $ALLRECORDS = $this->dbh->single();
+
+               $this->dbh->query("SELECT * from `user` WHERE  `ID`= :uIDu");
+               $this->dbh->bind(':uIDu', $ID, PDO::PARAM_INT);
+               $ALLRECORDS2 = $this->dbh->single();
+
+               $customer = <<<EOT
               <td>$ALLRECORDS2->name</td>
               
               <td>$ALLRECORDS2->Rank</td>
               <td><a  class="btn" onclick="Editing($count , '$ALLRECORDS2->name'  , '$ALLRECORDS2->ID' ,  '$Rank');" style="background-color: #4b99ec; color: white; font-size:15px;">Edit</a></td>
               EOT;
 
-          return $customer;
+               return $customer;
+          }
      }
      public function DeleteUser($ID)
      {
 
 
           $this->dbh->query("DELETE FROM `user` WHERE  `ID`= :uIDu");
-          $this->dbh->bind(':uIDu', $ID , PDO::PARAM_INT);
-                    $ALLRECORDS = $this->dbh->single();
+          $this->dbh->bind(':uIDu', $ID, PDO::PARAM_INT);
+          $ALLRECORDS = $this->dbh->single();
 
 
 
@@ -79,8 +96,8 @@ class DashBoardModel extends model
 
 
           $this->dbh->query("DELETE FROM `aboutus` WHERE  `ID`= :uIDu");
-          $this->dbh->bind(':uIDu', $ID , PDO::PARAM_INT);
-                    $ALLRECORDS = $this->dbh->single();
+          $this->dbh->bind(':uIDu', $ID, PDO::PARAM_INT);
+          $ALLRECORDS = $this->dbh->single();
 
 
 
@@ -99,13 +116,13 @@ class DashBoardModel extends model
           // $Name=filter_var($name, FILTER_SANITIZE_STRING);
           // $Title=filter_var($title, FILTER_SANITIZE_STRING);
           // $Description=filter_var($disc, FILTER_SANITIZE_STRING);
-          $Name=$this->test_input($name);
-          $Title=$this->test_input($title);
-          $Description=$this->test_input($disc);
+          $Name = $this->test_input($name);
+          $Title = $this->test_input($title);
+          $Description = $this->test_input($disc);
 
 
           $this->dbh->query("INSERT INTO `aboutus`( `UserID`, `name`, `Title`, `email`, `Description`) VALUES (:uresult2ID ,:uName ,:uTitle,:unewEmail,:uDescription)");
-          $this->dbh->bind(':uresult2ID', $result2->ID , PDO::PARAM_INT);
+          $this->dbh->bind(':uresult2ID', $result2->ID, PDO::PARAM_INT);
           $this->dbh->bind(':uName', $Name);
           $this->dbh->bind(':uTitle', $Title);
           $this->dbh->bind(':unewEmail', $newEmail);
@@ -113,16 +130,14 @@ class DashBoardModel extends model
           $this->dbh->single();
 
           $this->dbh->query("SELECT * FROM `aboutus` WHERE   `UserID`= :uresult2ID");
-          $this->dbh->bind(':uresult2ID', $result2->ID , PDO::PARAM_INT);
+          $this->dbh->bind(':uresult2ID', $result2->ID, PDO::PARAM_INT);
           $result4 = $this->dbh->single();
 
-          if(substr($result2->image,0,4) == 'http') {
+          if (substr($result2->image, 0, 4) == 'http') {
                $IMAGEROOT2 = '';
-           }
-           else {
+          } else {
                $IMAGEROOT2 = IMAGEROOT3;
-
-           }
+          }
 
           $output2 .= <<<EOT
           <div class="column" id="$result4->ID">
@@ -148,11 +163,11 @@ class DashBoardModel extends model
      }
      public function ConfirmUser($email, $newEmail, $ID, $name, $title, $disc)
      {
-          
+
           $ALL = "DELETE   FROM `aboutus` WHERE   `ID`=  :uIDu";
           $this->dbh->query($ALL);
-          $this->dbh->bind(':uIDu', $ID , PDO::PARAM_INT);
-          
+          $this->dbh->bind(':uIDu', $ID, PDO::PARAM_INT);
+
           $output2 = "";
           $result = $this->dbh->single();
           $this->dbh->query("SELECT * FROM `user` WHERE  `email`= :unewEmail ");
@@ -162,12 +177,12 @@ class DashBoardModel extends model
           // $Name=filter_var($name, FILTER_SANITIZE_STRING);
           // $Title=filter_var($title, FILTER_SANITIZE_STRING);
           // $Description=filter_var($disc, FILTER_SANITIZE_STRING);
-          $Name=$this->test_input($name);
-          $Title=$this->test_input($title);
-          $Description=$this->test_input($disc);
+          $Name = $this->test_input($name);
+          $Title = $this->test_input($title);
+          $Description = $this->test_input($disc);
           $this->dbh->query("INSERT INTO `aboutus`( `ID`,`UserID`, `name`, `Title`, `email`, `Description`) VALUES (:uIDu ,:uresult2ID ,:uName ,:uTitle,:unewEmail,:uDescription)");
-          $this->dbh->bind(':uIDu', $ID , PDO::PARAM_INT);
-          $this->dbh->bind(':uresult2ID', $result2->ID , PDO::PARAM_INT);
+          $this->dbh->bind(':uIDu', $ID, PDO::PARAM_INT);
+          $this->dbh->bind(':uresult2ID', $result2->ID, PDO::PARAM_INT);
           $this->dbh->bind(':uName', $Name);
           $this->dbh->bind(':uTitle', $Title);
           $this->dbh->bind(':unewEmail', $newEmail);
@@ -175,16 +190,14 @@ class DashBoardModel extends model
           $result3 = $this->dbh->single();
 
           $this->dbh->query("SELECT *   FROM `aboutus` WHERE   `UserID`= :uresult2ID ");
-          $this->dbh->bind(':uresult2ID', $result2->ID , PDO::PARAM_INT);
+          $this->dbh->bind(':uresult2ID', $result2->ID, PDO::PARAM_INT);
 
           $result4 = $this->dbh->single();
-          if(substr($result2->image,0,4) == 'http') {
+          if (substr($result2->image, 0, 4) == 'http') {
                $IMAGEROOT2 = '';
-           }
-           else {
+          } else {
                $IMAGEROOT2 = IMAGEROOT3;
-
-           }
+          }
           $output2 .= <<<EOT
          
            <div class="card-about">
@@ -330,10 +343,10 @@ class DashBoardModel extends model
                     </thead>
                     <tbody>
                     EOT;
-               
+
                $this->dbh->query("SELECT *  FROM `rents` WHERE  1 LIMIT :uoffset , :uno_of_records_per_page");
-               $this->dbh->bind(":uoffset", $offset , PDO::PARAM_INT);
-               $this->dbh->bind(":uno_of_records_per_page", $no_of_records_per_page , PDO::PARAM_INT);
+               $this->dbh->bind(":uoffset", $offset, PDO::PARAM_INT);
+               $this->dbh->bind(":uno_of_records_per_page", $no_of_records_per_page, PDO::PARAM_INT);
                $ALLRECORDS[0] = $this->dbh->resultSet();
 
                $this->dbh->query("SELECT Count(*) as c3  FROM `rents` WHERE  1 ");
@@ -354,7 +367,7 @@ class DashBoardModel extends model
 
                foreach ($ALLRECORDS[0] as $record) {
                     $this->dbh->query("SELECT *  FROM `user` WHERE  ID= :AMID ");
-                    $this->dbh->bind(':AMID', $record->AMID , PDO::PARAM_INT);
+                    $this->dbh->bind(':AMID', $record->AMID, PDO::PARAM_INT);
 
                     $user = $this->dbh->single();
 
@@ -413,11 +426,11 @@ class DashBoardModel extends model
                     </thead>
                     <tbody>
                     EOT;
-               
+
                // SQL ERROR Ya Salah
                $this->dbh->query("SELECT *  FROM `allestate` WHERE  1 LIMIT :uoffset , :uno_of_records_per_page ");
-                $this->dbh->bind(":uoffset", $offset , PDO::PARAM_INT);
-                $this->dbh->bind(":uno_of_records_per_page", $no_of_records_per_page , PDO::PARAM_INT);
+               $this->dbh->bind(":uoffset", $offset, PDO::PARAM_INT);
+               $this->dbh->bind(":uno_of_records_per_page", $no_of_records_per_page, PDO::PARAM_INT);
 
 
                $ALLRECORDS[1] = $this->dbh->resultSet();
@@ -441,7 +454,7 @@ class DashBoardModel extends model
 
                foreach ($ALLRECORDS[1] as $record) {
                     $this->dbh->query("SELECT *  FROM `user` WHERE  ID= :AMID ");
-                    $this->dbh->bind(':AMID', $record->AMID , PDO::PARAM_INT);
+                    $this->dbh->bind(':AMID', $record->AMID, PDO::PARAM_INT);
 
                     $user = $this->dbh->single();
 
@@ -477,10 +490,9 @@ class DashBoardModel extends model
                          $this->dbh->query("SELECT * FROM `user`  WHERE NOT `Rank`  ='Admin'  AND (user.name LIKE :sea
                       OR user.email LIKE :sea
                       OR user.Rank LIKE :sea )");
-                      $this->dbh->bind(':sea', "%".$search."%" );
-                      $this->dbh->bind(':sea', "%".$search."%" );
-                      $this->dbh->bind(':sea', "%".$search."%" );
-                         
+                         $this->dbh->bind(':sea', "%" . $search . "%");
+                         $this->dbh->bind(':sea', "%" . $search . "%");
+                         $this->dbh->bind(':sea', "%" . $search . "%");
                     }
 
 
@@ -520,17 +532,17 @@ class DashBoardModel extends model
                          </thead>
                          <tbody>
                          EOT;
-                    
+
                     $this->dbh->query("SELECT *  FROM `rents` WHERE  rents.typeName LIKE  :search1 
                     OR rents.code LIKE  :search2 
                     OR rents.LessorName LIKE :search3 
                     OR rents.TenantName LIKE :search4 ");
 
-                    $this->dbh->bind(':search1', "%".$search."%" );
-                    $this->dbh->bind(':search2', "%".$search."%" );
-                    $this->dbh->bind(':search3', "%".$search."%" );
-                   
-                    $this->dbh->bind(':search4', "%".$search."%");
+                    $this->dbh->bind(':search1', "%" . $search . "%");
+                    $this->dbh->bind(':search2', "%" . $search . "%");
+                    $this->dbh->bind(':search3', "%" . $search . "%");
+
+                    $this->dbh->bind(':search4', "%" . $search . "%");
 
                     $ALLRECORDS[0] = $this->dbh->resultSet();
 
@@ -552,7 +564,7 @@ class DashBoardModel extends model
 
                     foreach ($ALLRECORDS[0] as $record) {
                          $this->dbh->query("SELECT *  FROM `user` WHERE  ID= :AMID ");
-                         $this->dbh->bind(':AMID', $record->AMID , PDO::PARAM_INT);
+                         $this->dbh->bind(':AMID', $record->AMID, PDO::PARAM_INT);
 
                          $user = $this->dbh->single();
 
@@ -572,7 +584,7 @@ class DashBoardModel extends model
 
 
                     $output .= '</tbody></table></div></div></div>';
-                    
+
 
 
 
@@ -599,7 +611,7 @@ class DashBoardModel extends model
                          </thead>
                          <tbody>
                          EOT;
-                    
+
 
                     $this->dbh->query("SELECT *  FROM `allestate` WHERE  allestate.AddressUser LIKE  :search 
                     OR allestate.Area LIKE  :search 
@@ -609,9 +621,9 @@ class DashBoardModel extends model
                     OR allestate.Name LIKE  :search 
                     OR allestate.Code LIKE  :search  ");
 
-                  
-                   
-                    $this->dbh->bind(':search', "%".$search."%");
+
+
+                    $this->dbh->bind(':search', "%" . $search . "%");
 
 
 
@@ -636,7 +648,7 @@ class DashBoardModel extends model
 
                     foreach ($ALLRECORDS[1] as $record) {
                          $this->dbh->query("SELECT *  FROM `user` WHERE  ID= :AMID ");
-                         $this->dbh->bind(':AMID', $record->AMID , PDO::PARAM_INT);
+                         $this->dbh->bind(':AMID', $record->AMID, PDO::PARAM_INT);
                          $user = $this->dbh->single();
 
 

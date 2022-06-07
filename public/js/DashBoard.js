@@ -14,6 +14,7 @@ if (window.location.href.search("DashBoard") != -1) {
                             <td>`+ name + `</td>
                             
                             <td> <select id="Rank`+ ID + `" name="Rank">
+                            <option value="None">No Change</option>
                             <option value="Moderator">Moderator</option>
                             <option value="User">User</option>
                           </select></td>
