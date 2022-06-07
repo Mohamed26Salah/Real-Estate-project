@@ -19,20 +19,26 @@ class Profile extends View
     <link rel="stylesheet" href="<?php echo URLROOT; ?>css/Profile.css">
 <?php
     $action = URLROOT . 'pages/Profile';
-
+    
+    $psw = $this->model->getUserPassword();
+  
+   
     $actionImage = 'ImageAjax';
     $this->printFormNameEmail();
+   
     $this->printFormPassword();
+    
+   
     require APPROOT . '/views/inc/footer2.php';
    
 
-
+      
 
   }
   private function printFormNameEmail() {
 
     $action = URLROOT . 'pages/Profile';
-   
+    $psw = $this->model->getUserPassword();
     
     $image = $this->model->getImage();
     
@@ -95,7 +101,16 @@ class Profile extends View
 EOT;
     echo $text;
     $this->printName();
-    $this->printEmail();
+    
+    if(!empty($psw->password)) {
+      $this->printEmail();
+    }
+      
+      
+  
+    
+    
+    
     $rank = $_SESSION['Rank'];
     $text = <<<EOT
     
@@ -150,6 +165,7 @@ EOT;
 
   
   private function printFormPassword() {
+    $psw = $this->model->getUserPassword();
     $action = URLROOT . 'pages/Profile';
     $text = <<<EOT
     <div class="container-xl px-4 mt-4">
@@ -163,13 +179,34 @@ EOT;
                         <form action="$action" method="post">
 EOT;
     echo $text;
-    $this->printCurrentPassword();
-    $this->printNewPassword();
-    $this->printConfirmPassword();
+
+      if(!empty($psw->password)) {
+        $this->printCurrentPassword();
+        $this->printNewPassword();
+        $this->printConfirmPassword();
+      
+    
+      $text = <<<EOT
+      
+      
+          <input class="btn btn-primary text-white " id="button" type="submit" name="submit" value="Save Changesss">
+      </form>
+      </div>
+      </div>
+      </div>
+      </div>
+      </div>
+  EOT;
+      }
+      else {
+
+      
+      
+   
     $text = <<<EOT
     
     
-        <input class="btn btn-primary text-white " id="button" type="submit" name="submit" value="Save Changesss">
+        <p>If you would like to change your password, please change it through <strong>Google</strong>.</p>
     </form>
     </div>
     </div>
@@ -177,6 +214,8 @@ EOT;
     </div>
     </div>
 EOT;
+  }
+    
     echo $text;
   }
   private function printCurrentPassword()

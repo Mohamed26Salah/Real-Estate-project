@@ -209,6 +209,7 @@ html, body {
 }
 .btn:hover {
   background-color: #0d0d0d;
+  color:white;
 }
 .btn:focus {
   outline: 1px dashed yellow;

@@ -217,4 +217,13 @@ class ProfileModel extends model
     
         return $image;
      }
+
+     public function getUserPassword() {
+        $this->dbh->query('SELECT * FROM `user` WHERE ID=:id ');
+        $this->dbh->bind(':id', $_SESSION['user_id']);
+
+        $password = $this->dbh->single();
+
+        return $password;
+     }
 }

@@ -86,7 +86,7 @@ class Index extends View
         <div class="card-index">
           <div class="content">
             <h2 class="title">شقق</h2>
-            <p class="copy">Seriously, straight up, just blast off into outer space today</p>
+           
             <a href="<?php echo URLROOT . 'pages/viewItem?TypeID=1'; ?>"><button class="btn">عرض شقق</button></a>
           </div>
         </div>
@@ -94,7 +94,7 @@ class Index extends View
         <div class="card-index">
           <div class="content">
             <h2 class="title">عمارات</h2>
-            <p class="copy">Seriously, straight up, just blast off into outer space today</p>
+            
             <a href="<?php echo URLROOT . 'pages/viewItem?TypeID=2'; ?>"><button class="btn">عرض عمارات</button></a>
           </div>
         </div>
@@ -102,7 +102,6 @@ class Index extends View
         <div class="card-index">
           <div class="content">
             <h2 class="title">فيلا</h2>
-            <p class="copy">Seriously, straight up, just blast off into outer space today</p>
             <a href="<?php echo URLROOT . 'pages/viewItem?TypeID=3'; ?>"><button class="btn">عرض فيلا</button></a>
           </div>
         </div>
@@ -110,7 +109,6 @@ class Index extends View
         <div class="card-index">
           <div class="content">
             <h2 class="title">محلات</h2>
-            <p class="copy">Seriously, straight up, just blast off into outer space today</p>
             <a href="<?php echo URLROOT . 'pages/viewItem?TypeID=4'; ?>"><button class="btn">عرض محلات</button></a>
           </div>
         </div>
@@ -119,7 +117,6 @@ class Index extends View
         <div class="card-index">
           <div class="content">
             <h2 class="title">عيادات</h2>
-            <p class="copy">Plan your next beach trip with these fabulous destinations</p>
             <a href="<?php echo URLROOT . 'pages/viewItem?TypeID=5'; ?>"><button class="btn">عرض عيادات</button></a>
           </div>
         </div>
@@ -127,7 +124,6 @@ class Index extends View
         <div class="card-index">
           <div class="content">
             <h2 class="title">مزارع</h2>
-            <p class="copy">Seriously, straight up, just blast off into outer space today</p>
             <a href="<?php echo URLROOT . 'pages/viewItem?TypeID=6'; ?>"><button class="btn">عرض مزارع</button></a>
           </div>
         </div>
@@ -136,7 +132,6 @@ class Index extends View
         <div class="card-index">
           <div class="content">
             <h2 class="title">مصاتع</h2>
-            <p class="copy">It's the desert you've always dreamed of</p>
             <a href="<?php echo URLROOT . 'pages/viewItem?TypeID=7'; ?>"><button class="btn"> عرض مصاتع</button></a>
           </div>
         </div>
@@ -152,7 +147,6 @@ class Index extends View
         <div class="card-index">
           <div class="content">
             <h2 class="title">اراضي</h2>
-            <p class="copy">Seriously, straight up, just blast off into outer space today</p>
             <a href="<?php echo URLROOT . 'pages/viewItem?TypeID=8'; ?>"><button class="btn">عرض اراضي</button></a>
           </div>
         </div>
@@ -163,7 +157,6 @@ class Index extends View
         <div class="card-index">
           <div class="content">
             <h2 class="title">اخري</h2>
-            <p class="copy">Seriously, straight up, just blast off into outer space today</p>
             <a href="<?php echo URLROOT . 'pages/viewItem?TypeID=9'; ?>"><button class="btn">عرض اخري</button></a>
           </div>
         </div>
