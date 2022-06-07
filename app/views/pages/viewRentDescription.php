@@ -136,7 +136,7 @@ class viewRentDescription extends View
                     </div>
                     
                 
-                    <a href="<?php echo $action; ?>?IDE=<?php echo $EditID;?>&color=<?php echo $_GET['color']; ?>" class="btn btn-success btn-lg" style= "float:left; color:white; text-decoration:none; margin-top:1rem; margin-left:25px;">Edit</a>
+                    <a href="<?php echo $action; ?>?IDE=<?php echo $EditID;?>&color=<?php echo $_GET['color']; ?>" class="btn btn-success btn-lg" style= "float:left; color:white; text-decoration:none; margin-top:1rem; margin-left:25px;">تعديل</a>
                   <?php
                     }
                   }

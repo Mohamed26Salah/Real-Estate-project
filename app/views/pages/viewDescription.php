@@ -367,7 +367,7 @@ class viewDescription extends View
                    
                     </div>
 
-                  <a href="<?php echo $action; ?>?IDE=<?php echo $cardDetails->ID; ?> &TypeID=<?php echo $TypeID; ?>" class="btn btn-success btn-lg" style= "float:left; color:white; text-decoration:none; margin-top:1rem; margin-left:25px;">Edit</a>
+                  <a href="<?php echo $action; ?>?IDE=<?php echo $cardDetails->ID; ?> &TypeID=<?php echo $TypeID; ?>" class="btn btn-success btn-lg" style= "float:left; color:white; text-decoration:none; margin-top:1rem; margin-left:25px;">تعديل</a>
                   <?php
                     }
                   }

@@ -48,6 +48,11 @@ class Profile extends View
     else {
         $imageRoot = IMAGEROOT3;
     }
+
+
+    if(empty($image->image)) {
+      $imageRoot= IMAGEROOT3 . 'person-icon.png';
+    }
     $text = <<<EOT
     <head>
 
