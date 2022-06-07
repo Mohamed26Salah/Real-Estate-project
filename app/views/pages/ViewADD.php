@@ -40,15 +40,15 @@ class ViewADD extends view
  
   <p class='field required half'>
     <label class='label' for='Price'>السعر</label>
-    <input class='text-input' id='Price' name='Price' onkeyup="numbers(this)" required type='text' maxlength="50">
+    <input class='text-input' id='Price' name='Price' onkeyup="numbers(this)" required type='text' maxlength="20">
   </p>
   <p class='field half required'>
     <label class='label' for='Area'>المساحة</label>
-    <input class='text-input' id='Area' name='Area'required onkeyup="numbers(this)" type='text' maxlength="50">
+    <input class='text-input' id='Area' name='Area'required onkeyup="numbers(this)" type='text' maxlength="20">
   </p>
   <p class='field half required'>
     <label class='label' for='AddressUser'>العنوان للمستخدم</label>
-    <input class='text-input' id='AddressUser' name='AddressUser' onkeyup="lettersandnumbers(this)" maxlength="80" required type='text'>
+    <input class='text-input' id='AddressUser' name='AddressUser' onkeyup="lettersandnumbers(this)" maxlength="60" required type='text'>
   </p>
   <p class='field half required'>
     <label class='label' for='AddressAdmin'>العنوان للمكتب</label>
@@ -68,7 +68,7 @@ class ViewADD extends view
   </p>
   <p class='field half required'>
     <label class='label' for='OwnerNum'>رقم صاحب العقار</label>
-    <input class='text-input' id='OwnerNum' name='OwnerNum' maxlength="50" onkeyup="numbers(this)" required type='text'>
+    <input class='text-input' id='OwnerNum' name='OwnerNum' maxlength="20" onkeyup="numbers(this)" required type='text'>
   </p>
   <p class='field required half'>
     <label class='label' for='Code'>الكود</label>
@@ -131,7 +131,7 @@ class ViewADD extends view
     ?>
     <p class='field required half'>
     <label class='label' for='Floor'> الدور</label>
-    <input class='text-input' id='Floor' name='Floor' onkeyup="numbers(this)" maxlength="50" required type='text'>
+    <input class='text-input' id='Floor' name='Floor' onkeyup="numbers(this)" maxlength="5" required type='text'>
   </p>
   <p class='field half'>
     <label class='label' for='Doublex'> دوبلكس</label>
@@ -149,11 +149,11 @@ class ViewADD extends view
  
   <p class='field required half'>
     <label class='label' for='NUMOFRooms'>عددالغرف</label>
-    <input class='text-input' id='NUMOFRooms' name='NUMOFRooms' onkeyup="numbers(this)" maxlength="50" required type='text'>
+    <input class='text-input' id='NUMOFRooms' name='NUMOFRooms' onkeyup="numbers(this)" maxlength="5" required type='text'>
   </p>
   <p class='field required half'>
     <label class='label' for='NUMOFBathrooms'> عدد الحمامات </label>
-    <input class='text-input' id='NUMOFBathrooms' name='NUMOFBathrooms' onkeyup="numbers(this)" maxlength="50" required type='text'>
+    <input class='text-input' id='NUMOFBathrooms' name='NUMOFBathrooms' onkeyup="numbers(this)" maxlength="5" required type='text'>
   </p>
     <input id='TypeID' name='TypeID' type='hidden' value="1">
   </p>
@@ -185,7 +185,7 @@ class ViewADD extends view
     ?>
     <p class='field required half'>
     <label class='label' for='NUMOFFloors'>عدد الأدوار</label>
-    <input class='text-input' id='NUMOFFloors' name='NUMOFFloors' onkeyup="numbers(this)" maxlength="50" required type='text'>
+    <input class='text-input' id='NUMOFFloors' name='NUMOFFloors' onkeyup="numbers(this)" maxlength="5" required type='text'>
    </p>
   
    <?php
@@ -194,7 +194,7 @@ class ViewADD extends view
     ?>
     <p class='field required half'>
     <label class='label' for='NUMOFFlats'>عدد الشقق</label>
-    <input class='text-input' id='NUMOFFlats' name='NUMOFFlats' onkeyup="numbers(this)" maxlength="50" required type='text'>
+    <input class='text-input' id='NUMOFFlats' name='NUMOFFlats' onkeyup="numbers(this)" maxlength="5" required type='text'>
    </p>
    <?php
   }
@@ -211,7 +211,7 @@ class ViewADD extends view
     ?>
    <p class='field required half'>
     <label class='label' for='nUMOFAB'>عدد المباني الأدارية</label>
-    <input class='text-input' id='nUMOFAB' name='nUMOFAB' onkeyup="lettersandnumbers(this)" maxlength="50" required type='text'>
+    <input class='text-input' id='nUMOFAB' name='nUMOFAB' onkeyup="numbers(this)" required type='text' maxlength="5">
   </p>
    <?php
   }

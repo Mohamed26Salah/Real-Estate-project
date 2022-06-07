@@ -306,10 +306,7 @@ class viewDescription extends View
                             <span><?php echo $cardDetails->Owner; ?> </span>
                         </div>
 
-                        <div class="col-md-6 mt-3">
-                        <i class="fa fa-location-dot fa-lg" aria-hidden="true"style="font-weight: bold; "></i><label for="color" > العنوان(المستخدم):  </label>
-                            <span><?php echo $cardDetails->AddressUser; ?> </span>
-                        </div>
+                       
 
                         <div class="col-md-6 mt-3">
                         <i class="fa fa-phone-flip fa-lg" aria-hidden="true"style="font-weight: bold; "></i><label for="color"> رقم صاحب العقار: </label>
