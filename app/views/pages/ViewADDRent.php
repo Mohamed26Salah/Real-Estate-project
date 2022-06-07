@@ -32,7 +32,7 @@ class ViewADDRent extends view
  
   <p class='field required half'>
     <label class='label' for='Price'>السعر</label>
-    <input class='text-input' id='Price' name='Price' onkeyup="numbers(this)" required type='text'>
+    <input class='text-input' id='Price' name='Price' onkeyup="numbers(this)" required type='text' maxlength="20">
   </p>
   <p class='field required'>
     <label class='label' for='Show'>نوع العقار</label>
@@ -50,11 +50,11 @@ class ViewADDRent extends view
   </p>
   <p class='field half required half'>
     <label class='label' for='Area'>المساحة</label>
-    <input class='text-input' id='Area' name='Area'required onkeyup="numbers(this)" type='text' maxlength="50">
+    <input class='text-input' id='Area' name='Area'required onkeyup="numbers(this)" type='text' maxlength="20">
   </p>
   <p class='field required half'>
     <label class='label' for='NUMOFFloors'> الدور</label>
-    <input class='text-input' id='NUMOFFloors' name='NUMOFFloors' onkeyup="numbers(this)" required maxlength="50" type='text'>
+    <input class='text-input' id='NUMOFFloors' name='NUMOFFloors' onkeyup="numbers(this)" required maxlength="5" type='text'>
    </p>
   <p class='field half required'>
     <label class='label' for='LessorName'>اسم المؤجر</label>
@@ -63,7 +63,7 @@ class ViewADDRent extends view
   
   <p class='field half required'>
     <label class='label' for='LessorNum'>رقم المؤجر</label>
-    <input class='text-input' id='LessorNum' name='LessorNum' onkeyup="numbers(this)" maxlength="50" required type='text'>
+    <input class='text-input' id='LessorNum' name='LessorNum' onkeyup="numbers(this)" maxlength="20" required type='text'>
   </p>
   <p class='field half required'>
     <label class='label' for='TenantName'>اسم المستأجر</label>
@@ -71,7 +71,7 @@ class ViewADDRent extends view
   </p>
   <p class='field half required'>
     <label class='label' for='TenantNum'>رقم المستأجر</label>
-    <input class='text-input' id='TenantNum' name='TenantNum' onkeyup="numbers(this)" maxlength="50" required type='text'>
+    <input class='text-input' id='TenantNum' name='TenantNum' onkeyup="numbers(this)" maxlength="20" required type='text'>
   </p>
  <p class='field required'>
     <label class='label' for='Description'>الوصف</label>

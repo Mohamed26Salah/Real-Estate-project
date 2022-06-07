@@ -810,8 +810,8 @@ class Pages extends Controller
 
     public function Profile()
     {
-        set_error_handler('myCustomErrorHandler');
-        try {
+        // set_error_handler('myCustomErrorHandler');
+        // try {
             $ProfileModel = $this->getModel();
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 // Process form
@@ -900,9 +900,9 @@ class Pages extends Controller
             require_once $viewPath;
             $WishListView = new Profile($this->getModel(), $this);
             $WishListView->output();
-        } catch (Exception  $e) {
-            echo "<h1 style='display:flex; justify-content:center; margin-top:20%;'>" . $e->getMessage() . '</h1>';
-        }
+        // } catch (Exception  $e) {
+        //     echo "<h1 style='display:flex; justify-content:center; margin-top:20%;'>" . $e->getMessage() . '</h1>';
+        // }
     }
     public function updateUserSession($user)
     {
@@ -921,8 +921,8 @@ class Pages extends Controller
 
     public function ImageAjax()
     {
-        set_error_handler('myCustomErrorHandler');
-        try {
+        // set_error_handler('myCustomErrorHandler');
+        // try {
             if (!empty($_FILES['fileToUpload']['name'])) {
                 $errors = array();
                 $file_name = $_FILES['fileToUpload']['name'];
@@ -979,9 +979,9 @@ class Pages extends Controller
                     }
                 }
             }
-        } catch (Exception  $e) {
-            echo "<h1 style='display:flex; justify-content:center; margin-top:20%;'>" . $e->getMessage() . '</h1>';
-        }
+        // } catch (Exception  $e) {
+        //     echo "<h1 style='display:flex; justify-content:center; margin-top:20%;'>" . $e->getMessage() . '</h1>';
+        // }
     }
 
 }
