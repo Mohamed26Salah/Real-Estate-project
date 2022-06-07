@@ -1,5 +1,5 @@
 <?php
-class index extends View
+class Index extends View
 {
   public function output()
   {

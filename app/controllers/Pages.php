@@ -4,10 +4,10 @@ require_once $AdminPath;
 
 $ClienPath = models_PATH . 'Client.php';
 require_once $ClienPath;
-// function myCustomErrorHandler(int $errNo, string $errMsg, string $file, int $line) {
-//     echo "Wow my custom error handler got #[$errNo] occurred in [$file] at line [$line]: [$errMsg]";
-//     redirect('index?ERROR=1');
-//     }
+function myCustomErrorHandler(int $errNo, string $errMsg, string $file, int $line) {
+    echo "Wow my custom error handler got #[$errNo] occurred in [$file] at line [$line]: [$errMsg]";
+    redirect('index?ERROR=1');
+    }
 class Pages extends Controller
 {
     protected $ID;
@@ -18,17 +18,17 @@ class Pages extends Controller
 
     public function index()
     {
-        // try {
-            
-            $viewPath = VIEWS_PATH . 'pages/index.php';
+        try {
+
+            $viewPath = VIEWS_PATH . 'pages/Index.php';
             require_once $viewPath;
 
-            $indexView = new index($this->getModel(), $this);
+            $indexView = new Index($this->getModel(), $this);
 
             $indexView->output();
-        // } catch (Exception  $e) {
-        //     echo "<h1 style='display:flex; justify-content:center; margin-top:20%;'>" . $e->getMessage() . '</h1>';
-        // }
+        } catch (Exception  $e) {
+            echo "<h1 style='display:flex; justify-content:center; margin-top:20%;'>" . $e->getMessage() . '</h1>';
+        }
     }
 
 
@@ -169,7 +169,6 @@ class Pages extends Controller
             if($_POST['Importance']!="Salah"){
                 $ViewItem->setImportance($_POST['Importance']);
             }
-           
             echo ($ViewItem->Sort($_POST['offset'], $_POST['no_of_records_per_page']));
         }
     } catch (Exception  $e) {
@@ -754,15 +753,15 @@ class Pages extends Controller
 
     public function about()
     {
-        // set_error_handler('myCustomErrorHandler');
-        // try {
+        set_error_handler('myCustomErrorHandler');
+        try {
             $viewPath = VIEWS_PATH . 'pages/about.php';
             require_once $viewPath;
-            $WishListView = new about($this->getModel(), $this);
+            $WishListView = new About($this->getModel(), $this);
             $WishListView->output();
-        // } catch (Exception  $e) {
-        //     echo "<h1 style='display:flex; justify-content:center; margin-top:20%;'>" . $e->getMessage() . '</h1>';
-        // }
+        } catch (Exception  $e) {
+            echo "<h1 style='display:flex; justify-content:center; margin-top:20%;'>" . $e->getMessage() . '</h1>';
+        }
     }
     public function DashBoard()
     {

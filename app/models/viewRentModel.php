@@ -1,6 +1,5 @@
 <?php
-
-class viewRentModel extends model 
+class viewRentModel extends model
 {
   
     protected $Rent;

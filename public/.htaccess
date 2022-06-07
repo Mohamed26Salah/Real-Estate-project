@@ -1,8 +1,5 @@
  Options -Indexes
 <IfModule mod_rewrite.c>
-<IfModule mod_negotiation.c>
-Options -MultiViews
-</IfModule>
   Options -Multiviews
   RewriteEngine On
   RewriteBase /mvc/public
@@ -10,4 +7,3 @@ Options -MultiViews
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteRule  ^(.+)$ index.php?url=$1 [QSA,L]
 </IfModule>
-
