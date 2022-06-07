@@ -1,9 +1,15 @@
 <?php
 // DB Params
 define('DB_HOST', 'localhost');
-define('DB_USER', 'root');
-define('DB_PASS', '');
+define('DB_USER', 'Ahmed');
+define('DB_PASS', 'Ahmed');
 define('DB_NAME', 'real-estate project');
+
+
+// define('DB_HOST', '159.89.109.126:3306');
+// define('DB_USER', 'Ahmed');
+// define('DB_PASS', 'Ahmed');
+// define('DB_NAME', 'real-estate project');
 
 // App Root
 //echo dirname(dirname(__FILE__));
