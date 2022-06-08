@@ -41,24 +41,7 @@ class Pages extends Controller
             if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 
 
-            // if(isset($_POST['ShowButton'])){
-            //     $ViewItem->setButtonShow($_POST['ShowButton']);
-            //     $ViewItem->setID($_POST['CardID']);
-            //     echo($ViewItem->button());
-
-            //     // echo ($viewItemAdmin->viewItemButton());
-            // }else if(isset($_POST['WishListValue'])){
-            //     // $ViewItem->setID($_POST['CardID']);
-            //     // echo($ViewItem->AddToWishlist($_POST['WishListValue']));
-
-            //     echo($viewItemAdmin->viewItem());
-            //     $ViewItem->setID($_POST['CardID']);
-            //     echo($ViewItem->AddToWishlist($_POST['WishListValue']));
-               
-            //     // echo($viewItemAdmin->viewItem());
-            // }else if(isset($_POST['SearchBar'])){
-            //     echo'<script>console.log("'.$_POST['SearchBar'] .'"); </script>';
-            // }
+          
             echo $viewItemAdmin->viewItem();
 
             }
@@ -174,10 +157,7 @@ class Pages extends Controller
     } catch (Exception  $e) {
             echo "<h1 style='display:flex; justify-content:center; margin-top:20%;'>" . $e->getMessage() . '</h1>';
     }
-        // $viewPath = VIEWS_PATH . 'ajax/search.php';
-        // require_once $viewPath;
-        // $ajax = new ajax($this->getModel(), $this);
-        // $ajax->output();
+      
     }
 
     public function viewRent()
@@ -189,19 +169,7 @@ class Pages extends Controller
 
                 $viewRentAdmin = new AdminModel();
                 // $ViewRent = new viewRentModel();
-                // if(isset($_POST['CardID'])){
-                //     echo ($ViewRent->Paid($_POST['CardID']));
-                // }
-                // if(isset($_POST['joex'])){
-                //     if($_POST['search']!="Salah"){
-                //         $ViewRent->setSearch($_POST['search']);
-                //     }
-                //     if($_POST['Rent']!="Salah"){
-                //         $ViewRent->setRent($_POST['Rent']);
-                //     }
-                //     echo($ViewRent->CheckIfRentIsStillValid($_POST['offset'],$_POST['no_of_records_per_page']));
-
-                // }
+          
 
                 echo ($viewRentAdmin->ViewRent());
             } else {
@@ -443,173 +411,7 @@ class Pages extends Controller
 
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-                //     if(isset($_POST['name'])){
-                //     if($_POST['name']!="Salah"){
-                //         $Add->setname($_POST['name']);
-                //     }
-                //     if($_POST['Price']!="Salah"){
-                //         $Add->setPrice($_POST['Price']);
-                //     }
-                //     if($_POST['Area']!="Salah"){
-                //         $Add->setArea($_POST['Area']);
-                //     }
-                //     if($_POST['AddressUser']!="Salah"){
-                //         $Add->setAddressUser($_POST['AddressUser']);
-                //     }
-                //     if($_POST['AddressAdmin']!="Salah"){
-                //         $Add->setAddressAdmin($_POST['AddressAdmin']);
-                //     }
-                //     if($_POST['Owner']!="Salah"){
-                //         $Add->setOwner($_POST['Owner']);
-                //     }
-                //     if($_POST['OwnerNum']!="Salah"){
-                //         $Add->setOwnerNum($_POST['OwnerNum']);
-                //     }
-                //     if($_POST['Code']!="Salah"){
-                //         $Add->setCode($_POST['Code']);
-                //     }
-                //     if($_POST['DescriptionUser']!="Salah"){
-                //         $Add->setDescriptionUser($_POST['DescriptionUser']);
-                //     }
-                //     if($_POST['DescriptionAdmin']!="Salah"){
-                //         $Add->setDescriptionAdmin($_POST['DescriptionAdmin']);
-                //     }
-                //     if($_POST['contarctType']!="Salah"){
-                //         $Add->setcontarctType($_POST['contarctType']);
-                //     }
-                //     if($_POST['Show']!="Salah"){
-                //         $Add->setShow($_POST['Show']);
-                //     }
-                //     if($_POST['Payment']!="Salah"){
-                //         $Add->setPayment($_POST['Payment']);
-                //     }
-                //     if($_POST['Importance']!="Salah"){
-                //         $Add->setImportance($_POST['Importance']);
-                //     }
-                //     if($_POST['TypeID']!="Salah"){
-                //         $Add->setTypeID($_POST['TypeID']);
-                //     }
-                //     if(isset($_POST['Floor'])){
-                //         if($_POST['Floor']!="Salah"){
-                //             $Add->setFloor($_POST['Floor']);
-                //         }
-                //     }
-                //     if(isset($_POST['NUMOFRooms'])){
-                //         if($_POST['NUMOFRooms']!="Salah"){
-                //             $Add->setNUMOFRooms($_POST['NUMOFRooms']);
-                //         }
-                //     }
-                //     if(isset($_POST['NUMOFBathrooms'])){
-                //         if($_POST['NUMOFBathrooms']!="Salah"){
-                //             $Add->setNUMOFBathrooms($_POST['NUMOFBathrooms']);
-                //         }
-                //     }
-                //     if(isset($_POST['NUMOFFloors'])){
-                //         if($_POST['NUMOFFloors']!="Salah"){
-                //             $Add->setNUMOFFloors($_POST['NUMOFFloors']);
-                //         }
-                //     }
-                //     if(isset($_POST['Furnished'])){
-                //         if($_POST['Furnished']!="Salah"){
-                //             $Add->setFurnished($_POST['Furnished']);
-                //         }
-                //     }
-                //     if(isset($_POST['Finishing'])){
-                //         if($_POST['Finishing']!="Salah"){
-                //             $Add->setFinishing($_POST['Finishing']);
-                //         }
-                //     }
-                //     if(isset($_POST['Doublex'])){
-                //         if($_POST['Doublex']!="Salah"){
-                //             $Add->setDoublex($_POST['Doublex']);
-                //         }
-                //     }
-                //     if(isset($_POST['TypeOFActivity'])){
-                //         if($_POST['TypeOFActivity']!="Salah"){
-                //             $Add->setTypeOFActivity($_POST['TypeOFActivity']);
-                //         }
-                //     }
-                //     if(isset($_POST['nUMOFAB'])){
-                //         if($_POST['nUMOFAB']!="Salah"){
-                //             $Add->setnUMOFAB($_POST['nUMOFAB']);
-                //         }
-                //     }
-                //     //////////////////////////////////////////////////
-                //     if(isset($_POST['NUMOFFlats'])){
-                //         if($_POST['NUMOFFlats']!="Salah"){
-                //             $Add->setNUMOFFlats($_POST['NUMOFFlats']);
-                //         }
-                //     }
-                //     if(isset($_POST['Fix'])){
-                //         if($_POST['Fix']!="Salah"){
-                //             $Add->setFix($_POST['Fix']);
-                //         }
-                //     }
-                //     ////////////////////////////////////////////////
-                //     if(isset($_POST['EditID'])){
-                //         if($_POST['EditID']!="Salah"){
-                //             $Add->setEditID($_POST['EditID']);
-                //         }
-                //     }
-
-                //     echo($Add->Add());
-                //     }
-                //     if(!empty($_FILES['files']['name'])){
-                //         $countfiles = count($_FILES['files']['name']);
-
-                //         // Upload Location
-                //         $upload_location = IMAGEROOT;
-
-                //         // To store uploaded files path
-                //         $files_arr = array();
-
-                //         // Loop all files
-                //         // for($index = 0;$index < $countfiles;$index++){
-                //             $counter="0";
-                //         for($index = 0;$index < 20 ;$index++){
-
-                //            if(isset($_FILES['files']['name'][$index]) && $_FILES['files']['name'][$index] != ''){
-                //               // File name
-                //               $filename = $_FILES['files']['name'][$index];
-                //               $file_size = $_FILES['files']['size'][$index];
-
-                //               // Get extension
-                //               $ext = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
-
-                //               // Valid image extension
-                //               $valid_ext = array("png","jpeg","jpg");
-
-                //               // Check extension
-                //               if(in_array($ext, $valid_ext)){
-                //                 if($file_size < 4194304){
-                //                  // File path
-                //                  $path = $upload_location.$filename;
-
-                //                  // Upload file
-                //                  if(move_uploaded_file($_FILES['files']['tmp_name'][$index],$path)){
-                //                      if($counter=="0"){
-                //                         $Add->OneImages($filename);
-                //                         $counter="1";
-                //                      }
-                //                     $Add->UploadImages($filename);
-                //                  }
-                //                 }
-                //               }else{
-                //                   echo "<div class='text-center fixed-top' style='margin-top:30px;'><button class='btn btn-danger' id='Db' style='width:50%'><i class='fa fa-exclamation-triangle' aria-hidden='true'></i> واحدة من الصور ليست بصورة لذا تم رفضها</button></div>";
-                //               }
-                //            }
-                //         }
-
-                //     }
-                //     if(isset($_POST['codeInput'])){
-                //         $Add->setcodeInput($_POST['codeInput']);
-                //         echo($Add->CheckCode()); 
-                //     }
-                //     if(isset($_POST['IDForImages'])){
-                //         $Add->DeleteImages($_POST['IDForImages']);
-                //         echo "Da5l Controller";
-                //     }
-
+            
                 echo $Add->ViewAdd();
             } else {
                 $viewPath = VIEWS_PATH . 'pages/ViewADD.php';
@@ -658,60 +460,7 @@ class Pages extends Controller
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
                 $ViewEdit = $this->getModel();
-                // if(isset($_POST['FireAJAX'])){
-                //     $ViewEdit->setID($_POST['FireAJAX']);
-                //     echo($ViewEdit->ShowEdit());
-                // }
-                // if(isset($_POST['codeInput'])){
-                //     echo($ViewEdit->CheckCodeEdit($_POST['OldCode'],$_POST['codeInput']));
-                // }
-                // if(!empty($_FILES['files']['name'])){
-                //     $countfiles = count($_FILES['files']['name']);
-                //     $counter="0";
-                //     // Upload Location
-                //     $upload_location = IMAGEROOT;
-
-                //     // To store uploaded files path
-                //     $files_arr = array();
-
-                //     // Loop all files
-                //     // for($index = 0;$index < $countfiles;$index++){
-                //     for($index = 0;$index <= 20 ;$index++){
-
-                //        if(isset($_FILES['files']['name'][$index]) && $_FILES['files']['name'][$index] != ''){
-                //           // File name
-                //           $filename = $_FILES['files']['name'][$index];
-                //           $file_size = $_FILES['files']['size'][$index];
-
-                //           // Get extension
-                //           $ext = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
-
-                //           // Valid image extension
-                //           $valid_ext = array("png","jpeg","jpg");
-
-                //           // Check extension
-                //           if(in_array($ext, $valid_ext)){
-                //             if($file_size < 4194304){
-                //              // File path
-                //              $path = $upload_location.$filename;
-
-                //              // Upload file
-                //              if(move_uploaded_file($_FILES['files']['tmp_name'][$index],$path)){
-
-                //                 if($counter=="0"){
-                //                     $ViewEdit->OneImages($filename, $_POST['YASSER']);
-                //                     $counter="1";
-                //                  }
-                //                  $ViewEdit->UploadImagesEdit($filename, $_POST['YASSER']);
-                //              }
-                //             }
-                //           }else{
-                //               echo "<div class='text-center fixed-top' style='margin-top:30px;'><button class='btn btn-danger' id='Db' style='width:50%'><i class='fa fa-exclamation-triangle' aria-hidden='true'></i> واحدة من الصور ليست بصورة لذا تم رفضها</button></div>";
-                //           }
-                //        }
-                //     }
-
-                // }
+               
 
                 echo $editAdmin->Edit();
             } else {
@@ -732,12 +481,7 @@ class Pages extends Controller
             $WishListView = $this->getModel();
             $WishListClient = new Client();
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-                // if(isset($_POST['work'])){
-                //     echo($WishListView->WishListCard());
-                // }else if(isset($_POST['WishListValue'])){
-                //     $WishListView->setID($_POST['CardID']);
-                //     echo($WishListView->AddToWishlist($_POST['WishListValue']));
-                // }
+             
 
                 echo $WishListClient->WishList();
             } else {
@@ -768,26 +512,7 @@ class Pages extends Controller
         // set_error_handler('myCustomErrorHandler');
         try {
 
-            // if (isset($_POST['DEL'])) {
-            //     echo($DashBoard->DeleteUser($_POST['ID']));
-            // }else if(isset($_POST['DeleteAbout'])){
-            //     echo($DashBoard->DeleteUserAbout($_POST['ID']));
-            // }else if(isset($_POST['EditAbout'])){
-            //     $DashBoardAdmin = new AdminModel;
-            //     echo($DashBoardAdmin->DashBoard());
-            // }else if(isset($_POST['state'])){
-            //     echo($DashBoard->SearchMain($_POST['state'],$_POST['search'],$_POST['offsettt'],$_POST['norpptt']));
-            // }else if(isset($_POST['ConfirmAboutAdd'])){
-            //     echo($DashBoard->ConfirmUserAdd($_POST['newEmail'],$_POST['name1'],$_POST['title1'],$_POST['disc1']));
-            // }else if(isset($_POST['ConfirmAbout'])){
-            //     echo($DashBoard->ConfirmUser($_POST['email'],$_POST['newEmail'],$_POST['ID'],$_POST['name1'],$_POST['title1'],$_POST['disc1']));
-            // }
-            // else if(isset($_POST['page'])){
-            //     echo($DashBoard->switchMainDashBoard($_POST['page'] ,$_POST['offset'],$_POST['norpp']));
-            // }
-            // else if(isset($_POST['ConfirmID'])){
-            //     echo($DashBoard->EditConfirm($_POST['ConfirmID'],$_POST['Rank'],$_POST['valuee']));
-            // }
+          
 
             $AdminDashbaord = new AdminModel;
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -979,9 +704,7 @@ class Pages extends Controller
                     }
                 }
             }
-        // } catch (Exception  $e) {
-        //     echo "<h1 style='display:flex; justify-content:center; margin-top:20%;'>" . $e->getMessage() . '</h1>';
-        // }
+       
     }
 
 }
