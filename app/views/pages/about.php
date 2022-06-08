@@ -15,9 +15,8 @@ class About extends view
 
 
       <div class="about-section">
-        <h1>About Us Page</h1>
-        <p>Some text about who we are and what we do.</p>
-        <p>Resize the browser window to see that this page is responsive by the way.</p>
+        <h1>تواصل معنا</h1>
+       
       </div>
 
       <div class="head">
@@ -40,7 +39,9 @@ class About extends view
   <div class="column">
   <div class="card-about">
   <div class="imagecontainer">
-    <img src=$IMAGEROOT2$user2->image>
+  
+    <img src=$IMAGEROOT2$user2->image style="width:100%; max-width:450px; height:100%; max-height:450px;">
+    
     </div>
     <div class="container-about">
       <h2>$user2->name</h2>
