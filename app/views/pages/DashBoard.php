@@ -19,7 +19,7 @@ class DashBoard extends View
         <!-- <link rel="stylesheet" href="<?php echo URLROOT; ?>css/DashBoardStyle.css"> -->
         <?php $action3 = 'DashBoard'; ?>
         <?php
-        $no_of_records_per_page = 2;
+        $no_of_records_per_page = 5;
         $offset = 0;
         ?>
         <link rel="stylesheet" href="<?php echo URLROOT; ?>css/DashBoardStyle.css">
@@ -404,7 +404,7 @@ class DashBoard extends View
                 oldpage = '';
 
                 function switchMainDashBoard(page, offsett, norppt) {
-
+                    
                     $.ajax({
                         url: "<?php echo $action3; ?>",
                         method: "POST",
@@ -418,7 +418,11 @@ class DashBoard extends View
 
                             if (oldpage != page) {
                                 no_of_records_per_page = <?php echo $no_of_records_per_page; ?>;
-
+                            }
+                            
+                            // ???
+                            if (oldpage == page) {
+                                no_of_records_per_page = norppt;
                             }
                             customer = document.getElementById('mainDashBoard');
                             customer.style.padding = "10px";
